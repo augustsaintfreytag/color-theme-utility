@@ -14,9 +14,9 @@ extension XcodeThemeImporter {
 		PropertyListDecoder()
 	}
 	
-	func xcodeTheme(from data: Data) -> EncodedXcodeTheme? {
+	func xcodeTheme(from data: Data) -> XcodeTheme? {
 		do {
-			let theme = try decoder.decode(EncodedXcodeTheme.self, from: data)
+			let theme = try decoder.decode(XcodeTheme.self, from: data)
 			return theme
 		} catch {
 			print("Could not decode Xcode theme from data. \(error.localizedDescription)")
