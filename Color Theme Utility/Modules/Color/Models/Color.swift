@@ -45,7 +45,7 @@ extension Color {
 
 extension Color {
 	
-	private typealias StringIndexRange = ClosedRange<String.Index>
+	// MARK: Value Conversion
 	
 	/// The highest encodable hexadecimal value per color component.
 	/// Calculated as `Float(16 ^ 2 - 1)`.
@@ -61,7 +61,9 @@ extension Color {
 		return Float(standardizedValue) / maxHexadecimalValue
 	}
 	
-	private static func hexadecimalColorComponents(for string: String) -> (red: String, green: String, blue: String)? {
+	// MARK: Input Computation
+	
+	private static func colorComponentsFromHexadecimalString(for string: String) -> (red: String, green: String, blue: String)? {
 		guard let string = standardizedHexadecimalString(from: string) else {
 			return nil
 		}
@@ -89,7 +91,7 @@ extension Color {
 		return nil
 	}
 	
-	// MARK: String Representation
+	// MARK: Output Computation
 	
 	/// The hexadecimal description of the represented color.
 	var hexadecimalString: String {
@@ -103,7 +105,7 @@ extension Color {
 	// MARK: Init
 	
 	init?(fromHexadecimalString string: String) {
-		guard let (redComponent, greenComponent, blueComponent) = Self.hexadecimalColorComponents(for: string) else {
+		guard let (redComponent, greenComponent, blueComponent) = Self.colorComponentsFromHexadecimalString(for: string) else {
 			return nil
 		}
 		
@@ -113,3 +115,54 @@ extension Color {
 	}
 	
 }
+
+// MARK: Float RGBA
+
+extension Color {
+	
+	// MARK: Input Computation
+	
+	private static func colorComponentsFromFloatRGBAString(for string: String) -> (red: String, green: String, blue: String)? {
+		let components = string.split(separator: " ").remapped
+		
+		guard components.count == 4 else {
+			return nil
+		}
+		
+		return (components[0], components[1], components[2])
+	}
+	
+	private static func colorValue(fromFloatRGBAString string: String) -> ColorValue? {
+		guard let value = ColorValue(string), value > 0, value <= 1 else {
+			return nil
+		}
+		
+		return value
+	}
+	
+	// MARK: Output Computation
+	
+	// …
+	
+	// MARK: Init
+	
+	init?(fromFloatRGBAString string: String) {
+		guard let (redComponent, greenComponent, blueComponent) = Self.colorComponentsFromFloatRGBAString(for: string) else {
+			return nil
+		}
+		
+		guard
+			let redValue = Self.colorValue(fromFloatRGBAString: redComponent),
+			let greenValue = Self.colorValue(fromFloatRGBAString: greenComponent),
+			let blueValue = Self.colorValue(fromFloatRGBAString: blueComponent)
+		else {
+			return nil
+		}
+		
+		self.red = redValue
+		self.green = greenValue
+		self.blue = blueValue
+	}
+	
+}
+
