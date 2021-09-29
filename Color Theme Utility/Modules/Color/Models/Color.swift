@@ -51,7 +51,7 @@ extension Color {
 	/// Calculated as `Float(16 ^ 2 - 1)`.
 	private static var maxHexadecimalValue: Float { 255 }
 	
-	private static func hexadecimalString(for value: ColorValue) -> String {
+	private static func hexadecimalStringComponent(for value: ColorValue) -> String {
 		let standardizedValue = Int(value * Self.maxHexadecimalValue)
 		return String(standardizedValue, radix: 16, uppercase: true)
 	}
@@ -95,9 +95,9 @@ extension Color {
 	
 	/// The hexadecimal description of the represented color.
 	var hexadecimalString: String {
-		let redComponent = Self.hexadecimalString(for: red)
-		let greenComponent = Self.hexadecimalString(for: green)
-		let blueComponent = Self.hexadecimalString(for: blue)
+		let redComponent = Self.hexadecimalStringComponent(for: red)
+		let greenComponent = Self.hexadecimalStringComponent(for: green)
+		let blueComponent = Self.hexadecimalStringComponent(for: blue)
 		
 		return "#\(redComponent)\(greenComponent)\(blueComponent)"
 	}
@@ -142,7 +142,17 @@ extension Color {
 	
 	// MARK: Output Computation
 	
-	// …
+	private static func floatRGBAStringComponent(for value: ColorValue) -> String {
+		return String(value)
+	}
+	
+	var floatRGBAString: String {
+		let redComponent = Self.floatRGBAStringComponent(for: red)
+		let greenComponent = Self.floatRGBAStringComponent(for: green)
+		let blueComponent = Self.floatRGBAStringComponent(for: blue)
+		
+		return "\(redComponent) \(greenComponent) \(blueComponent) 1"
+	}
 	
 	// MARK: Init
 	
