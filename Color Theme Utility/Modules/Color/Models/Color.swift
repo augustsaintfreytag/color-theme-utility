@@ -61,16 +61,32 @@ extension Color {
 		return Float(standardizedValue) / maxHexadecimalValue
 	}
 	
-	private static func hexadecimalColorComponentIndexRanges(for string: String) -> (red: StringIndexRange, green: StringIndexRange, blue: StringIndexRange)? {
-		guard string.count == 7 else {
+	private static func hexadecimalColorComponents(for string: String) -> (red: String, green: String, blue: String)? {
+		guard let string = standardizedHexadecimalString(from: string) else {
 			return nil
 		}
 		
-		let redRange = string.index(string.startIndex, offsetBy: 1) ... string.index(string.startIndex, offsetBy: 2)
-		let greenRange = string.index(redRange.upperBound, offsetBy: 1) ... string.index(redRange.upperBound, offsetBy: 2)
-		let blueRange = string.index(greenRange.upperBound, offsetBy: 1) ... string.index(greenRange.upperBound, offsetBy: 2)
+		let stringSequences = string.split(intoSubsequencesOfLength: 2).remapped
+		let (red, green, blue) = (stringSequences[0], stringSequences[1], stringSequences[2])
 		
-		return (redRange, greenRange, blueRange)
+		return (red, green, blue)
+	}
+	
+	/// Returns a format-validated and standardized expression of a hexadecimal
+	/// color string, always outputting a sequence of six characters or `nil` if the
+	/// string does not have an acceptable structure.
+	///
+	/// Can convert a prefixed string of format `"#2AB1AF"` to `"2AB1AF"`.
+	private static func standardizedHexadecimalString(from string: String) -> String? {
+		if string.count == 7 {
+			return String(string.suffix(6))
+		}
+		
+		if string.count == 6 {
+			return string
+		}
+		
+		return nil
 	}
 	
 	// MARK: String Representation
@@ -87,17 +103,13 @@ extension Color {
 	// MARK: Init
 	
 	init?(fromHexadecimalString string: String) {
-		guard let ranges = Self.hexadecimalColorComponentIndexRanges(for: string) else {
+		guard let (redComponent, greenComponent, blueComponent) = Self.hexadecimalColorComponents(for: string) else {
 			return nil
 		}
 		
-		let redComponent = String(string[ranges.red])
-		let greenComponent = String(string[ranges.green])
-		let blueComponent = String(string[ranges.blue])
-		
-		red = Self.colorValue(fromHexadecimalString: redComponent)
-		green = Self.colorValue(fromHexadecimalString: greenComponent)
-		blue = Self.colorValue(fromHexadecimalString: blueComponent)
+		self.red = Self.colorValue(fromHexadecimalString: redComponent)
+		self.green = Self.colorValue(fromHexadecimalString: greenComponent)
+		self.blue = Self.colorValue(fromHexadecimalString: blueComponent)
 	}
 	
 }
