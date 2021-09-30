@@ -107,7 +107,6 @@
 			children = (
 				8BBF929F2701C48200386123 /* Library */,
 				8BBF929E2701C47F00386123 /* Models */,
-				8B29631E26F630120048CE17 /* XcodeThemeImporter.swift */,
 			);
 			path = Xcode;
 			sourceTree = "<group>";
@@ -157,6 +156,7 @@
 		8BBF929F2701C48200386123 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				8B29631E26F630120048CE17 /* XcodeThemeImporter.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -173,8 +173,8 @@
 		8BBF92A32701CE1700386123 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8BBF92A42701CE1D00386123 /* URL+CanonicalPath.swift */,
 				8B57B50B2704797600A60D1C /* String+Split.swift */,
+				8BBF92A42701CE1D00386123 /* URL+CanonicalPath.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
