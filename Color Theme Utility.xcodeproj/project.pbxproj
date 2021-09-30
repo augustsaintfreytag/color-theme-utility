@@ -15,6 +15,7 @@
 		8B57B50C2704797600A60D1C /* String+Split.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57B50B2704797600A60D1C /* String+Split.swift */; };
 		8B57B50F2704875500A60D1C /* ColorFormatDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57B50E2704875500A60D1C /* ColorFormatDetector.swift */; };
 		8B57B5112704875D00A60D1C /* ColorFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57B5102704875D00A60D1C /* ColorFormat.swift */; };
+		8B57B5142705B3E500A60D1C /* ArgumentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57B5132705B3E500A60D1C /* ArgumentError.swift */; };
 		8BBF92A12701C49100386123 /* XcodeTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBF92A02701C49100386123 /* XcodeTheme.swift */; };
 		8BBF92A52701CE1D00386123 /* URL+CanonicalPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBF92A42701CE1D00386123 /* URL+CanonicalPath.swift */; };
 		8BBF92AA2701F6D600386123 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBF92A92701F6D600386123 /* Color.swift */; };
@@ -41,6 +42,7 @@
 		8B57B50B2704797600A60D1C /* String+Split.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Split.swift"; sourceTree = "<group>"; };
 		8B57B50E2704875500A60D1C /* ColorFormatDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorFormatDetector.swift; sourceTree = "<group>"; };
 		8B57B5102704875D00A60D1C /* ColorFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorFormat.swift; sourceTree = "<group>"; };
+		8B57B5132705B3E500A60D1C /* ArgumentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentError.swift; sourceTree = "<group>"; };
 		8BBF92A02701C49100386123 /* XcodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeTheme.swift; sourceTree = "<group>"; };
 		8BBF92A42701CE1D00386123 /* URL+CanonicalPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+CanonicalPath.swift"; sourceTree = "<group>"; };
 		8BBF92A62701D21A00386123 /* Color Theme Utility.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Color Theme Utility.entitlements"; sourceTree = "<group>"; };
@@ -133,6 +135,14 @@
 			path = Library;
 			sourceTree = "<group>";
 		};
+		8B57B5122705B3DE00A60D1C /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				8B57B5132705B3E500A60D1C /* ArgumentError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 		8BBF929E2701C47F00386123 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +161,7 @@
 		8BBF92A22701CE1500386123 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8B57B5122705B3DE00A60D1C /* Errors */,
 				8BBF92A32701CE1700386123 /* Extensions */,
 			);
 			path = Common;
@@ -248,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B29630C26F60ED20048CE17 /* Command.swift in Sources */,
+				8B57B5142705B3E500A60D1C /* ArgumentError.swift in Sources */,
 				8B29631F26F630120048CE17 /* XcodeThemeImporter.swift in Sources */,
 				8BBF92A52701CE1D00386123 /* URL+CanonicalPath.swift in Sources */,
 				8B2E62AC27024807000AEA95 /* Theme.swift in Sources */,
