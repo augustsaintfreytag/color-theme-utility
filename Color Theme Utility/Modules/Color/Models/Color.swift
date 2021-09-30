@@ -133,7 +133,7 @@ extension Color {
 	}
 	
 	private static func colorValue(fromFloatRGBAString string: String) -> ColorValue? {
-		guard let value = ColorValue(string), value > 0, value <= 1 else {
+		guard let value = ColorValue(string), value >= 0, value <= 1 else {
 			return nil
 		}
 		
