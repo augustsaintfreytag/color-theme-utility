@@ -9,7 +9,7 @@ import ArgumentParser
 import Rainbow
 
 @main
-struct ColorThemeUtility: ParsableCommand, ColorFormatDetector {
+struct ColorThemeUtility: ParsableCommand, ColorFormatDetector, ColorModeler {
 	
 	// MARK: Arguments
 
@@ -28,10 +28,12 @@ struct ColorThemeUtility: ParsableCommand, ColorFormatDetector {
 		switch mode {
 		case .describe:
 			try detectColorKind()
-		default:
-			return
+		case .print:
+			try printColor()
 		}
 	}
+	
+	// MARK: Modes
 	
 	func detectColorKind() throws {
 		guard let inputColor = inputColor else {
@@ -48,10 +50,19 @@ struct ColorThemeUtility: ParsableCommand, ColorFormatDetector {
 			print(inputColorFormat.rawValue)
 		}
 	}
+	
+	func printColor() throws {
+		guard let inputColor = inputColor, let color = color(fromAutodetectedColorString: inputColor) else {
+			throw ArgumentError(errorDescription: "Missing input color or given string has invalid or unsupported format.")
+		}
+		
+		let hexColor = color.hexadecimalString
+		print("████████".hex(hexColor, to: .bit24) + " Red: \(color.red), Green: \(color.green), Blue: \(color.blue) (\(hexColor))")
+	}
 
 }
 
 enum Mode: String, CaseIterable, ExpressibleByArgument {
 	case describe
-	case convert
+	case print
 }
