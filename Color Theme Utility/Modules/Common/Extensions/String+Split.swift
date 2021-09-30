@@ -23,7 +23,7 @@ extension String {
 extension Array where Element == Substring {
 	
 	/// Returns mapped `String` type values from the collection of substrings.
-	var remapped: [String] {
+	var mapped: [String] {
 		return self.map { substring in String(substring) }
 	}
 	

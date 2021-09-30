@@ -68,7 +68,7 @@ extension Color {
 			return nil
 		}
 		
-		let stringSequences = string.split(intoSubsequencesOfLength: 2).remapped
+		let stringSequences = string.split(intoSubsequencesOfLength: 2).mapped
 		let (red, green, blue) = (stringSequences[0], stringSequences[1], stringSequences[2])
 		
 		return (red, green, blue)
@@ -123,7 +123,7 @@ extension Color {
 	// MARK: Input Computation
 	
 	private static func colorComponentsFromFloatRGBAString(for string: String) -> (red: String, green: String, blue: String)? {
-		let components = string.split(separator: " ").remapped
+		let components = string.split(separator: " ").mapped
 		
 		guard components.count == 4 else {
 			return nil
