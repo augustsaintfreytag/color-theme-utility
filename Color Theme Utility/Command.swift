@@ -9,10 +9,49 @@ import ArgumentParser
 import Rainbow
 
 @main
-struct ColorThemeUtility: ParsableCommand, XcodeThemeImporter {
+struct ColorThemeUtility: ParsableCommand, ColorFormatDetector {
+	
+	// MARK: Arguments
+
+	@Argument(help: "The main operation to perform. (options: describe|convert)", completion: .default)
+	var mode: Mode
+	
+	@Option(name: [.customShort("c"), .customLong("color")], help: "The color string to convert.")
+	var inputColor: String?
+	
+	@Flag(name: [.short], help: "Output printed descriptions in a human-readable format.")
+	var humanReadable: Bool = false
 	
 	// MARK: Run
 	
-	func run() throws {}
+	func run() throws {
+		switch mode {
+		case .describe:
+			try detectColorKind()
+		default:
+			return
+		}
+	}
+	
+	func detectColorKind() throws {
+		guard let inputColor = inputColor else {
+			throw ArgumentError(errorDescription: "No color string given, color format could not be determined.")
+		}
+		
+		guard let inputColorFormat = colorFormat(for: inputColor) else {
+			throw ArgumentError(errorDescription: "Color format could not be determined.")
+		}
+		
+		if humanReadable {
+			print("Color string '\(inputColor)' is \(inputColorFormat.description) (\(inputColorFormat.rawValue)).")
+		} else {
+			print(inputColorFormat.rawValue)
+		}
+	}
 
+}
+
+enum Mode: String, CaseIterable, ExpressibleByArgument {
+	case describe
+	case convert
 }
