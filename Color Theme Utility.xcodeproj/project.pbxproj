@@ -11,7 +11,7 @@
 		8B29631426F60F250048CE17 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 8B29631326F60F250048CE17 /* ArgumentParser */; };
 		8B29631C26F62F5A0048CE17 /* Rainbow in Frameworks */ = {isa = PBXBuildFile; productRef = 8B29631B26F62F5A0048CE17 /* Rainbow */; };
 		8B29631F26F630120048CE17 /* XcodeThemeImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29631E26F630120048CE17 /* XcodeThemeImporter.swift */; };
-		8B2E62AC27024807000AEA95 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2E62AB27024807000AEA95 /* Theme.swift */; };
+		8B2E62AC27024807000AEA95 /* IntermediateTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2E62AB27024807000AEA95 /* IntermediateTheme.swift */; };
 		8B57B50C2704797600A60D1C /* String+Split.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57B50B2704797600A60D1C /* String+Split.swift */; };
 		8B57B50F2704875500A60D1C /* ColorFormatDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57B50E2704875500A60D1C /* ColorFormatDetector.swift */; };
 		8B57B5112704875D00A60D1C /* ColorFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57B5102704875D00A60D1C /* ColorFormat.swift */; };
@@ -41,7 +41,7 @@
 		8B29630B26F60ED20048CE17 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		8B29631E26F630120048CE17 /* XcodeThemeImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeThemeImporter.swift; sourceTree = "<group>"; };
 		8B29632026F631D70048CE17 /* Scratchpad */ = {isa = PBXFileReference; lastKnownFileType = text; path = Scratchpad; sourceTree = "<group>"; };
-		8B2E62AB27024807000AEA95 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		8B2E62AB27024807000AEA95 /* IntermediateTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntermediateTheme.swift; sourceTree = "<group>"; };
 		8B57B50B2704797600A60D1C /* String+Split.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Split.swift"; sourceTree = "<group>"; };
 		8B57B50E2704875500A60D1C /* ColorFormatDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorFormatDetector.swift; sourceTree = "<group>"; };
 		8B57B5102704875D00A60D1C /* ColorFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorFormat.swift; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 		8B2E62AA270247FD000AEA95 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8B2E62AB27024807000AEA95 /* Theme.swift */,
+				8B2E62AB27024807000AEA95 /* IntermediateTheme.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -271,7 +271,7 @@
 				8B57B5142705B3E500A60D1C /* ArgumentError.swift in Sources */,
 				8B29631F26F630120048CE17 /* XcodeThemeImporter.swift in Sources */,
 				8BBF92A52701CE1D00386123 /* URL+CanonicalPath.swift in Sources */,
-				8B2E62AC27024807000AEA95 /* Theme.swift in Sources */,
+				8B2E62AC27024807000AEA95 /* IntermediateTheme.swift in Sources */,
 				8BE70D19270855D3008D9991 /* ThemeConversionError.swift in Sources */,
 				8BBF92AA2701F6D600386123 /* Color.swift in Sources */,
 				8BE70D1F270860DF008D9991 /* ThemeCodingError.swift in Sources */,
