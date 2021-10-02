@@ -23,6 +23,7 @@
 		8BE70D19270855D3008D9991 /* ThemeConversionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE70D18270855D3008D9991 /* ThemeConversionError.swift */; };
 		8BE70D1D27085F1A008D9991 /* ThemeImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE70D1C27085F1A008D9991 /* ThemeImporter.swift */; };
 		8BE70D1F270860DF008D9991 /* ThemeCodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE70D1E270860DF008D9991 /* ThemeCodingError.swift */; };
+		8BE70D21270862D3008D9991 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE70D20270862D3008D9991 /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,6 +56,7 @@
 		8BE70D18270855D3008D9991 /* ThemeConversionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeConversionError.swift; sourceTree = "<group>"; };
 		8BE70D1C27085F1A008D9991 /* ThemeImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeImporter.swift; sourceTree = "<group>"; };
 		8BE70D1E270860DF008D9991 /* ThemeCodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCodingError.swift; sourceTree = "<group>"; };
+		8BE70D20270862D3008D9991 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				8BE70D1C27085F1A008D9991 /* ThemeImporter.swift */,
+				8BE70D20270862D3008D9991 /* Theme.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				8BE70D19270855D3008D9991 /* ThemeConversionError.swift in Sources */,
 				8BBF92AA2701F6D600386123 /* Color.swift in Sources */,
 				8BE70D1F270860DF008D9991 /* ThemeCodingError.swift in Sources */,
+				8BE70D21270862D3008D9991 /* Theme.swift in Sources */,
 				8B57B50C2704797600A60D1C /* String+Split.swift in Sources */,
 				8B57B5162705BABB00A60D1C /* ColorModeler.swift in Sources */,
 				8B57B50F2704875500A60D1C /* ColorFormatDetector.swift in Sources */,
