@@ -21,6 +21,7 @@
 		8BBF92A52701CE1D00386123 /* URL+CanonicalPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBF92A42701CE1D00386123 /* URL+CanonicalPath.swift */; };
 		8BBF92AA2701F6D600386123 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBF92A92701F6D600386123 /* Color.swift */; };
 		8BE70D19270855D3008D9991 /* ThemeConversionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE70D18270855D3008D9991 /* ThemeConversionError.swift */; };
+		8BE70D1D27085F1A008D9991 /* ThemeImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE70D1C27085F1A008D9991 /* ThemeImporter.swift */; };
 		8BE70D1F270860DF008D9991 /* ThemeCodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE70D1E270860DF008D9991 /* ThemeCodingError.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		8BBF92A62701D21A00386123 /* Color Theme Utility.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Color Theme Utility.entitlements"; sourceTree = "<group>"; };
 		8BBF92A92701F6D600386123 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		8BE70D18270855D3008D9991 /* ThemeConversionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeConversionError.swift; sourceTree = "<group>"; };
+		8BE70D1C27085F1A008D9991 /* ThemeImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeImporter.swift; sourceTree = "<group>"; };
 		8BE70D1E270860DF008D9991 /* ThemeCodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCodingError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +120,7 @@
 		8B2E62A9270247F4000AEA95 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
+				8BE70D1B27085EF5008D9991 /* Library */,
 				8B2E62AA270247FD000AEA95 /* Models */,
 			);
 			path = Theme;
@@ -202,6 +205,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		8BE70D1B27085EF5008D9991 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				8BE70D1C27085F1A008D9991 /* ThemeImporter.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -268,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B29630C26F60ED20048CE17 /* Command.swift in Sources */,
+				8BE70D1D27085F1A008D9991 /* ThemeImporter.swift in Sources */,
 				8B57B5142705B3E500A60D1C /* ArgumentError.swift in Sources */,
 				8B29631F26F630120048CE17 /* XcodeThemeImporter.swift in Sources */,
 				8BBF92A52701CE1D00386123 /* URL+CanonicalPath.swift in Sources */,

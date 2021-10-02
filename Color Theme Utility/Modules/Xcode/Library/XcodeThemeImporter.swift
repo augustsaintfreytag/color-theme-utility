@@ -25,18 +25,3 @@ extension XcodeThemeImporter {
 	}
 
 }
-
-protocol ThemeImporter {}
-
-extension ThemeImporter {
-	
-	func encodedDataFromFileContents(from url: URL) -> Data? {
-		do {
-			return try Data(contentsOf: url)
-		} catch {
-			assertionFailure("Could not load file content at url '\(url.description)'. \(error.localizedDescription)")
-			return nil
-		}
-	}
-	
-}
