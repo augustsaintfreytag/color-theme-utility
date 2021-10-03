@@ -6,11 +6,12 @@
 
 import Foundation
 
+/// Functionality to create `Color` models from strings.
 protocol ColorModeler: ColorFormatDetector {}
 
 extension ColorModeler {
 	
-	/// Detectes the format of the given color string and creates a `Color` model for supported types.
+	/// Detects the format of the given color string and creates a `Color` model for supported types.
 	func color(fromAutodetectedColorString string: String) -> Color? {
 		guard let format = colorFormat(for: string) else {
 			return nil
