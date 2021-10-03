@@ -25,8 +25,18 @@ struct Color: Codable {
 	
 	// MARK: Convenience Properties
 	
-	var components: (red: ColorValue, green: ColorValue, blue: ColorValue) {
+	var rgb: (red: ColorValue, green: ColorValue, blue: ColorValue) {
 		(red, green, blue)
+	}
+	
+}
+
+// MARK: HSL
+
+extension Color: HSLColorConverter {
+	
+	var hsl: HSLColorValueComponents {
+		return Self.hslComponents(for: rgb)
 	}
 	
 }
@@ -55,7 +65,7 @@ extension Color: HexadecimalColorParser {
 	
 	/// The hexadecimal description of the represented color.
 	var hexadecimalString: String {
-		Self.hexadecimalString(from: components)
+		Self.hexadecimalString(from: rgb)
 	}
 	
 	// MARK: Init
@@ -77,7 +87,7 @@ extension Color: HexadecimalColorParser {
 extension Color: FloatRGBAColorParser {
 	
 	var floatRGBAString: String {
-		Self.floatRGBAString(from: components)
+		Self.floatRGBAString(from: rgb)
 	}
 	
 	// MARK: Init
