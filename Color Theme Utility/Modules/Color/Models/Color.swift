@@ -26,7 +26,7 @@ struct Color: Codable {
 	// MARK: Convenience Properties
 	
 	var rgb: (red: ColorValue, green: ColorValue, blue: ColorValue) {
-		(red, green, blue)
+		return (red, green, blue)
 	}
 	
 }
@@ -37,6 +37,14 @@ extension Color: HSLColorConverter {
 	
 	var hsl: HSLColorValueComponents {
 		return Self.hslComponents(for: rgb)
+	}
+	
+	var hsp: ColorValue {
+		return sqrt(0.299 * pow(red, 2) + 0.587 * pow(green, 2) + 0.114 * pow(blue, 2))
+	}
+	
+	var perception: ColorValue {
+		return hsl.hue / 360
 	}
 	
 }
