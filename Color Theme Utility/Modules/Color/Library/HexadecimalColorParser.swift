@@ -25,7 +25,13 @@ extension HexadecimalColorParser {
 	
 	static func hexadecimalStringComponent(for value: ColorValue) -> String {
 		let standardizedValue = Int(value * Self.maxHexadecimalValue)
-		return String(standardizedValue, radix: 16, uppercase: true)
+		let formattedValue = String(standardizedValue, radix: 16, uppercase: true)
+		
+		guard formattedValue.count == 2 else {
+			return "0" + formattedValue
+		}
+		
+		return formattedValue
 	}
 	
 	static func colorValue(fromHexadecimalString string: String) -> ColorValue {
