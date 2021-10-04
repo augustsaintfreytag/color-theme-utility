@@ -27,19 +27,19 @@ extension HSLColorConverter {
 		
 		let delta = max - min
 		let saturation = delta / max
-		let hue = hue(components, max, delta)
+		let hue = hueColorValue(components, max, delta)
 		
 		return (hue, saturation, max)
 	}
 	
-	private static func hue(_ components: RGBColorValueComponents, _ max: ColorValue, _ delta: ColorValue) -> ColorValue {
+	private static func hueColorValue(_ components: RGBColorValueComponents, _ max: ColorValue, _ delta: ColorValue) -> ColorValue {
 		let value = hueComponent(components, max, delta) * 60
 		
 		guard value >= 0 else {
 			return value + 360
 		}
 		
-		return value
+		return value / 360
 	}
 	
 	private static func hueComponent(_ components: RGBColorValueComponents, _ max: ColorValue, _ delta: ColorValue) -> ColorValue {
