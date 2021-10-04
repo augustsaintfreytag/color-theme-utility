@@ -58,3 +58,68 @@ extension HSLColorConverter {
 	}
 	
 }
+
+extension HSLColorConverter {
+	
+	private static var hueOneHalf: ColorValue { 1/2 }
+	private static var hueOneThird: ColorValue { 1/3 }
+	private static var hueTwoThirds: ColorValue { 2/3 }
+	private static var hueOneSixth: ColorValue { 1/6 }
+	
+	static func rgbComponents(for components: HSLColorValueComponents) -> RGBColorValueComponents {
+		let (hue, saturation, lightness) = components
+		
+		guard saturation > 0 else {
+			return (red: lightness, green: lightness, blue: lightness)
+		}
+		
+		let (lightnessFactor, inverseLightnessFactor) = intermediateRGBLightnessFactors(lightness, saturation)
+		let red = intermediateRGBColorValue(hueFactor: hue + hueOneThird, lightnessFactor: lightnessFactor, inverseLightnessFactor: inverseLightnessFactor)
+		let green = intermediateRGBColorValue(hueFactor: hue, lightnessFactor: lightnessFactor, inverseLightnessFactor: inverseLightnessFactor)
+		let blue = intermediateRGBColorValue(hueFactor: hue - hueOneThird, lightnessFactor: lightnessFactor, inverseLightnessFactor: inverseLightnessFactor)
+		
+		return (red, green, blue)
+	}
+	
+	private static func intermediateRGBColorValue(hueFactor: ColorValue, lightnessFactor: ColorValue, inverseLightnessFactor: ColorValue) -> ColorValue {
+		let hueFactor = normalizedRGBHueFactor(hueFactor)
+		
+		switch hueFactor {
+		case ..<hueOneSixth:
+			return lightnessFactor + (inverseLightnessFactor - lightnessFactor) * 6 * hueFactor
+		case ..<hueOneHalf:
+			return inverseLightnessFactor
+		case ..<hueTwoThirds:
+			return lightnessFactor + (inverseLightnessFactor - lightnessFactor) * (hueTwoThirds - hueFactor) * 6
+		default:
+			return lightnessFactor
+		}
+	}
+	
+	private static func normalizedRGBHueFactor(_ hueFactor: ColorValue) -> ColorValue {
+		if hueFactor < 0 {
+			return hueFactor + 1
+		}
+		
+		if hueFactor > 1 {
+			return hueFactor - 1
+		}
+		
+		return hueFactor
+	}
+	
+	private static func intermediateRGBLightnessFactors(_ lightness: ColorValue, _ saturation: ColorValue) -> (base: ColorValue, inverted: ColorValue) {
+		let lightnessFactor: ColorValue = {
+			if lightness < 0.5 {
+				return lightness * (1 + saturation)
+			} else {
+				return lightness + saturation - lightness * saturation
+			}
+		}()
+		
+		let invertedLightnessFactor: ColorValue = lightness * 2 - lightnessFactor
+		
+		return (lightnessFactor, invertedLightnessFactor)
+	}
+	
+}
