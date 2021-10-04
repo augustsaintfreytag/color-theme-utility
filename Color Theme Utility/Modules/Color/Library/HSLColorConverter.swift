@@ -20,6 +20,7 @@ extension HSLColorConverter {
 		let (red, green, blue) = components
 		let min = min(red, green, blue)
 		let max = max(red, green, blue)
+		let lightness = (max + min) / 2
 		
 		guard min != max else {
 			return (hue: 0, saturation: 0, lightness: max)
@@ -29,7 +30,7 @@ extension HSLColorConverter {
 		let saturation = delta / max
 		let hue = hueColorValue(components, max, delta)
 		
-		return (hue, saturation, max)
+		return (hue, saturation, lightness)
 	}
 	
 	private static func hueColorValue(_ components: RGBColorValueComponents, _ max: ColorValue, _ delta: ColorValue) -> ColorValue {
