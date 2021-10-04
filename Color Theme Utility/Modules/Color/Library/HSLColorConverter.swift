@@ -9,14 +9,14 @@ import Foundation
 protocol HSLColorConverter {
 	
 	typealias ColorValue = Color.ColorValue
-	typealias ColorValueComponents = (red: ColorValue, green: ColorValue, blue: ColorValue)
+	typealias RGBColorValueComponents = (red: ColorValue, green: ColorValue, blue: ColorValue)
 	typealias HSLColorValueComponents = (hue: ColorValue, saturation: ColorValue, lightness: ColorValue)
 	
 }
 
 extension HSLColorConverter {
 	
-	static func hslComponents(for components: ColorValueComponents) -> HSLColorValueComponents {
+	static func hslComponents(for components: RGBColorValueComponents) -> HSLColorValueComponents {
 		let (red, green, blue) = components
 		let min = min(red, green, blue)
 		let max = max(red, green, blue)
@@ -32,7 +32,7 @@ extension HSLColorConverter {
 		return (hue, saturation, max)
 	}
 	
-	private static func hue(_ components: ColorValueComponents, _ max: ColorValue, _ delta: ColorValue) -> ColorValue {
+	private static func hue(_ components: RGBColorValueComponents, _ max: ColorValue, _ delta: ColorValue) -> ColorValue {
 		let value = hueComponent(components, max, delta) * 60
 		
 		guard value >= 0 else {
@@ -42,7 +42,7 @@ extension HSLColorConverter {
 		return value
 	}
 	
-	private static func hueComponent(_ components: ColorValueComponents, _ max: ColorValue, _ delta: ColorValue) -> ColorValue {
+	private static func hueComponent(_ components: RGBColorValueComponents, _ max: ColorValue, _ delta: ColorValue) -> ColorValue {
 		let (red, green, blue) = components
 		
 		switch max {
