@@ -37,7 +37,7 @@ extension HSLColorConverter {
 		let value = hueComponent(components, max, delta) * 60
 		
 		guard value >= 0 else {
-			return value + 360
+			return (value + 360) / 360
 		}
 		
 		return value / 360
