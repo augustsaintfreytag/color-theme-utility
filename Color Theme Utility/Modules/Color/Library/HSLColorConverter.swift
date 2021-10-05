@@ -62,65 +62,35 @@ extension HSLColorConverter {
 
 extension HSLColorConverter {
 	
-	private static var hueOneHalf: ColorValue { 1/2 }
-	private static var hueOneThird: ColorValue { 1/3 }
-	private static var hueTwoThirds: ColorValue { 2/3 }
-	private static var hueOneSixth: ColorValue { 1/6 }
-	
 	static func rgbComponents(for components: HSLColorValueComponents) -> RGBColorValueComponents {
-		let (hue, saturation, lightness) = components
+		let hue = components.hue
+		let saturation = components.saturation
+		let lightness = components.lightness
 		
-		guard saturation > 0 else {
-			return (red: lightness, green: lightness, blue: lightness)
-		}
+		let chroma: ColorValue = (1 - abs(2 * lightness - 1)) * saturation
+		let factor: ColorValue = chroma * (1 - abs((hue / (60 / 360)).truncatingRemainder(dividingBy: 2) - 1))
 		
-		let (lightnessFactor, inverseLightnessFactor) = intermediateRGBLightnessFactors(lightness, saturation)
-		let red = intermediateRGBColorValue(hueFactor: hue + hueOneThird, lightnessFactor: lightnessFactor, inverseLightnessFactor: inverseLightnessFactor)
-		let green = intermediateRGBColorValue(hueFactor: hue, lightnessFactor: lightnessFactor, inverseLightnessFactor: inverseLightnessFactor)
-		let blue = intermediateRGBColorValue(hueFactor: hue - hueOneThird, lightnessFactor: lightnessFactor, inverseLightnessFactor: inverseLightnessFactor)
+		let componentFactors = rgbHueFactor(hue, chroma, factor)
+		let offset: ColorValue = lightness - chroma / 2
+		
+		let (red, green, blue) = (
+			componentFactors.red + offset,
+			componentFactors.green + offset,
+			componentFactors.blue + offset
+		)
 		
 		return (red, green, blue)
 	}
 	
-	private static func intermediateRGBColorValue(hueFactor: ColorValue, lightnessFactor: ColorValue, inverseLightnessFactor: ColorValue) -> ColorValue {
-		let hueFactor = normalizedRGBHueFactor(hueFactor)
-		
-		switch hueFactor {
-		case ..<hueOneSixth:
-			return lightnessFactor + (inverseLightnessFactor - lightnessFactor) * 6 * hueFactor
-		case ..<hueOneHalf:
-			return inverseLightnessFactor
-		case ..<hueTwoThirds:
-			return lightnessFactor + (inverseLightnessFactor - lightnessFactor) * (hueTwoThirds - hueFactor) * 6
-		default:
-			return lightnessFactor
+	private static func rgbHueFactor(_ hue: ColorValue, _ chroma: ColorValue, _ factor: ColorValue) -> RGBColorValueComponents {
+		switch hue {
+		case ..<(60/360): return (chroma, factor, 0)
+		case ..<(120/360): return (factor, chroma, 0)
+		case ..<(180/360): return (0, chroma, factor)
+		case ..<(240/360): return (0, factor, chroma)
+		case ..<(300/360): return (factor, 0, chroma)
+		default: return (chroma, 0, factor)
 		}
-	}
-	
-	private static func normalizedRGBHueFactor(_ hueFactor: ColorValue) -> ColorValue {
-		if hueFactor < 0 {
-			return hueFactor + 1
-		}
-		
-		if hueFactor > 1 {
-			return hueFactor - 1
-		}
-		
-		return hueFactor
-	}
-	
-	private static func intermediateRGBLightnessFactors(_ lightness: ColorValue, _ saturation: ColorValue) -> (base: ColorValue, inverted: ColorValue) {
-		let lightnessFactor: ColorValue = {
-			if lightness < 0.5 {
-				return lightness * (1 + saturation)
-			} else {
-				return lightness + saturation - lightness * saturation
-			}
-		}()
-		
-		let invertedLightnessFactor: ColorValue = lightness * 2 - lightnessFactor
-		
-		return (lightnessFactor, invertedLightnessFactor)
 	}
 	
 }
