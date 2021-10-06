@@ -23,25 +23,21 @@ extension HexadecimalColorParser {
 	/// Calculated as `Float(16 ^ 2 - 1)`.
 	private static var maxHexadecimalValue: Float { 255 }
 	
-	static func hexadecimalStringComponent(for value: ColorValue) -> String {
-		let standardizedValue = Int(value * Self.maxHexadecimalValue)
-		let formattedValue = String(standardizedValue, radix: 16, uppercase: true)
-		
-		guard formattedValue.count == 2 else {
-			return "0" + formattedValue
-		}
-		
-		return formattedValue
-	}
-	
-	static func colorValue(fromHexadecimalString string: String) -> ColorValue {
-		let standardizedValue = Int(string, radix: 16)!
-		return Float(standardizedValue) / maxHexadecimalValue
-	}
-	
 	// MARK: Input Computation
 	
-	static func colorComponentsFromHexadecimalString(for string: String) -> (red: String, green: String, blue: String)? {
+	static func rgbComponents(fromHexadecimalString string: String) -> ColorValueComponents? {
+		guard let (redComponent, greenComponent, blueComponent) = colorStringComponents(fromHexadecimalString: string) else {
+			return nil
+		}
+		
+		let red = Self.colorValue(fromHexadecimalString: redComponent)
+		let green = Self.colorValue(fromHexadecimalString: greenComponent)
+		let blue = Self.colorValue(fromHexadecimalString: blueComponent)
+		
+		return (red, green, blue)
+	}
+	
+	private static func colorStringComponents(fromHexadecimalString string: String) -> (red: String, green: String, blue: String)? {
 		guard let string = standardizedHexadecimalString(from: string) else {
 			return nil
 		}
@@ -69,16 +65,32 @@ extension HexadecimalColorParser {
 		return nil
 	}
 	
+	private static func colorValue(fromHexadecimalString string: String) -> ColorValue {
+		let standardizedValue = Int(string, radix: 16)!
+		return Float(standardizedValue) / maxHexadecimalValue
+	}
+	
 	// MARK: Output Computation
 	
 	/// Return a hexadecimal string from the given color components.
-	static func hexadecimalString(from components: (red: ColorValue, green: ColorValue, blue: ColorValue)) -> String {
+	static func hexadecimalString(from components: ColorValueComponents) -> String {
 		let (red, green, blue) = components
-		let redComponent = Self.hexadecimalStringComponent(for: red)
-		let greenComponent = Self.hexadecimalStringComponent(for: green)
-		let blueComponent = Self.hexadecimalStringComponent(for: blue)
+		let redComponent = hexadecimalStringComponent(for: red)
+		let greenComponent = hexadecimalStringComponent(for: green)
+		let blueComponent = hexadecimalStringComponent(for: blue)
 		
 		return "#\(redComponent)\(greenComponent)\(blueComponent)"
+	}
+	
+	private static func hexadecimalStringComponent(for value: ColorValue) -> String {
+		let standardizedValue = Int(value * Self.maxHexadecimalValue)
+		let formattedValue = String(standardizedValue, radix: 16, uppercase: true)
+		
+		guard formattedValue.count == 2 else {
+			return "0" + formattedValue
+		}
+		
+		return formattedValue
 	}
 	
 }

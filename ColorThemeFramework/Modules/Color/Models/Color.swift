@@ -47,6 +47,16 @@ extension Color: HSLColorConverter {
 		return hsl.hue / 360
 	}
 	
+	// MARK: Init
+	
+	public init(hue: ColorValue, saturation: ColorValue, lightness: ColorValue) {
+		let (red, green, blue) = Self.rgbComponents(from: (hue, saturation, lightness))
+		
+		self.red = red
+		self.green = green
+		self.blue = blue
+	}
+	
 }
 
 // MARK: Defaults
@@ -79,13 +89,13 @@ extension Color: HexadecimalColorParser {
 	// MARK: Init
 	
 	public init?(fromHexadecimalString string: String) {
-		guard let (redComponent, greenComponent, blueComponent) = Self.colorComponentsFromHexadecimalString(for: string) else {
+		guard let (red, green, blue) = Self.rgbComponents(fromHexadecimalString: string) else {
 			return nil
 		}
 		
-		self.red = Self.colorValue(fromHexadecimalString: redComponent)
-		self.green = Self.colorValue(fromHexadecimalString: greenComponent)
-		self.blue = Self.colorValue(fromHexadecimalString: blueComponent)
+		self.red = red
+		self.green = green
+		self.blue = blue
 	}
 	
 }
@@ -101,21 +111,13 @@ extension Color: FloatRGBAColorParser {
 	// MARK: Init
 	
 	public init?(fromFloatRGBAString string: String) {
-		guard let (redComponent, greenComponent, blueComponent) = Self.colorComponentsFromFloatRGBAString(for: string) else {
+		guard let (red, green, blue) = Self.rgbComponents(fromFloatRGBAString: string) else {
 			return nil
 		}
 		
-		guard
-			let redValue = Self.colorValue(fromFloatRGBAString: redComponent),
-			let greenValue = Self.colorValue(fromFloatRGBAString: greenComponent),
-			let blueValue = Self.colorValue(fromFloatRGBAString: blueComponent)
-		else {
-			return nil
-		}
-		
-		self.red = redValue
-		self.green = greenValue
-		self.blue = blueValue
+		self.red = red
+		self.green = green
+		self.blue = blue
 	}
 	
 }

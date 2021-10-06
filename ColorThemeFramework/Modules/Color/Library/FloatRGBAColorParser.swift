@@ -19,7 +19,23 @@ extension FloatRGBAColorParser {
 	
 	// MARK: Input Computation
 	
-	static func colorComponentsFromFloatRGBAString(for string: String) -> ColorStringComponents? {
+	static func rgbComponents(fromFloatRGBAString string: String) -> ColorValueComponents? {
+		guard let (redComponent, greenComponent, blueComponent) = Self.colorStringComponents(fromFloatRGBAString: string) else {
+			return nil
+		}
+		
+		guard
+			let red = Self.colorValue(fromFloatRGBAString: redComponent),
+			let green = Self.colorValue(fromFloatRGBAString: greenComponent),
+			let blue = Self.colorValue(fromFloatRGBAString: blueComponent)
+		else {
+			return nil
+		}
+		
+		return (red, green, blue)
+	}
+	
+	private static func colorStringComponents(fromFloatRGBAString string: String) -> ColorStringComponents? {
 		let components = string.split(separator: " ").mapped
 		
 		guard components.count == 4 else {
@@ -29,7 +45,7 @@ extension FloatRGBAColorParser {
 		return (components[0], components[1], components[2])
 	}
 	
-	static func colorValue(fromFloatRGBAString string: String) -> ColorValue? {
+	private static func colorValue(fromFloatRGBAString string: String) -> ColorValue? {
 		guard let value = ColorValue(string), value >= 0, value <= 1 else {
 			return nil
 		}

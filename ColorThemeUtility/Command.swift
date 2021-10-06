@@ -72,7 +72,7 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 		printColor(color)
 		print("HSL \(color.hsl)")
 		
-		let convertedHsl = Self.rgbComponents(for: color.hsl)
+		let convertedHsl = Self.rgbComponents(from: color.hsl)
 		print("HSL from RGB: \(convertedHsl)")
 	}
 	

@@ -62,7 +62,7 @@ extension HSLColorConverter {
 
 extension HSLColorConverter {
 	
-	public static func rgbComponents(for components: HSLColorValueComponents) -> RGBColorValueComponents {
+	public static func rgbComponents(from components: HSLColorValueComponents) -> RGBColorValueComponents {
 		let hue = components.hue
 		let saturation = components.saturation
 		let lightness = components.lightness
