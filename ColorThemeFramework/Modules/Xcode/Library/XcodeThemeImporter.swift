@@ -6,7 +6,7 @@
 
 import Foundation
 
-protocol XcodeThemeImporter: ThemeImporter {}
+public protocol XcodeThemeImporter: ThemeImporter {}
 
 extension XcodeThemeImporter {
 	
@@ -14,7 +14,7 @@ extension XcodeThemeImporter {
 		PropertyListDecoder()
 	}
 	
-	func xcodeTheme(from data: Data) -> XcodeTheme? {
+	public func xcodeTheme(from data: Data) -> XcodeTheme? {
 		do {
 			let theme = try decoder.decode(XcodeTheme.self, from: data)
 			return theme

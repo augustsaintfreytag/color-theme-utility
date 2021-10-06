@@ -7,25 +7,25 @@
 import Foundation
 
 /// A color value, internally represented as single-precision RGB components.
-struct Color: Codable {
+public struct Color: Codable {
 	
 	/// The type used to internally represent a color value.
-	typealias ColorValue = Float
+	public typealias ColorValue = Float
 	
 	// MARK: Properties
 	
 	/// The red color component value.
-	let red: ColorValue
+	public let red: ColorValue
 	
 	/// The green color component value.
-	let green: ColorValue
+	public let green: ColorValue
 	
 	/// The blue color component value.
-	let blue: ColorValue
+	public let blue: ColorValue
 	
 	// MARK: Convenience Properties
 	
-	var rgb: (red: ColorValue, green: ColorValue, blue: ColorValue) {
+	public var rgb: (red: ColorValue, green: ColorValue, blue: ColorValue) {
 		return (red, green, blue)
 	}
 	
@@ -35,15 +35,15 @@ struct Color: Codable {
 
 extension Color: HSLColorConverter {
 	
-	var hsl: HSLColorValueComponents {
+	public var hsl: HSLColorValueComponents {
 		return Self.hslComponents(for: rgb)
 	}
 	
-	var hsp: ColorValue {
+	public var hsp: ColorValue {
 		return sqrt(0.299 * pow(red, 2) + 0.587 * pow(green, 2) + 0.114 * pow(blue, 2))
 	}
 	
-	var perception: ColorValue {
+	public var perception: ColorValue {
 		return hsl.hue / 360
 	}
 	
@@ -72,13 +72,13 @@ extension Color {
 extension Color: HexadecimalColorParser {
 	
 	/// The hexadecimal description of the represented color.
-	var hexadecimalString: String {
+	public var hexadecimalString: String {
 		Self.hexadecimalString(from: rgb)
 	}
 	
 	// MARK: Init
 	
-	init?(fromHexadecimalString string: String) {
+	public init?(fromHexadecimalString string: String) {
 		guard let (redComponent, greenComponent, blueComponent) = Self.colorComponentsFromHexadecimalString(for: string) else {
 			return nil
 		}
@@ -94,13 +94,13 @@ extension Color: HexadecimalColorParser {
 
 extension Color: FloatRGBAColorParser {
 	
-	var floatRGBAString: String {
+	public var floatRGBAString: String {
 		Self.floatRGBAString(from: rgb)
 	}
 	
 	// MARK: Init
 	
-	init?(fromFloatRGBAString string: String) {
+	public init?(fromFloatRGBAString string: String) {
 		guard let (redComponent, greenComponent, blueComponent) = Self.colorComponentsFromFloatRGBAString(for: string) else {
 			return nil
 		}

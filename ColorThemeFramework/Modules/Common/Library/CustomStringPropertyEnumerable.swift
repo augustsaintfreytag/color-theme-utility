@@ -9,11 +9,11 @@ import Foundation
 /// Enables a type to enumerate its own direct descendent properties, trying to cast
 /// each as a custom string convertible type and returning a sequence of enumerated
 /// properties with the property label and value description.
-protocol CustomStringPropertyEnumerable {}
+public protocol CustomStringPropertyEnumerable {}
 
 extension CustomStringPropertyEnumerable {
 	
-	func enumerated() -> [(property: String, value: String)] {
+	public func enumerated() -> [(property: String, value: String)] {
 		let mirror = Mirror(reflecting: self)
 		
 		return mirror.children.reduce(into: [(property: String, value: String)]()) { collection, element in

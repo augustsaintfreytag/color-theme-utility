@@ -7,7 +7,7 @@
 import Foundation
 
 /// Bidirectional parser and description provider for `Color` values in Float RGBA representation.
-protocol FloatRGBAColorParser {
+public protocol FloatRGBAColorParser {
 	
 	typealias ColorValue = Color.ColorValue
 	typealias ColorValueComponents = (red: ColorValue, green: ColorValue, blue: ColorValue)

@@ -7,7 +7,7 @@
 import Foundation
 
 /// Bidirectional parser and description provider for `Color` values in hexadecimal representation.
-protocol HexadecimalColorParser {
+public protocol HexadecimalColorParser {
 	
 	typealias ColorValue = Color.ColorValue
 	typealias ColorValueComponents = (red: ColorValue, green: ColorValue, blue: ColorValue)

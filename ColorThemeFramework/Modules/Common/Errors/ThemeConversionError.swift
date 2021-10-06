@@ -7,8 +7,12 @@
 import Foundation
 
 /// An error that occurred while processing and mapping themes.
-struct ThemeConversionError: Error, LocalizedError {
+public struct ThemeConversionError: Error, LocalizedError {
 	
-	var errorDescription: String?
+	public var errorDescription: String?
+	
+	public init(description: String? = nil) {
+		self.errorDescription = description
+	}
 	
 }

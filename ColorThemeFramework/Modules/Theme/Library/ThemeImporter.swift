@@ -7,11 +7,11 @@
 import Foundation
 
 /// Functionality to process file paths, read and decode theme file contents into their appropriate model.
-protocol ThemeImporter {}
+public protocol ThemeImporter {}
 
 extension ThemeImporter {
 	
-	func encodedDataFromFileContents(from path: String) -> Data? {
+	public func encodedDataFromFileContents(from path: String) -> Data? {
 		guard
 			let themeUrl = URL(fileURLWithNonCanonicalPath: path),
 			let data = encodedDataFromFileContents(from: themeUrl)
@@ -22,7 +22,7 @@ extension ThemeImporter {
 		return data
 	}
 	
-	func encodedDataFromFileContents(from url: URL) -> Data? {
+	public func encodedDataFromFileContents(from url: URL) -> Data? {
 		do {
 			return try Data(contentsOf: url)
 		} catch {

@@ -5,10 +5,9 @@
 //
 
 import Foundation
-import ArgumentParser
 
 /// General format of an encoded color string.
-enum ColorFormat: String, CaseIterable, ExpressibleByArgument {
+public enum ColorFormat: String, CaseIterable {
 	
 	case floatRGBA = "floatrgba"
 	case hexadecimal = "hex"
@@ -17,7 +16,7 @@ enum ColorFormat: String, CaseIterable, ExpressibleByArgument {
 
 extension ColorFormat: CustomStringConvertible {
 	
-	var description: String {
+	public var description: String {
 		switch self {
 		case .floatRGBA:
 			return "Float RGBA"

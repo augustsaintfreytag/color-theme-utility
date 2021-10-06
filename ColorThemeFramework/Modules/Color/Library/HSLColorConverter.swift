@@ -6,7 +6,7 @@
 
 import Foundation
 
-protocol HSLColorConverter {
+public protocol HSLColorConverter {
 	
 	typealias ColorValue = Color.ColorValue
 	typealias RGBColorValueComponents = (red: ColorValue, green: ColorValue, blue: ColorValue)
@@ -16,7 +16,7 @@ protocol HSLColorConverter {
 
 extension HSLColorConverter {
 	
-	static func hslComponents(for components: RGBColorValueComponents) -> HSLColorValueComponents {
+	public static func hslComponents(for components: RGBColorValueComponents) -> HSLColorValueComponents {
 		let (red, green, blue) = components
 		let min = min(red, green, blue)
 		let max = max(red, green, blue)
@@ -62,7 +62,7 @@ extension HSLColorConverter {
 
 extension HSLColorConverter {
 	
-	static func rgbComponents(for components: HSLColorValueComponents) -> RGBColorValueComponents {
+	public static func rgbComponents(for components: HSLColorValueComponents) -> RGBColorValueComponents {
 		let hue = components.hue
 		let saturation = components.saturation
 		let lightness = components.lightness

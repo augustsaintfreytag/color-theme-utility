@@ -7,8 +7,12 @@
 import Foundation
 
 /// An error related to encoding and decoding theme models.
-struct ThemeCodingError: Error, LocalizedError {
+public struct ThemeCodingError: Error, LocalizedError {
 	
-	var errorDescription: String?
+	public var errorDescription: String?
+	
+	public init(description: String? = nil) {
+		self.errorDescription = description
+	}
 	
 }

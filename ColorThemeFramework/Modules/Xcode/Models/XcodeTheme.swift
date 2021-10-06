@@ -6,61 +6,61 @@
 
 import Foundation
 
-struct XcodeTheme: Theme {
+public struct XcodeTheme: Theme {
 	
-	typealias SourceTextSyntaxColors = XcodeThemeSourceTextSyntax
-	typealias SourceTextSyntaxFonts = XcodeThemeSourceTextSyntax
+	public typealias SourceTextSyntaxColors = XcodeThemeSourceTextSyntax
+	public typealias SourceTextSyntaxFonts = XcodeThemeSourceTextSyntax
 	
-	let dvtConsoleDebuggerInputTextColor: String
-	let dvtConsoleDebuggerInputTextFont: String
-	let dvtConsoleDebuggerOutputTextColor: String
-	let dvtConsoleDebuggerOutputTextFont: String
-	let dvtConsoleDebuggerPromptTextColor: String
-	let dvtConsoleDebuggerPromptTextFont: String
-	let dvtConsoleExectuableInputTextColor: String
-	let dvtConsoleExectuableInputTextFont: String
-	let dvtConsoleExectuableOutputTextColor: String
-	let dvtConsoleExectuableOutputTextFont: String
-	let dvtConsoleTextBackgroundColor: String
-	let dvtConsoleTextInsertionPointColor: String
-	let dvtConsoleTextSelectionColor: String
-	let dvtDebuggerInstructionPointerColor: String
-	let dvtFontAndColorVersion: Int
-	let dvtLineSpacing: Float
-	let dvtMarkupTextBackgroundColor: String
-	let dvtMarkupTextBorderColor: String
-	let dvtMarkupTextCodeFont: String
-	let dvtMarkupTextEmphasisColor: String
-	let dvtMarkupTextEmphasisFont: String
-	let dvtMarkupTextInlineCodeColor: String
-	let dvtMarkupTextLinkColor: String
-	let dvtMarkupTextLinkFont: String
-	let dvtMarkupTextNormalColor: String
-	let dvtMarkupTextNormalFont: String
-	let dvtMarkupTextOtherHeadingColor: String
-	let dvtMarkupTextOtherHeadingFont: String
-	let dvtMarkupTextPrimaryHeadingColor: String
-	let dvtMarkupTextPrimaryHeadingFont: String
-	let dvtMarkupTextSecondaryHeadingColor: String
-	let dvtMarkupTextSecondaryHeadingFont: String
-	let dvtMarkupTextStrongColor: String
-	let dvtMarkupTextStrongFont: String
-	let dvtScrollbarMarkerAnalyzerColor: String
-	let dvtScrollbarMarkerBreakpointColor: String
-	let dvtScrollbarMarkerDiffColor: String
-	let dvtScrollbarMarkerDiffConflictColor: String
-	let dvtScrollbarMarkerErrorColor: String
-	let dvtScrollbarMarkerRuntimeIssueColor: String
-	let dvtScrollbarMarkerWarningColor: String
-	let dvtSourceTextBackground: String
-	let dvtSourceTextBlockDimBackgroundColor: String
-	let dvtSourceTextCurrentLineHighlightColor: String
-	let dvtSourceTextInsertionPointColor: String
-	let dvtSourceTextInvisiblesColor: String
-	let dvtSourceTextSelectionColor: String
+	public let dvtConsoleDebuggerInputTextColor: String
+	public let dvtConsoleDebuggerInputTextFont: String
+	public let dvtConsoleDebuggerOutputTextColor: String
+	public let dvtConsoleDebuggerOutputTextFont: String
+	public let dvtConsoleDebuggerPromptTextColor: String
+	public let dvtConsoleDebuggerPromptTextFont: String
+	public let dvtConsoleExectuableInputTextColor: String
+	public let dvtConsoleExectuableInputTextFont: String
+	public let dvtConsoleExectuableOutputTextColor: String
+	public let dvtConsoleExectuableOutputTextFont: String
+	public let dvtConsoleTextBackgroundColor: String
+	public let dvtConsoleTextInsertionPointColor: String
+	public let dvtConsoleTextSelectionColor: String
+	public let dvtDebuggerInstructionPointerColor: String
+	public let dvtFontAndColorVersion: Int
+	public let dvtLineSpacing: Float
+	public let dvtMarkupTextBackgroundColor: String
+	public let dvtMarkupTextBorderColor: String
+	public let dvtMarkupTextCodeFont: String
+	public let dvtMarkupTextEmphasisColor: String
+	public let dvtMarkupTextEmphasisFont: String
+	public let dvtMarkupTextInlineCodeColor: String
+	public let dvtMarkupTextLinkColor: String
+	public let dvtMarkupTextLinkFont: String
+	public let dvtMarkupTextNormalColor: String
+	public let dvtMarkupTextNormalFont: String
+	public let dvtMarkupTextOtherHeadingColor: String
+	public let dvtMarkupTextOtherHeadingFont: String
+	public let dvtMarkupTextPrimaryHeadingColor: String
+	public let dvtMarkupTextPrimaryHeadingFont: String
+	public let dvtMarkupTextSecondaryHeadingColor: String
+	public let dvtMarkupTextSecondaryHeadingFont: String
+	public let dvtMarkupTextStrongColor: String
+	public let dvtMarkupTextStrongFont: String
+	public let dvtScrollbarMarkerAnalyzerColor: String
+	public let dvtScrollbarMarkerBreakpointColor: String
+	public let dvtScrollbarMarkerDiffColor: String
+	public let dvtScrollbarMarkerDiffConflictColor: String
+	public let dvtScrollbarMarkerErrorColor: String
+	public let dvtScrollbarMarkerRuntimeIssueColor: String
+	public let dvtScrollbarMarkerWarningColor: String
+	public let dvtSourceTextBackground: String
+	public let dvtSourceTextBlockDimBackgroundColor: String
+	public let dvtSourceTextCurrentLineHighlightColor: String
+	public let dvtSourceTextInsertionPointColor: String
+	public let dvtSourceTextInvisiblesColor: String
+	public let dvtSourceTextSelectionColor: String
 	
-	let dvtSourceTextSyntaxColors: SourceTextSyntaxColors
-	let dvtSourceTextSyntaxFonts: SourceTextSyntaxFonts
+	public let dvtSourceTextSyntaxColors: SourceTextSyntaxColors
+	public let dvtSourceTextSyntaxFonts: SourceTextSyntaxFonts
 	
 }
 
@@ -122,35 +122,35 @@ extension XcodeTheme: Codable {
 
 // MARK: Text Syntax
 
-struct XcodeThemeSourceTextSyntax: CustomStringPropertyEnumerable {
+public struct XcodeThemeSourceTextSyntax: CustomStringPropertyEnumerable {
 	
-	let xcodeSyntaxAttribute: String
-	let xcodeSyntaxCharacter: String
-	let xcodeSyntaxComment: String
-	let xcodeSyntaxCommentDoc: String
-	let xcodeSyntaxCommentDocKeyword: String
-	let xcodeSyntaxDeclarationOther: String
-	let xcodeSyntaxDeclarationType: String
-	let xcodeSyntaxIdentifierClass: String
-	let xcodeSyntaxIdentifierClassSystem: String
-	let xcodeSyntaxIdentifierConstant: String
-	let xcodeSyntaxIdentifierConstantSystem: String
-	let xcodeSyntaxIdentifierFunction: String
-	let xcodeSyntaxIdentifierFunctionSystem: String
-	let xcodeSyntaxIdentifierMacro: String
-	let xcodeSyntaxIdentifierMacroSystem: String
-	let xcodeSyntaxIdentifierType: String
-	let xcodeSyntaxIdentifierTypeSystem: String
-	let xcodeSyntaxIdentifierVariable: String
-	let xcodeSyntaxIdentifierVariableSystem: String
-	let xcodeSyntaxKeyword: String
-	let xcodeSyntaxMark: String
-	let xcodeSyntaxMarkupCode: String
-	let xcodeSyntaxNumber: String
-	let xcodeSyntaxPlain: String
-	let xcodeSyntaxPreprocessor: String
-	let xcodeSyntaxString: String
-	let xcodeSyntaxUrl: String
+	public let xcodeSyntaxAttribute: String
+	public let xcodeSyntaxCharacter: String
+	public let xcodeSyntaxComment: String
+	public let xcodeSyntaxCommentDoc: String
+	public let xcodeSyntaxCommentDocKeyword: String
+	public let xcodeSyntaxDeclarationOther: String
+	public let xcodeSyntaxDeclarationType: String
+	public let xcodeSyntaxIdentifierClass: String
+	public let xcodeSyntaxIdentifierClassSystem: String
+	public let xcodeSyntaxIdentifierConstant: String
+	public let xcodeSyntaxIdentifierConstantSystem: String
+	public let xcodeSyntaxIdentifierFunction: String
+	public let xcodeSyntaxIdentifierFunctionSystem: String
+	public let xcodeSyntaxIdentifierMacro: String
+	public let xcodeSyntaxIdentifierMacroSystem: String
+	public let xcodeSyntaxIdentifierType: String
+	public let xcodeSyntaxIdentifierTypeSystem: String
+	public let xcodeSyntaxIdentifierVariable: String
+	public let xcodeSyntaxIdentifierVariableSystem: String
+	public let xcodeSyntaxKeyword: String
+	public let xcodeSyntaxMark: String
+	public let xcodeSyntaxMarkupCode: String
+	public let xcodeSyntaxNumber: String
+	public let xcodeSyntaxPlain: String
+	public let xcodeSyntaxPreprocessor: String
+	public let xcodeSyntaxString: String
+	public let xcodeSyntaxUrl: String
 	
 }
 

@@ -12,12 +12,12 @@ import Foundation
 /// - FloatRGBA (Xcode/Plist): `0.290196 0.290196 0.968627 1`
 /// - Hexadecimal: `#2ABB14` or `2ABB14`
 ///
-protocol ColorFormatDetector {}
+public protocol ColorFormatDetector {}
 
 extension ColorFormatDetector {
 	
 	/// Checks the given string and returns its likely color format.
-	func colorFormat(for string: String) -> ColorFormat? {
+	public func colorFormat(for string: String) -> ColorFormat? {
 		if string.split(separator: " ").count == 4 {
 			return .floatRGBA
 		}
