@@ -5,3 +5,7 @@
 //
 
 import Foundation
+import ArgumentParser
+import ColorThemeFramework
+
+extension ColorFormat: ExpressibleByArgument {}
