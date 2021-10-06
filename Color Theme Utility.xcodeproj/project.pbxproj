@@ -34,6 +34,7 @@
 		8B6BE08C270C77FB0063B0BA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBF92A92701F6D600386123 /* Color.swift */; };
 		8B6BE08D270C77FB0063B0BA /* ColorFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57B5102704875D00A60D1C /* ColorFormat.swift */; };
 		8B6BE090270C78AC0063B0BA /* Types+ExpressibleByArgument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE08F270C78AC0063B0BA /* Types+ExpressibleByArgument.swift */; };
+		8B6BE092270DB5470063B0BA /* String+CustomColorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE091270DB5470063B0BA /* String+CustomColorable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		8B6BE051270C731D0063B0BA /* ColorModelingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModelingTest.swift; sourceTree = "<group>"; };
 		8B6BE053270C731D0063B0BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B6BE08F270C78AC0063B0BA /* Types+ExpressibleByArgument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Types+ExpressibleByArgument.swift"; sourceTree = "<group>"; };
+		8B6BE091270DB5470063B0BA /* String+CustomColorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CustomColorable.swift"; sourceTree = "<group>"; };
 		8BBF92A02701C49100386123 /* XcodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeTheme.swift; sourceTree = "<group>"; };
 		8BBF92A42701CE1D00386123 /* URL+CanonicalPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+CanonicalPath.swift"; sourceTree = "<group>"; };
 		8BBF92A92701F6D600386123 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -161,8 +163,8 @@
 		8B29630A26F60ED20048CE17 /* ColorThemeUtility */ = {
 			isa = PBXGroup;
 			children = (
-				8B29631926F629390048CE17 /* Modules */,
 				8B29630B26F60ED20048CE17 /* Command.swift */,
+				8B29631926F629390048CE17 /* Modules */,
 			);
 			path = ColorThemeUtility;
 			sourceTree = "<group>";
@@ -225,9 +227,9 @@
 		8B6BE045270C731D0063B0BA /* ColorThemeFramework */ = {
 			isa = PBXGroup;
 			children = (
-				8B6BE05B270C73990063B0BA /* Modules */,
 				8B6BE046270C731D0063B0BA /* ColorThemeFramework.h */,
 				8B6BE047270C731D0063B0BA /* Info.plist */,
+				8B6BE05B270C73990063B0BA /* Modules */,
 			);
 			path = ColorThemeFramework;
 			sourceTree = "<group>";
@@ -298,6 +300,7 @@
 		8B6BE08E270C78980063B0BA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8B6BE091270DB5470063B0BA /* String+CustomColorable.swift */,
 				8B6BE08F270C78AC0063B0BA /* Types+ExpressibleByArgument.swift */,
 			);
 			path = Extensions;
@@ -496,6 +499,7 @@
 				8B29630C26F60ED20048CE17 /* Command.swift in Sources */,
 				8B6BE090270C78AC0063B0BA /* Types+ExpressibleByArgument.swift in Sources */,
 				8B57B5142705B3E500A60D1C /* ArgumentError.swift in Sources */,
+				8B6BE092270DB5470063B0BA /* String+CustomColorable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

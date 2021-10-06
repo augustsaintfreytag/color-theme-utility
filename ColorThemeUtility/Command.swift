@@ -5,8 +5,8 @@
 //
 
 import Foundation
+import ColorThemeFramework
 import ArgumentParser
-import Rainbow
 
 @main
 struct ColorThemeUtility: ParsableCommand {
@@ -76,6 +76,12 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 		print("HSL from RGB: \(convertedHsl)")
 	}
 	
+	/// Parses the given theme file and prints its contents in a readable format.
+	///
+	/// Options to visualize and present a theme:
+	///   - `theme.formattedEncodedDebugDescription`
+	///   - `theme.<key>.enumerated()`
+	///
 	func debugPrintTheme() throws {
 		guard let inputFilePath = inputFile else {
 			throw ArgumentError(errorDescription: "Missing input theme file path.")
@@ -87,10 +93,8 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 		
 		let decoder = PropertyListDecoder()
 		guard let theme = try? decoder.decode(XcodeTheme.self, from: fileData) else {
-			throw ThemeCodingError(errorDescription: "Could not decode supplied theme file as an Xcode theme model.")
+			throw ThemeCodingError(description: "Could not decode supplied theme file as an Xcode theme model.")
 		}
-		
-		// print(theme.formattedEncodedDebugDescription ?? "<Invalid Data>")
 		
 		let enumeratedColors = orderedEnumeratedColors(from: theme.dvtSourceTextSyntaxColors.enumerated())
 		for (property, color) in enumeratedColors {
@@ -113,10 +117,7 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 	}
 	
 	private func printColor(_ color: Color, description: String? = nil) {
-		let hex = color.hexadecimalString
-		
-		// let colorDescription = "████████".hex(hex, to: .bit24) + " \(hex), P \(color.perception), HSP \(color.hsp), HSL \(hsl.hue)/\(hsl.saturation)/\(hsl.lightness)"
-		let colorDescription = "████████".hex(hex, to: .bit24) + " \(hex)"
+		let colorDescription = "████████".colored(with: color)
 		
 		guard let key = description else {
 			print(colorDescription)
