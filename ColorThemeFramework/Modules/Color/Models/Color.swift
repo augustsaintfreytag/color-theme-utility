@@ -23,6 +23,14 @@ public struct Color: Codable {
 	/// The blue color component value.
 	public let blue: ColorValue
 	
+	// MARK: Init
+	
+	public init(red: ColorValue, green: ColorValue, blue: ColorValue) {
+		self.red = red
+		self.green = green
+		self.blue = blue
+	}
+	
 	// MARK: Convenience Properties
 	
 	public var rgb: (red: ColorValue, green: ColorValue, blue: ColorValue) {
