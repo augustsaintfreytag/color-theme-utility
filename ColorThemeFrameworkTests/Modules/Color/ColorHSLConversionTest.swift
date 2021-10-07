@@ -49,5 +49,24 @@ class ColorHSLConversionTest: XCTestCase, ColorConversionTestProvider {
 			assertValuesEqual(blue, formedRGB.blue)
 		}
 	}
+	
+	func testColorHSLRoundtrip() {
+		let (initialRed, initialGreen, initialBlue) = bit8(90, 92, 141)
+		var (red, green, blue) = (initialRed, initialGreen, initialBlue)
+		
+		for _ in 0 ..< 25 {
+			let color = Color(red: red, green: green, blue: blue)
+			let (hue, saturation, lightness) = color.hsl
+			let reconvertedColor = Color(hue: hue, saturation: saturation, lightness: lightness)
+			
+			defer {
+				(red, green, blue) = reconvertedColor.rgb
+			}
+			
+			assertValuesEqual(initialRed, reconvertedColor.red)
+			assertValuesEqual(initialGreen, reconvertedColor.green)
+			assertValuesEqual(initialBlue, reconvertedColor.blue)
+		}
+	}
 
 }
