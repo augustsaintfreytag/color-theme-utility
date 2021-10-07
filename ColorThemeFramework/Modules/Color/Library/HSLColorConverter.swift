@@ -18,23 +18,23 @@ extension HSLColorConverter {
 	
 	public static func hslComponents(for components: RGBColorValueComponents) -> HSLColorValueComponents {
 		let (red, green, blue) = components
-		let min = min(red, green, blue)
-		let max = max(red, green, blue)
-		let lightness = (max + min) / 2
+		let chromaMin = min(red, green, blue)
+		let chromaMax = max(red, green, blue)
 		
-		guard min != max else {
-			return (hue: 0, saturation: 0, lightness: max)
+		guard chromaMin != chromaMax else {
+			return (hue: 0, saturation: 0, lightness: chromaMax)
 		}
 		
-		let delta = max - min
-		let saturation = delta / max
-		let hue = hueColorValue(components, max, delta)
+		let chromaDelta = chromaMax - chromaMin
+		let lightness = (chromaMax + chromaMin) / 2
+		let saturation = chromaDelta / (1 - abs(2 * lightness - 1))
+		let hue = hueColorValue(components, chromaMax, chromaDelta)
 		
 		return (hue, saturation, lightness)
 	}
 	
 	private static func hueColorValue(_ components: RGBColorValueComponents, _ max: ColorValue, _ delta: ColorValue) -> ColorValue {
-		let value = hueComponent(components, max, delta) * 60
+		let value = rawHueColorValue(components, max, delta) * 60
 		
 		guard value >= 0 else {
 			return (value + 360) / 360
@@ -43,12 +43,12 @@ extension HSLColorConverter {
 		return value / 360
 	}
 	
-	private static func hueComponent(_ components: RGBColorValueComponents, _ max: ColorValue, _ delta: ColorValue) -> ColorValue {
+	private static func rawHueColorValue(_ components: RGBColorValueComponents, _ max: ColorValue, _ delta: ColorValue) -> ColorValue {
 		let (red, green, blue) = components
 		
 		switch max {
 		case red:
-			return (green - blue) / delta
+			return ((green - blue) / delta).truncatingRemainder(dividingBy: 6)
 		case green:
 			return 2 + (blue - red) / delta
 		case blue:
@@ -84,11 +84,11 @@ extension HSLColorConverter {
 	
 	private static func rgbHueFactor(_ hue: ColorValue, _ chroma: ColorValue, _ factor: ColorValue) -> RGBColorValueComponents {
 		switch hue {
-		case ..<(60/360): return (chroma, factor, 0)
-		case ..<(120/360): return (factor, chroma, 0)
-		case ..<(180/360): return (0, chroma, factor)
-		case ..<(240/360): return (0, factor, chroma)
-		case ..<(300/360): return (factor, 0, chroma)
+		case ..<(60 / 360): return (chroma, factor, 0)
+		case ..<(120 / 360): return (factor, chroma, 0)
+		case ..<(180 / 360): return (0, chroma, factor)
+		case ..<(240 / 360): return (0, factor, chroma)
+		case ..<(300 / 360): return (factor, 0, chroma)
 		default: return (chroma, 0, factor)
 		}
 	}
