@@ -112,7 +112,7 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 			
 			collection.append((property, color))
 		}.sorted { lhs, rhs in
-			lhs.color.perception < rhs.color.perception
+			lhs.color < rhs.color
 		}
 	}
 	
