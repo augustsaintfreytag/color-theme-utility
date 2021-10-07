@@ -56,49 +56,67 @@ class ColorModelingTest: XCTestCase {
 	
 	func testHSLFromColor() {
 		let data: [(rgb: ColorValueComponents, hsl: ColorValueComponents)] = [
-			(bit8(42, 177, 175), percentages(49, 61, 42)),
-			(bit8(215, 20, 127), percentages(90, 82, 46))
+			(bit8(42, 177, 175), (0.497, 0.616, 0.429)),
+			(bit8(215, 20, 127), (0.908, 0.830, 0.461))
 		]
 		
 		for (rgbComponents, hslComponents) in data {
 			let (red, green, blue) = rgbComponents
-			let (hue, lightness, saturation) = hslComponents
+			let (hue, saturation, lightness) = hslComponents
 			let color = Color(red: red, green: green, blue: blue)
 			
 			let formedHSL = color.hsl
-			XCTAssertEqual(hue, roundedValue(formedHSL.hue))
-			XCTAssertEqual(lightness, roundedValue(formedHSL.lightness))
-			XCTAssertEqual(saturation, roundedValue(formedHSL.saturation))
+			assertValuesEqual(hue, formedHSL.hue)
+			assertValuesEqual(lightness, formedHSL.lightness)
+			assertValuesEqual(saturation, formedHSL.saturation)
 		}
 	}
 	
 	func testColorFromHSL() {
 		let data: [(rgb: ColorValueComponents, hsl: ColorValueComponents)] = [
-			(bit8(42, 177, 175), percentages(49, 61, 42)),
-			(bit8(215, 20, 127), percentages(90, 82, 46))
+			(bit8(42, 177, 175), (0.497, 0.616, 0.429)),
+			(bit8(215, 20, 127), (0.908, 0.830, 0.461))
 		]
 		
 		for (rgbComponents, hslComponents) in data {
 			let (red, green, blue) = rgbComponents
-			let (hue, lightness, saturation) = hslComponents
+			let (hue, saturation, lightness) = hslComponents
 			let color = Color(hue: hue, saturation: saturation, lightness: lightness)
 			
 			let formedRGB = color.rgb
-			XCTAssertEqual(red, roundedValue(formedRGB.red))
-			XCTAssertEqual(green, roundedValue(formedRGB.green))
-			XCTAssertEqual(blue, roundedValue(formedRGB.blue))
+			assertValuesEqual(red, formedRGB.red)
+			assertValuesEqual(green, formedRGB.green)
+			assertValuesEqual(blue, formedRGB.blue)
 		}
 	}
 	
-	// MARK: Utility
+	// MARK: Asserts
+	
+	private func assertValuesEqual(_ lhs: ColorValue, _ rhs: ColorValue) {
+		let roundedLhs = roundedValue(lhs)
+		let roundedRhs = roundedValue(rhs)
+		
+		XCTAssertTrue(valuesAreEqual(roundedLhs, roundedRhs), "Values not equal, \(roundedLhs) and \(roundedRhs) (rounded)")
+	}
+	
+	// MARK: Random Value
 	
 	private func randomRGBValue() -> ColorValue {
 		return ColorValue.random(in: 0 ... 1)
 	}
 	
-	private func roundedValue(_ value: ColorValue) -> ColorValue {
-		return round(value * 100) / 100
+	// MARK: Value Comparison
+	
+	private func valuesAreEqual(_ lhs: ColorValue, _ rhs: ColorValue) -> Bool {
+		let delta = abs(lhs - rhs)
+		return delta <= 0.01
 	}
+	
+	private func roundedValue(_ value: ColorValue) -> ColorValue {
+		return round(value * 1000) / 1000
+	}
+	
+	// MARK: Value Expansion
 	
 	private func bit8(_ value: ColorValue) -> ColorValue {
 		return value / 255
@@ -106,14 +124,6 @@ class ColorModelingTest: XCTestCase {
 
 	private func bit8(_ a: ColorValue, _ b: ColorValue, _ c: ColorValue) -> (ColorValue, ColorValue, ColorValue) {
 		return (bit8(a), bit8(b), bit8(c))
-	}
-	
-	private func percentage(_ value: ColorValue) -> ColorValue {
-		return value / 100
-	}
-	
-	private func percentages(_ a: ColorValue, _ b: ColorValue, _ c: ColorValue) -> (ColorValue, ColorValue, ColorValue) {
-		return (percentage(a), percentage(b), percentage(c))
 	}
 	
 }
