@@ -35,6 +35,7 @@
 		8B6BE08D270C77FB0063B0BA /* ColorFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57B5102704875D00A60D1C /* ColorFormat.swift */; };
 		8B6BE090270C78AC0063B0BA /* Types+ExpressibleByArgument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE08F270C78AC0063B0BA /* Types+ExpressibleByArgument.swift */; };
 		8B6BE092270DB5470063B0BA /* String+CustomColorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE091270DB5470063B0BA /* String+CustomColorable.swift */; };
+		8B6BE096270EF20B0063B0BA /* ColorConversionTestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE095270EF20B0063B0BA /* ColorConversionTestProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		8B6BE053270C731D0063B0BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B6BE08F270C78AC0063B0BA /* Types+ExpressibleByArgument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Types+ExpressibleByArgument.swift"; sourceTree = "<group>"; };
 		8B6BE091270DB5470063B0BA /* String+CustomColorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CustomColorable.swift"; sourceTree = "<group>"; };
+		8B6BE095270EF20B0063B0BA /* ColorConversionTestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConversionTestProvider.swift; sourceTree = "<group>"; };
 		8BBF92A02701C49100386123 /* XcodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeTheme.swift; sourceTree = "<group>"; };
 		8BBF92A42701CE1D00386123 /* URL+CanonicalPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+CanonicalPath.swift"; sourceTree = "<group>"; };
 		8BBF92A92701F6D600386123 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -237,8 +239,8 @@
 		8B6BE050270C731D0063B0BA /* ColorThemeFrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
-				8B6BE051270C731D0063B0BA /* ColorModelingTest.swift */,
 				8B6BE053270C731D0063B0BA /* Info.plist */,
+				8B6BE097270EF2910063B0BA /* Modules */,
 			);
 			path = ColorThemeFrameworkTests;
 			sourceTree = "<group>";
@@ -304,6 +306,23 @@
 				8B6BE08F270C78AC0063B0BA /* Types+ExpressibleByArgument.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8B6BE097270EF2910063B0BA /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				8B6BE098270EF2960063B0BA /* Color */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		8B6BE098270EF2960063B0BA /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				8B6BE095270EF20B0063B0BA /* ColorConversionTestProvider.swift */,
+				8B6BE051270C731D0063B0BA /* ColorModelingTest.swift */,
+			);
+			path = Color;
 			sourceTree = "<group>";
 		};
 		8BBF929E2701C47F00386123 /* Models */ = {
@@ -531,6 +550,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B6BE096270EF20B0063B0BA /* ColorConversionTestProvider.swift in Sources */,
 				8B6BE052270C731D0063B0BA /* ColorModelingTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
