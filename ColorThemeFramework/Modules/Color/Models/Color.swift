@@ -39,34 +39,6 @@ public struct Color: Codable {
 	
 }
 
-// MARK: HSL
-
-extension Color: HSLColorConverter {
-	
-	public var hsl: HSLColorValueComponents {
-		return Self.hslComponents(for: rgb)
-	}
-	
-	public var hsp: ColorValue {
-		return sqrt(0.299 * pow(red, 2) + 0.587 * pow(green, 2) + 0.114 * pow(blue, 2))
-	}
-	
-	public var perception: ColorValue {
-		return hsl.hue / 360
-	}
-	
-	// MARK: Init
-	
-	public init(hue: ColorValue, saturation: ColorValue, lightness: ColorValue) {
-		let (red, green, blue) = Self.rgbComponents(from: (hue, saturation, lightness))
-		
-		self.red = red
-		self.green = green
-		self.blue = blue
-	}
-	
-}
-
 // MARK: Defaults
 
 extension Color {
@@ -81,6 +53,43 @@ extension Color {
 	
 	static var blue: Color {
 		return Color(red: 0.0, green: 0.0, blue: 1.0)
+	}
+	
+}
+
+// MARK: Comparable
+
+extension Color: Comparable {
+
+	public static func < (lhs: Color, rhs: Color) -> Bool {
+		let lhsValue = lhs.hsl.hue / 360
+		let rhsValue = rhs.hsl.hue / 360
+		
+		return lhsValue < rhsValue
+	}
+
+}
+
+// MARK: HSL
+
+extension Color: HSLColorConverter {
+	
+	public var hsl: HSLColorValueComponents {
+		return Self.hslComponents(for: rgb)
+	}
+	
+	public var hsp: ColorValue {
+		return sqrt(0.299 * pow(red, 2) + 0.587 * pow(green, 2) + 0.114 * pow(blue, 2))
+	}
+	
+	// MARK: Init
+	
+	public init(hue: ColorValue, saturation: ColorValue, lightness: ColorValue) {
+		let (red, green, blue) = Self.rgbComponents(from: (hue, saturation, lightness))
+		
+		self.red = red
+		self.green = green
+		self.blue = blue
 	}
 	
 }
