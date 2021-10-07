@@ -10,6 +10,7 @@ import ColorThemeFramework
 protocol ColorConversionTestProvider {
 	
 	typealias ColorValue = Color.ColorValue
+	typealias ColorValueComponents = (red: ColorValue, green: ColorValue, blue: ColorValue)
 	
 }
 

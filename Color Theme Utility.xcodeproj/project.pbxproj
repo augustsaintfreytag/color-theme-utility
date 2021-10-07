@@ -36,6 +36,8 @@
 		8B6BE090270C78AC0063B0BA /* Types+ExpressibleByArgument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE08F270C78AC0063B0BA /* Types+ExpressibleByArgument.swift */; };
 		8B6BE092270DB5470063B0BA /* String+CustomColorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE091270DB5470063B0BA /* String+CustomColorable.swift */; };
 		8B6BE096270EF20B0063B0BA /* ColorConversionTestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE095270EF20B0063B0BA /* ColorConversionTestProvider.swift */; };
+		8B6BE09A270EF65D0063B0BA /* ColorHSLConversionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE099270EF65D0063B0BA /* ColorHSLConversionTest.swift */; };
+		8B6BE09C270EF7090063B0BA /* ColorHexadecimalConversionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE09B270EF7090063B0BA /* ColorHexadecimalConversionTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +104,8 @@
 		8B6BE08F270C78AC0063B0BA /* Types+ExpressibleByArgument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Types+ExpressibleByArgument.swift"; sourceTree = "<group>"; };
 		8B6BE091270DB5470063B0BA /* String+CustomColorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CustomColorable.swift"; sourceTree = "<group>"; };
 		8B6BE095270EF20B0063B0BA /* ColorConversionTestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConversionTestProvider.swift; sourceTree = "<group>"; };
+		8B6BE099270EF65D0063B0BA /* ColorHSLConversionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHSLConversionTest.swift; sourceTree = "<group>"; };
+		8B6BE09B270EF7090063B0BA /* ColorHexadecimalConversionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHexadecimalConversionTest.swift; sourceTree = "<group>"; };
 		8BBF92A02701C49100386123 /* XcodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeTheme.swift; sourceTree = "<group>"; };
 		8BBF92A42701CE1D00386123 /* URL+CanonicalPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+CanonicalPath.swift"; sourceTree = "<group>"; };
 		8BBF92A92701F6D600386123 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -320,7 +324,9 @@
 			isa = PBXGroup;
 			children = (
 				8B6BE095270EF20B0063B0BA /* ColorConversionTestProvider.swift */,
+				8B6BE099270EF65D0063B0BA /* ColorHSLConversionTest.swift */,
 				8B6BE051270C731D0063B0BA /* ColorModelingTest.swift */,
+				8B6BE09B270EF7090063B0BA /* ColorHexadecimalConversionTest.swift */,
 			);
 			path = Color;
 			sourceTree = "<group>";
@@ -551,6 +557,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B6BE096270EF20B0063B0BA /* ColorConversionTestProvider.swift in Sources */,
+				8B6BE09C270EF7090063B0BA /* ColorHexadecimalConversionTest.swift in Sources */,
+				8B6BE09A270EF65D0063B0BA /* ColorHSLConversionTest.swift in Sources */,
 				8B6BE052270C731D0063B0BA /* ColorModelingTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
