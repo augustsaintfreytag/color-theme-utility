@@ -34,7 +34,16 @@ class ColorHexadecimalConversionTest: XCTestCase, ColorConversionTestProvider {
 	}
 	
 	func testColorFromHexadecimal() {
-		// TODO: Write test.
+		for (components, hexadecimalString) in hexadecimalColorTestData {
+			guard let color = Color(fromHexadecimalString: hexadecimalString) else {
+				XCTFail("Expected color from string '\(hexadecimalString)', nil returned.")
+				return
+			}
+			
+			assertValuesEqual(components.red, color.red)
+			assertValuesEqual(components.green, color.green)
+			assertValuesEqual(components.blue, color.blue)
+		}
 	}
 
 }
