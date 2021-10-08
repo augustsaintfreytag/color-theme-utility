@@ -15,9 +15,12 @@ public protocol ColorExtrapolator {
 
 extension ColorExtrapolator {
 	
-	public static func extrapolatedColorPalette(from color: Color, numberOfColors: Int) -> [Color] {
+	/// Generates and returns a sequence of colors distributed in tone to
+	/// produce a palette of the given length. The created sequence always
+	/// contains the provided *base color* as its first element.
+	public static func extrapolatedColorSequence(from color: Color, numberOfColors: Int, skewing colorTransform: ColorTransform) -> [Color] {
 		let (baseHue, baseSaturation, baseLightness) = color.hsl
-		let stride = paletteStride(numberOfColors: numberOfColors)
+		let stride = paletteStride(numberOfColors: numberOfColors, skewing: colorTransform)
 		
 		var colors: [Color] = []
 		
@@ -36,11 +39,29 @@ extension ColorExtrapolator {
 	
 	/// Returns a uniform stride of change applied to a color's HSL components
 	/// to produce a sequential palette.
-	private static func paletteStride(numberOfColors: Int) -> HSLColorComponents {
-		let maxDelta: HSLColorComponents = (hue: 0.1, saturation: 0.25, lightness: 0.25)
+	private static func paletteStride(numberOfColors: Int, skewing colorTransform: ColorTransform) -> HSLColorComponents {
+		let maxDelta = paletteStrideDelta(skewing: colorTransform)
 		let count = ColorValue(numberOfColors)
 		
 		return (maxDelta.hue / count, maxDelta.saturation / count, maxDelta.lightness / count)
 	}
 	
+	private static func paletteStrideDelta(skewing colorChange: ColorTransform) -> (HSLColorComponents) {
+		let (hue, saturation, lightness) = (0.1, 0.25, 0.25) as HSLColorComponents
+		
+		switch colorChange {
+		case .lighter:
+			return (hue, saturation, lightness)
+		case .darker:
+			return (-hue, -saturation, -lightness)
+		}
+	}
+	
+}
+
+// MARK: Library
+
+public enum ColorTransform {
+	case lighter
+	case darker
 }
