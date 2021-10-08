@@ -10,8 +10,8 @@ import Foundation
 public protocol HexadecimalColorParser {
 	
 	typealias ColorValue = Color.ColorValue
-	typealias ColorValueComponents = (red: ColorValue, green: ColorValue, blue: ColorValue)
-	typealias ColorStringComponents = (red: String, green: String, blue: String)
+	typealias RGBColorValueComponents = (red: ColorValue, green: ColorValue, blue: ColorValue)
+	typealias RGBColorStringComponents = (red: String, green: String, blue: String)
 	
 }
 
@@ -25,14 +25,14 @@ extension HexadecimalColorParser {
 	
 	// MARK: Input Computation
 	
-	static func rgbComponents(fromHexadecimalString string: String) -> ColorValueComponents? {
+	static func rgbComponents(fromHexadecimalString string: String) -> RGBColorValueComponents? {
 		guard let (redComponent, greenComponent, blueComponent) = colorStringComponents(fromHexadecimalString: string) else {
 			return nil
 		}
 		
-		let red = Self.colorValue(fromHexadecimalString: redComponent)
-		let green = Self.colorValue(fromHexadecimalString: greenComponent)
-		let blue = Self.colorValue(fromHexadecimalString: blueComponent)
+		let red = colorValue(fromHexadecimalString: redComponent)
+		let green = colorValue(fromHexadecimalString: greenComponent)
+		let blue = colorValue(fromHexadecimalString: blueComponent)
 		
 		return (red, green, blue)
 	}
@@ -73,7 +73,7 @@ extension HexadecimalColorParser {
 	// MARK: Output Computation
 	
 	/// Return a hexadecimal string from the given color components.
-	static func hexadecimalString(from components: ColorValueComponents) -> String {
+	static func hexadecimalString(from components: RGBColorValueComponents) -> String {
 		let (red, green, blue) = components
 		let redComponent = hexadecimalStringComponent(for: red)
 		let greenComponent = hexadecimalStringComponent(for: green)
@@ -83,7 +83,7 @@ extension HexadecimalColorParser {
 	}
 	
 	private static func hexadecimalStringComponent(for value: ColorValue) -> String {
-		let standardizedValue = Int(value * Self.maxHexadecimalValue)
+		let standardizedValue = Int(value * maxHexadecimalValue)
 		let formattedValue = String(standardizedValue, radix: 16, uppercase: true)
 		
 		guard formattedValue.count == 2 else {
