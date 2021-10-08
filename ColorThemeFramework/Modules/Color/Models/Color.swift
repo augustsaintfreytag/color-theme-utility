@@ -74,7 +74,7 @@ extension Color: Comparable {
 
 extension Color: HSLColorConverter {
 	
-	public var hsl: HSLColorValueComponents {
+	public var hsl: HSLColorComponents {
 		return Self.hslComponents(for: rgb)
 	}
 	

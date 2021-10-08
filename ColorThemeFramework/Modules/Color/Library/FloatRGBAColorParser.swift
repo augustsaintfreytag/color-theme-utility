@@ -10,8 +10,8 @@ import Foundation
 public protocol FloatRGBAColorParser {
 	
 	typealias ColorValue = Color.ColorValue
-	typealias ColorValueComponents = (red: ColorValue, green: ColorValue, blue: ColorValue)
-	typealias ColorStringComponents = (red: String, green: String, blue: String)
+	typealias RGBColorComponents = (red: ColorValue, green: ColorValue, blue: ColorValue)
+	typealias RGBColorStringComponents = (red: String, green: String, blue: String)
 	
 }
 
@@ -19,15 +19,15 @@ extension FloatRGBAColorParser {
 	
 	// MARK: Input Computation
 	
-	static func rgbComponents(fromFloatRGBAString string: String) -> ColorValueComponents? {
-		guard let (redComponent, greenComponent, blueComponent) = Self.colorStringComponents(fromFloatRGBAString: string) else {
+	static func rgbComponents(fromFloatRGBAString string: String) -> RGBColorComponents? {
+		guard let (redComponent, greenComponent, blueComponent) = colorStringComponents(fromFloatRGBAString: string) else {
 			return nil
 		}
 		
 		guard
-			let red = Self.colorValue(fromFloatRGBAString: redComponent),
-			let green = Self.colorValue(fromFloatRGBAString: greenComponent),
-			let blue = Self.colorValue(fromFloatRGBAString: blueComponent)
+			let red = colorValue(fromFloatRGBAString: redComponent),
+			let green = colorValue(fromFloatRGBAString: greenComponent),
+			let blue = colorValue(fromFloatRGBAString: blueComponent)
 		else {
 			return nil
 		}
@@ -35,7 +35,7 @@ extension FloatRGBAColorParser {
 		return (red, green, blue)
 	}
 	
-	private static func colorStringComponents(fromFloatRGBAString string: String) -> ColorStringComponents? {
+	private static func colorStringComponents(fromFloatRGBAString string: String) -> RGBColorStringComponents? {
 		let components = string.split(separator: " ").mapped
 		
 		guard components.count == 4 else {
@@ -55,11 +55,11 @@ extension FloatRGBAColorParser {
 	
 	// MARK: Output Computation
 	
-	static func floatRGBAString(from components: ColorValueComponents) -> String {
+	static func floatRGBAString(from components: RGBColorComponents) -> String {
 		let (red, green, blue) = components
-		let redComponent = Self.floatRGBAStringComponent(for: red)
-		let greenComponent = Self.floatRGBAStringComponent(for: green)
-		let blueComponent = Self.floatRGBAStringComponent(for: blue)
+		let redComponent = floatRGBAStringComponent(for: red)
+		let greenComponent = floatRGBAStringComponent(for: green)
+		let blueComponent = floatRGBAStringComponent(for: blue)
 		
 		return "\(redComponent) \(greenComponent) \(blueComponent) 1"
 	}

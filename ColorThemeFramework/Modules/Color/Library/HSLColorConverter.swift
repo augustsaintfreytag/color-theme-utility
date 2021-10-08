@@ -9,14 +9,14 @@ import Foundation
 public protocol HSLColorConverter {
 	
 	typealias ColorValue = Color.ColorValue
-	typealias RGBColorValueComponents = (red: ColorValue, green: ColorValue, blue: ColorValue)
-	typealias HSLColorValueComponents = (hue: ColorValue, saturation: ColorValue, lightness: ColorValue)
+	typealias RGBColorComponents = (red: ColorValue, green: ColorValue, blue: ColorValue)
+	typealias HSLColorComponents = (hue: ColorValue, saturation: ColorValue, lightness: ColorValue)
 	
 }
 
 extension HSLColorConverter {
 	
-	public static func hslComponents(for components: RGBColorValueComponents) -> HSLColorValueComponents {
+	public static func hslComponents(for components: RGBColorComponents) -> HSLColorComponents {
 		let (red, green, blue) = components
 		let chromaMin = min(red, green, blue)
 		let chromaMax = max(red, green, blue)
@@ -33,7 +33,7 @@ extension HSLColorConverter {
 		return (hue, saturation, lightness)
 	}
 	
-	private static func hueColorValue(_ components: RGBColorValueComponents, _ max: ColorValue, _ delta: ColorValue) -> ColorValue {
+	private static func hueColorValue(_ components: RGBColorComponents, _ max: ColorValue, _ delta: ColorValue) -> ColorValue {
 		let value = rawHueColorValue(components, max, delta) * 60
 		
 		guard value >= 0 else {
@@ -43,7 +43,7 @@ extension HSLColorConverter {
 		return value / 360
 	}
 	
-	private static func rawHueColorValue(_ components: RGBColorValueComponents, _ max: ColorValue, _ delta: ColorValue) -> ColorValue {
+	private static func rawHueColorValue(_ components: RGBColorComponents, _ max: ColorValue, _ delta: ColorValue) -> ColorValue {
 		let (red, green, blue) = components
 		
 		switch max {
@@ -62,7 +62,7 @@ extension HSLColorConverter {
 
 extension HSLColorConverter {
 	
-	public static func rgbComponents(from components: HSLColorValueComponents) -> RGBColorValueComponents {
+	public static func rgbComponents(from components: HSLColorComponents) -> RGBColorComponents {
 		let hue = components.hue
 		let saturation = components.saturation
 		let lightness = components.lightness
@@ -82,7 +82,7 @@ extension HSLColorConverter {
 		return (red, green, blue)
 	}
 	
-	private static func rgbHueFactor(_ hue: ColorValue, _ chroma: ColorValue, _ factor: ColorValue) -> RGBColorValueComponents {
+	private static func rgbHueFactor(_ hue: ColorValue, _ chroma: ColorValue, _ factor: ColorValue) -> RGBColorComponents {
 		switch hue {
 		case ..<(60 / 360): return (chroma, factor, 0)
 		case ..<(120 / 360): return (factor, chroma, 0)
