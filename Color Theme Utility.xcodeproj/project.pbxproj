@@ -38,6 +38,7 @@
 		8B6BE096270EF20B0063B0BA /* ColorConversionTestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE095270EF20B0063B0BA /* ColorConversionTestProvider.swift */; };
 		8B6BE09A270EF65D0063B0BA /* ColorHSLConversionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE099270EF65D0063B0BA /* ColorHSLConversionTest.swift */; };
 		8B6BE09C270EF7090063B0BA /* ColorHexadecimalConversionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE09B270EF7090063B0BA /* ColorHexadecimalConversionTest.swift */; };
+		8B6BE09E270F7A080063B0BA /* ColorExtrapolator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE09D270F7A080063B0BA /* ColorExtrapolator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		8B6BE095270EF20B0063B0BA /* ColorConversionTestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConversionTestProvider.swift; sourceTree = "<group>"; };
 		8B6BE099270EF65D0063B0BA /* ColorHSLConversionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHSLConversionTest.swift; sourceTree = "<group>"; };
 		8B6BE09B270EF7090063B0BA /* ColorHexadecimalConversionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHexadecimalConversionTest.swift; sourceTree = "<group>"; };
+		8B6BE09D270F7A080063B0BA /* ColorExtrapolator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtrapolator.swift; sourceTree = "<group>"; };
 		8BBF92A02701C49100386123 /* XcodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeTheme.swift; sourceTree = "<group>"; };
 		8BBF92A42701CE1D00386123 /* URL+CanonicalPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+CanonicalPath.swift"; sourceTree = "<group>"; };
 		8BBF92A92701F6D600386123 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				8B6BE02C2709B12C0063B0BA /* FloatRGBAColorParser.swift */,
 				8B6BE02A2709ABFE0063B0BA /* HexadecimalColorParser.swift */,
 				8B6BE02E2709B9240063B0BA /* HSLColorConverter.swift */,
+				8B6BE09D270F7A080063B0BA /* ColorExtrapolator.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 				8B6BE08C270C77FB0063B0BA /* Color.swift in Sources */,
 				8B6BE08D270C77FB0063B0BA /* ColorFormat.swift in Sources */,
 				8B6BE07E270C77FB0063B0BA /* ThemeImporter.swift in Sources */,
+				8B6BE09E270F7A080063B0BA /* ColorExtrapolator.swift in Sources */,
 				8B6BE082270C77FB0063B0BA /* IntermediateTheme.swift in Sources */,
 				8B6BE07F270C77FB0063B0BA /* URL+CanonicalPath.swift in Sources */,
 				8B6BE084270C77FB0063B0BA /* ColorModeler.swift in Sources */,
