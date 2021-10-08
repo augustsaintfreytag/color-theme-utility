@@ -11,4 +11,8 @@ struct ArgumentError: Error, LocalizedError {
 	
 	var errorDescription: String?
 	
+	init(description: String? = nil) {
+		self.errorDescription = description
+	}
+	
 }

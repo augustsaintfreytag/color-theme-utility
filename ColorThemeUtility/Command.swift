@@ -50,11 +50,11 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 	
 	func detectColorKind() throws {
 		guard let inputColor = inputColor else {
-			throw ArgumentError(errorDescription: "No color string given, color format could not be determined.")
+			throw ArgumentError(description: "No color string given, color format could not be determined.")
 		}
 		
 		guard let inputColorFormat = colorFormat(for: inputColor) else {
-			throw ArgumentError(errorDescription: "Color format could not be determined.")
+			throw ArgumentError(description: "Color format could not be determined.")
 		}
 		
 		if humanReadable {
@@ -66,7 +66,7 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 	
 	func printColor() throws {
 		guard let inputColor = inputColor, let color = color(fromAutodetectedColorString: inputColor) else {
-			throw ArgumentError(errorDescription: "Missing input color or given string has invalid or unsupported format.")
+			throw ArgumentError(description: "Missing input color or given string has invalid or unsupported format.")
 		}
 		
 		printColor(color)
@@ -84,11 +84,11 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 	///
 	func debugPrintTheme() throws {
 		guard let inputFilePath = inputFile else {
-			throw ArgumentError(errorDescription: "Missing input theme file path.")
+			throw ArgumentError(description: "Missing input theme file path.")
 		}
 		
 		guard let fileData = encodedDataFromFileContents(from: inputFilePath) else {
-			throw ArgumentError(errorDescription: "Could not read supplied theme file.")
+			throw ArgumentError(description: "Could not read supplied theme file.")
 		}
 		
 		let decoder = PropertyListDecoder()
