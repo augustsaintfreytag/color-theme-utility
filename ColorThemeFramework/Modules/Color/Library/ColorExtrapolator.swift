@@ -26,15 +26,19 @@ extension ColorExtrapolator {
 		
 		for iteration in 0 ..< numberOfColors {
 			let multiplier = ColorValue(iteration)
-			let hue = baseHue + stride.hue * multiplier
-			let saturation = baseSaturation + stride.saturation * multiplier
-			let lightness = baseLightness + stride.lightness * multiplier
+			let hue = limit(baseHue + stride.hue * multiplier)
+			let saturation = limit(baseSaturation + stride.saturation * multiplier)
+			let lightness = limit(baseLightness + stride.lightness * multiplier)
 			let paletteColor = Color(hue: hue, saturation: saturation, lightness: lightness)
 			
 			colors.append(paletteColor)
 		}
 		
 		return colors
+	}
+	
+	private static func limit(_ value: ColorValue) -> ColorValue {
+		return max(min(value, 1.0), 0.0)
 	}
 	
 	/// Returns a uniform stride of change applied to a color's HSL components
@@ -47,7 +51,7 @@ extension ColorExtrapolator {
 	}
 	
 	private static func paletteStrideDelta(skewing colorChange: ColorTransform) -> (HSLColorComponents) {
-		let (hue, saturation, lightness) = (0.1, 0.25, 0.25) as HSLColorComponents
+		let (hue, saturation, lightness) = (0.1, 0.2, 0.2) as HSLColorComponents
 		
 		switch colorChange {
 		case .lighter:
@@ -61,7 +65,7 @@ extension ColorExtrapolator {
 
 // MARK: Library
 
-public enum ColorTransform {
+public enum ColorTransform: String {
 	case lighter
 	case darker
 }
