@@ -17,13 +17,19 @@ struct ColorThemeUtility: ParsableCommand {
 	
 	// MARK: Arguments
 
-	@Argument(help: "The main operation to perform. (options: describe|convert)", completion: .default)
+	@Argument(help: "The main operation to perform. (options: describe|convert|palette|debug)", completion: .default)
 	var mode: Mode
 	
-	@Option(name: [.customShort("c"), .customLong("color")], help: "The color string to convert.")
+	@Option(name: [.customShort("c"), .customLong("color")], help: "The color string to use as input.")
 	var inputColor: String?
 	
-	@Option(name: [.customShort("i"), .customLong("input")], help: "The theme file as input to be processed.")
+	@Option(name: [.customShort("s"), .customLong("skew")], help: "The lightness direction skew to use for palette generation. (options: lighter|darker)")
+	var colorTransform: ColorTransform?
+	
+	@Option(name: [.customShort("n"), .customLong("number-of-colors")], help: "The number of colors created in palette generation (including provided base color).")
+	var colorCount: Int?
+	
+	@Option(name: [.customShort("i"), .customLong("input")], help: "The theme file to use as input.")
 	var inputFile: String?
 	
 	@Flag(name: [.short], help: "Output printed descriptions in a human-readable format.")
@@ -37,6 +43,8 @@ struct ColorThemeUtility: ParsableCommand {
 			try detectColorKind()
 		case .print:
 			try printColor()
+		case .palette:
+			try generatePalette()
 		case .debug:
 			try debugPrintTheme()
 		}
@@ -46,9 +54,9 @@ struct ColorThemeUtility: ParsableCommand {
 
 // MARK: Modes
 
-extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, HSLColorConverter {
+extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, HSLColorConverter, ColorExtrapolator {
 	
-	func detectColorKind() throws {
+	private func detectColorKind() throws {
 		guard let inputColor = inputColor else {
 			throw ArgumentError(description: "No color string given, color format could not be determined.")
 		}
@@ -64,7 +72,7 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 		}
 	}
 	
-	func printColor() throws {
+	private func printColor() throws {
 		guard let inputColor = inputColor, let color = color(fromAutodetectedColorString: inputColor) else {
 			throw ArgumentError(description: "Missing input color or given string has invalid or unsupported format.")
 		}
@@ -82,7 +90,7 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 	///   - `theme.formattedEncodedDebugDescription`
 	///   - `theme.<key>.enumerated()`
 	///
-	func debugPrintTheme() throws {
+	private func debugPrintTheme() throws {
 		guard let inputFilePath = inputFile else {
 			throw ArgumentError(description: "Missing input theme file path.")
 		}
@@ -127,6 +135,20 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 		print(colorDescription + " " + key)
 	}
 	
+	private func generatePalette() throws {
+		guard let inputColor = inputColor, let color = color(fromAutodetectedColorString: inputColor) else {
+			throw ArgumentError(description: "Missing input color, need base color to generate palette.")
+		}
+		
+		let numberOfColors = colorCount ?? 3
+		let transform: ColorTransform = colorTransform ?? .lighter
+		let palette = Self.extrapolatedColorSequence(from: color, numberOfColors: numberOfColors, skewing: transform)
+		
+		for (index, paletteColor) in palette.enumerated() {
+			printColor(paletteColor, description: "Palette color #\(index + 1)")
+		}
+	}
+	
 }
 
 // MARK: Library
@@ -135,4 +157,5 @@ enum Mode: String, CaseIterable, ExpressibleByArgument {
 	case debug
 	case describe
 	case print
+	case palette
 }
