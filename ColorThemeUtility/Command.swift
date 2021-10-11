@@ -32,7 +32,7 @@ struct ColorThemeUtility: ParsableCommand {
 	@Option(name: [.customShort("i"), .customLong("input")], help: "The theme file to use as input.")
 	var inputFile: String?
 	
-	@Flag(name: [.short], help: "Output printed descriptions in a human-readable format.")
+	@Flag(name: [.customShort("h")], help: "Output printed descriptions in a human-readable format.")
 	var humanReadable: Bool = false
 	
 	// MARK: Run
