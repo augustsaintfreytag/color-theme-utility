@@ -15,11 +15,25 @@ public protocol ColorExtrapolator {
 
 extension ColorExtrapolator {
 	
+	private static var singleTransformModifier: ColorValue { 2.0 }
+	private static var singleDesaturationTransformModifier: ColorValue { 0.5 }
+	
+	public static func transformedColor(from baseColor: Color, skewing colorTransform: ColorTransform) -> Color {
+		let (baseHue, baseSaturation, baseLightness) = baseColor.hsl
+		let stride = paletteStride(numberOfColors: 2, skewing: colorTransform)
+		
+		let hue = limit(baseHue + stride.hue * singleTransformModifier)
+		let saturation = limit(baseSaturation + stride.saturation * singleTransformModifier)
+		let lightness = limit(baseLightness + stride.lightness * singleTransformModifier)
+		
+		return Color(hue: hue, saturation: saturation, lightness: lightness)
+	}
+	
 	/// Generates and returns a sequence of colors distributed in tone to
 	/// produce a palette of the given length. The created sequence always
 	/// contains the provided *base color* as its first element.
-	public static func extrapolatedColorSequence(from color: Color, numberOfColors: Int, skewing colorTransform: ColorTransform) -> [Color] {
-		let (baseHue, baseSaturation, baseLightness) = color.hsl
+	public static func cascadingColorSequence(from baseColor: Color, numberOfColors: Int, skewing colorTransform: ColorTransform) -> [Color] {
+		let (baseHue, baseSaturation, baseLightness) = baseColor.hsl
 		let stride = paletteStride(numberOfColors: numberOfColors, skewing: colorTransform)
 		
 		var colors: [Color] = []
@@ -29,9 +43,9 @@ extension ColorExtrapolator {
 			let hue = limit(baseHue + stride.hue * multiplier)
 			let saturation = limit(baseSaturation + stride.saturation * multiplier)
 			let lightness = limit(baseLightness + stride.lightness * multiplier)
-			let paletteColor = Color(hue: hue, saturation: saturation, lightness: lightness)
+			let newColor = Color(hue: hue, saturation: saturation, lightness: lightness)
 			
-			colors.append(paletteColor)
+			colors.append(newColor)
 		}
 		
 		return colors

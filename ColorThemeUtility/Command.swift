@@ -117,7 +117,7 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 		
 		let numberOfColors = colorCount ?? 3
 		let transform: ColorTransform = colorTransform ?? .lighter
-		let palette = Self.extrapolatedColorSequence(from: color, numberOfColors: numberOfColors, skewing: transform)
+		let palette = Self.cascadingColorSequence(from: color, numberOfColors: numberOfColors, skewing: transform)
 		
 		for (index, paletteColor) in palette.enumerated() {
 			printColor(paletteColor, description: "Palette color #\(index + 1) (\(paletteColor.description))")
