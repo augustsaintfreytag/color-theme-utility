@@ -70,6 +70,16 @@ extension Color: Comparable {
 
 }
 
+// MARK: Description
+
+extension Color: CustomStringConvertible {
+	
+	public var description: String {
+		return "Red: \(red), Green: \(green), Blue: \(blue)"
+	}
+	
+}
+
 // MARK: HSL
 
 extension Color: HSLColorConverter {
