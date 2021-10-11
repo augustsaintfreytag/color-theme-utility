@@ -120,7 +120,7 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 		let palette = Self.extrapolatedColorSequence(from: color, numberOfColors: numberOfColors, skewing: transform)
 		
 		for (index, paletteColor) in palette.enumerated() {
-			printColor(paletteColor, description: "Palette color #\(index + 1)")
+			printColor(paletteColor, description: "Palette color #\(index + 1) (\(paletteColor.description))")
 		}
 	}
 	
