@@ -21,12 +21,66 @@ import Foundation
 /// - Classes, Variables (References, Project)
 /// - Types, Functions, Constants, Preprocessor (Values, Project)
 ///
-public protocol IntermediateThemeModeler {}
+public protocol IntermediateThemeModeler: ColorExtrapolator {}
 
 extension IntermediateThemeModeler {
 	
+	private static var unspecifiedColor: Color { Color(red: 0.975, green: 0.125, blue: 1.0) }
+	
+	/// Creates a theme from the given sequence of colors.
+	///
+	/// Currently only creates colors suitable for use in dark themes.
 	public static func theme(from colors: [Color]) throws -> IntermediateTheme {
-		fatalError("Not implemented.")
+		let originColors = try originColors(from: colors)
+		
+		let textColors = cascadingColorSequence(from: originColors.text, numberOfColors: 3, skewing: .lighter)
+		
+		let commentBaseColor = transformedColor(from: originColors.text, skewing: .darker)
+		let commentColors = cascadingColorSequence(from: commentBaseColor, numberOfColors: 2, skewing: .lighter)
+		
+		let stringColors = cascadingColorSequence(from: originColors.strings, numberOfColors: 3, skewing: .darker)
+		let typesSystemAColors = cascadingColorSequence(from: originColors.typesSystemA, numberOfColors: 2, skewing: .darker)
+		let typesSystemBColors = cascadingColorSequence(from: originColors.typesSystemB, numberOfColors: 4, skewing: .darker)
+		let typesProjectAColors = cascadingColorSequence(from: originColors.typesProjectA, numberOfColors: 4, skewing: .darker)
+		let typesProjectBColors = cascadingColorSequence(from: originColors.typesProjectB, numberOfColors: 6, skewing: .darker)
+		
+		return IntermediateTheme(
+			foreground: textColors[0],
+			background: originColors.background,
+			selectionBackground: unspecifiedColor,
+			activeLineBackground: unspecifiedColor,
+			insertionPoint: unspecifiedColor,
+			comment: commentColors[0],
+			commentDocumentation: commentColors[1],
+			commentSection: textColors[1],
+			commentSectionHeader: originColors.keywords,
+			keyword: originColors.keywords,
+			functionProject: typesProjectBColors[3],
+			functionSystem: typesSystemBColors[1],
+			functionParameter: textColors[2],
+			preprocessorProject: typesProjectBColors[5],
+			preprocessorSystem: typesSystemBColors[3],
+			constantProject: typesProjectBColors[4],
+			constantSystem: typesSystemBColors[2],
+			variableProject: typesProjectAColors[1],
+			variableSystem: typesSystemAColors[1],
+			typeProject: typesProjectBColors[2],
+			typeSystem: typesSystemBColors[0],
+			referenceTypeProject: typesProjectAColors[0],
+			referenceTypeSystem: typesSystemAColors[0],
+			valueTypeProject: typesProjectBColors[2],
+			valueTypeSystem: typesSystemBColors[0],
+			enumProject: typesProjectBColors[2],
+			enumSystem: typesSystemBColors[0],
+			declarationType: typesProjectBColors[0],
+			declarationAny: typesProjectBColors[1],
+			attribute: textColors[2],
+			module: textColors[2],
+			number: originColors.numbers,
+			string: stringColors[0],
+			character: stringColors[1],
+			url: stringColors[2]
+		)
 	}
 	
 	private static func originColors(from colors: [Color]) throws -> OriginColors {
