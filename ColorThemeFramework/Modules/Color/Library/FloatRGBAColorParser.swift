@@ -7,6 +7,8 @@
 import Foundation
 
 /// Bidirectional parser and description provider for `Color` values in Float RGBA representation.
+///
+/// Processes values of format "0.402042 0.772574 0.843623 1".
 public protocol FloatRGBAColorParser {
 	
 	typealias ColorValue = Color.ColorValue
