@@ -52,9 +52,9 @@ struct ColorThemeUtility: ParsableCommand {
 
 }
 
-// MARK: Modes
-
 extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, HSLColorConverter, ColorExtrapolator {
+	
+	// MARK: Commands
 	
 	private func detectColorKind() throws {
 		guard let inputColor = inputColor else {
@@ -110,6 +110,22 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 		}
 	}
 	
+	private func generatePalette() throws {
+		guard let inputColor = inputColor, let color = color(fromAutodetectedColorString: inputColor) else {
+			throw ArgumentError(description: "Missing or invalid input color, need base color to generate palette.")
+		}
+		
+		let numberOfColors = colorCount ?? 3
+		let transform: ColorTransform = colorTransform ?? .lighter
+		let palette = Self.extrapolatedColorSequence(from: color, numberOfColors: numberOfColors, skewing: transform)
+		
+		for (index, paletteColor) in palette.enumerated() {
+			printColor(paletteColor, description: "Palette color #\(index + 1)")
+		}
+	}
+	
+	// MARK: Utility
+	
 	private func orderedEnumeratedColors(from enumeratedColors: [(property: String, value: String)]) -> [(property: String, color: Color)] {
 		return enumeratedColors.reduce(into: [(property: String, color: Color)]()) { collection, element in
 			let (property, value) = element
@@ -133,20 +149,6 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 		}
 		
 		print(colorDescription + " " + key)
-	}
-	
-	private func generatePalette() throws {
-		guard let inputColor = inputColor, let color = color(fromAutodetectedColorString: inputColor) else {
-			throw ArgumentError(description: "Missing input color, need base color to generate palette.")
-		}
-		
-		let numberOfColors = colorCount ?? 3
-		let transform: ColorTransform = colorTransform ?? .lighter
-		let palette = Self.extrapolatedColorSequence(from: color, numberOfColors: numberOfColors, skewing: transform)
-		
-		for (index, paletteColor) in palette.enumerated() {
-			printColor(paletteColor, description: "Palette color #\(index + 1)")
-		}
 	}
 	
 }
