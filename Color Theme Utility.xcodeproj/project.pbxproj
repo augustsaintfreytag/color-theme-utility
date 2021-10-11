@@ -198,7 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				8BE70D1B27085EF5008D9991 /* Library */,
-				8B2E62AA270247FD000AEA95 /* Models */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -209,6 +208,14 @@
 				8B2E62AB27024807000AEA95 /* IntermediateTheme.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8B4150E627143DF600873BBF /* Intermediate Theme */ = {
+			isa = PBXGroup;
+			children = (
+				8B2E62AA270247FD000AEA95 /* Models */,
+			);
+			path = "Intermediate Theme";
 			sourceTree = "<group>";
 		};
 		8B57B50D2704874A00A60D1C /* Library */ = {
@@ -257,6 +264,7 @@
 			children = (
 				8BBF92A72701F6C600386123 /* Color */,
 				8B6BE05C270C73B20063B0BA /* Common */,
+				8B4150E627143DF600873BBF /* Intermediate Theme */,
 				8B2E62A9270247F4000AEA95 /* Theme */,
 				8B29631D26F62F930048CE17 /* Xcode */,
 			);
