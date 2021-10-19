@@ -32,6 +32,9 @@ struct ColorThemeUtility: ParsableCommand {
 	@Option(name: [.customShort("i"), .customLong("input")], help: "The theme file to use as input.")
 	var inputFile: String?
 	
+	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating themes.")
+	var outputFormat: OutputFormat?
+	
 	@Flag(name: [.customShort("h")], help: "Output printed descriptions in a human-readable format.")
 	var humanReadable: Bool = false
 	
@@ -132,10 +135,17 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 		}
 		
 		let theme = try Self.theme(from: inputColors)
-		let themeColors: IntermediateTheme.EnumeratedValues<Color> = theme.enumeratedSortedByValue()
+		let outputFormat = outputFormat ?? .structure
 		
-		for (property, color) in themeColors {
-			printColor(color, description: property)
+		switch outputFormat {
+		case .visual:
+			let themeColors: IntermediateTheme.EnumeratedValues<Color> = theme.enumeratedSortedByValue()
+			
+			for (property, color) in themeColors {
+				printColor(color, description: property)
+			}
+		case .structure:
+			print(theme.formattedEncodedDescription!)
 		}
 	}
 	
@@ -176,4 +186,9 @@ enum Mode: String, CaseIterable, ExpressibleByArgument {
 	case print
 	case palette
 	case generate
+}
+
+enum OutputFormat: String, CaseIterable, ExpressibleByArgument {
+	case visual
+	case structure
 }
