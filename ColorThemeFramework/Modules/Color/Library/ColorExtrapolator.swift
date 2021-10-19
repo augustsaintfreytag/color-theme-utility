@@ -15,16 +15,19 @@ public protocol ColorExtrapolator {
 
 extension ColorExtrapolator {
 	
-	private static var singleTransformModifier: ColorValue { 2.0 }
-	private static var singleDesaturationTransformModifier: ColorValue { 0.5 }
-	
-	public static func transformedColor(from baseColor: Color, skewing colorTransform: ColorTransform) -> Color {
-		let (baseHue, baseSaturation, baseLightness) = baseColor.hsl
+	public static func transformedColor(from baseColor: Color, skewing colorTransform: ColorTransform, modifier: ColorValue = 1.0) -> Color {
 		let stride = paletteStride(numberOfColors: 2, skewing: colorTransform)
+		let transform: HSLColorComponents = (stride.hue * modifier, stride.saturation * modifier, stride.lightness * modifier)
 		
-		let hue = limit(baseHue + stride.hue * singleTransformModifier)
-		let saturation = limit(baseSaturation + stride.saturation * singleTransformModifier)
-		let lightness = limit(baseLightness + stride.lightness * singleTransformModifier)
+		return transformedColor(from: baseColor, applying: transform)
+	}
+	
+	public static func transformedColor(from baseColor: Color, applying transform: HSLColorComponents) -> Color {
+		let (baseHue, baseSaturation, baseLightness) = baseColor.hsl
+		
+		let hue = limit(baseHue + transform.hue)
+		let saturation = limit(baseSaturation + transform.saturation)
+		let lightness = limit(baseLightness + transform.lightness)
 		
 		return Color(hue: hue, saturation: saturation, lightness: lightness)
 	}
@@ -67,9 +70,9 @@ extension ColorExtrapolator {
 	private static func paletteStrideDelta(skewing colorChange: ColorTransform) -> (HSLColorComponents) {
 		switch colorChange {
 		case .lighter:
-			return (0.075, -0.3, 0.15)
+			return (0, -0.1, 0.1)
 		case .darker:
-			return (0.1, 0.1, -0.25)
+			return (0, 0.1, -0.15)
 		}
 	}
 	
