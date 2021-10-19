@@ -20,7 +20,7 @@ struct ColorThemeUtility: ParsableCommand {
 	@Argument(help: "The main operation to perform. (options: describe|convert|palette|debug)", completion: .default)
 	var mode: Mode
 	
-	@Option(name: [.customShort("c"), .customLong("color")], help: "The color (or sequence of colors) to use as input.", transform: stringCollectionFromArgument)
+	@Option(name: [.customShort("c"), .customLong("color")], help: "The color (or sequence of colors) to use as input.", transform: stringSequenceFromArgument)
 	var inputColors: [String]?
 	
 	@Option(name: [.customShort("s"), .customLong("skew")], help: "The lightness direction skew to use for palette generation. (options: lighter|darker)")
@@ -132,7 +132,7 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 		}
 		
 		let theme = try Self.theme(from: inputColors)
-		let themeColors: IntermediateTheme.EnumeratedValues<Color> = theme.enumerated()
+		let themeColors: IntermediateTheme.EnumeratedValues<Color> = theme.enumeratedSortedByValue()
 		
 		for (property, color) in themeColors {
 			printColor(color, description: property)
