@@ -35,6 +35,18 @@ extension CustomPropertyEnumerable {
 		return collection
 	}
 	
+	public func enumeratedSortedByProperty<Value>() -> EnumeratedValues<Value> {
+		return enumerated().sorted { lhs, rhs in
+			return lhs.property < rhs.property
+		}
+	}
+	
+	public func enumeratedSortedByValue<Value: Comparable>() -> EnumeratedValues<Value> {
+		return enumerated().sorted { lhs, rhs in
+			return lhs.value < rhs.value
+		}
+	}
+	
 	private func forEachEnumeratedProperty<Value>(_ block: (_ label: String, _ element: Value) -> Void) {
 		let mirror = Mirror(reflecting: self)
 		
