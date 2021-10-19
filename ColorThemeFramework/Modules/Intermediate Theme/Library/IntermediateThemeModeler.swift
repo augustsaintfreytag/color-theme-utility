@@ -35,7 +35,7 @@ extension IntermediateThemeModeler {
 		
 		let textColors = cascadingColorSequence(from: originColors.text, numberOfColors: 3, skewing: .lighter)
 		
-		let commentBaseColor = transformedColor(from: originColors.text, skewing: .darker)
+		let commentBaseColor = transformedColor(from: originColors.text, skewing: .darker, modifier: 2.0)
 		let commentColors = cascadingColorSequence(from: commentBaseColor, numberOfColors: 2, skewing: .lighter)
 		
 		let stringColors = cascadingColorSequence(from: originColors.strings, numberOfColors: 3, skewing: .darker)
@@ -44,12 +44,16 @@ extension IntermediateThemeModeler {
 		let typesProjectAColors = cascadingColorSequence(from: originColors.typesProjectA, numberOfColors: 4, skewing: .darker)
 		let typesProjectBColors = cascadingColorSequence(from: originColors.typesProjectB, numberOfColors: 6, skewing: .darker)
 		
+		let activeLineBackgroundColor = transformedColor(from: originColors.background, skewing: .lighter, modifier: 0.5)
+		let selectionBackgroundColor = transformedColor(from: originColors.keywords, applying: (0, 0.6, 0.2))
+		let insertionPointColor = transformedColor(from: originColors.keywords, skewing: .lighter)
+		
 		return IntermediateTheme(
 			foreground: textColors[0],
 			background: originColors.background,
-			selectionBackground: unspecifiedColor,
-			activeLineBackground: unspecifiedColor,
-			insertionPoint: unspecifiedColor,
+			selectionBackground: selectionBackgroundColor,
+			activeLineBackground: activeLineBackgroundColor,
+			insertionPoint: insertionPointColor,
 			comment: commentColors[0],
 			commentDocumentation: commentColors[1],
 			commentSection: textColors[1],
