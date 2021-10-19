@@ -83,6 +83,15 @@ extension IntermediateThemeModeler {
 		)
 	}
 	
+	/// Returns an asserted mapping of colors usable as origin points for
+	/// theme generation.
+	///
+	/// Out of the supplied *9 colors*, the first is mapped as a
+	/// *background color*, the second a general foreground color;
+	/// subsequent values are used for syntax.
+	///
+	/// Verifies an input collection of colors of arbitrary length but
+	/// requires exactly *9 colors* to map origin colors.
 	private static func originColors(from colors: [Color]) throws -> OriginColors {
 		guard colors.count == 9 else {
 			throw ThemeModelingError(kind: .insufficientData, description: "Can not create intermediate theme, need a background and exactly 8 palette colors as input.")
