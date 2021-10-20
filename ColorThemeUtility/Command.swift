@@ -17,10 +17,10 @@ struct ColorThemeUtility: ParsableCommand {
 	
 	// MARK: Arguments
 
-	@Argument(help: "The main operation to perform. (options: describe|convert|palette|debug)", completion: .default)
+	@Argument(help: "The main operation to perform. (options: TBD)", completion: .default)
 	var mode: Mode
 	
-	@Option(name: [.customShort("c"), .customLong("color")], help: "The color (or sequence of colors) to use as input.", transform: stringSequenceFromArgument)
+	@Option(name: [.customShort("c"), .customLong("color")], help: "The color or sequence of colors to use as input. (comma separated)", transform: stringSequenceFromArgument)
 	var inputColors: [String]?
 	
 	@Option(name: [.customShort("s"), .customLong("skew")], help: "The lightness direction skew to use for palette generation. (options: lighter|darker)")
@@ -32,11 +32,8 @@ struct ColorThemeUtility: ParsableCommand {
 	@Option(name: [.customShort("i"), .customLong("input")], help: "The theme file to use as input.")
 	var inputFile: String?
 	
-	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating themes.")
+	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating themes. (options: formatted|data)")
 	var outputFormat: OutputFormat?
-	
-	@Flag(name: [.customShort("h")], help: "Output printed descriptions in a human-readable format.")
-	var humanReadable: Bool = false
 	
 	// MARK: Run
 	
@@ -70,9 +67,10 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 			throw ArgumentError(description: "Color format could not be determined.")
 		}
 		
-		if humanReadable {
+		switch outputFormat ?? .data {
+		case .formatted:
 			print("Color string '\(inputColor)' is \(inputColorFormat.description) (\(inputColorFormat.rawValue)).")
-		} else {
+		case .data:
 			print(inputColorFormat.rawValue)
 		}
 	}
@@ -135,16 +133,16 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 		}
 		
 		let theme = try Self.theme(from: inputColors)
-		let outputFormat = outputFormat ?? .structure
+		let outputFormat = outputFormat ?? .data
 		
 		switch outputFormat {
-		case .visual:
+		case .formatted:
 			let themeColors: IntermediateTheme.EnumeratedValues<Color> = theme.enumeratedSortedByValue()
 			
 			for (property, color) in themeColors {
 				printColor(color, description: property)
 			}
-		case .structure:
+		case .data:
 			print(theme.formattedEncodedDescription!)
 		}
 	}
@@ -189,6 +187,6 @@ enum Mode: String, CaseIterable, ExpressibleByArgument {
 }
 
 enum OutputFormat: String, CaseIterable, ExpressibleByArgument {
-	case visual
-	case structure
+	case formatted
+	case data
 }
