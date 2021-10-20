@@ -32,6 +32,9 @@ struct ColorThemeUtility: ParsableCommand {
 	@Option(name: [.customShort("i"), .customLong("input")], help: "The theme file to use as input.")
 	var inputFile: String?
 	
+	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating themes. (options: debug|intermediate|xcode|vscode)")
+	var outputFormat: OutputFormat?
+	
 	@Flag(name: [.customShort("h")], help: "Outputs data and models in a human-readable format. (default: false)")
 	var humanReadable: Bool = false
 	
@@ -106,9 +109,14 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 			throw ThemeCodingError(description: "Could not decode supplied theme file as an Xcode theme model.")
 		}
 		
-		let enumeratedColors = orderedEnumeratedColors(from: theme.dvtSourceTextSyntaxColors.enumerated())
-		for (property, color) in enumeratedColors {
-			printColor(color, description: property)
+		print("Theme")
+		orderedEnumeratedColors(in: theme).forEach { property, color in
+			printColor(color, description: property + " (\(color.hexadecimalString))")
+		}
+		
+		print("\nSyntax")
+		orderedEnumeratedColors(in: theme.dvtSourceTextSyntaxColors).forEach { property, color in
+			printColor(color, description: property + " (\(color.hexadecimalString))")
 		}
 	}
 	
@@ -146,6 +154,21 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 	
 	// MARK: Utility
 	
+	private func printColor(_ color: Color, description: String? = nil) {
+		let colorDescription = "████████".colored(with: color)
+		
+		guard let key = description else {
+			print(colorDescription)
+			return
+		}
+		
+		print(colorDescription + " " + key)
+	}
+	
+	private func orderedEnumeratedColors(in model: CustomPropertyEnumerable) -> [(property: String, color: Color)] {
+		return orderedEnumeratedColors(from: model.enumerated())
+	}
+	
 	private func orderedEnumeratedColors(from enumeratedColors: [(property: String, value: String)]) -> [(property: String, color: Color)] {
 		return enumeratedColors.reduce(into: [(property: String, color: Color)]()) { collection, element in
 			let (property, value) = element
@@ -160,17 +183,6 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 		}
 	}
 	
-	private func printColor(_ color: Color, description: String? = nil) {
-		let colorDescription = "████████".colored(with: color)
-		
-		guard let key = description else {
-			print(colorDescription)
-			return
-		}
-		
-		print(colorDescription + " " + key)
-	}
-	
 }
 
 // MARK: Library
@@ -181,4 +193,11 @@ enum Mode: String, CaseIterable, ExpressibleByArgument {
 	case print
 	case palette
 	case generate
+}
+
+enum OutputFormat: String, CaseIterable, ExpressibleByArgument {
+	case debug
+	case intermediate
+	case xcode
+	case vscode
 }
