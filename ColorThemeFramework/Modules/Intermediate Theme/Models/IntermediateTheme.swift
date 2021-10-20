@@ -8,7 +8,7 @@ import Foundation
 
 /// A color theme as an intermediate model between domain-specific theme
 /// structures, usable as an exchange format for conversion.
-public struct IntermediateTheme: Codable {
+public struct IntermediateTheme: Theme, Codable, CustomPropertyEnumerable {
 	
 	let foreground: Color
 	let background: Color

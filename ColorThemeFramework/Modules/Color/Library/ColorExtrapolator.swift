@@ -15,11 +15,28 @@ public protocol ColorExtrapolator {
 
 extension ColorExtrapolator {
 	
+	public static func transformedColor(from baseColor: Color, skewing colorTransform: ColorTransform, modifier: ColorValue = 1.0) -> Color {
+		let stride = paletteStride(numberOfColors: 2, skewing: colorTransform)
+		let transform: HSLColorComponents = (stride.hue * modifier, stride.saturation * modifier, stride.lightness * modifier)
+		
+		return transformedColor(from: baseColor, applying: transform)
+	}
+	
+	public static func transformedColor(from baseColor: Color, applying transform: HSLColorComponents) -> Color {
+		let (baseHue, baseSaturation, baseLightness) = baseColor.hsl
+		
+		let hue = limit(baseHue + transform.hue)
+		let saturation = limit(baseSaturation + transform.saturation)
+		let lightness = limit(baseLightness + transform.lightness)
+		
+		return Color(hue: hue, saturation: saturation, lightness: lightness)
+	}
+	
 	/// Generates and returns a sequence of colors distributed in tone to
 	/// produce a palette of the given length. The created sequence always
 	/// contains the provided *base color* as its first element.
-	public static func extrapolatedColorSequence(from color: Color, numberOfColors: Int, skewing colorTransform: ColorTransform) -> [Color] {
-		let (baseHue, baseSaturation, baseLightness) = color.hsl
+	public static func cascadingColorSequence(from baseColor: Color, numberOfColors: Int, skewing colorTransform: ColorTransform) -> [Color] {
+		let (baseHue, baseSaturation, baseLightness) = baseColor.hsl
 		let stride = paletteStride(numberOfColors: numberOfColors, skewing: colorTransform)
 		
 		var colors: [Color] = []
@@ -29,9 +46,9 @@ extension ColorExtrapolator {
 			let hue = limit(baseHue + stride.hue * multiplier)
 			let saturation = limit(baseSaturation + stride.saturation * multiplier)
 			let lightness = limit(baseLightness + stride.lightness * multiplier)
-			let paletteColor = Color(hue: hue, saturation: saturation, lightness: lightness)
+			let newColor = Color(hue: hue, saturation: saturation, lightness: lightness)
 			
-			colors.append(paletteColor)
+			colors.append(newColor)
 		}
 		
 		return colors
@@ -53,9 +70,9 @@ extension ColorExtrapolator {
 	private static func paletteStrideDelta(skewing colorChange: ColorTransform) -> (HSLColorComponents) {
 		switch colorChange {
 		case .lighter:
-			return (0.075, -0.3, 0.15)
+			return (0, -0.1, 0.1)
 		case .darker:
-			return (0.1, 0.1, -0.25)
+			return (0, 0.1, -0.15)
 		}
 	}
 	

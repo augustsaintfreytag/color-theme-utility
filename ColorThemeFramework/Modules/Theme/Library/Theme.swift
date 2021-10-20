@@ -7,12 +7,13 @@
 import Foundation
 
 /// A theme of a fixed collection of color values, used for a specific domain or for exchange.
-protocol Theme {}
+public protocol Theme {}
 
 extension Theme where Self: Codable {
 	
-	/// A pretty-printed description of the encoded theme contents for debugging.
-	var formattedEncodedDebugDescription: String? {
+	/// A pretty-printed description of the encoded theme contents for
+	/// debugging or outputting to streams.
+	public var formattedEncodedDescription: String? {
 		let debugPrintEncoder = JSONEncoder()
 		debugPrintEncoder.outputFormatting = [.sortedKeys, .prettyPrinted]
 		

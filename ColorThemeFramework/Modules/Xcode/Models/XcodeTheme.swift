@@ -122,7 +122,7 @@ extension XcodeTheme: Codable {
 
 // MARK: Text Syntax
 
-public struct XcodeThemeSourceTextSyntax: CustomStringPropertyEnumerable {
+public struct XcodeThemeSourceTextSyntax: CustomPropertyEnumerable {
 	
 	public let xcodeSyntaxAttribute: String
 	public let xcodeSyntaxCharacter: String
