@@ -6,7 +6,7 @@
 
 import Foundation
 
-public struct XcodeTheme: Theme {
+public struct XcodeTheme: Theme, CustomPropertyEnumerable {
 	
 	public typealias SourceTextSyntaxColors = XcodeThemeSourceTextSyntax
 	public typealias SourceTextSyntaxFonts = XcodeThemeSourceTextSyntax
@@ -24,9 +24,13 @@ public struct XcodeTheme: Theme {
 	public let dvtConsoleTextBackgroundColor: String
 	public let dvtConsoleTextInsertionPointColor: String
 	public let dvtConsoleTextSelectionColor: String
+	
 	public let dvtDebuggerInstructionPointerColor: String
+	
 	public let dvtFontAndColorVersion: Int
+	
 	public let dvtLineSpacing: Float
+	
 	public let dvtMarkupTextBackgroundColor: String
 	public let dvtMarkupTextBorderColor: String
 	public let dvtMarkupTextCodeFont: String
@@ -45,6 +49,7 @@ public struct XcodeTheme: Theme {
 	public let dvtMarkupTextSecondaryHeadingFont: String
 	public let dvtMarkupTextStrongColor: String
 	public let dvtMarkupTextStrongFont: String
+	
 	public let dvtScrollbarMarkerAnalyzerColor: String
 	public let dvtScrollbarMarkerBreakpointColor: String
 	public let dvtScrollbarMarkerDiffColor: String
@@ -52,6 +57,7 @@ public struct XcodeTheme: Theme {
 	public let dvtScrollbarMarkerErrorColor: String
 	public let dvtScrollbarMarkerRuntimeIssueColor: String
 	public let dvtScrollbarMarkerWarningColor: String
+	
 	public let dvtSourceTextBackground: String
 	public let dvtSourceTextBlockDimBackgroundColor: String
 	public let dvtSourceTextCurrentLineHighlightColor: String
