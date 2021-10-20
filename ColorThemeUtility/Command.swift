@@ -32,8 +32,8 @@ struct ColorThemeUtility: ParsableCommand {
 	@Option(name: [.customShort("i"), .customLong("input")], help: "The theme file to use as input.")
 	var inputFile: String?
 	
-	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating themes. (options: formatted|data)")
-	var outputFormat: OutputFormat?
+	@Flag(name: [.customShort("h")], help: "Outputs data and models in a human-readable format. (default: false)")
+	var humanReadable: Bool = false
 	
 	// MARK: Run
 	
@@ -67,10 +67,9 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 			throw ArgumentError(description: "Color format could not be determined.")
 		}
 		
-		switch outputFormat ?? .data {
-		case .formatted:
+		if humanReadable {
 			print("Color string '\(inputColor)' is \(inputColorFormat.description) (\(inputColorFormat.rawValue)).")
-		case .data:
+		} else {
 			print(inputColorFormat.rawValue)
 		}
 	}
@@ -133,16 +132,14 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 		}
 		
 		let theme = try Self.theme(from: inputColors)
-		let outputFormat = outputFormat ?? .data
 		
-		switch outputFormat {
-		case .formatted:
+		if humanReadable {
 			let themeColors: IntermediateTheme.EnumeratedValues<Color> = theme.enumeratedSortedByValue()
 			
 			for (property, color) in themeColors {
 				printColor(color, description: property)
 			}
-		case .data:
+		} else {
 			print(theme.formattedEncodedDescription!)
 		}
 	}
@@ -184,9 +181,4 @@ enum Mode: String, CaseIterable, ExpressibleByArgument {
 	case print
 	case palette
 	case generate
-}
-
-enum OutputFormat: String, CaseIterable, ExpressibleByArgument {
-	case formatted
-	case data
 }
