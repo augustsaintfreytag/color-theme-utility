@@ -9,7 +9,7 @@ import Foundation
 /// A theme of a fixed collection of color values, used for a specific domain or for exchange.
 public protocol Theme {}
 
-extension Theme where Self: Codable {
+extension Theme where Self: Encodable {
 	
 	/// A pretty-printed description of the encoded theme contents for
 	/// debugging or outputting to streams.
