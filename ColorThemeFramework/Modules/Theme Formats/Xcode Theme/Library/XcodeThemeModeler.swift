@@ -12,8 +12,166 @@ public protocol XcodeThemeModeler {}
 
 extension XcodeThemeModeler {
 	
-	public static func theme(from intermediate: IntermediateTheme) throws -> XcodeTheme {
-		fatalError("Not implemented.")
+	// MARK: Theme Defaults
+	
+	private static var version: Int { 1 }
+	private static var lineSpacing: Float { 1.1 }
+	
+	// MARK: Font Defaults
+	
+	private static var codeFontDefault: String { "InputMonoNarrow-Light - 12.0" }
+	private static var codeFontEmphasis: String { "InputMonoNarrow-Medium - 12.0" }
+	private static var codeDocFontDefault: String { "InputSansCondensed-Light - 12.0" }
+	
+	private static var markupFontDefault: String { ".SFNS-Regular - 11.0" }				// Also used for "link font"
+	private static var markupFontEmphasis: String { ".SFNS-RegularItalic - 11.0" }
+	private static var markupFontStrong: String { ".SFNS-Bold - 11.0" }
+	private static var markupFontHeadingPrimary: String { ".SFNS-Regular - 26.4" }
+	private static var markupFontHeadingSecondary: String { ".SFNS-Regular - 19.8" }
+	private static var markupFontHeadingOther: String { ".SFNS-Regular - 15.4" }
+
+	private static var consoleFontDefault: String { "InputMonoNarrow-Light - 11.0" }
+	private static var consoleFontOutput: String { "InputMonoNarrow-Medium - 11.0" }
+	
+	// MARK: Color Defaults
+
+	private static var analysisColor: Color { Color(red: 0.403922, green: 0.372549, blue: 1.0) }
+	private static var breakpointColor: Color { Color(red: 0.290196, green: 0.290196, blue: 0.968627) }
+	private static var errorColor: Color { Color(red: 0.968627, green: 0.290196, blue: 0.290196) }
+	private static var runtimeIssueColor: Color { Color(red: 0.643137, green: 0.509804, blue: 1.0) }
+	private static var warningColor: Color { Color(red: 0.937255, green: 0.717647, blue: 0.34902) }
+	private static var diffColor: Color { Color(red: 0.556863, green: 0.556863, blue: 0.556863) }
+	
+	private static var markupColor: Color { Color(red: 0.501961, green: 0.501961, blue: 0.501961) }
+	private static var markupBackgroundColor: Color { Color(red: 0.0980392, green: 0.0980392, blue: 0.0980392) }
+	private static var markupBorderColor: Color { Color(red: 0.372549, green: 0.352941, blue: 0.376471) }
+
+	private static var unspecifiedColor: Color { Color(red: 0.8, green: 0, blue: 0.8) }
+	
+	// MARK: Theme Form
+	
+	public static func theme(from theme: IntermediateTheme) throws -> XcodeTheme {
+		return XcodeTheme(
+			dvtConsoleDebuggerInputTextColor: value(theme.foreground),
+			dvtConsoleDebuggerInputTextFont: consoleFontDefault,
+			dvtConsoleDebuggerOutputTextColor: value(theme.foreground),	// TBD
+			dvtConsoleDebuggerOutputTextFont: consoleFontOutput,
+			dvtConsoleDebuggerPromptTextColor: value(theme.foreground),
+			dvtConsoleDebuggerPromptTextFont: consoleFontDefault,
+			dvtConsoleExectuableInputTextColor: value(theme.foreground),
+			dvtConsoleExectuableInputTextFont: consoleFontDefault,
+			dvtConsoleExectuableOutputTextColor: value(theme.foreground),
+			dvtConsoleExectuableOutputTextFont: consoleFontOutput,
+			dvtConsoleTextBackgroundColor: value(theme.background),
+			dvtConsoleTextInsertionPointColor: value(theme.insertionPoint),
+			dvtConsoleTextSelectionColor: value(theme.selectionBackground),
+			dvtDebuggerInstructionPointerColor: value(unspecifiedColor),	// TBD
+			dvtFontAndColorVersion: version,
+			dvtLineSpacing: lineSpacing,
+			dvtMarkupTextBackgroundColor: value(theme.background),
+			dvtMarkupTextBorderColor: value(markupBorderColor),
+			dvtMarkupTextCodeFont: markupFontDefault,
+			dvtMarkupTextEmphasisColor: value(markupColor),
+			dvtMarkupTextEmphasisFont: markupFontEmphasis,
+			dvtMarkupTextInlineCodeColor: value(markupColor),
+			dvtMarkupTextLinkColor: value(markupColor),
+			dvtMarkupTextLinkFont: markupFontDefault,
+			dvtMarkupTextNormalColor: value(markupColor),
+			dvtMarkupTextNormalFont: markupFontDefault,
+			dvtMarkupTextOtherHeadingColor: value(markupColor),
+			dvtMarkupTextOtherHeadingFont: markupFontHeadingOther,
+			dvtMarkupTextPrimaryHeadingColor: value(markupColor),
+			dvtMarkupTextPrimaryHeadingFont: markupFontHeadingPrimary,
+			dvtMarkupTextSecondaryHeadingColor: value(markupColor),
+			dvtMarkupTextSecondaryHeadingFont: markupFontHeadingSecondary,
+			dvtMarkupTextStrongColor: value(markupColor),
+			dvtMarkupTextStrongFont: markupFontEmphasis,
+			dvtScrollbarMarkerAnalyzerColor: value(analysisColor),
+			dvtScrollbarMarkerBreakpointColor: value(breakpointColor),
+			dvtScrollbarMarkerDiffColor: value(diffColor),
+			dvtScrollbarMarkerDiffConflictColor: value(errorColor),
+			dvtScrollbarMarkerErrorColor: value(errorColor),
+			dvtScrollbarMarkerRuntimeIssueColor: value(runtimeIssueColor),
+			dvtScrollbarMarkerWarningColor: value(warningColor),
+			dvtSourceTextBackground: value(theme.background),
+			dvtSourceTextBlockDimBackgroundColor: value(theme.background),		// TBD, lighter background color
+			dvtSourceTextCurrentLineHighlightColor: value(theme.activeLineBackground),
+			dvtSourceTextInsertionPointColor: value(theme.insertionPoint),
+			dvtSourceTextInvisiblesColor: value(theme.comment),
+			dvtSourceTextSelectionColor: value(theme.selectionBackground),
+			dvtSourceTextSyntaxColors: syntaxColors(from: theme),
+			dvtSourceTextSyntaxFonts: syntaxFonts(from: theme)
+		)
+	}
+	
+	private static func syntaxColors(from theme: IntermediateTheme) -> XcodeTheme.SourceTextSyntaxColors {
+		return XcodeTheme.SourceTextSyntaxColors(
+			xcodeSyntaxAttribute: value(theme.attribute),
+			xcodeSyntaxCharacter: value(theme.character),
+			xcodeSyntaxComment: value(theme.comment),
+			xcodeSyntaxCommentDoc: value(theme.commentDocumentation),
+			xcodeSyntaxCommentDocKeyword: value(theme.commentSectionHeader),
+			xcodeSyntaxDeclarationOther: value(theme.declarationAny),
+			xcodeSyntaxDeclarationType: value(theme.declarationType),
+			xcodeSyntaxIdentifierClass: value(theme.referenceTypeProject),
+			xcodeSyntaxIdentifierClassSystem: value(theme.referenceTypeSystem),
+			xcodeSyntaxIdentifierConstant: value(theme.constantProject),
+			xcodeSyntaxIdentifierConstantSystem: value(theme.constantSystem),
+			xcodeSyntaxIdentifierFunction: value(theme.functionProject),
+			xcodeSyntaxIdentifierFunctionSystem: value(theme.functionSystem),
+			xcodeSyntaxIdentifierMacro: value(theme.preprocessorProject),
+			xcodeSyntaxIdentifierMacroSystem: value(theme.preprocessorSystem),
+			xcodeSyntaxIdentifierType: value(theme.typeProject),
+			xcodeSyntaxIdentifierTypeSystem: value(theme.typeSystem),
+			xcodeSyntaxIdentifierVariable: value(theme.variableProject),
+			xcodeSyntaxIdentifierVariableSystem: value(theme.variableSystem),
+			xcodeSyntaxKeyword: value(theme.keyword),
+			xcodeSyntaxMark: value(theme.commentSection),
+			xcodeSyntaxMarkupCode: value(theme.keyword),
+			xcodeSyntaxNumber: value(theme.number),
+			xcodeSyntaxPlain: value(theme.foreground),
+			xcodeSyntaxPreprocessor: value(theme.keyword),
+			xcodeSyntaxString: value(theme.string),
+			xcodeSyntaxUrl: value(theme.url)
+		)
+	}
+	
+	private static func syntaxFonts(from theme: IntermediateTheme) -> XcodeTheme.SourceTextSyntaxFonts {
+		return XcodeTheme.SourceTextSyntaxColors(
+			xcodeSyntaxAttribute: codeFontDefault,
+			xcodeSyntaxCharacter: codeFontDefault,
+			xcodeSyntaxComment: codeFontDefault,
+			xcodeSyntaxCommentDoc: codeDocFontDefault,
+			xcodeSyntaxCommentDocKeyword: codeFontEmphasis,
+			xcodeSyntaxDeclarationOther: codeFontDefault,
+			xcodeSyntaxDeclarationType: codeFontDefault,
+			xcodeSyntaxIdentifierClass: codeFontDefault,
+			xcodeSyntaxIdentifierClassSystem: codeFontDefault,
+			xcodeSyntaxIdentifierConstant: codeFontDefault,
+			xcodeSyntaxIdentifierConstantSystem: codeFontDefault,
+			xcodeSyntaxIdentifierFunction: codeFontDefault,
+			xcodeSyntaxIdentifierFunctionSystem: codeFontDefault,
+			xcodeSyntaxIdentifierMacro: codeFontDefault,
+			xcodeSyntaxIdentifierMacroSystem: codeFontDefault,
+			xcodeSyntaxIdentifierType: codeFontDefault,
+			xcodeSyntaxIdentifierTypeSystem: codeFontDefault,
+			xcodeSyntaxIdentifierVariable: codeFontDefault,
+			xcodeSyntaxIdentifierVariableSystem: codeFontDefault,
+			xcodeSyntaxKeyword: codeFontEmphasis,
+			xcodeSyntaxMark: codeFontEmphasis,
+			xcodeSyntaxMarkupCode: codeFontDefault,
+			xcodeSyntaxNumber: codeFontDefault,
+			xcodeSyntaxPlain: codeFontDefault,
+			xcodeSyntaxPreprocessor: codeFontDefault,
+			xcodeSyntaxString: codeFontDefault,
+			xcodeSyntaxUrl: codeFontDefault
+		)
+	}
+
+	// MARK: Color Utility
+
+	private static func value(_ color: Color) -> String {
+		return color.floatRGBAString
 	}
 	
 }
