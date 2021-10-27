@@ -41,6 +41,8 @@
 		8B6BE09A270EF65D0063B0BA /* ColorHSLConversionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE099270EF65D0063B0BA /* ColorHSLConversionTest.swift */; };
 		8B6BE09C270EF7090063B0BA /* ColorHexadecimalConversionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE09B270EF7090063B0BA /* ColorHexadecimalConversionTest.swift */; };
 		8B6BE09E270F7A080063B0BA /* ColorExtrapolator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE09D270F7A080063B0BA /* ColorExtrapolator.swift */; };
+		8B8C579D2726B55C00606BB9 /* ThemeCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8C579C2726B55C00606BB9 /* ThemeCoder.swift */; };
+		8B8C57A02726B93F00606BB9 /* ThemeEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8C579F2726B93F00606BB9 /* ThemeEncoding.swift */; };
 		8BE17562272017030073805E /* XcodeThemeModeler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE17561272017030073805E /* XcodeThemeModeler.swift */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +115,8 @@
 		8B6BE099270EF65D0063B0BA /* ColorHSLConversionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHSLConversionTest.swift; sourceTree = "<group>"; };
 		8B6BE09B270EF7090063B0BA /* ColorHexadecimalConversionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHexadecimalConversionTest.swift; sourceTree = "<group>"; };
 		8B6BE09D270F7A080063B0BA /* ColorExtrapolator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtrapolator.swift; sourceTree = "<group>"; };
+		8B8C579C2726B55C00606BB9 /* ThemeCoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCoder.swift; sourceTree = "<group>"; };
+		8B8C579F2726B93F00606BB9 /* ThemeEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEncoding.swift; sourceTree = "<group>"; };
 		8BBF92A02701C49100386123 /* XcodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeTheme.swift; sourceTree = "<group>"; };
 		8BBF92A42701CE1D00386123 /* URL+CanonicalPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+CanonicalPath.swift"; sourceTree = "<group>"; };
 		8BBF92A92701F6D600386123 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -412,8 +416,10 @@
 		8BE70D1B27085EF5008D9991 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				8BE70D1C27085F1A008D9991 /* ThemeImporter.swift */,
 				8BE70D20270862D3008D9991 /* Theme.swift */,
+				8B8C579C2726B55C00606BB9 /* ThemeCoder.swift */,
+				8BE70D1C27085F1A008D9991 /* ThemeImporter.swift */,
+				8B8C579F2726B93F00606BB9 /* ThemeEncoding.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -585,10 +591,12 @@
 				8B6BE086270C77FB0063B0BA /* ColorFormatDetector.swift in Sources */,
 				8B4150EB27143E3400873BBF /* IntermediateThemeModeler.swift in Sources */,
 				8B6BE080270C77FB0063B0BA /* FloatRGBAColorParser.swift in Sources */,
+				8B8C57A02726B93F00606BB9 /* ThemeEncoding.swift in Sources */,
 				8B6BE083270C77FB0063B0BA /* XcodeTheme.swift in Sources */,
 				8B6BE081270C77FB0063B0BA /* HexadecimalColorParser.swift in Sources */,
 				8B6BE08A270C77FB0063B0BA /* ThemeModelingError.swift in Sources */,
 				8B6BE089270C77FB0063B0BA /* HSLColorConverter.swift in Sources */,
+				8B8C579D2726B55C00606BB9 /* ThemeCoder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
