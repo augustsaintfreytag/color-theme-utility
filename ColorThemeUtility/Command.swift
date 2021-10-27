@@ -42,26 +42,28 @@ struct ColorThemeUtility: ParsableCommand {
 	
 	func run() throws {
 		switch mode {
-		case .describe:
-			try detectColorKind()
-		case .print:
+		case .describeColor:
+			try describeColor()
+		case .describeTheme:
+			try describeTheme()
+		case .convertColor:
 			try printColor()
-		case .palette:
+		case .generatePalette:
 			try generatePalette()
-		case .generate:
+		case .generateTheme:
 			try generateTheme()
-		case .debug:
-			try debugPrintTheme()
+		case .convertTheme:
+			try convertTheme()
 		}
 	}
 
 }
 
-extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, HSLColorConverter, ColorExtrapolator, IntermediateThemeModeler {
+extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, ThemeCoder, HSLColorConverter, ColorExtrapolator, IntermediateThemeModeler, XcodeThemeModeler {
 	
 	// MARK: Commands
 	
-	private func detectColorKind() throws {
+	private func describeColor() throws {
 		guard let inputColor = inputColors?.first else {
 			throw ArgumentError(description: "No color string given, color format could not be determined.")
 		}
@@ -95,7 +97,7 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 	///   - `theme.formattedEncodedDebugDescription`
 	///   - `theme.<key>.enumerated()`
 	///
-	private func debugPrintTheme() throws {
+	private func describeTheme() throws {
 		guard let inputFilePath = inputFile else {
 			throw ArgumentError(description: "Missing input theme file path.")
 		}
@@ -109,14 +111,20 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 			throw ThemeCodingError(description: "Could not decode supplied theme file as an Xcode theme model.")
 		}
 		
-		print("Theme")
-		orderedEnumeratedColors(in: theme).forEach { property, color in
-			printColor(color, description: property + " (\(color.hexadecimalString))")
+		describeXcodeTheme(theme)
+	}
+	
+	private func describeXcodeTheme(_ theme: XcodeTheme) {
+		enumeratedPropertyDescriptions(from: theme.enumerated()).forEach { description in
+			print(description)
 		}
 		
-		print("\nSyntax")
-		orderedEnumeratedColors(in: theme.dvtSourceTextSyntaxColors).forEach { property, color in
-			printColor(color, description: property + " (\(color.hexadecimalString))")
+		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxColors.enumerated()).forEach { description in
+			print("dvtSourceTextSyntaxColors.\(description)")
+		}
+		
+		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxFonts.enumerated()).forEach { description in
+			print("dvtSourceTextSyntaxFonts.\(description)")
 		}
 	}
 	
@@ -151,11 +159,44 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 			print(theme.formattedEncodedDescription!)
 		}
 	}
+
+	// TODO: Implement *convert theme* action, convert any to Xcode.
+
+	private func convertTheme() throws {
+		// Take existing theme file as input.
+		// Auto-detect existing theme kind.
+		// Convert theme to intermediate (if supported).
+		// Convert intermediate to target theme.
+
+		// Take existing intermediate theme file as input.
+		// Convert intermediate to target theme.
+
+		guard let inputFilePath = inputFile else {
+			throw ArgumentError(description: "Missing input file path for theme to be converted.")
+		}
+
+		guard let fileData = encodedDataFromFileContents(from: inputFilePath) else {
+			throw ArgumentError(description: "Could not read supplied theme file.")
+		}
+
+		guard outputFormat == .xcode else {
+			throw ArgumentError(description: "Output format '\(outputFormat?.rawValue ?? "<None>")' not supported. Supported formats: 'xcode'.")
+		}
+
+		/// TODO: Consider displacing this to function, throwing `ThemeCodingError`.
+		let decoder = JSONDecoder()
+		let intermediateTheme = try decoder.decode(IntermediateTheme.self, from: fileData)
+		let xcodeTheme = try Self.theme(from: intermediateTheme)
+
+		print(try Self.encodedTheme(xcodeTheme, with: .plist))
+	}
 	
 	// MARK: Utility
 	
+	private var colorBlock: String { "████████" }
+	
 	private func printColor(_ color: Color, description: String? = nil) {
-		let colorDescription = "████████".colored(with: color)
+		let colorDescription = colorBlock.colored(with: color)
 		
 		guard let key = description else {
 			print(colorDescription)
@@ -165,12 +206,31 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 		print(colorDescription + " " + key)
 	}
 	
-	private func orderedEnumeratedColors(in model: CustomPropertyEnumerable) -> [(property: String, color: Color)] {
-		return orderedEnumeratedColors(from: model.enumerated())
+	// MARK: Property Enumeration
+	
+	private func enumeratedPropertyDescriptions(from enumeratedProperties: [(property: String, value: String)]) -> [String] {
+		return enumeratedProperties.map { property, value in
+			let valueDescription = valueDescription(of: value)
+			
+			return "\(property): \(valueDescription)"
+		}
 	}
 	
-	private func orderedEnumeratedColors(from enumeratedColors: [(property: String, value: String)]) -> [(property: String, color: Color)] {
-		return enumeratedColors.reduce(into: [(property: String, color: Color)]()) { collection, element in
+	private func valueDescription(of value: String) -> String {
+		if let color = color(fromAutodetectedColorString: value) {
+			let colorBlockDescription = colorBlock.colored(with: color)
+			return "\(color.hexadecimalString) \(colorBlockDescription)"
+		}
+		
+		return value
+	}
+	
+	private func enumeratedColors(in model: CustomPropertyEnumerable) -> [(property: String, color: Color)] {
+		return enumeratedColors(from: model.enumerated())
+	}
+	
+	private func enumeratedColors(from enumeratedProperties: [(property: String, value: String)]) -> [(property: String, color: Color)] {
+		return enumeratedProperties.reduce(into: [(property: String, color: Color)]()) { collection, element in
 			let (property, value) = element
 			
 			guard let color = color(fromAutodetectedColorString: value) else {
@@ -178,7 +238,15 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 			}
 			
 			collection.append((property, color))
-		}.sorted { lhs, rhs in
+		}
+	}
+	
+	private func orderedEnumeratedColors(in model: CustomPropertyEnumerable) -> [(property: String, color: Color)] {
+		return orderedEnumeratedColors(from: model.enumerated())
+	}
+	
+	private func orderedEnumeratedColors(from enumeratedProperties: [(property: String, value: String)]) -> [(property: String, color: Color)] {
+		return enumeratedColors(from: enumeratedProperties).sorted { lhs, rhs in
 			lhs.color < rhs.color
 		}
 	}
@@ -188,11 +256,12 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, H
 // MARK: Library
 
 enum Mode: String, CaseIterable, ExpressibleByArgument {
-	case debug
-	case describe
-	case print
-	case palette
-	case generate
+	case describeTheme = "describe-theme"
+	case describeColor = "describe-color"
+	case convertColor = "convert-color"
+	case generatePalette = "gen-palette"
+	case generateTheme = "gen-theme"
+	case convertTheme = "convert-theme"
 }
 
 enum OutputFormat: String, CaseIterable, ExpressibleByArgument {
