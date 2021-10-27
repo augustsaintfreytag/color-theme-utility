@@ -17,13 +17,13 @@ struct ColorThemeUtility: ParsableCommand {
 	
 	// MARK: Arguments
 
-	@Argument(help: "The main operation to perform. (options: TBD)", completion: .default)
+	@Argument(help: "The main operation to perform. (options: \(Mode.helpOptionsDescription))", completion: .default)
 	var mode: Mode
 	
 	@Option(name: [.customShort("c"), .customLong("color")], help: "The color or sequence of colors to use as input. (comma separated)", transform: stringSequenceFromArgument)
 	var inputColors: [String]?
 	
-	@Option(name: [.customShort("s"), .customLong("skew")], help: "The lightness direction skew to use for palette generation. (options: lighter|darker)")
+	@Option(name: [.customShort("s"), .customLong("skew")], help: "The lightness direction skew to use for palette generation. (options: \(ColorTransform.helpOptionsDescription)")
 	var colorTransform: ColorTransform?
 	
 	@Option(name: [.customShort("n"), .customLong("number-of-colors")], help: "The number of colors created in palette generation (including provided base color).")
@@ -32,7 +32,7 @@ struct ColorThemeUtility: ParsableCommand {
 	@Option(name: [.customShort("i"), .customLong("input")], help: "The theme file to use as input.")
 	var inputFile: String?
 	
-	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating themes. (options: debug|intermediate|xcode|vscode)")
+	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating themes. (options: \(OutputFormat.helpOptionsDescription)")
 	var outputFormat: OutputFormat?
 	
 	@Flag(name: [.customShort("h")], help: "Outputs data and models in a human-readable format. (default: false)")

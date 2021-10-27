@@ -12,7 +12,7 @@ extension ExpressibleByArgument {
 	/// Returns a joined description of all enumerable options of the argument type for use in help texts.
 	///
 	/// Creates a formatted description in the form of "one|two|three|four|five".
-	static var helpOptionsDescription: String {
+	static var allCasesHelpDescription: String {
 		return allValueStrings.joined(separator: "|")
 	}
 	
