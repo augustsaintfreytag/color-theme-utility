@@ -18,13 +18,17 @@ extension TableFormatter {
 	
 	// MARK: Formatting
 	
-	public static func formattedLines(_ rows: [[String]]) -> [String] {
-		return formattedRows(rows).map { row in
+	public static func tabulateAndPrintLines(_ rows: [[String]]) {
+		tabulatedLines(rows).forEach { line in print(line) }
+	}
+	
+	public static func tabulatedLines(_ rows: [[String]]) -> [String] {
+		return tabulatedRows(rows).map { row in
 			return row.joined(separator: space)
 		}
 	}
 	
-	public static func formattedRows(_ rows: [[String]]) -> [[String]] {
+	public static func tabulatedRows(_ rows: [[String]]) -> [[String]] {
 		let numberOfColumns = numberOfColumns(in: rows)
 		var formattedRows = rows.map { columns -> [String] in [] }
 		
@@ -36,7 +40,7 @@ extension TableFormatter {
 					continue
 				}
 						
-				let formattedColumn = formattedColumn(rows[rowIndex][columnIndex], toLength: maxColumnLength)
+				let formattedColumn = tabulatedColumn(rows[rowIndex][columnIndex], toLength: maxColumnLength)
 				formattedRows[rowIndex].append(formattedColumn)
 			}
 		}
@@ -44,9 +48,9 @@ extension TableFormatter {
 		return formattedRows
 	}
 	
-	private static func formattedColumn(_ column: String, toLength length: Int) -> String {
+	private static func tabulatedColumn(_ column: String, toLength length: Int) -> String {
 		let baseLength = column.count
-		let paddingLength = length - baseLength
+		let paddingLength = length + columnPadding - baseLength
 		
 		guard paddingLength >= 0 else {
 			assertionFailure("Formatting inconsistency error. Can not format line (\(column.count)) longer than expected padding length \(length).")

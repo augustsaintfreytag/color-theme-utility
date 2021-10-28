@@ -123,22 +123,27 @@ extension ColorThemeUtility: ColorFormatDetector,
 	}
 	
 	private func describeXcodeTheme(_ theme: XcodeTheme) {
-		var lines: [String] = []
+		var rows: [[String]] = []
 		
 		enumeratedPropertyDescriptions(from: theme.enumerated()).forEach { description in
-			lines.append(description)
+			rows.append(description)
 		}
 		
 		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxColors.enumerated()).forEach { description in
-			lines.append("dvtSourceTextSyntaxColors.\(description)")
+			rows.append([
+				"dvtSourceTextSyntaxColors.\(description[0])",
+				description[1]
+			])
 		}
 		
 		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxFonts.enumerated()).forEach { description in
-			lines.append("dvtSourceTextSyntaxFonts.\(description)")
+			rows.append([
+				"dvtSourceTextSyntaxColors.\(description[0])",
+				description[1]
+			])
 		}
 		
-		let splitLines: [[String]] = lines.map { line in line.split(separator: " ").map { substring in String(substring) } }
-		Self.formattedLines(splitLines).forEach { line in print(line) }
+		Self.tabulateAndPrintLines(rows)
 	}
 	
 	private func generatePalette() throws {
@@ -221,15 +226,11 @@ extension ColorThemeUtility: ColorFormatDetector,
 	
 	// MARK: Property Enumeration
 	
-	private func enumeratedPropertyDescriptions(from enumeratedProperties: [(property: String, value: String)]) -> [String] {
+	private func enumeratedPropertyDescriptions(from enumeratedProperties: [(property: String, value: String)]) -> [[String]] {
 		return enumeratedProperties.map { property, value in
-			let valueDescription = valueDescription(of: value)
-			
-			return "\(property) \(valueDescription)"
+			return [property, valueDescription(of: value)]
 		}
 	}
-	
-	// TODO: Either establish consistent auto-splitting or return components instead of pre-formed strings from these functions.
 	
 	private func valueDescription(of value: String) -> String {
 		if let color = color(fromAutodetectedColorString: value) {
