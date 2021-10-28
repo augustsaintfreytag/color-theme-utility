@@ -14,7 +14,7 @@ extension TableFormatter {
 	
 	private static var columnPadding: Int { 4 }
 	
-	private static var space: String { "★" }
+	private static var space: String { " " }
 	
 	// MARK: Formatting
 	
@@ -32,6 +32,10 @@ extension TableFormatter {
 			let maxColumnLength = maxNumberOfCharacters(rows, in: columnIndex) ?? 0
 			
 			for rowIndex in 0 ..< rows.count {
+				guard columnIndex < rows[rowIndex].count else {
+					continue
+				}
+						
 				let formattedColumn = formattedColumn(rows[rowIndex][columnIndex], toLength: maxColumnLength)
 				formattedRows[rowIndex].append(formattedColumn)
 			}
