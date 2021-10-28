@@ -129,18 +129,12 @@ extension ColorThemeUtility: ColorFormatDetector,
 			rows.append(description)
 		}
 		
-		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxColors.enumerated()).forEach { description in
-			rows.append([
-				"dvtSourceTextSyntaxColors.\(description[0])",
-				description[1]
-			])
+		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxColors.enumerated(), childrenOf: "dvtSourceTextSyntaxColors").forEach { description in
+			rows.append(description)
 		}
 		
-		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxFonts.enumerated()).forEach { description in
-			rows.append([
-				"dvtSourceTextSyntaxColors.\(description[0])",
-				description[1]
-			])
+		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxFonts.enumerated(), childrenOf: "dvtSourceTextSyntaxColors").forEach { description in
+			rows.append(description)
 		}
 		
 		Self.tabulateAndPrintLines(rows)
@@ -226,19 +220,30 @@ extension ColorThemeUtility: ColorFormatDetector,
 	
 	// MARK: Property Enumeration
 	
-	private func enumeratedPropertyDescriptions(from enumeratedProperties: [(property: String, value: String)]) -> [[String]] {
+	private func enumeratedPropertyDescriptions(from enumeratedProperties: [(property: String, value: CustomStringConvertible)], childrenOf parentProperty: String? = nil) -> [[String]] {
 		return enumeratedProperties.map { property, value in
-			return [property, valueDescription(of: value)]
+			let property = { () -> String in
+				guard let parentProperty = parentProperty else {
+					return property
+				}
+
+				return "\(parentProperty).\(property)"
+			}()
+			
+			let description = valueDescription(of: value)
+			return [property, description.format, description.value]
 		}
 	}
 	
-	private func valueDescription(of value: String) -> String {
-		if let color = color(fromAutodetectedColorString: value) {
+	private func valueDescription(of value: CustomStringConvertible) -> (format: String, value: String) {
+		let description = value.description
+		
+		if let color = color(fromAutodetectedColorString: description) {
 			let colorBlockDescription = colorBlock.colored(with: color)
-			return "\(color.hexadecimalString) \(colorBlockDescription)"
+			return ("[Color]", "\(color.hexadecimalString) \(colorBlockDescription)")
 		}
 		
-		return value
+		return ("[Any]", description)
 	}
 	
 	private func enumeratedColors(in model: CustomPropertyEnumerable) -> [(property: String, color: Color)] {
