@@ -59,7 +59,15 @@ struct ColorThemeUtility: ParsableCommand {
 
 }
 
-extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, ThemeCoder, HSLColorConverter, ColorExtrapolator, IntermediateThemeModeler, XcodeThemeModeler {
+extension ColorThemeUtility: ColorFormatDetector,
+								ColorModeler,
+								ThemeImporter,
+								ThemeCoder,
+								HSLColorConverter,
+								ColorExtrapolator,
+								IntermediateThemeModeler,
+								XcodeThemeModeler,
+								TableFormatter {
 	
 	// MARK: Commands
 	
@@ -115,17 +123,21 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, T
 	}
 	
 	private func describeXcodeTheme(_ theme: XcodeTheme) {
+		var rows: [[String]] = []
+		
 		enumeratedPropertyDescriptions(from: theme.enumerated()).forEach { description in
-			print(description)
+			rows.append(description)
 		}
 		
-		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxColors.enumerated()).forEach { description in
-			print("dvtSourceTextSyntaxColors.\(description)")
+		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxColors.enumerated(), childrenOf: "dvtSourceTextSyntaxColors").forEach { description in
+			rows.append(description)
 		}
 		
-		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxFonts.enumerated()).forEach { description in
-			print("dvtSourceTextSyntaxFonts.\(description)")
+		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxFonts.enumerated(), childrenOf: "dvtSourceTextSyntaxColors").forEach { description in
+			rows.append(description)
 		}
+		
+		Self.tabulateAndPrintLines(rows)
 	}
 	
 	private func generatePalette() throws {
@@ -208,21 +220,30 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, T
 	
 	// MARK: Property Enumeration
 	
-	private func enumeratedPropertyDescriptions(from enumeratedProperties: [(property: String, value: String)]) -> [String] {
+	private func enumeratedPropertyDescriptions(from enumeratedProperties: [(property: String, value: CustomStringConvertible)], childrenOf parentProperty: String? = nil) -> [[String]] {
 		return enumeratedProperties.map { property, value in
-			let valueDescription = valueDescription(of: value)
+			let property = { () -> String in
+				guard let parentProperty = parentProperty else {
+					return property
+				}
+
+				return "\(parentProperty).\(property)"
+			}()
 			
-			return "\(property): \(valueDescription)"
+			let description = valueDescription(of: value)
+			return [property, description.format, description.value]
 		}
 	}
 	
-	private func valueDescription(of value: String) -> String {
-		if let color = color(fromAutodetectedColorString: value) {
+	private func valueDescription(of value: CustomStringConvertible) -> (format: String, value: String) {
+		let description = value.description
+		
+		if let color = color(fromAutodetectedColorString: description) {
 			let colorBlockDescription = colorBlock.colored(with: color)
-			return "\(color.hexadecimalString) \(colorBlockDescription)"
+			return ("[Color]", "\(color.hexadecimalString) \(colorBlockDescription)")
 		}
 		
-		return value
+		return ("[Any]", description)
 	}
 	
 	private func enumeratedColors(in model: CustomPropertyEnumerable) -> [(property: String, color: Color)] {
