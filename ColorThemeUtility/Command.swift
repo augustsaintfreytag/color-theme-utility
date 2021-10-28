@@ -59,7 +59,15 @@ struct ColorThemeUtility: ParsableCommand {
 
 }
 
-extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, ThemeCoder, HSLColorConverter, ColorExtrapolator, IntermediateThemeModeler, XcodeThemeModeler {
+extension ColorThemeUtility: ColorFormatDetector,
+								ColorModeler,
+								ThemeImporter,
+								ThemeCoder,
+								HSLColorConverter,
+								ColorExtrapolator,
+								IntermediateThemeModeler,
+								XcodeThemeModeler,
+								TableFormatter {
 	
 	// MARK: Commands
 	
@@ -115,17 +123,22 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, T
 	}
 	
 	private func describeXcodeTheme(_ theme: XcodeTheme) {
+		var lines: [String] = []
+		
 		enumeratedPropertyDescriptions(from: theme.enumerated()).forEach { description in
-			print(description)
+			lines.append(description)
 		}
 		
 		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxColors.enumerated()).forEach { description in
-			print("dvtSourceTextSyntaxColors.\(description)")
+			lines.append("dvtSourceTextSyntaxColors.\(description)")
 		}
 		
 		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxFonts.enumerated()).forEach { description in
-			print("dvtSourceTextSyntaxFonts.\(description)")
+			lines.append("dvtSourceTextSyntaxFonts.\(description)")
 		}
+		
+		let splitLines: [[String]] = lines.map { line in line.split(separator: " ").map { substring in String(substring) } }
+		Self.formattedLines(splitLines).forEach { line in print(line) }
 	}
 	
 	private func generatePalette() throws {
@@ -212,9 +225,11 @@ extension ColorThemeUtility: ColorFormatDetector, ColorModeler, ThemeImporter, T
 		return enumeratedProperties.map { property, value in
 			let valueDescription = valueDescription(of: value)
 			
-			return "\(property): \(valueDescription)"
+			return "\(property) \(valueDescription)"
 		}
 	}
+	
+	// TODO: Either establish consistent auto-splitting or return components instead of pre-formed strings from these functions.
 	
 	private func valueDescription(of value: String) -> String {
 		if let color = color(fromAutodetectedColorString: value) {
