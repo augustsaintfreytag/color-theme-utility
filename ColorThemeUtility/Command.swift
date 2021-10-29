@@ -96,11 +96,8 @@ extension ColorThemeUtility: ColorFormatDetector,
 			throw ArgumentError(description: "Missing input color or given string has invalid or unsupported format.")
 		}
 		
-		printColor(color)
-		print("HSL \(color.hsl)")
-		
-		let convertedHsl = Self.rgbComponents(from: color.hsl)
-		print("HSL from RGB: \(convertedHsl)")
+		print("Not implemented.")
+		Self.exit(withError: ExitCode(127))
 	}
 	
 	/// Parses the given theme file and prints its contents in a readable format.
