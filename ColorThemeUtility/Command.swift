@@ -23,7 +23,7 @@ struct ColorThemeUtility: ParsableCommand {
 	@Option(name: [.customShort("c"), .customLong("color")], help: "The color or sequence of colors to use as input. (comma separated)", transform: stringSequenceFromArgument)
 	var inputColors: [String]?
 	
-	@Option(name: [.customShort("s"), .customLong("skew")], help: "The lightness direction skew to use for palette generation. (options: \(ColorTransform.allCasesHelpDescription)")
+	@Option(name: [.customShort("s"), .customLong("skew")], help: "The lightness direction skew to use for palette generation. (options: \(ColorTransform.allCasesHelpDescription))")
 	var colorTransform: ColorTransform?
 	
 	@Option(name: [.customShort("n"), .customLong("number-of-colors")], help: "The number of colors created in palette generation (including provided base color).")
@@ -32,10 +32,10 @@ struct ColorThemeUtility: ParsableCommand {
 	@Option(name: [.customShort("i"), .customLong("input")], help: "The theme file to use as input.")
 	var inputFile: String?
 	
-	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating themes. (options: \(OutputThemeFormat.allCasesHelpDescription)")
+	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating themes. (options: \(OutputThemeFormat.allCasesHelpDescription))")
 	var outputFormat: OutputThemeFormat?
 	
-	@Flag(name: [.customShort("h")], help: "Outputs data and models in a human-readable format. (default: false)")
+	@Flag(name: [.customShort("h"), .customLong("human-readable")], help: "Outputs data and models in a human-readable format. (default: false)")
 	var humanReadable: Bool = false
 	
 	// MARK: Run
@@ -47,7 +47,7 @@ struct ColorThemeUtility: ParsableCommand {
 		case .describeTheme:
 			try describeTheme()
 		case .convertColor:
-			try printColor()
+			try convertColor()
 		case .generatePalette:
 			try generatePalette()
 		case .generateTheme:
@@ -87,8 +87,8 @@ extension ColorThemeUtility: ColorFormatDetector,
 		}
 	}
 	
-	private func printColor() throws {
 		guard let inputColor = inputColors?.first, let color = color(fromAutodetectedColorString: inputColor) else {
+	private func convertColor() throws {
 			throw ArgumentError(description: "Missing input color or given string has invalid or unsupported format.")
 		}
 		
@@ -275,11 +275,11 @@ extension ColorThemeUtility: ColorFormatDetector,
 // MARK: Library
 
 enum Mode: String, CaseIterable, ExpressibleByArgument {
-	case describeTheme = "describe-theme"
 	case describeColor = "describe-color"
 	case convertColor = "convert-color"
-	case generatePalette = "gen-palette"
-	case generateTheme = "gen-theme"
+	case generatePalette = "generate-palette"
+	case describeTheme = "describe-theme"
+	case generateTheme = "generate-theme"
 	case convertTheme = "convert-theme"
 }
 
