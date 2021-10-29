@@ -76,19 +76,23 @@ extension ColorThemeUtility: ColorFormatDetector,
 			throw ArgumentError(description: "No color string given, color format could not be determined.")
 		}
 		
-		guard let inputColorFormat = colorFormat(for: inputColor) else {
+		guard let inputColorFormat = Self.colorFormat(for: inputColor) else {
 			throw ArgumentError(description: "Color format could not be determined.")
 		}
 		
+		guard let color = Self.color(from: inputColor, format: inputColorFormat) else {
+			throw ArgumentError(description: "Could not create color in detected format '\(inputColorFormat)'.")
+		}
+		
 		if humanReadable {
-			print("Color string '\(inputColor)' is \(inputColorFormat.description) (\(inputColorFormat.rawValue)).")
+			printColor(color, description: "Input '\(inputColor)' is \(inputColorFormat.description) ('\(inputColorFormat.rawValue)')")
 		} else {
 			print(inputColorFormat.rawValue)
 		}
 	}
 	
-		guard let inputColor = inputColors?.first, let color = color(fromAutodetectedColorString: inputColor) else {
 	private func convertColor() throws {
+		guard let inputColor = inputColors?.first, let color = Self.color(fromAutodetectedColorString: inputColor) else {
 			throw ArgumentError(description: "Missing input color or given string has invalid or unsupported format.")
 		}
 		
@@ -141,7 +145,7 @@ extension ColorThemeUtility: ColorFormatDetector,
 	}
 	
 	private func generatePalette() throws {
-		guard let inputColor = inputColors?.first, let color = color(fromAutodetectedColorString: inputColor) else {
+		guard let inputColor = inputColors?.first, let color = Self.color(fromAutodetectedColorString: inputColor) else {
 			throw ArgumentError(description: "Missing or invalid input color, need base color to generate palette.")
 		}
 		
@@ -155,7 +159,7 @@ extension ColorThemeUtility: ColorFormatDetector,
 	}
 	
 	private func generateTheme() throws {
-		guard let inputColors = inputColors?.compactMap({ string in color(fromAutodetectedColorString: string) }), !inputColors.isEmpty else {
+		guard let inputColors = inputColors?.compactMap({ string in Self.color(fromAutodetectedColorString: string) }), !inputColors.isEmpty else {
 			throw ArgumentError(description: "Missing input color sequence, need exactly nine (9) base colors to create theme.")
 		}
 		
@@ -236,7 +240,7 @@ extension ColorThemeUtility: ColorFormatDetector,
 	private func valueDescription(of value: CustomStringConvertible) -> (format: String, value: String) {
 		let description = value.description
 		
-		if let color = color(fromAutodetectedColorString: description) {
+		if let color = Self.color(fromAutodetectedColorString: description) {
 			let colorBlockDescription = colorBlock.colored(with: color)
 			return ("[Color]", "\(color.hexadecimalString) \(colorBlockDescription)")
 		}
@@ -252,7 +256,7 @@ extension ColorThemeUtility: ColorFormatDetector,
 		return enumeratedProperties.reduce(into: [(property: String, color: Color)]()) { collection, element in
 			let (property, value) = element
 			
-			guard let color = color(fromAutodetectedColorString: value) else {
+			guard let color = Self.color(fromAutodetectedColorString: value) else {
 				return
 			}
 			
