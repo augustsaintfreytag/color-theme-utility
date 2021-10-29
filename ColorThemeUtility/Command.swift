@@ -32,8 +32,8 @@ struct ColorThemeUtility: ParsableCommand {
 	@Option(name: [.customShort("i"), .customLong("input")], help: "The theme file to use as input.")
 	var inputFile: String?
 	
-	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating themes. (options: \(OutputFormat.allCasesHelpDescription)")
-	var outputFormat: OutputFormat?
+	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating themes. (options: \(OutputThemeFormat.allCasesHelpDescription)")
+	var outputFormat: OutputThemeFormat?
 	
 	@Flag(name: [.customShort("h")], help: "Outputs data and models in a human-readable format. (default: false)")
 	var humanReadable: Bool = false
@@ -172,8 +172,6 @@ extension ColorThemeUtility: ColorFormatDetector,
 		}
 	}
 
-	// TODO: Implement *convert theme* action, convert any to Xcode.
-
 	private func convertTheme() throws {
 		// Take existing theme file as input.
 		// Auto-detect existing theme kind.
@@ -285,8 +283,7 @@ enum Mode: String, CaseIterable, ExpressibleByArgument {
 	case convertTheme = "convert-theme"
 }
 
-enum OutputFormat: String, CaseIterable, ExpressibleByArgument {
-	case debug
+enum OutputThemeFormat: String, CaseIterable, ExpressibleByArgument {
 	case intermediate
 	case xcode
 	case vscode
