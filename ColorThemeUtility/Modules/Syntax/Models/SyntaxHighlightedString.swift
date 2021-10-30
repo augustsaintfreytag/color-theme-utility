@@ -5,11 +5,11 @@
 //
 
 import Foundation
-import Rainbow
+import ColorThemeFramework
 
 public struct SyntaxToken {
 	
-	typealias Kind = PartialKeyPath<IntermediateTheme>
+	typealias Kind = KeyPath<IntermediateTheme, Color>
 	
 	let kind: Kind
 	let word: String
@@ -36,6 +36,8 @@ public struct SyntaxToken {
 	
 }
 
+// MARK: Model
+
 /// A command line compatible string with applied formatting and colors on a
 /// snippet of predefined code, usable to demo a color theme with code.
 public struct SyntaxHighlightedString {
@@ -46,27 +48,38 @@ public struct SyntaxHighlightedString {
 		self.tokens = tokens
 	}
 	
+}
+
+// MARK: String Form
+
+extension SyntaxHighlightedString {
+	
 	public var plainString: String {
 		return tokens.map { token -> String in
 			return token.word
 		}.joined()
 	}
 	
-	public func printByLines() {
-		let lines = tokens.map { token -> String in
+	public func themedString(with theme: IntermediateTheme) -> String {
+		let substrings = tokens.map { token -> String in
+			let color: Color = theme[keyPath: token.kind]
+			
 			return token.word
-		}.joined().split(separator: "\n")
-		
-		for line in lines {
-			print(line)
+				.coloredBackground(with: theme.background)
+				.colored(with: color)
 		}
+		
+		return substrings.joined()
 	}
 	
 }
 
+// MARK: Presets
+
 extension SyntaxHighlightedString {
 	
-	public enum TokenizedTemplateCode {
+	public enum TokenizedPresets {
+		
 		public static var structDefinition: SyntaxHighlightedString {
 			return SyntaxHighlightedString(tokens: [
 				.word("struct", as: \.keyword), .space,.word("ObjectMetadata", as: \.declarationType), .word(":"), .space, .word("Hashable", as: \.referenceTypeSystem), .word(","), .space, .word("ObjectProperty", as: \.referenceTypeProject), .space, .word("{"), .space, .newLine,
@@ -77,6 +90,7 @@ extension SyntaxHighlightedString {
 				.word("}")
 			])
 		}
+		
 	}
 	
 }

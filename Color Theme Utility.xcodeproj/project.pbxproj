@@ -45,8 +45,8 @@
 		8B8C57A02726B93F00606BB9 /* ThemeEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8C579F2726B93F00606BB9 /* ThemeEncoding.swift */; };
 		8BA2BBAB272948B40012D844 /* ExpressibleByArgument+Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBAA272948B40012D844 /* ExpressibleByArgument+Description.swift */; };
 		8BA2BBAE2729CF600012D844 /* TableFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBAD2729CF600012D844 /* TableFormatter.swift */; };
-		8BA2BBB4272C04E20012D844 /* SyntaxHighlightedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBB3272C04E20012D844 /* SyntaxHighlightedString.swift */; };
 		8BE17562272017030073805E /* XcodeThemeModeler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE17561272017030073805E /* XcodeThemeModeler.swift */; };
+		8BEDE620272DCB0500CFF886 /* SyntaxHighlightedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBB3272C04E20012D844 /* SyntaxHighlightedString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -197,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				8BBF92A22701CE1500386123 /* Common */,
+				8BA2BBB1272C04B00012D844 /* Syntax */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -290,7 +291,6 @@
 			children = (
 				8BBF92A72701F6C600386123 /* Color */,
 				8B6BE05C270C73B20063B0BA /* Common */,
-				8BA2BBB1272C04B00012D844 /* Syntax */,
 				8B2E62A9270247F4000AEA95 /* Theme */,
 				8BE17560272016540073805E /* Theme Formats */,
 			);
@@ -603,6 +603,7 @@
 				8BA2BBAE2729CF600012D844 /* TableFormatter.swift in Sources */,
 				8B57B5142705B3E500A60D1C /* ArgumentError.swift in Sources */,
 				8B6BE092270DB5470063B0BA /* String+CustomColorable.swift in Sources */,
+				8BEDE620272DCB0500CFF886 /* SyntaxHighlightedString.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,7 +620,6 @@
 				8B6BE08C270C77FB0063B0BA /* Color.swift in Sources */,
 				8B6BE08D270C77FB0063B0BA /* ColorFormat.swift in Sources */,
 				8B6BE07E270C77FB0063B0BA /* ThemeImporter.swift in Sources */,
-				8BA2BBB4272C04E20012D844 /* SyntaxHighlightedString.swift in Sources */,
 				8B6BE09E270F7A080063B0BA /* ColorExtrapolator.swift in Sources */,
 				8B6BE082270C77FB0063B0BA /* IntermediateTheme.swift in Sources */,
 				8B6BE07F270C77FB0063B0BA /* URL+CanonicalPath.swift in Sources */,
