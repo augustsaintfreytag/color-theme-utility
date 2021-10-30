@@ -29,7 +29,7 @@ public struct XcodeTheme: Theme, CustomPropertyEnumerable {
 	
 	public let dvtFontAndColorVersion: Int
 	
-	public let dvtLineSpacing: Float
+	public let dvtLineSpacing: Float?
 	
 	public let dvtMarkupTextBackgroundColor: String
 	public let dvtMarkupTextBorderColor: String
