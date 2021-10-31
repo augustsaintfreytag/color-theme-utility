@@ -46,7 +46,8 @@
 		8BA2BBAB272948B40012D844 /* ExpressibleByArgument+Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBAA272948B40012D844 /* ExpressibleByArgument+Description.swift */; };
 		8BA2BBAE2729CF600012D844 /* TableFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBAD2729CF600012D844 /* TableFormatter.swift */; };
 		8BE17562272017030073805E /* XcodeThemeModeler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE17561272017030073805E /* XcodeThemeModeler.swift */; };
-		8BEDE620272DCB0500CFF886 /* SyntaxHighlightedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBB3272C04E20012D844 /* SyntaxHighlightedString.swift */; };
+		8BEDE620272DCB0500CFF886 /* TokenizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBB3272C04E20012D844 /* TokenizedString.swift */; };
+		8BEDE622272EA7EB00CFF886 /* SyntaxToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEDE621272EA7EB00CFF886 /* SyntaxToken.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,7 +123,7 @@
 		8B8C579F2726B93F00606BB9 /* ThemeEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEncoding.swift; sourceTree = "<group>"; };
 		8BA2BBAA272948B40012D844 /* ExpressibleByArgument+Description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExpressibleByArgument+Description.swift"; sourceTree = "<group>"; };
 		8BA2BBAD2729CF600012D844 /* TableFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableFormatter.swift; sourceTree = "<group>"; };
-		8BA2BBB3272C04E20012D844 /* SyntaxHighlightedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxHighlightedString.swift; sourceTree = "<group>"; };
+		8BA2BBB3272C04E20012D844 /* TokenizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizedString.swift; sourceTree = "<group>"; };
 		8BBF92A02701C49100386123 /* XcodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeTheme.swift; sourceTree = "<group>"; };
 		8BBF92A42701CE1D00386123 /* URL+CanonicalPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+CanonicalPath.swift"; sourceTree = "<group>"; };
 		8BBF92A92701F6D600386123 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -131,6 +132,7 @@
 		8BE70D1C27085F1A008D9991 /* ThemeImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeImporter.swift; sourceTree = "<group>"; };
 		8BE70D1E270860DF008D9991 /* ThemeCodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCodingError.swift; sourceTree = "<group>"; };
 		8BE70D20270862D3008D9991 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		8BEDE621272EA7EB00CFF886 /* SyntaxToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxToken.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -388,7 +390,8 @@
 		8BA2BBB2272C04BC0012D844 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8BA2BBB3272C04E20012D844 /* SyntaxHighlightedString.swift */,
+				8BEDE621272EA7EB00CFF886 /* SyntaxToken.swift */,
+				8BA2BBB3272C04E20012D844 /* TokenizedString.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -600,10 +603,11 @@
 				8B29630C26F60ED20048CE17 /* Command.swift in Sources */,
 				8B6BE090270C78AC0063B0BA /* Types+ExpressibleByArgument.swift in Sources */,
 				8BA2BBAB272948B40012D844 /* ExpressibleByArgument+Description.swift in Sources */,
+				8BEDE622272EA7EB00CFF886 /* SyntaxToken.swift in Sources */,
 				8BA2BBAE2729CF600012D844 /* TableFormatter.swift in Sources */,
 				8B57B5142705B3E500A60D1C /* ArgumentError.swift in Sources */,
 				8B6BE092270DB5470063B0BA /* String+CustomColorable.swift in Sources */,
-				8BEDE620272DCB0500CFF886 /* SyntaxHighlightedString.swift in Sources */,
+				8BEDE620272DCB0500CFF886 /* TokenizedString.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
