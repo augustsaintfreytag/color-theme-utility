@@ -46,11 +46,11 @@ extension XcodeThemeModeler {
 	private static var markupBackgroundColor: Color { Color(red: 0.0980392, green: 0.0980392, blue: 0.0980392) }
 	private static var markupBorderColor: Color { Color(red: 0.372549, green: 0.352941, blue: 0.376471) }
 
-	private static var unspecifiedColor: Color { Color(red: 0.8, green: 0, blue: 0.8) }
+	private static var noSpecificColor: Color { Color(red: 0.8, green: 0, blue: 0.8) }
 	
-	// MARK: Theme Form
+	// MARK: Intermediate → Xcode
 	
-	public static func theme(from theme: IntermediateTheme) throws -> XcodeTheme {
+	public static func xcodeTheme(from theme: IntermediateTheme) throws -> XcodeTheme {
 		return XcodeTheme(
 			dvtConsoleDebuggerInputTextColor: value(theme.foreground),
 			dvtConsoleDebuggerInputTextFont: consoleFontDefault,
@@ -65,7 +65,7 @@ extension XcodeThemeModeler {
 			dvtConsoleTextBackgroundColor: value(theme.background),
 			dvtConsoleTextInsertionPointColor: value(theme.insertionPoint),
 			dvtConsoleTextSelectionColor: value(theme.selectionBackground),
-			dvtDebuggerInstructionPointerColor: value(unspecifiedColor),	// TBD
+			dvtDebuggerInstructionPointerColor: value(noSpecificColor),	// TBD
 			dvtFontAndColorVersion: version,
 			dvtLineSpacing: lineSpacing,
 			dvtMarkupTextBackgroundColor: value(theme.background),
@@ -167,11 +167,65 @@ extension XcodeThemeModeler {
 			xcodeSyntaxUrl: codeFontDefault
 		)
 	}
+	
+	// MARK: Xcode → Intermediate
+	
+	public static func intermediateTheme(from theme: XcodeTheme) throws -> IntermediateTheme {
+		let themeSyntax = theme.dvtSourceTextSyntaxColors
+		
+		/// Note: `module` and `parameter` are using `plain` as fallback.
+		
+		return IntermediateTheme(
+			foreground: try color(themeSyntax.xcodeSyntaxPlain),
+			background: try color(theme.dvtSourceTextBackground),
+			selectionBackground: try color(theme.dvtSourceTextSelectionColor),
+			activeLineBackground: try color(theme.dvtSourceTextCurrentLineHighlightColor),
+			insertionPoint: try color(theme.dvtSourceTextInsertionPointColor),
+			comment: try color(themeSyntax.xcodeSyntaxComment),
+			commentDocumentation: try color(themeSyntax.xcodeSyntaxCommentDoc),
+			commentSection: try color(themeSyntax.xcodeSyntaxMark),
+			commentSectionHeader: try color(themeSyntax.xcodeSyntaxCommentDocKeyword),
+			keyword: try color(themeSyntax.xcodeSyntaxKeyword),
+			functionProject: try color(themeSyntax.xcodeSyntaxIdentifierFunction),
+			functionSystem: try color(themeSyntax.xcodeSyntaxIdentifierFunctionSystem),
+			functionParameter: try color(themeSyntax.xcodeSyntaxPlain),
+			preprocessorProject: try color(themeSyntax.xcodeSyntaxIdentifierMacro),
+			preprocessorSystem: try color(themeSyntax.xcodeSyntaxIdentifierMacroSystem),
+			constantProject: try color(themeSyntax.xcodeSyntaxIdentifierConstant),
+			constantSystem: try color(themeSyntax.xcodeSyntaxIdentifierConstantSystem),
+			variableProject: try color(themeSyntax.xcodeSyntaxIdentifierConstant),
+			variableSystem: try color(themeSyntax.xcodeSyntaxIdentifierConstantSystem),
+			typeProject: try color(themeSyntax.xcodeSyntaxIdentifierVariable),
+			typeSystem: try color(themeSyntax.xcodeSyntaxIdentifierVariableSystem),
+			referenceTypeProject: try color(themeSyntax.xcodeSyntaxIdentifierClass),
+			referenceTypeSystem: try color(themeSyntax.xcodeSyntaxIdentifierClassSystem),
+			valueTypeProject: try color(themeSyntax.xcodeSyntaxIdentifierType),
+			valueTypeSystem: try color(themeSyntax.xcodeSyntaxIdentifierTypeSystem),
+			enumProject: try color(themeSyntax.xcodeSyntaxIdentifierType),
+			enumSystem: try color(themeSyntax.xcodeSyntaxIdentifierTypeSystem),
+			declarationType: try color(themeSyntax.xcodeSyntaxDeclarationType),
+			declarationAny: try color(themeSyntax.xcodeSyntaxDeclarationOther),
+			attribute: try color(themeSyntax.xcodeSyntaxAttribute),
+			module: try color(themeSyntax.xcodeSyntaxPlain),
+			number: try color(themeSyntax.xcodeSyntaxNumber),
+			string: try color(themeSyntax.xcodeSyntaxString),
+			character: try color(themeSyntax.xcodeSyntaxCharacter),
+			url: try color(themeSyntax.xcodeSyntaxUrl)
+		)
+	}
 
 	// MARK: Color Utility
 
 	private static func value(_ color: Color) -> String {
 		return color.floatRGBAString
+	}
+	
+	private static func color(_ value: String) throws -> Color {
+		guard let color = Color(fromFloatRGBAString: value) else {
+			throw ThemeCodingError(description: "Can not decode color from expected FloatRGBA value '\(value)'.")
+		}
+		
+		return color
 	}
 	
 }
