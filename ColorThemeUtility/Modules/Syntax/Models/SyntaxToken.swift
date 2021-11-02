@@ -7,7 +7,9 @@
 import Foundation
 import ColorThemeFramework
 
-public struct SyntaxToken {
+/// A single token defining a word in a greater syntactical string and its kind
+/// related to a property in `IntermediateTheme`.
+public struct SyntaxToken: Equatable {
 	
 	typealias Kind = KeyPath<IntermediateTheme, Color>
 	
