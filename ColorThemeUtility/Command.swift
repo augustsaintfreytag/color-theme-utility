@@ -116,11 +116,15 @@ extension ColorThemeUtility: ColorFormatDetector,
 		}
 		
 		let decoder = PropertyListDecoder()
-		guard let theme = try? decoder.decode(XcodeTheme.self, from: fileData) else {
-			throw ThemeCodingError(description: "Could not decode supplied theme file as an Xcode theme model.")
-		}
+		let xcodeTheme: XcodeTheme = try {
+			do {
+				return try decoder.decode(XcodeTheme.self, from: fileData)
+			} catch {
+				throw ThemeCodingError(description: "Could not decode supplied theme file as an Xcode theme model. \(error.localizedDescription)")
+			}
+		}()
 		
-		describeXcodeTheme(theme)
+		describeXcodeTheme(xcodeTheme)
 	}
 	
 	private func describeXcodeTheme(_ theme: XcodeTheme) {
@@ -197,7 +201,7 @@ extension ColorThemeUtility: ColorFormatDetector,
 		/// TODO: Consider displacing this to function, throwing `ThemeCodingError`.
 		let decoder = JSONDecoder()
 		let intermediateTheme = try decoder.decode(IntermediateTheme.self, from: fileData)
-		let xcodeTheme = try Self.theme(from: intermediateTheme)
+		let xcodeTheme = try Self.xcodeTheme(from: intermediateTheme)
 
 		print(try Self.encodedTheme(xcodeTheme, with: .plist))
 	}
