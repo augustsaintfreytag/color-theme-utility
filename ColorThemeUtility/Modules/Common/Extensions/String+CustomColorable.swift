@@ -14,4 +14,8 @@ extension String {
 		return self.hex(color.hexadecimalString, to: .bit24)
 	}
 	
+	func coloredBackground(with color: ColorThemeFramework.Color) -> String {
+		return self.onHex(color.hexadecimalString, to: .bit24)
+	}
+	
 }
