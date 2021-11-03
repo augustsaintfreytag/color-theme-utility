@@ -94,7 +94,6 @@
 		8B29630826F60ED20048CE17 /* ColorThemeUtility */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ColorThemeUtility; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B29630B26F60ED20048CE17 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		8B29631E26F630120048CE17 /* XcodeThemeImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeThemeImporter.swift; sourceTree = "<group>"; };
-		8B29632026F631D70048CE17 /* Scratchpad */ = {isa = PBXFileReference; lastKnownFileType = text; path = Scratchpad; sourceTree = "<group>"; };
 		8B2E62AB27024807000AEA95 /* IntermediateTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntermediateTheme.swift; sourceTree = "<group>"; };
 		8B4150EA27143E3400873BBF /* IntermediateThemeModeler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntermediateThemeModeler.swift; sourceTree = "<group>"; };
 		8B4150ED27147D8900873BBF /* Transformers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformers.swift; sourceTree = "<group>"; };
@@ -167,7 +166,6 @@
 		8B2962FF26F60ED20048CE17 = {
 			isa = PBXGroup;
 			children = (
-				8B29632026F631D70048CE17 /* Scratchpad */,
 				8B29630A26F60ED20048CE17 /* ColorThemeUtility */,
 				8B6BE045270C731D0063B0BA /* ColorThemeFramework */,
 				8B6BE050270C731D0063B0BA /* ColorThemeFrameworkTests */,
