@@ -10,43 +10,49 @@ import Foundation
 /// structures, usable as an exchange format for conversion.
 public struct IntermediateTheme: Theme, Codable, CustomPropertyEnumerable {
 	
-	let foreground: Color
-	let background: Color
-	let selectionBackground: Color
-	let activeLineBackground: Color
-	let insertionPoint: Color
+	public static var defaultHeader: String { "CTU Intermediate Theme Format" }
+	public static var defaultVersion: String { "1.0" }
 	
-	let comment: Color
-	let commentDocumentation: Color
-	let commentSection: Color
-	let commentSectionHeader: Color
+	public let header: String
+	public let version: String
 	
-	let keyword: Color
-	let functionProject: Color
-	let functionSystem: Color
-	let functionParameter: Color
-	let preprocessorProject: Color
-	let preprocessorSystem: Color
-	let constantProject: Color
-	let constantSystem: Color
-	let variableProject: Color
-	let variableSystem: Color
-	let typeProject: Color
-	let typeSystem: Color
-	let referenceTypeProject: Color
-	let referenceTypeSystem: Color
-	let valueTypeProject: Color
-	let valueTypeSystem: Color
-	let enumProject: Color
-	let enumSystem: Color
-	let declarationType: Color
-	let declarationAny: Color
-	let attribute: Color
-	let module: Color
+	public let foreground: Color
+	public let background: Color
+	public let selectionBackground: Color
+	public let activeLineBackground: Color
+	public let insertionPoint: Color
 	
-	let number: Color
-	let string: Color
-	let character: Color
-	let url: Color
+	public let comment: Color
+	public let commentDocumentation: Color
+	public let commentSection: Color
+	public let commentSectionHeader: Color
+	
+	public let keyword: Color
+	public let functionProject: Color
+	public let functionSystem: Color
+	public let functionParameter: Color
+	public let preprocessorProject: Color
+	public let preprocessorSystem: Color
+	public let constantProject: Color
+	public let constantSystem: Color
+	public let variableProject: Color
+	public let variableSystem: Color
+	public let typeProject: Color
+	public let typeSystem: Color
+	public let referenceTypeProject: Color
+	public let referenceTypeSystem: Color
+	public let valueTypeProject: Color
+	public let valueTypeSystem: Color
+	public let enumProject: Color
+	public let enumSystem: Color
+	public let declarationType: Color
+	public let declarationAny: Color
+	public let attribute: Color
+	public let module: Color
+	
+	public let number: Color
+	public let string: Color
+	public let character: Color
+	public let url: Color
 	
 }

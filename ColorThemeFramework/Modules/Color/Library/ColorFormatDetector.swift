@@ -17,7 +17,7 @@ public protocol ColorFormatDetector {}
 extension ColorFormatDetector {
 	
 	/// Checks the given string and returns its likely color format.
-	public func colorFormat(for string: String) -> ColorFormat? {
+	public static func colorFormat(for string: String) -> ColorFormat? {
 		if string.split(separator: " ").count == 4 {
 			return .floatRGBA
 		}

@@ -11,3 +11,7 @@ import ColorThemeFramework
 extension ColorFormat: ExpressibleByArgument {}
 
 extension ColorTransform: ExpressibleByArgument {}
+
+extension ThemeEncoding: ExpressibleByArgument {}
+
+extension ThemeFormat: ExpressibleByArgument {}
