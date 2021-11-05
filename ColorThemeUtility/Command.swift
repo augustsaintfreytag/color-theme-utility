@@ -313,6 +313,7 @@ extension ColorThemeUtility: ColorFormatDetector,
 // MARK: Library
 
 enum Mode: String, CaseIterable, ExpressibleByArgument {
+	
 	case describeColor = "describe-color"
 	case convertColor = "convert-color"
 	case generatePalette = "generate-palette"
@@ -320,6 +321,7 @@ enum Mode: String, CaseIterable, ExpressibleByArgument {
 	case generateTheme = "generate-theme"
 	case previewTheme = "preview-theme"
 	case convertTheme = "convert-theme"
+	
 }
 
 typealias OutputThemeFormat = ThemeFormat
