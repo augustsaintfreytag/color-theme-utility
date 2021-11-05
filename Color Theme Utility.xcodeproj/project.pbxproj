@@ -44,6 +44,7 @@
 		8B79D5202733FE2A0010233E /* ThemeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79D51F2733FE2A0010233E /* ThemeFormat.swift */; };
 		8B79D522273408160010233E /* ImplementationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79D521273408160010233E /* ImplementationError.swift */; };
 		8B79D524273538CE0010233E /* ThemeFormatDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79D523273538CE0010233E /* ThemeFormatDetector.swift */; };
+		8B79D52727353C300010233E /* TokenizedStringPaddingProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79D52627353C300010233E /* TokenizedStringPaddingProvider.swift */; };
 		8B8C579D2726B55C00606BB9 /* ThemeCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8C579C2726B55C00606BB9 /* ThemeCoder.swift */; };
 		8B8C57A02726B93F00606BB9 /* ThemeEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8C579F2726B93F00606BB9 /* ThemeEncoding.swift */; };
 		8BA2BBAB272948B40012D844 /* ExpressibleByArgument+Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBAA272948B40012D844 /* ExpressibleByArgument+Description.swift */; };
@@ -124,6 +125,7 @@
 		8B79D51F2733FE2A0010233E /* ThemeFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeFormat.swift; sourceTree = "<group>"; };
 		8B79D521273408160010233E /* ImplementationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplementationError.swift; sourceTree = "<group>"; };
 		8B79D523273538CE0010233E /* ThemeFormatDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeFormatDetector.swift; sourceTree = "<group>"; };
+		8B79D52627353C300010233E /* TokenizedStringPaddingProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizedStringPaddingProvider.swift; sourceTree = "<group>"; };
 		8B8C579C2726B55C00606BB9 /* ThemeCoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCoder.swift; sourceTree = "<group>"; };
 		8B8C579F2726B93F00606BB9 /* ThemeEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEncoding.swift; sourceTree = "<group>"; };
 		8BA2BBAA272948B40012D844 /* ExpressibleByArgument+Description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExpressibleByArgument+Description.swift"; sourceTree = "<group>"; };
@@ -376,6 +378,14 @@
 			path = Color;
 			sourceTree = "<group>";
 		};
+		8B79D52527353BE90010233E /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				8B79D52627353C300010233E /* TokenizedStringPaddingProvider.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		8BA2BBAC2729CF510012D844 /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,6 +397,7 @@
 		8BA2BBB1272C04B00012D844 /* Syntax */ = {
 			isa = PBXGroup;
 			children = (
+				8B79D52527353BE90010233E /* Library */,
 				8BA2BBB2272C04BC0012D844 /* Models */,
 			);
 			path = Syntax;
@@ -615,6 +626,7 @@
 				8BA2BBAE2729CF600012D844 /* TableFormatter.swift in Sources */,
 				8B57B5142705B3E500A60D1C /* ArgumentError.swift in Sources */,
 				8B6BE092270DB5470063B0BA /* String+CustomColorable.swift in Sources */,
+				8B79D52727353C300010233E /* TokenizedStringPaddingProvider.swift in Sources */,
 				8BEDE620272DCB0500CFF886 /* TokenizedString.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
