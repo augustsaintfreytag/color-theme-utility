@@ -288,8 +288,4 @@ enum Mode: String, CaseIterable, ExpressibleByArgument {
 	case convertTheme = "convert-theme"
 }
 
-enum OutputThemeFormat: String, CaseIterable, ExpressibleByArgument {
-	case intermediate
-	case xcode
-	case vscode
-}
+typealias OutputThemeFormat = ThemeFormat
