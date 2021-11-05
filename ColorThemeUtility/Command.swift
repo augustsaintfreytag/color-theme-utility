@@ -127,6 +127,18 @@ extension ColorThemeUtility: ColorFormatDetector,
 		describeXcodeTheme(xcodeTheme)
 	}
 	
+	/// Tries to convert any given theme to an intermediate theme.
+	private func unifiedIntermediateTheme(from theme: Theme) throws -> IntermediateTheme {
+		switch theme {
+		case let intermediateTheme as IntermediateTheme:
+			return intermediateTheme
+		case let xcodeTheme as XcodeTheme:
+			return try Self.intermediateTheme(from: xcodeTheme)
+		default:
+			throw ImplementationError(description: "Can not convert theme of type '\(type(of: theme))' to intermediate theme for unified conversion.")
+		}
+	}
+	
 	private func describeXcodeTheme(_ theme: XcodeTheme) {
 		var rows: [[String]] = []
 		
