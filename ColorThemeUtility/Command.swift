@@ -46,6 +46,8 @@ struct ColorThemeUtility: ParsableCommand {
 			try describeColor()
 		case .describeTheme:
 			try describeTheme()
+		case .previewTheme:
+			try previewTheme()
 		case .convertColor:
 			try convertColor()
 		case .generatePalette:
@@ -107,6 +109,21 @@ extension ColorThemeUtility: ColorFormatDetector,
 	///   - `theme.<key>.enumerated()`
 	///
 	private func describeTheme() throws {
+		let themeData = try readInputThemeData()
+		
+		let xcodeTheme: XcodeTheme = try {
+			do {
+				let decoder = PropertyListDecoder()
+				return try decoder.decode(XcodeTheme.self, from: themeData)
+			} catch {
+				throw ThemeCodingError(description: "Could not decode supplied theme file as an Xcode theme model. \(error.localizedDescription)")
+			}
+		}()
+		
+		describeXcodeTheme(xcodeTheme)
+	}
+	
+	private func readInputThemeData() throws -> Data {
 		guard let inputFilePath = inputFile else {
 			throw ArgumentError(description: "Missing input theme file path.")
 		}
@@ -115,16 +132,32 @@ extension ColorThemeUtility: ColorFormatDetector,
 			throw ArgumentError(description: "Could not read supplied theme file.")
 		}
 		
-		let decoder = PropertyListDecoder()
-		let xcodeTheme: XcodeTheme = try {
-			do {
-				return try decoder.decode(XcodeTheme.self, from: fileData)
-			} catch {
-				throw ThemeCodingError(description: "Could not decode supplied theme file as an Xcode theme model. \(error.localizedDescription)")
-			}
-		}()
+		return fileData
+	}
+	
+	private func previewTheme() throws {
+		// Limited support: Only intermediate and Xcode formats are supported.
 		
-		describeXcodeTheme(xcodeTheme)
+		let themeData = try readInputThemeData()
+		let theme = try decodedTheme(from: themeData)
+		let intermediateTheme = try unifiedIntermediateTheme(from: theme)
+		
+		let presetString = TokenizedString.Presets.protocolWithFunctionDefinition + TokenizedString.divider + TokenizedString.Presets.literalDeclarations
+		let themedPresetString = presetString.padded.themedString(with: intermediateTheme)
+		
+		print(themedPresetString)
+	}
+	
+	/// Tries to convert any given theme to an intermediate theme.
+	private func unifiedIntermediateTheme(from theme: Theme) throws -> IntermediateTheme {
+		switch theme {
+		case let intermediateTheme as IntermediateTheme:
+			return intermediateTheme
+		case let xcodeTheme as XcodeTheme:
+			return try Self.intermediateTheme(from: xcodeTheme)
+		default:
+			throw ImplementationError(description: "Can not convert theme of type '\(type(of: theme))' to intermediate theme for unified conversion.")
+		}
 	}
 	
 	private func describeXcodeTheme(_ theme: XcodeTheme) {
@@ -285,11 +318,8 @@ enum Mode: String, CaseIterable, ExpressibleByArgument {
 	case generatePalette = "generate-palette"
 	case describeTheme = "describe-theme"
 	case generateTheme = "generate-theme"
+	case previewTheme = "preview-theme"
 	case convertTheme = "convert-theme"
 }
 
-enum OutputThemeFormat: String, CaseIterable, ExpressibleByArgument {
-	case intermediate
-	case xcode
-	case vscode
-}
+typealias OutputThemeFormat = ThemeFormat

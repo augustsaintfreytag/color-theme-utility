@@ -9,9 +9,9 @@ import ColorThemeFramework
 
 /// A command line compatible string with applied formatting and colors on a
 /// snippet of predefined code, usable to demo a color theme with code.
-public struct TokenizedString {
+public struct TokenizedString: TokenizedStringPaddingProvider {
 	
-	private let tokens: [SyntaxToken]
+	public let tokens: [SyntaxToken]
 	
 	public init(tokens: [SyntaxToken]) {
 		self.tokens = tokens
@@ -23,7 +23,21 @@ public struct TokenizedString {
 	
 }
 
-// MARK: String Form
+// MARK: Combination
+
+extension TokenizedString {
+	
+	static func +(_ lhs: TokenizedString, _ rhs: TokenizedString) -> TokenizedString {
+		return TokenizedString(tokens: lhs.tokens + rhs.tokens)
+	}
+	
+	static var divider: TokenizedString {
+		TokenizedString(tokens: [.space, .newLine, .space, .newLine])
+	}
+	
+}
+
+// MARK: Themed Output
 
 extension TokenizedString {
 	
@@ -51,70 +65,44 @@ extension TokenizedString {
 	
 }
 
-// MARK: Padding
-
-extension TokenizedString {
-	
-	private static var boxPadding: Int { 1 }
-	private static var leadingPadding: Int { 4 }
-	
-	private static var boxPaddingToken: SyntaxToken { SyntaxToken.space }
-	private static var paddingToken: SyntaxToken { SyntaxToken.space }
-	
-	private static func paddedString(_ string: TokenizedString) -> TokenizedString {
-		var tokensByLine = string.tokens.split { token in token == SyntaxToken.newLine }.map { line in Array(line) }
-		
-		tokensByLine.insert([boxPaddingToken], at: 0)
-		tokensByLine.append([boxPaddingToken])
-		
-		let maxLineLength = tokensByLine.map { line -> Int in
-			return length(of: line)
-		}.sorted().last ?? 0
-		
-		for lineIndex in tokensByLine.indices {
-			let lineLength = length(of: tokensByLine[lineIndex])
-			let trailingLinePadding = maxLineLength + leadingPadding - lineLength
-			
-			wrap(&tokensByLine[lineIndex], with: paddingToken, count: (leadingPadding, trailingLinePadding))
-		}
-		
-		let tokens: [SyntaxToken] = Array(tokensByLine.joined(separator: [SyntaxToken.newLine]))
-		return TokenizedString(tokens: tokens)
-	}
-	
-	private static func wrap(_ collection: inout [SyntaxToken], with token: SyntaxToken, count: Int) {
-		wrap(&collection, with: token, count: (leading: count, trailing: count))
-	}
-	
-	private static func wrap(_ collection: inout [SyntaxToken], with token: SyntaxToken, count: (leading: Int, trailing: Int)) {
-		let leadingTokens = Array(repeating: token, count: count.leading)
-		let trailingTokens = Array(repeating: token, count: count.trailing)
-		
-		collection.insert(contentsOf: leadingTokens, at: 0)
-		collection.append(contentsOf: trailingTokens)
-	}
-	
-	private static func length(of line: [SyntaxToken]) -> Int {
-		return line.reduce(into: 0) { length, token in
-			length += token.word.count
-		}
-	}
-	
-}
-
 // MARK: Presets
 
 extension TokenizedString {
 	
-	public enum TokenizedPresets {
+	public enum Presets {
 		
 		public static var structDefinition: TokenizedString {
-			return TokenizedString(tokens: [
+			TokenizedString(tokens: [
 				.word("struct", as: \.keyword), .space,.word("ObjectMetadata", as: \.declarationType), .word(":"), .space, .word("Hashable", as: \.referenceTypeSystem), .word(","), .space, .word("ObjectProperty", as: \.referenceTypeProject), .space, .word("{"), .space, .newLine,
 				.indent, .word("let", as: \.keyword), .space, .word("id", as: \.declarationAny), .word(":"), .space, .word("UUID", as: \.referenceTypeSystem), .newLine,
 				.indent, .word("let", as: \.keyword), .space, .word("created", as: \.declarationAny), .word(":"), .space, .word("Date", as: \.referenceTypeSystem), .newLine,
 				.indent, .word("let", as: \.keyword), .space, .word("owners", as: \.declarationAny), .word(":"), .space, .word("Set", as: \.referenceTypeSystem), .word("<"), .word("Owner", as: \.valueTypeProject), .word("."), .word("Identifier", as: \.valueTypeProject), .word(">"), .newLine,
 				.indent, .word("let", as: \.keyword), .space, .word("data", as: \.declarationAny), .word(":"), .space, .word("String", as: \.typeSystem), .newLine,
+				.word("}")
+			])
+		}
+		
+		public static var protocolWithFunctionDefinition: TokenizedString {
+			TokenizedString(tokens: [
+				.word("typealias", as: \.keyword), .space, .word("GroupedObjects", as: \.declarationType), .space, .word("="), .space, .word("["), .word("ObjectGroup", as: \.valueTypeProject), .word(":"), .space, .word("Set", as: \.valueTypeSystem), .word("<"), .word("Object", as: \.valueTypeProject), .word(">"), .word("]"), .newLine,
+				.space, .newLine,
+				.word("protocol", as: \.keyword), .space, .word("ObjectProvider", as: \.declarationType), .space, .word("{"), .newLine,
+				.indent, .word("func", as: \.keyword), .space, .word("groupedObjects", as: \.declarationAny),
+				.word("("), .word("_", as: \.declarationAny), .space, .word("collection", as: \.functionParameter), .word(":"), .space, .word("["), .word("Object", as: \.valueTypeProject), .word("]"), .word(")"),
+				.space, .word("->"), .space, .word("GroupedObjects", as: \.valueTypeProject), .newLine,
+				.word("}")
+			])
+		}
+		
+		// Check "other type names" vs. "global variable…" color mapping to Xcode.
+		
+		public static var literalDeclarations: TokenizedString {
+			TokenizedString(tokens: [
+				.word("struct", as: \.keyword), .space, .word("ObjectReport", as: \.declarationType), .space, .word("{"), .newLine,
+				.indent, .word("let", as: \.keyword), .space, .word("id", as: \.declarationAny), .space, .word("="), .space, .word("UUID", as: \.typeSystem), .word("()"), .newLine,
+				.indent, .word("var", as: \.keyword), .space, .word("name", as: \.declarationAny), .word(":"), .space, .word("String", as: \.valueTypeSystem), .space, .word("="), .space, .word("\"Most Recent\"", as: \.string), .newLine,
+				.indent, .word("var", as: \.keyword), .space, .word("kind", as: \.declarationAny), .word(":"), .space, .word("ReportKind", as: \.valueTypeProject), .space, .word("="), .space, .word(".lastInterval", as: \.constantProject), .newLine,
+				.indent, .word("var", as: \.keyword), .space, .word("numberOfEntries", as: \.declarationAny), .word(":"), .space, .word("Int", as: \.typeSystem), .space, .word("="), .space, .word("400", as: \.string), .newLine,
 				.word("}")
 			])
 		}
