@@ -23,6 +23,20 @@ public struct TokenizedString: TokenizedStringPaddingProvider {
 	
 }
 
+// MARK: Combination
+
+extension TokenizedString {
+	
+	static func +(_ lhs: TokenizedString, _ rhs: TokenizedString) -> TokenizedString {
+		return TokenizedString(tokens: lhs.tokens + rhs.tokens)
+	}
+	
+	static var divider: TokenizedString {
+		TokenizedString(tokens: [.space, .newLine, .space, .newLine])
+	}
+	
+}
+
 // MARK: Themed Output
 
 extension TokenizedString {
