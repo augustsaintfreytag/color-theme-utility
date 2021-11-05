@@ -10,6 +10,12 @@ import Foundation
 /// structures, usable as an exchange format for conversion.
 public struct IntermediateTheme: Theme, Codable, CustomPropertyEnumerable {
 	
+	public static var defaultHeader: String { "CTU Intermediate Theme Format" }
+	public static var defaultVersion: String { "1.0" }
+	
+	public let header: String
+	public let version: String
+	
 	public let foreground: Color
 	public let background: Color
 	public let selectionBackground: Color

@@ -176,6 +176,8 @@ extension XcodeThemeModeler {
 		/// Note: `module` and `parameter` are using `plain` as fallback.
 		
 		return IntermediateTheme(
+			header: IntermediateTheme.defaultHeader,
+			version: IntermediateTheme.defaultVersion,
 			foreground: try color(themeSyntax.xcodeSyntaxPlain),
 			background: try color(theme.dvtSourceTextBackground),
 			selectionBackground: try color(theme.dvtSourceTextSelectionColor),
