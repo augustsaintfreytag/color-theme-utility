@@ -70,10 +70,12 @@ extension TokenizedString {
 		
 		public static var protocolWithFunctionDefinition: TokenizedString {
 			TokenizedString(tokens: [
-				.word("protocol", as: \.keyword), .space, .word("ObjectProvider", as: \.declarationType), .space, .word("{"), .newLine,
+				.word("typealias", as: \.keyword), .space, .word("GroupedObjects", as: \.declarationType), .space, .word("="), .space, .word("["), .word("ObjectGroup", as: \.valueTypeProject), .word(":"), .space, .word("Set", as: \.valueTypeSystem), .word("<"), .word("Object", as: \.valueTypeProject), .word(">"), .word("]"), .newLine,
+				.space, .newLine,
+				.indent, .word("protocol", as: \.keyword), .space, .word("ObjectProvider", as: \.declarationType), .space, .word("{"), .newLine,
 				.indent, .word("func", as: \.keyword), .space, .word("groupedObjects", as: \.declarationAny),
 				.word("("), .word("_", as: \.declarationAny), .space, .word("collection", as: \.functionParameter), .word(":"), .space, .word("["), .word("Object", as: \.valueTypeProject), .word("]"), .word(")"),
-				.space, .word("->"), .space, .word("["), .word("ObjectGroup", as: \.valueTypeProject), .word(":"), .space, .word("Set", as: \.valueTypeSystem), .word("<"), .word("Object", as: \.valueTypeProject), .word(">"), .word("]"), .newLine,
+				.space, .word("->"), .space, .word("GroupedObjects", as: \.valueTypeProject), .newLine,
 				.word("}")
 			])
 		}
