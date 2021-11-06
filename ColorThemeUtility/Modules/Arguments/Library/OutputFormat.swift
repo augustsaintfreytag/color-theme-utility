@@ -38,10 +38,12 @@ extension OutputFormat: ExpressibleByArgument {
 	init?(argument: String) {
 		if let themeFormat = ThemeFormat(argument: argument) {
 			self = .theme(format: themeFormat)
+			return
 		}
 		
 		if let colorFormat = ColorFormat(argument: argument) {
 			self = .color(format: colorFormat)
+			return
 		}
 		
 		return nil
