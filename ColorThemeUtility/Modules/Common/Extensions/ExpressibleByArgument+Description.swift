@@ -13,7 +13,11 @@ extension ExpressibleByArgument {
 	///
 	/// Creates a formatted description in the form of "one|two|three|four|five".
 	static var allCasesHelpDescription: String {
-		return allValueStrings.joined(separator: "|")
+		return joinedCasesHelpDescriptions(allValueStrings)
+	}
+	
+	static func joinedCasesHelpDescriptions(_ descriptions: [String]) -> String {
+		return descriptions.joined(separator: "|")
 	}
 	
 }

@@ -32,8 +32,8 @@ struct ColorThemeUtility: ParsableCommand {
 	@Option(name: [.customShort("i"), .customLong("input")], help: "The theme file to use as input.")
 	var inputFile: String?
 	
-	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating themes. (options: \(OutputThemeFormat.allCasesHelpDescription))")
-	var outputFormat: OutputThemeFormat?
+	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating themes. (options: \(OutputFormat.allCasesHelpDescription))")
+	var outputFormat: OutputFormat?
 	
 	@Flag(name: [.customShort("h"), .customLong("human-readable")], help: "Outputs data and models in a human-readable format. (default: false)")
 	var humanReadable: Bool = false
@@ -94,8 +94,8 @@ extension ColorThemeUtility: ColorFormatDetector,
 	}
 	
 	private func convertColor() throws {
-		guard let inputColor = inputColors?.first, let color = Self.color(fromAutodetectedColorString: inputColor) else {
-			throw ArgumentError(description: "Missing input color or given string has invalid or unsupported format.")
+		guard let inputColor = inputColors?.first, let _ = Self.color(fromAutodetectedColorString: inputColor) else {
+			throw ArgumentError(description: "Missing input color or given input has invalid or unsupported format.")
 		}
 		
 		print("Not implemented.")
@@ -227,8 +227,8 @@ extension ColorThemeUtility: ColorFormatDetector,
 			throw ArgumentError(description: "Could not read supplied theme file.")
 		}
 
-		guard outputFormat == .xcode else {
-			throw ArgumentError(description: "Output format '\(outputFormat?.rawValue ?? "<None>")' not supported. Supported formats: 'xcode'.")
+		guard case .theme(let outputThemeFormat) = outputFormat, outputThemeFormat == .xcode else {
+			throw ArgumentError(description: "Output format '\(outputFormat?.description ?? "<None>")' not supported. Supported formats: 'xcode'.")
 		}
 
 		/// TODO: Consider displacing this to function, throwing `ThemeCodingError`.
@@ -310,10 +310,9 @@ extension ColorThemeUtility: ColorFormatDetector,
 	
 }
 
-// MARK: Library
+// MARK: Mode Type
 
 enum Mode: String, CaseIterable, ExpressibleByArgument {
-	
 	case describeColor = "describe-color"
 	case convertColor = "convert-color"
 	case generatePalette = "generate-palette"
@@ -321,7 +320,45 @@ enum Mode: String, CaseIterable, ExpressibleByArgument {
 	case generateTheme = "generate-theme"
 	case previewTheme = "preview-theme"
 	case convertTheme = "convert-theme"
+}
+
+// MARK: Output Format Type
+
+enum OutputFormat {
+	case theme(format: ThemeFormat)
+	case color(format: ColorFormat)
+}
+
+extension OutputFormat: CustomStringConvertible {
+	
+	var description: String {
+		switch self {
+		case .theme(let themeFormat):
+			return themeFormat.rawValue
+		case .color(let colorFormat):
+			return colorFormat.rawValue
+		}
+	}
+	
+	static var allCasesHelpDescription: String {
+		let descriptions = ThemeFormat.allValueStrings + ColorFormat.allValueStrings
+		return joinedCasesHelpDescriptions(descriptions)
+	}
 	
 }
 
-typealias OutputThemeFormat = ThemeFormat
+extension OutputFormat: ExpressibleByArgument {
+	
+	init?(argument: String) {
+		if let themeFormat = ThemeFormat(argument: argument) {
+			self = .theme(format: themeFormat)
+		}
+		
+		if let colorFormat = ColorFormat(argument: argument) {
+			self = .color(format: colorFormat)
+		}
+		
+		return nil
+	}
+	
+}
