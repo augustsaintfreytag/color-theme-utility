@@ -32,7 +32,7 @@ struct ColorThemeUtility: ParsableCommand {
 	@Option(name: [.customShort("i"), .customLong("input")], help: "The theme file to use as input.")
 	var inputFile: String?
 	
-	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating themes. (options: \(OutputFormat.allCasesHelpDescription))")
+	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating colors or themes. (options: \(OutputFormat.allCasesHelpDescription))")
 	var outputFormat: OutputFormat?
 	
 	@Flag(name: [.customShort("h"), .customLong("human-readable")], help: "Outputs data and models in a human-readable format. (default: false)")
@@ -94,12 +94,20 @@ extension ColorThemeUtility: ColorFormatDetector,
 	}
 	
 	private func convertColor() throws {
-		guard let inputColor = inputColors?.first, let _ = Self.color(fromAutodetectedColorString: inputColor) else {
+		guard let inputColorString = inputColors?.first, let inputColor = Self.color(fromAutodetectedColorString: inputColorString) else {
 			throw ArgumentError(description: "Missing input color or given input has invalid or unsupported format.")
 		}
 		
-		print("Not implemented.")
-		Self.exit(withError: ExitCode(127))
+		guard case .color(let outputColorFormat) = outputFormat else {
+			throw ArgumentError(description: "Missing output color format for color conversion.")
+		}
+		
+		switch outputColorFormat {
+		case .floatRGBA:
+			print(inputColor.floatRGBAString)
+		case .hexadecimal:
+			print(inputColor.hexadecimalString)
+		}
 	}
 	
 	/// Parses the given theme file and prints its contents in a readable format.
