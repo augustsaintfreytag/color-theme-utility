@@ -17,22 +17,46 @@ public struct TokenizedString: TokenizedStringPaddingProvider {
 		self.tokens = tokens
 	}
 	
-	public var padded: TokenizedString {
-		return Self.paddedString(self)
+	public init(lines: [[SyntaxToken]]) {
+		self.tokens = Self.joinedLines(lines)
 	}
 	
 }
 
-// MARK: Combination
+// MARK: Union
 
 extension TokenizedString {
-	
+
 	static func +(_ lhs: TokenizedString, _ rhs: TokenizedString) -> TokenizedString {
 		return TokenizedString(tokens: lhs.tokens + rhs.tokens)
 	}
 	
 	static var divider: TokenizedString {
 		TokenizedString(tokens: [.space, .newLine, .space, .newLine])
+	}
+	
+}
+
+// MARK: Line Split & Join
+
+extension TokenizedString {
+	
+	var splitLines: [[SyntaxToken]] {
+		tokens.split { token in token == SyntaxToken.newLine }.map { line in Array(line) }
+	}
+	
+	static func joinedLines(_ lines: [[SyntaxToken]]) -> [SyntaxToken] {
+		return Array(lines.joined(separator: [SyntaxToken.newLine]))
+	}
+	
+}
+
+// MARK: Padding
+
+extension TokenizedString {
+	
+	public var withPadding: TokenizedString {
+		return Self.paddedString(self)
 	}
 	
 }
