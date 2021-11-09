@@ -61,6 +61,26 @@ extension TokenizedString {
 	
 }
 
+// MARK: Line Numbers
+
+extension TokenizedString {
+	
+	public var withLineNumbers: TokenizedString {
+		var tokensByLine = tokens.split { token in token == SyntaxToken.newLine }.map { line in Array(line) }
+		let numberOfLineNumberCharacters = String(tokensByLine.count).count
+		
+		for index in tokensByLine.indices {
+			let lineNumberString = String(format: "%\(numberOfLineNumberCharacters)d", index + 1)
+			let lineNumberToken = SyntaxToken(kind: \.commentDocumentation, word: lineNumberString)
+			
+			tokensByLine[index].insert(contentsOf: [lineNumberToken, .indent], at: 0)
+		}
+		
+		return TokenizedString(lines: tokensByLine)
+	}
+	
+}
+
 // MARK: Themed Output
 
 extension TokenizedString {
