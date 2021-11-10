@@ -25,7 +25,7 @@ extension ThemeImporter {
 			let decoder = PropertyListDecoder()
 			return try decoder.decode(XcodeTheme.self, from: data)
 		default:
-			throw ThemeCodingError(description: "Decoding theme data with format '\(format.rawValue)' is not supported.")
+			throw ThemeCodingError(description: "Decoding theme data with format '\(format?.rawValue.description ?? "<None>")' is not supported.")
 		}
 	}
 	
