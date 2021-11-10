@@ -13,9 +13,9 @@ public protocol ThemeFormatDetector {}
 extension ThemeFormatDetector {
 	
 	/// Auto-detects the representative format of the given encoded theme data.
-	public func themeFormat(for encodedThemeData: Data) -> ThemeFormat {
+	public func themeFormat(for encodedThemeData: Data) -> ThemeFormat? {
 		guard let dataString = String(data: encodedThemeData, encoding: .utf8) else {
-			return .unknown
+			return nil
 		}
 		
 		if dataString.contains(IntermediateTheme.defaultHeader) {
@@ -26,7 +26,7 @@ extension ThemeFormatDetector {
 			return .xcode
 		}
 		
-		return .unknown
+		return nil
 	}
 	
 }
