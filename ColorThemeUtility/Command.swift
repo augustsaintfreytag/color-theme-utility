@@ -298,10 +298,14 @@ extension ColorThemeUtility: ColorFormatDetector,
 	
 	private func valueDescription(of value: CustomStringConvertible) -> (format: String, value: String) {
 		let description = value.description
-		
+
+		if let color = value as? Color {
+			return ("[Color]", "\(color.hexadecimalString), \(color.description)")
+		}
+
 		if let color = Self.color(fromAutodetectedColorString: description) {
 			let colorBlockDescription = colorBlock.colored(with: color)
-			return ("[Color]", "\(color.hexadecimalString) \(colorBlockDescription)")
+			return ("[Color]", "\(color.hexadecimalString), \(colorBlockDescription)")
 		}
 		
 		return ("[Any]", description)
