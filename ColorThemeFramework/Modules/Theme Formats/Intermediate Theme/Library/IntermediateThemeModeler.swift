@@ -117,19 +117,3 @@ extension IntermediateThemeModeler {
 	}
 	
 }
-
-// MARK: Library
-
-struct OriginColors {
-	
-	let background: Color
-	let text: Color
-	let strings: Color
-	let numbers: Color
-	let keywords: Color
-	let typesSystemA: Color
-	let typesSystemB: Color
-	let typesProjectA: Color
-	let typesProjectB: Color
-	
-}
