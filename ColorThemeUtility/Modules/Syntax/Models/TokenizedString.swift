@@ -117,6 +117,7 @@ extension TokenizedString {
 		
 		public static var structDefinition: TokenizedString {
 			TokenizedString(tokens: [
+				.word("///", as: \.commentDocumentation), .space, .word("Model of metadata associated with stored objects.", as: \.commentDocumentation), .newLine,
 				.word("struct", as: \.keyword), .space,.word("ObjectMetadata", as: \.declarationType), .word(":"), .space, .word("Hashable", as: \.referenceTypeSystem), .word(","), .space, .word("ObjectProperty", as: \.referenceTypeProject), .space, .word("{"), .space, .newLine,
 				.indent, .word("let", as: \.keyword), .space, .word("id", as: \.declarationAny), .word(":"), .space, .word("UUID", as: \.referenceTypeSystem), .newLine,
 				.indent, .word("let", as: \.keyword), .space, .word("created", as: \.declarationAny), .word(":"), .space, .word("Date", as: \.referenceTypeSystem), .newLine,
@@ -130,6 +131,7 @@ extension TokenizedString {
 			TokenizedString(tokens: [
 				.word("typealias", as: \.keyword), .space, .word("GroupedObjects", as: \.declarationType), .space, .word("="), .space, .word("["), .word("ObjectGroup", as: \.valueTypeProject), .word(":"), .space, .word("Set", as: \.valueTypeSystem), .word("<"), .word("Object", as: \.valueTypeProject), .word(">"), .word("]"), .newLine,
 				.space, .newLine,
+				.word("///", as: \.commentDocumentation), .space, .word("Functionality to create collections of objects grouped by intrinsic properties.", as: \.commentDocumentation), .newLine,
 				.word("protocol", as: \.keyword), .space, .word("ObjectProvider", as: \.declarationType), .space, .word("{"), .newLine,
 				.indent, .word("func", as: \.keyword), .space, .word("groupedObjects", as: \.declarationAny),
 				.word("("), .word("_", as: \.declarationAny), .space, .word("collection", as: \.functionParameter), .word(":"), .space, .word("["), .word("Object", as: \.valueTypeProject), .word("]"), .word(")"),
@@ -142,8 +144,9 @@ extension TokenizedString {
 		
 		public static var literalDeclarations: TokenizedString {
 			TokenizedString(tokens: [
+				.word("///", as: \.commentDocumentation), .space, .word("Metadata describing a report of stored objects.", as: \.commentDocumentation), .newLine,
 				.word("struct", as: \.keyword), .space, .word("ObjectReport", as: \.declarationType), .space, .word("{"), .newLine,
-				.indent, .word("let", as: \.keyword), .space, .word("id", as: \.declarationAny), .space, .word("="), .space, .word("UUID", as: \.valueTypeSystem), .word("()"), .newLine,
+				.indent, .word("var", as: \.keyword), .space, .word("id", as: \.declarationAny), .space, .word("="), .space, .word("UUID", as: \.valueTypeSystem), .word("()"), .newLine,
 				.indent, .word("var", as: \.keyword), .space, .word("name", as: \.declarationAny), .word(":"), .space, .word("String", as: \.valueTypeSystem), .space, .word("="), .space, .word("\"Most Recent\"", as: \.string), .newLine,
 				.indent, .word("var", as: \.keyword), .space, .word("kind", as: \.declarationAny), .word(":"), .space, .word("ReportKind", as: \.valueTypeProject), .space, .word("="), .space, .word(".lastInterval", as: \.constantProject), .newLine,
 				.indent, .word("var", as: \.keyword), .space, .word("numberOfEntries", as: \.declarationAny), .word(":"), .space, .word("Int", as: \.valueTypeSystem), .space, .word("="), .space, .word("400", as: \.string), .newLine,
