@@ -123,11 +123,11 @@ extension XcodeThemeModeler {
 			xcodeSyntaxIdentifierMacroSystem: value(theme.preprocessorSystem),
 			xcodeSyntaxIdentifierType: value(theme.valueTypeProject),
 			xcodeSyntaxIdentifierTypeSystem: value(theme.valueTypeSystem),
-			xcodeSyntaxIdentifierVariable: value(theme.typeProject),
-			xcodeSyntaxIdentifierVariableSystem: value(theme.typeSystem),
+			xcodeSyntaxIdentifierVariable: value(theme.variableProject),
+			xcodeSyntaxIdentifierVariableSystem: value(theme.variableSystem),
 			xcodeSyntaxKeyword: value(theme.keyword),
 			xcodeSyntaxMark: value(theme.commentSection),
-			xcodeSyntaxMarkupCode: value(theme.keyword),
+			xcodeSyntaxMarkupCode: value(theme.comment),
 			xcodeSyntaxNumber: value(theme.number),
 			xcodeSyntaxPlain: value(theme.foreground),
 			xcodeSyntaxPreprocessor: value(theme.keyword),
@@ -169,11 +169,16 @@ extension XcodeThemeModeler {
 	}
 	
 	// MARK: Xcode → Intermediate
-	
+
+	/// Creates a lossy intermediate theme representation from a given Xcode theme.
+	///
+	/// Note that this conversion is lossy, not all colors defined in `IntermediateTheme`
+	/// are used or transferred to a created `XcodeTheme`.
+	///
+	/// - Note: This mapping sets `module` and `parameter` to `plain` as fallback.
+	///
 	public static func intermediateTheme(from theme: XcodeTheme) throws -> IntermediateTheme {
 		let themeSyntax = theme.dvtSourceTextSyntaxColors
-		
-		/// Note: `module` and `parameter` are using `plain` as fallback.
 		
 		return IntermediateTheme(
 			header: IntermediateTheme.defaultHeader,
@@ -188,6 +193,8 @@ extension XcodeThemeModeler {
 			commentSection: try color(themeSyntax.xcodeSyntaxMark),
 			commentSectionHeader: try color(themeSyntax.xcodeSyntaxCommentDocKeyword),
 			keyword: try color(themeSyntax.xcodeSyntaxKeyword),
+			declarationType: try color(themeSyntax.xcodeSyntaxDeclarationType),
+			declarationAny: try color(themeSyntax.xcodeSyntaxDeclarationOther),
 			functionProject: try color(themeSyntax.xcodeSyntaxIdentifierFunction),
 			functionSystem: try color(themeSyntax.xcodeSyntaxIdentifierFunctionSystem),
 			functionParameter: try color(themeSyntax.xcodeSyntaxPlain),
@@ -197,16 +204,10 @@ extension XcodeThemeModeler {
 			constantSystem: try color(themeSyntax.xcodeSyntaxIdentifierConstantSystem),
 			variableProject: try color(themeSyntax.xcodeSyntaxIdentifierConstant),
 			variableSystem: try color(themeSyntax.xcodeSyntaxIdentifierConstantSystem),
-			typeProject: try color(themeSyntax.xcodeSyntaxIdentifierVariable),
-			typeSystem: try color(themeSyntax.xcodeSyntaxIdentifierVariableSystem),
 			referenceTypeProject: try color(themeSyntax.xcodeSyntaxIdentifierClass),
 			referenceTypeSystem: try color(themeSyntax.xcodeSyntaxIdentifierClassSystem),
 			valueTypeProject: try color(themeSyntax.xcodeSyntaxIdentifierType),
 			valueTypeSystem: try color(themeSyntax.xcodeSyntaxIdentifierTypeSystem),
-			enumProject: try color(themeSyntax.xcodeSyntaxIdentifierType),
-			enumSystem: try color(themeSyntax.xcodeSyntaxIdentifierTypeSystem),
-			declarationType: try color(themeSyntax.xcodeSyntaxDeclarationType),
-			declarationAny: try color(themeSyntax.xcodeSyntaxDeclarationOther),
 			attribute: try color(themeSyntax.xcodeSyntaxAttribute),
 			module: try color(themeSyntax.xcodeSyntaxPlain),
 			number: try color(themeSyntax.xcodeSyntaxNumber),

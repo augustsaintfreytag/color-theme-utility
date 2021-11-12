@@ -32,57 +32,58 @@ extension IntermediateThemeModeler {
 	/// Currently only creates colors suitable for use in dark themes.
 	public static func theme(from colors: [Color]) throws -> IntermediateTheme {
 		let originColors = try originColors(from: colors)
-		
-		let textColors = cascadingColorSequence(from: originColors.text, numberOfColors: 3, skewing: .lighter)
-		
-		let commentBaseColor = transformedColor(from: originColors.text, skewing: .darker, modifier: 2.0)
-		let commentColors = cascadingColorSequence(from: commentBaseColor, numberOfColors: 2, skewing: .lighter)
-		
+
+		let backgroundColor = originColors.background
+		let foregroundColor = originColors.foreground
+
+		let commentBaseColor = transformedColor(from: originColors.foreground, skewing: .darker, modifier: 2.0)
+		let commentColors = cascadingColorSequence(from: commentBaseColor, numberOfColors: 2, skewing: .darker)
+
+		let keywordColor = originColors.keywords
+
+		let referenceTypeColors = cascadingColorSequence(from: originColors.referenceTypes, numberOfColors: 3, skewing: .darker)
+		let valueTypeColors = cascadingColorSequence(from: originColors.valueTypes, numberOfColors: 3, skewing: .darker)
+		let functionColors = cascadingColorSequence(from: originColors.functions, numberOfColors: 4, skewing: .darker)
+		let constantColors = cascadingColorSequence(from: originColors.constants, numberOfColors: 3, skewing: .darker)
+		let variableColors = cascadingColorSequence(from: originColors.variables, numberOfColors: 4, skewing: .darker)
 		let stringColors = cascadingColorSequence(from: originColors.strings, numberOfColors: 3, skewing: .darker)
-		let typesSystemAColors = cascadingColorSequence(from: originColors.typesSystemA, numberOfColors: 2, skewing: .darker)
-		let typesSystemBColors = cascadingColorSequence(from: originColors.typesSystemB, numberOfColors: 4, skewing: .darker)
-		let typesProjectAColors = cascadingColorSequence(from: originColors.typesProjectA, numberOfColors: 4, skewing: .darker)
-		let typesProjectBColors = cascadingColorSequence(from: originColors.typesProjectB, numberOfColors: 6, skewing: .darker)
+		let numberColor = originColors.numbers
 		
 		let activeLineBackgroundColor = transformedColor(from: originColors.background, skewing: .lighter, modifier: 0.5)
 		let selectionBackgroundColor = transformedColor(from: originColors.keywords, applying: (0, 0.6, 0.2))
 		let insertionPointColor = transformedColor(from: originColors.keywords, skewing: .lighter)
-		
+
 		return IntermediateTheme(
 			header: IntermediateTheme.defaultHeader,
 			version: IntermediateTheme.defaultVersion,
-			foreground: textColors[0],
-			background: originColors.background,
+			foreground: foregroundColor,
+			background: backgroundColor,
 			selectionBackground: selectionBackgroundColor,
 			activeLineBackground: activeLineBackgroundColor,
 			insertionPoint: insertionPointColor,
-			comment: commentColors[0],
+			comment: commentColors[1],
 			commentDocumentation: commentColors[1],
-			commentSection: textColors[1],
-			commentSectionHeader: originColors.keywords,
-			keyword: originColors.keywords,
-			functionProject: typesProjectBColors[3],
-			functionSystem: typesSystemBColors[1],
-			functionParameter: textColors[2],
-			preprocessorProject: typesProjectBColors[5],
-			preprocessorSystem: typesSystemBColors[3],
-			constantProject: typesProjectBColors[4],
-			constantSystem: typesSystemBColors[2],
-			variableProject: typesProjectAColors[1],
-			variableSystem: typesSystemAColors[1],
-			typeProject: typesProjectBColors[2],
-			typeSystem: typesSystemBColors[0],
-			referenceTypeProject: typesProjectAColors[0],
-			referenceTypeSystem: typesSystemAColors[0],
-			valueTypeProject: typesProjectBColors[2],
-			valueTypeSystem: typesSystemBColors[0],
-			enumProject: typesProjectBColors[2],
-			enumSystem: typesSystemBColors[0],
-			declarationType: typesProjectBColors[0],
-			declarationAny: typesProjectBColors[1],
-			attribute: textColors[2],
-			module: textColors[2],
-			number: originColors.numbers,
+			commentSection: commentColors[0],
+			commentSectionHeader: commentColors[0],
+			keyword: keywordColor,
+			declarationType: referenceTypeColors[0],
+			declarationAny: valueTypeColors[0],
+			functionProject: functionColors[1],
+			functionSystem: functionColors[0],
+			functionParameter: constantColors[2],
+			preprocessorProject: functionColors[3],
+			preprocessorSystem: functionColors[2],
+			constantProject: constantColors[1],
+			constantSystem: constantColors[0],
+			variableProject: variableColors[1],
+			variableSystem: variableColors[0],
+			referenceTypeProject: referenceTypeColors[2],
+			referenceTypeSystem: referenceTypeColors[1],
+			valueTypeProject: valueTypeColors[2],
+			valueTypeSystem: valueTypeColors[1],
+			attribute: variableColors[2],
+			module: variableColors[3],
+			number: numberColor,
 			string: stringColors[0],
 			character: stringColors[1],
 			url: stringColors[2]
@@ -92,44 +93,16 @@ extension IntermediateThemeModeler {
 	/// Returns an asserted mapping of colors usable as origin points for
 	/// theme generation.
 	///
-	/// Out of the supplied *9 colors*, the first is mapped as a
+	/// Out of the supplied *10 colors*, the first is mapped as a
 	/// *background color*, the second a general foreground color;
 	/// subsequent values are used for syntax.
 	///
-	/// Verifies an input collection of colors of arbitrary length but
-	/// requires exactly *9 colors* to map origin colors.
 	private static func originColors(from colors: [Color]) throws -> OriginColors {
-		guard colors.count == 9 else {
-			throw ThemeModelingError(kind: .insufficientData, description: "Can not create intermediate theme, need a background and exactly 8 palette colors as input.")
+		guard let originColors = OriginColors(from: colors) else {
+			throw ThemeModelingError(kind: .insufficientData, description: "Can not create intermediate theme, need exactly 10 palette colors as input.")
 		}
 		
-		return OriginColors(
-			background: colors[0],
-			text: colors[1],
-			strings: colors[2],
-			numbers: colors[3],
-			keywords: colors[4],
-			typesSystemA: colors[5],
-			typesSystemB: colors[6],
-			typesProjectA: colors[7],
-			typesProjectB: colors[8]
-		)
+		return originColors
 	}
-	
-}
-
-// MARK: Library
-
-struct OriginColors {
-	
-	let background: Color
-	let text: Color
-	let strings: Color
-	let numbers: Color
-	let keywords: Color
-	let typesSystemA: Color
-	let typesSystemB: Color
-	let typesProjectA: Color
-	let typesProjectB: Color
 	
 }
