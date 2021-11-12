@@ -28,6 +28,8 @@ public struct IntermediateTheme: Theme, Codable, CustomPropertyEnumerable {
 	public let commentSectionHeader: Color
 	
 	public let keyword: Color
+	public let declarationType: Color
+	public let declarationAny: Color
 	public let functionProject: Color
 	public let functionSystem: Color
 	public let functionParameter: Color
@@ -37,16 +39,10 @@ public struct IntermediateTheme: Theme, Codable, CustomPropertyEnumerable {
 	public let constantSystem: Color
 	public let variableProject: Color
 	public let variableSystem: Color
-	public let typeProject: Color
-	public let typeSystem: Color
 	public let referenceTypeProject: Color
 	public let referenceTypeSystem: Color
 	public let valueTypeProject: Color
 	public let valueTypeSystem: Color
-	public let enumProject: Color
-	public let enumSystem: Color
-	public let declarationType: Color
-	public let declarationAny: Color
 	public let attribute: Color
 	public let module: Color
 	
