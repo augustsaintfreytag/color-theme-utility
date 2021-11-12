@@ -118,17 +118,54 @@ extension ColorThemeUtility: ColorFormatDetector,
 	///
 	private func describeTheme() throws {
 		let themeData = try readInputThemeData()
-		
-		let xcodeTheme: XcodeTheme = try {
-			do {
+		let themeFormat = themeFormat(for: themeData)
+
+		do {
+			switch themeFormat {
+			case .intermediate:
+				let decoder = JSONDecoder()
+				let intermediateTheme = try decoder.decode(IntermediateTheme.self, from: themeData)
+
+				describeIntermediateTheme(intermediateTheme)
+			case .xcode:
 				let decoder = PropertyListDecoder()
-				return try decoder.decode(XcodeTheme.self, from: themeData)
-			} catch {
-				throw ThemeCodingError(description: "Could not decode supplied theme file as an Xcode theme model. \(error.localizedDescription)")
+				let xcodeTheme = try decoder.decode(XcodeTheme.self, from: themeData)
+
+				describeXcodeTheme(xcodeTheme)
+			case .none:
+				throw ThemeCodingError(description: "Could not determine format of supplied theme.")
 			}
-		}()
-		
-		describeXcodeTheme(xcodeTheme)
+		} catch {
+			throw ThemeCodingError(description: "Could not decode theme. \(error.localizedDescription)")
+		}
+	}
+
+	private func describeIntermediateTheme(_ theme: IntermediateTheme) {
+		var rows: [[String]] = []
+
+		enumeratedPropertyDescriptions(from: theme.enumerated()).forEach { description in
+			rows.append(description)
+		}
+
+		Self.tabulateAndPrintLines(rows)
+	}
+
+	private func describeXcodeTheme(_ theme: XcodeTheme) {
+		var rows: [[String]] = []
+
+		enumeratedPropertyDescriptions(from: theme.enumerated()).forEach { description in
+			rows.append(description)
+		}
+
+		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxColors.enumerated(), childrenOf: "dvtSourceTextSyntaxColors").forEach { description in
+			rows.append(description)
+		}
+
+		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxFonts.enumerated(), childrenOf: "dvtSourceTextSyntaxColors").forEach { description in
+			rows.append(description)
+		}
+
+		Self.tabulateAndPrintLines(rows)
 	}
 	
 	private func readInputThemeData() throws -> Data {
@@ -144,8 +181,6 @@ extension ColorThemeUtility: ColorFormatDetector,
 	}
 	
 	private func previewTheme() throws {
-		// Limited support: Only intermediate and Xcode formats are supported.
-		
 		let themeData = try readInputThemeData()
 		let theme = try decodedTheme(from: themeData)
 		let intermediateTheme = try unifiedIntermediateTheme(from: theme)
@@ -166,24 +201,6 @@ extension ColorThemeUtility: ColorFormatDetector,
 		default:
 			throw ImplementationError(description: "Can not convert theme of type '\(type(of: theme))' to intermediate theme for unified conversion.")
 		}
-	}
-	
-	private func describeXcodeTheme(_ theme: XcodeTheme) {
-		var rows: [[String]] = []
-		
-		enumeratedPropertyDescriptions(from: theme.enumerated()).forEach { description in
-			rows.append(description)
-		}
-		
-		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxColors.enumerated(), childrenOf: "dvtSourceTextSyntaxColors").forEach { description in
-			rows.append(description)
-		}
-		
-		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxFonts.enumerated(), childrenOf: "dvtSourceTextSyntaxColors").forEach { description in
-			rows.append(description)
-		}
-		
-		Self.tabulateAndPrintLines(rows)
 	}
 	
 	private func generatePalette() throws {
