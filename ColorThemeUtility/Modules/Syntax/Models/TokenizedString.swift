@@ -27,14 +27,37 @@ public struct TokenizedString: TokenizedStringPaddingProvider {
 
 extension TokenizedString {
 
-	static func +(_ lhs: TokenizedString, _ rhs: TokenizedString) -> TokenizedString {
+	public static func +(_ lhs: TokenizedString, _ rhs: TokenizedString) -> TokenizedString {
 		return TokenizedString(tokens: lhs.tokens + rhs.tokens)
 	}
 	
-	static var divider: TokenizedString {
+	public static var divider: TokenizedString {
 		TokenizedString(tokens: [.space, .newLine, .space, .newLine])
 	}
 	
+}
+
+extension Array where Element == TokenizedString {
+
+	public func joined(separator: TokenizedString) -> TokenizedString {
+		var compositeElement = TokenizedString(lines: [])
+
+		for (index, element) in enumerated() {
+			guard index != indices.last else {
+				compositeElement = compositeElement + element
+				continue
+			}
+
+			compositeElement = compositeElement + element + separator
+		}
+
+		return compositeElement
+	}
+
+	public func joinedWithDivider() -> TokenizedString {
+		return joined(separator: TokenizedString.divider)
+	}
+
 }
 
 // MARK: Line Split & Join
