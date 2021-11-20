@@ -54,7 +54,7 @@ extension IntermediateThemeModeler {
 		let insertionPointColor = transformedColor(from: originColors.keywords, skewing: .lighter)
 
 		return IntermediateTheme(
-			header: IntermediateTheme.defaultHeader,
+			format: IntermediateTheme.defaultFormat,
 			version: IntermediateTheme.defaultVersion,
 			foreground: foregroundColor,
 			background: backgroundColor,

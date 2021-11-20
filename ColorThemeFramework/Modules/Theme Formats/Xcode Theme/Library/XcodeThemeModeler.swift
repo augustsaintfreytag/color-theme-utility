@@ -181,7 +181,7 @@ extension XcodeThemeModeler {
 		let themeSyntax = theme.dvtSourceTextSyntaxColors
 		
 		return IntermediateTheme(
-			header: IntermediateTheme.defaultHeader,
+			format: IntermediateTheme.defaultFormat,
 			version: IntermediateTheme.defaultVersion,
 			foreground: try color(themeSyntax.xcodeSyntaxPlain),
 			background: try color(theme.dvtSourceTextBackground),
