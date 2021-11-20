@@ -17,6 +17,8 @@ class ColorHSLConversionTest: XCTestCase, ColorConversionTestProvider {
 			(bit8(127, 127, 127), (0, 0, 0.498)),			// 50% Gray
 			(bit8(255, 0, 0), (0, 1, 0.5)),					// Red
 			(bit8(255, 255, 255), (0, 0, 1)),				// White
+			(bit8(1, 1, 1), (0, 0, 0.004)),					// Almost Black
+			(bit8(254, 254, 254), (0, 0, 0.996)),			// Almost White
 			(bit8(42, 177, 175), (0.497, 0.616, 0.429)),	// Theme 01
 			(bit8(215, 20, 127), (0.908, 0.830, 0.461))		// Theme 02
 		]
