@@ -69,9 +69,8 @@ extension HSLColorConverter {
 		
 		let chroma: ColorValue = (1 - abs(2 * lightness - 1)) * saturation
 		let factor: ColorValue = chroma * (1 - abs((hue / (60 / 360)).truncatingRemainder(dividingBy: 2) - 1))
-		
+		let offset: ColorValue = max(0, lightness - chroma / 2)
 		let componentFactors = rgbHueFactor(hue, chroma, factor)
-		let offset: ColorValue = lightness - chroma / 2
 		
 		let (red, green, blue) = (
 			componentFactors.red + offset,
