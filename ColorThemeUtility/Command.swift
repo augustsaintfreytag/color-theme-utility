@@ -185,7 +185,12 @@ extension ColorThemeUtility: ColorFormatDetector,
 		let theme = try decodedTheme(from: themeData)
 		let intermediateTheme = try unifiedIntermediateTheme(from: theme)
 		
-		let presetString = TokenizedString.Presets.protocolWithFunctionDefinition + TokenizedString.divider + TokenizedString.Presets.literalDeclarations
+		let presetString = [
+			TokenizedString.Presets.structDefinition,
+			TokenizedString.Presets.protocolWithFunctionDefinition,
+			TokenizedString.Presets.literalDeclarations
+		].joinedWithDivider()
+
 		let themedPresetString = presetString.withLineNumbers.withPadding.themedString(with: intermediateTheme)
 		
 		print(themedPresetString)
