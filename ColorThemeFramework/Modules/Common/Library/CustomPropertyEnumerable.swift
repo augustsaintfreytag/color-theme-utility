@@ -47,7 +47,7 @@ extension CustomPropertyEnumerable {
 		}
 	}
 	
-	private func forEachEnumeratedProperty<Value>(_ block: (_ label: String, _ element: Value) -> Void) {
+	public func forEachEnumeratedProperty<Value>(_ block: (_ label: String, _ element: Value) -> Void) {
 		let mirror = Mirror(reflecting: self)
 		
 		return mirror.children.forEach { label, value in
