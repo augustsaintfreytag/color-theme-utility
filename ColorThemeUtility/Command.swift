@@ -183,7 +183,7 @@ extension ColorThemeUtility: ColorFormatDetector,
 	private func previewTheme() throws {
 		let themeData = try readInputThemeData()
 		let theme = try decodedTheme(from: themeData)
-		let intermediateTheme = try unifiedIntermediateTheme(from: theme)
+		let intermediateTheme = try coercedIntermediateTheme(from: theme)
 		
 		let presetString = [
 			TokenizedString.Presets.structDefinition,
@@ -196,8 +196,18 @@ extension ColorThemeUtility: ColorFormatDetector,
 		print(themedPresetString)
 	}
 	
+	/// Tries to convert any given input theme to the specified theme format.
+	private func coercedTheme(_ intermediateTheme: IntermediateTheme, to format: ThemeFormat) throws -> Theme {
+		switch format {
+		case .intermediate:
+			return intermediateTheme
+		case .xcode:
+			return try Self.xcodeTheme(from: intermediateTheme)
+		}
+	}
+	
 	/// Tries to convert any given theme to an intermediate theme.
-	private func unifiedIntermediateTheme(from theme: Theme) throws -> IntermediateTheme {
+	private func coercedIntermediateTheme(from theme: Theme) throws -> IntermediateTheme {
 		switch theme {
 		case let intermediateTheme as IntermediateTheme:
 			return intermediateTheme
@@ -227,16 +237,30 @@ extension ColorThemeUtility: ColorFormatDetector,
 			throw ArgumentError(description: "Missing input color sequence, need exactly nine (9) base colors to create theme.")
 		}
 		
-		let theme = try Self.theme(from: inputColors)
+		let intermediateTheme = try Self.theme(from: inputColors)
+		let outputFormat = outputFormat ?? .theme(format: .intermediate)
 		
-		if humanReadable {
-			let themeColors: IntermediateTheme.EnumeratedValues<Color> = theme.enumeratedSortedByValue()
-			
-			for (property, color) in themeColors {
-				printColor(color, description: property)
+		guard case .theme(let themeFormat) = outputFormat else {
+			throw ArgumentError(description: "Supplied output format must be a theme format.")
+		}
+		
+		let outputTheme = try coercedTheme(intermediateTheme, to: themeFormat)
+		
+		switch outputTheme {
+		case let intermediateTheme as IntermediateTheme:
+			if humanReadable {
+				describeIntermediateTheme(intermediateTheme)
+			} else {
+				print(intermediateTheme.formattedEncodedDescription!)
 			}
-		} else {
-			print(theme.formattedEncodedDescription!)
+		case let xcodeTheme as XcodeTheme:
+			if humanReadable {
+				describeXcodeTheme(xcodeTheme)
+			} else {
+				print(xcodeTheme.formattedEncodedDescription!)
+			}
+		default:
+			throw ImplementationError(description: "Generated output theme with format '\(outputFormat)' can not be described.")
 		}
 	}
 
