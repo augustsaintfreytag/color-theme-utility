@@ -11,6 +11,8 @@ public struct XcodeTheme: Theme, CustomPropertyEnumerable {
 	public typealias SourceTextSyntaxColors = XcodeThemeSourceTextSyntax
 	public typealias SourceTextSyntaxFonts = XcodeThemeSourceTextSyntax
 	
+	public static var format: ThemeFormat { .xcode }
+	
 	public let dvtConsoleDebuggerInputTextColor: String
 	public let dvtConsoleDebuggerInputTextFont: String
 	public let dvtConsoleDebuggerOutputTextColor: String
