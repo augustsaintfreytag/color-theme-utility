@@ -300,12 +300,13 @@ extension ColorThemeUtility: ColorFormatDetector,
 		let description = value.description
 
 		if let color = value as? Color {
-			return ("[Color]", "\(color.hexadecimalString), \(color.description)")
+			let colorBlockDescription = colorBlock.colored(with: color)
+			return ("[Color]", "\(color.hexadecimalString) \(colorBlockDescription)")
 		}
 
 		if let color = Self.color(fromAutodetectedColorString: description) {
 			let colorBlockDescription = colorBlock.colored(with: color)
-			return ("[Color]", "\(color.hexadecimalString), \(colorBlockDescription)")
+			return ("[Color]", "\(color.hexadecimalString) \(colorBlockDescription)")
 		}
 		
 		return ("[Any]", description)
