@@ -69,7 +69,7 @@ extension HSLColorConverter {
 		
 		let chroma: ColorValue = (1 - abs(2 * lightness - 1)) * saturation
 		let factor: ColorValue = chroma * (1 - abs((hue / (60 / 360)).truncatingRemainder(dividingBy: 2) - 1))
-		let offset: ColorValue = impreciseComponent(lightness) - impreciseComponent(chroma / 2)
+		let offset: ColorValue = max(0, lightness - chroma / 2)
 		let componentFactors = rgbHueFactor(hue, chroma, factor)
 		
 		let (red, green, blue) = (
@@ -79,10 +79,6 @@ extension HSLColorConverter {
 		)
 		
 		return (red, green, blue)
-	}
-	
-	private static func impreciseComponent(_ value: ColorValue) -> ColorValue {
-		return round(value * 1000) /  1000
 	}
 	
 	private static func rgbHueFactor(_ hue: ColorValue, _ chroma: ColorValue, _ factor: ColorValue) -> RGBColorComponents {
