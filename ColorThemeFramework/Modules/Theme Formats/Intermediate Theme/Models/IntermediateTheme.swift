@@ -29,11 +29,12 @@ public struct IntermediateTheme: Theme, Codable, CustomPropertyEnumerable {
 	public let commentSectionHeader: Color
 	
 	public let keyword: Color
-	public let declarationType: Color
 	public let declarationAny: Color
+	public let declarationType: Color
 	public let functionProject: Color
 	public let functionSystem: Color
 	public let functionParameter: Color
+	public let preprocessorStatement: Color
 	public let preprocessorProject: Color
 	public let preprocessorSystem: Color
 	public let constantProject: Color

@@ -192,7 +192,7 @@ extension TokenizedString {
 				.word("Characters", as: \.character), .newLine,
 				.word("Numbers", as: \.number), .newLine,
 				.word("Keywords", as: \.keyword), .newLine,
-				.word("Preprocessor Statements", as: \.preprocessorSystem), .newLine,
+				.word("Preprocessor Statements", as: \.preprocessorStatement), .newLine,
 				.word("URLs", as: \.url), .newLine,
 				.word("Attributes", as: \.attribute), .newLine,
 				.word("Type Declarations", as: \.declarationType), .newLine,
