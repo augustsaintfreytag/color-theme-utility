@@ -251,13 +251,13 @@ extension ColorThemeUtility: ColorFormatDetector,
 			if humanReadable {
 				describeIntermediateTheme(intermediateTheme)
 			} else {
-				print(intermediateTheme.formattedEncodedDescription!)
+				print(try Self.encodedTheme(intermediateTheme, with: .json))
 			}
 		case let xcodeTheme as XcodeTheme:
 			if humanReadable {
 				describeXcodeTheme(xcodeTheme)
 			} else {
-				print(xcodeTheme.formattedEncodedDescription!)
+				print(try Self.encodedTheme(xcodeTheme, with: .plist))
 			}
 		default:
 			throw ImplementationError(description: "Generated output theme with format '\(outputFormat)' can not be described.")
