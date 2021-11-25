@@ -205,6 +205,8 @@ extension XcodeThemeModeler {
 			constantSystem: try color(themeSyntax.xcodeSyntaxIdentifierConstantSystem),
 			variableProject: try color(themeSyntax.xcodeSyntaxIdentifierVariable),
 			variableSystem: try color(themeSyntax.xcodeSyntaxIdentifierVariableSystem),
+			globalTypeProject: try color(themeSyntax.xcodeSyntaxIdentifierVariable),
+			globalTypeSystem: try color(themeSyntax.xcodeSyntaxIdentifierVariableSystem),
 			referenceTypeProject: try color(themeSyntax.xcodeSyntaxIdentifierClass),
 			referenceTypeSystem: try color(themeSyntax.xcodeSyntaxIdentifierClassSystem),
 			valueTypeProject: try color(themeSyntax.xcodeSyntaxIdentifierType),

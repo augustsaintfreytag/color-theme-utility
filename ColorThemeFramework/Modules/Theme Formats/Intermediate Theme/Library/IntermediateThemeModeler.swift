@@ -78,6 +78,8 @@ extension IntermediateThemeModeler {
 			constantSystem: constantColors[0],
 			variableProject: variableColors[1],
 			variableSystem: variableColors[0],
+			globalTypeProject: variableColors[1],
+			globalTypeSystem: variableColors[0],
 			referenceTypeProject: referenceTypeColors[2],
 			referenceTypeSystem: referenceTypeColors[1],
 			valueTypeProject: valueTypeColors[2],
