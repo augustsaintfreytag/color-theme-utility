@@ -35,6 +35,9 @@ struct ColorThemeUtility: ParsableCommand {
 	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating colors or themes. (options: \(OutputFormat.allCasesHelpDescription))")
 	var outputFormat: OutputFormat?
 	
+	@Option(name: [.customShort("p"), .customLong("preview")], help: "The sample content used to preview themes. (options: \(PreviewFormat.allCasesHelpDescription))")
+	var previewFormat: PreviewFormat?
+	
 	@Flag(name: [.customShort("h"), .customLong("human-readable")], help: "Outputs data and models in a human-readable format. (default: false)")
 	var humanReadable: Bool = false
 	
@@ -193,15 +196,23 @@ extension ColorThemeUtility: ColorFormatDetector,
 		let theme = try decodedTheme(from: themeData)
 		let intermediateTheme = try coercedIntermediateTheme(from: theme)
 		
-		let presetString = [
-			TokenizedString.Presets.structDefinition,
-			TokenizedString.Presets.protocolWithFunctionDefinition,
-			TokenizedString.Presets.literalDeclarations
-		].joinedWithDivider()
-
+		let presetString = presetString(for: previewFormat ?? .code)
 		let themedPresetString = presetString.withLineNumbers.withPadding.themedString(with: intermediateTheme)
 		
 		print(themedPresetString)
+	}
+	
+	private func presetString(for format: PreviewFormat) -> TokenizedString {
+		switch format {
+		case .code:
+			return [
+				TokenizedString.Presets.structDefinition,
+				TokenizedString.Presets.protocolWithFunctionDefinition,
+				TokenizedString.Presets.literalDeclarations
+			].joinedWithDivider()
+		case .xcode:
+			return TokenizedString.Presets.xcodePreferences
+		}
 	}
 	
 	/// Tries to convert any given input theme to the specified theme format.
