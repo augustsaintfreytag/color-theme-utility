@@ -13,6 +13,7 @@
 		8B4150EB27143E3400873BBF /* IntermediateThemeModeler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4150EA27143E3400873BBF /* IntermediateThemeModeler.swift */; };
 		8B4150EE27147D8900873BBF /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4150ED27147D8900873BBF /* Transformers.swift */; };
 		8B57B5142705B3E500A60D1C /* ArgumentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57B5132705B3E500A60D1C /* ArgumentError.swift */; };
+		8B69B3A6274F906500732343 /* PreviewFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B3A5274F906500732343 /* PreviewFormat.swift */; };
 		8B6BE04D270C731D0063B0BA /* ColorThemeFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6BE044270C731D0063B0BA /* ColorThemeFramework.framework */; };
 		8B6BE052270C731D0063B0BA /* ColorModelingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE051270C731D0063B0BA /* ColorModelingTest.swift */; };
 		8B6BE054270C731D0063B0BA /* ColorThemeFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B6BE046270C731D0063B0BA /* ColorThemeFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -109,6 +110,7 @@
 		8B57B5102704875D00A60D1C /* ColorFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorFormat.swift; sourceTree = "<group>"; };
 		8B57B5132705B3E500A60D1C /* ArgumentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentError.swift; sourceTree = "<group>"; };
 		8B57B5152705BABB00A60D1C /* ColorModeler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModeler.swift; sourceTree = "<group>"; };
+		8B69B3A5274F906500732343 /* PreviewFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewFormat.swift; sourceTree = "<group>"; };
 		8B6BE02A2709ABFE0063B0BA /* HexadecimalColorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexadecimalColorParser.swift; sourceTree = "<group>"; };
 		8B6BE02C2709B12C0063B0BA /* FloatRGBAColorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatRGBAColorParser.swift; sourceTree = "<group>"; };
 		8B6BE02E2709B9240063B0BA /* HSLColorConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSLColorConverter.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 			children = (
 				8B79D52C273691B70010233E /* Mode.swift */,
 				8B79D52E273691D30010233E /* OutputFormat.swift */,
+				8B69B3A5274F906500732343 /* PreviewFormat.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -661,6 +664,7 @@
 				8B79D52F273691D30010233E /* OutputFormat.swift in Sources */,
 				8B57B5142705B3E500A60D1C /* ArgumentError.swift in Sources */,
 				8B6BE092270DB5470063B0BA /* String+CustomColorable.swift in Sources */,
+				8B69B3A6274F906500732343 /* PreviewFormat.swift in Sources */,
 				8B79D52727353C300010233E /* TokenizedStringPaddingProvider.swift in Sources */,
 				8BEDE620272DCB0500CFF886 /* TokenizedString.swift in Sources */,
 			);
