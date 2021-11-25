@@ -41,6 +41,8 @@ public struct IntermediateTheme: Theme, Codable, CustomPropertyEnumerable {
 	public let constantSystem: Color
 	public let variableProject: Color
 	public let variableSystem: Color
+	public let globalTypeProject: Color
+	public let globalTypeSystem: Color
 	public let referenceTypeProject: Color
 	public let referenceTypeSystem: Color
 	public let valueTypeProject: Color
