@@ -61,17 +61,19 @@ struct ColorThemeUtility: ParsableCommand {
 
 }
 
+// MARK: Commands
+
 extension ColorThemeUtility: ColorFormatDetector,
-								ColorModeler,
-								ThemeImporter,
-								ThemeCoder,
-								HSLColorConverter,
-								ColorExtrapolator,
-								IntermediateThemeModeler,
-								XcodeThemeModeler,
-								TableFormatter {
+							 ColorModeler,
+							 ThemeImporter,
+							 ThemeCoder,
+							 HSLColorConverter,
+							 ColorExtrapolator,
+							 IntermediateThemeModeler,
+							 XcodeThemeModeler,
+							 TableFormatter {
 	
-	// MARK: Commands
+	// MARK: Describe Color
 	
 	private func describeColor() throws {
 		guard let inputColor = inputColors?.first else {
@@ -93,6 +95,8 @@ extension ColorThemeUtility: ColorFormatDetector,
 		}
 	}
 	
+	// MARK: Convert Color
+	
 	private func convertColor() throws {
 		guard let inputColorString = inputColors?.first, let inputColor = Self.color(fromAutodetectedColorString: inputColorString) else {
 			throw ArgumentError(description: "Missing input color or given input has invalid or unsupported format.")
@@ -109,6 +113,8 @@ extension ColorThemeUtility: ColorFormatDetector,
 			print(inputColor.hexadecimalString)
 		}
 	}
+	
+	// MARK: Describe Theme
 	
 	/// Parses the given theme file and prints its contents in a readable format.
 	///
@@ -180,6 +186,8 @@ extension ColorThemeUtility: ColorFormatDetector,
 		return fileData
 	}
 	
+	// MARK: Preview Theme
+	
 	private func previewTheme() throws {
 		let themeData = try readInputThemeData()
 		let theme = try decodedTheme(from: themeData)
@@ -218,6 +226,8 @@ extension ColorThemeUtility: ColorFormatDetector,
 		}
 	}
 	
+	// MARK: Generate Palette
+	
 	private func generatePalette() throws {
 		guard let inputColor = inputColors?.first, let color = Self.color(fromAutodetectedColorString: inputColor) else {
 			throw ArgumentError(description: "Missing or invalid input color, need base color to generate palette.")
@@ -231,6 +241,8 @@ extension ColorThemeUtility: ColorFormatDetector,
 			printColor(paletteColor, description: "Palette color #\(index + 1) (\(paletteColor.description))")
 		}
 	}
+	
+	// MARK: Generate Theme
 	
 	private func generateTheme() throws {
 		guard let inputColors = inputColors?.compactMap({ string in Self.color(fromAutodetectedColorString: string) }), !inputColors.isEmpty else {
@@ -263,6 +275,8 @@ extension ColorThemeUtility: ColorFormatDetector,
 			throw ImplementationError(description: "Generated output theme with format '\(outputFormat)' can not be described.")
 		}
 	}
+	
+	// MARK: Convert Theme
 
 	private func convertTheme() throws {
 		// Take existing theme file as input.
@@ -293,7 +307,7 @@ extension ColorThemeUtility: ColorFormatDetector,
 		print(try Self.encodedTheme(xcodeTheme, with: .plist))
 	}
 	
-	// MARK: Utility
+	// MARK: Common Utility
 	
 	private var colorBlock: String { "████████" }
 	
