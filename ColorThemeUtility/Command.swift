@@ -215,8 +215,14 @@ extension ColorThemeUtility: ColorFormatDetector,
 		}
 	}
 	
-	/// Tries to convert any given input theme to the specified theme format.
-	private func coercedTheme(_ intermediateTheme: IntermediateTheme, to format: ThemeFormat) throws -> Theme {
+	/// Tries to coerce a given generated theme to the specified theme format.
+	///
+	/// Coercion to intermediate theme format is lossless (data is not touched).
+	///
+	/// - Important: Will apply *color correction* when converting to Xcode theme
+	/// format (if enabled in command configuration).
+	///
+	private func coercedGeneratedTheme(_ intermediateTheme: IntermediateTheme, to format: ThemeFormat) throws -> Theme {
 		switch format {
 		case .intermediate:
 			return intermediateTheme
@@ -267,7 +273,7 @@ extension ColorThemeUtility: ColorFormatDetector,
 			throw ArgumentError(description: "Supplied output format must be a theme format.")
 		}
 		
-		let outputTheme = try coercedTheme(intermediateTheme, to: themeFormat)
+		let outputTheme = try coercedGeneratedTheme(intermediateTheme, to: themeFormat)
 		
 		switch outputTheme {
 		case let intermediateTheme as IntermediateTheme:
