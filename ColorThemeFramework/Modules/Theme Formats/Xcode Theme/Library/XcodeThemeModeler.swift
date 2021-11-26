@@ -130,7 +130,7 @@ extension XcodeThemeModeler {
 			xcodeSyntaxMarkupCode: value(theme.comment),
 			xcodeSyntaxNumber: value(theme.number),
 			xcodeSyntaxPlain: value(theme.foreground),
-			xcodeSyntaxPreprocessor: value(theme.keyword),
+			xcodeSyntaxPreprocessor: value(theme.preprocessorStatement),
 			xcodeSyntaxString: value(theme.string),
 			xcodeSyntaxUrl: value(theme.url)
 		)
@@ -181,7 +181,7 @@ extension XcodeThemeModeler {
 		let themeSyntax = theme.dvtSourceTextSyntaxColors
 		
 		return IntermediateTheme(
-			header: IntermediateTheme.defaultHeader,
+			format: IntermediateTheme.defaultFormat,
 			version: IntermediateTheme.defaultVersion,
 			foreground: try color(themeSyntax.xcodeSyntaxPlain),
 			background: try color(theme.dvtSourceTextBackground),
@@ -193,17 +193,20 @@ extension XcodeThemeModeler {
 			commentSection: try color(themeSyntax.xcodeSyntaxMark),
 			commentSectionHeader: try color(themeSyntax.xcodeSyntaxCommentDocKeyword),
 			keyword: try color(themeSyntax.xcodeSyntaxKeyword),
-			declarationType: try color(themeSyntax.xcodeSyntaxDeclarationType),
 			declarationAny: try color(themeSyntax.xcodeSyntaxDeclarationOther),
+			declarationType: try color(themeSyntax.xcodeSyntaxDeclarationType),
 			functionProject: try color(themeSyntax.xcodeSyntaxIdentifierFunction),
 			functionSystem: try color(themeSyntax.xcodeSyntaxIdentifierFunctionSystem),
 			functionParameter: try color(themeSyntax.xcodeSyntaxPlain),
+			preprocessorStatement: try color(themeSyntax.xcodeSyntaxPreprocessor),
 			preprocessorProject: try color(themeSyntax.xcodeSyntaxIdentifierMacro),
 			preprocessorSystem: try color(themeSyntax.xcodeSyntaxIdentifierMacroSystem),
 			constantProject: try color(themeSyntax.xcodeSyntaxIdentifierConstant),
 			constantSystem: try color(themeSyntax.xcodeSyntaxIdentifierConstantSystem),
-			variableProject: try color(themeSyntax.xcodeSyntaxIdentifierConstant),
-			variableSystem: try color(themeSyntax.xcodeSyntaxIdentifierConstantSystem),
+			variableProject: try color(themeSyntax.xcodeSyntaxIdentifierVariable),
+			variableSystem: try color(themeSyntax.xcodeSyntaxIdentifierVariableSystem),
+			globalTypeProject: try color(themeSyntax.xcodeSyntaxIdentifierVariable),
+			globalTypeSystem: try color(themeSyntax.xcodeSyntaxIdentifierVariableSystem),
 			referenceTypeProject: try color(themeSyntax.xcodeSyntaxIdentifierClass),
 			referenceTypeSystem: try color(themeSyntax.xcodeSyntaxIdentifierClassSystem),
 			valueTypeProject: try color(themeSyntax.xcodeSyntaxIdentifierType),

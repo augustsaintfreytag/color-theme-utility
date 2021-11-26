@@ -18,7 +18,7 @@ extension ThemeFormatDetector {
 			return nil
 		}
 		
-		if dataString.contains(IntermediateTheme.defaultHeader) {
+		if dataString.contains(IntermediateTheme.defaultFormat) {
 			return .intermediate
 		}
 		

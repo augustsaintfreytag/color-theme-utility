@@ -35,8 +35,14 @@ struct ColorThemeUtility: ParsableCommand {
 	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating colors or themes. (options: \(OutputFormat.allCasesHelpDescription))")
 	var outputFormat: OutputFormat?
 	
+	@Option(name: [.customShort("p"), .customLong("preview")], help: "The sample content used to preview themes. (options: \(PreviewFormat.allCasesHelpDescription))")
+	var previewFormat: PreviewFormat?
+	
 	@Flag(name: [.customShort("h"), .customLong("human-readable")], help: "Outputs data and models in a human-readable format. (default: false)")
 	var humanReadable: Bool = false
+
+	@Flag(name: [.customLong("color-correct-preview")], help: "Skips color correction for theme preview to account for differences in terminal rendering (iTerm 2). (default: true)")
+	var skipColorCorrectPreview: Bool = false
 	
 	// MARK: Run
 	
@@ -61,17 +67,21 @@ struct ColorThemeUtility: ParsableCommand {
 
 }
 
-extension ColorThemeUtility: ColorFormatDetector,
-								ColorModeler,
-								ThemeImporter,
-								ThemeCoder,
-								HSLColorConverter,
-								ColorExtrapolator,
-								IntermediateThemeModeler,
-								XcodeThemeModeler,
-								TableFormatter {
+// MARK: Commands
+
+extension ColorThemeUtility: TerminalDetector,
+							 ColorFormatDetector,
+							 ColorModeler,
+							 ThemeImporter,
+							 ThemeCoder,
+							 HSLColorConverter,
+							 ColorExtrapolator,
+							 IntermediateThemeModeler,
+							 ThemeColorCorrector,
+							 XcodeThemeModeler,
+							 TableFormatter {
 	
-	// MARK: Commands
+	// MARK: Describe Color
 	
 	private func describeColor() throws {
 		guard let inputColor = inputColors?.first else {
@@ -93,6 +103,8 @@ extension ColorThemeUtility: ColorFormatDetector,
 		}
 	}
 	
+	// MARK: Convert Color
+	
 	private func convertColor() throws {
 		guard let inputColorString = inputColors?.first, let inputColor = Self.color(fromAutodetectedColorString: inputColorString) else {
 			throw ArgumentError(description: "Missing input color or given input has invalid or unsupported format.")
@@ -110,6 +122,8 @@ extension ColorThemeUtility: ColorFormatDetector,
 		}
 	}
 	
+	// MARK: Describe Theme
+	
 	/// Parses the given theme file and prints its contents in a readable format.
 	///
 	/// Options to visualize and present a theme:
@@ -118,17 +132,54 @@ extension ColorThemeUtility: ColorFormatDetector,
 	///
 	private func describeTheme() throws {
 		let themeData = try readInputThemeData()
-		
-		let xcodeTheme: XcodeTheme = try {
-			do {
+		let themeFormat = themeFormat(for: themeData)
+
+		do {
+			switch themeFormat {
+			case .intermediate:
+				let decoder = JSONDecoder()
+				let intermediateTheme = try decoder.decode(IntermediateTheme.self, from: themeData)
+
+				describeIntermediateTheme(intermediateTheme)
+			case .xcode:
 				let decoder = PropertyListDecoder()
-				return try decoder.decode(XcodeTheme.self, from: themeData)
-			} catch {
-				throw ThemeCodingError(description: "Could not decode supplied theme file as an Xcode theme model. \(error.localizedDescription)")
+				let xcodeTheme = try decoder.decode(XcodeTheme.self, from: themeData)
+
+				describeXcodeTheme(xcodeTheme)
+			case .none:
+				throw ThemeCodingError(description: "Could not determine format of supplied theme.")
 			}
-		}()
-		
-		describeXcodeTheme(xcodeTheme)
+		} catch {
+			throw ThemeCodingError(description: "Could not decode theme. \(error.localizedDescription)")
+		}
+	}
+
+	private func describeIntermediateTheme(_ theme: IntermediateTheme) {
+		var rows: [[String]] = []
+
+		enumeratedPropertyDescriptions(from: theme.enumerated()).forEach { description in
+			rows.append(description)
+		}
+
+		Self.tabulateAndPrintLines(rows)
+	}
+
+	private func describeXcodeTheme(_ theme: XcodeTheme) {
+		var rows: [[String]] = []
+
+		enumeratedPropertyDescriptions(from: theme.enumerated()).forEach { description in
+			rows.append(description)
+		}
+
+		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxColors.enumerated(), childrenOf: "dvtSourceTextSyntaxColors").forEach { description in
+			rows.append(description)
+		}
+
+		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxFonts.enumerated(), childrenOf: "dvtSourceTextSyntaxColors").forEach { description in
+			rows.append(description)
+		}
+
+		Self.tabulateAndPrintLines(rows)
 	}
 	
 	private func readInputThemeData() throws -> Data {
@@ -143,21 +194,54 @@ extension ColorThemeUtility: ColorFormatDetector,
 		return fileData
 	}
 	
+	// MARK: Preview Theme
+	
 	private func previewTheme() throws {
-		// Limited support: Only intermediate and Xcode formats are supported.
-		
 		let themeData = try readInputThemeData()
 		let theme = try decodedTheme(from: themeData)
-		let intermediateTheme = try unifiedIntermediateTheme(from: theme)
+		var intermediateTheme = try coercedIntermediateTheme(from: theme)
 		
-		let presetString = TokenizedString.Presets.protocolWithFunctionDefinition + TokenizedString.divider + TokenizedString.Presets.literalDeclarations
+		if !skipColorCorrectPreview, let terminal = Self.terminalApplication {
+			intermediateTheme = Self.colorCorrectedTheme(intermediateTheme, for: terminal)
+		}
+		
+		let presetString = presetString(for: previewFormat ?? .code)
 		let themedPresetString = presetString.withLineNumbers.withPadding.themedString(with: intermediateTheme)
 		
 		print(themedPresetString)
 	}
 	
+	private func presetString(for format: PreviewFormat) -> TokenizedString {
+		switch format {
+		case .code:
+			return [
+				TokenizedString.Presets.structDefinition,
+				TokenizedString.Presets.protocolWithFunctionDefinition,
+				TokenizedString.Presets.literalDeclarations
+			].joinedWithDivider()
+		case .xcode:
+			return TokenizedString.Presets.xcodePreferences
+		}
+	}
+	
+	/// Tries to coerce a given generated theme to the specified theme format.
+	///
+	/// Coercion to intermediate theme format is lossless (data is not touched).
+	///
+	/// - Important: Will apply *color correction* when converting to Xcode theme
+	/// format (if enabled in command configuration).
+	///
+	private func coercedGeneratedTheme(_ intermediateTheme: IntermediateTheme, to format: ThemeFormat) throws -> Theme {
+		switch format {
+		case .intermediate:
+			return intermediateTheme
+		case .xcode:
+			return try Self.xcodeTheme(from: intermediateTheme)
+		}
+	}
+	
 	/// Tries to convert any given theme to an intermediate theme.
-	private func unifiedIntermediateTheme(from theme: Theme) throws -> IntermediateTheme {
+	private func coercedIntermediateTheme(from theme: Theme) throws -> IntermediateTheme {
 		switch theme {
 		case let intermediateTheme as IntermediateTheme:
 			return intermediateTheme
@@ -168,23 +252,7 @@ extension ColorThemeUtility: ColorFormatDetector,
 		}
 	}
 	
-	private func describeXcodeTheme(_ theme: XcodeTheme) {
-		var rows: [[String]] = []
-		
-		enumeratedPropertyDescriptions(from: theme.enumerated()).forEach { description in
-			rows.append(description)
-		}
-		
-		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxColors.enumerated(), childrenOf: "dvtSourceTextSyntaxColors").forEach { description in
-			rows.append(description)
-		}
-		
-		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxFonts.enumerated(), childrenOf: "dvtSourceTextSyntaxColors").forEach { description in
-			rows.append(description)
-		}
-		
-		Self.tabulateAndPrintLines(rows)
-	}
+	// MARK: Generate Palette
 	
 	private func generatePalette() throws {
 		guard let inputColor = inputColors?.first, let color = Self.color(fromAutodetectedColorString: inputColor) else {
@@ -200,23 +268,41 @@ extension ColorThemeUtility: ColorFormatDetector,
 		}
 	}
 	
+	// MARK: Generate Theme
+	
 	private func generateTheme() throws {
 		guard let inputColors = inputColors?.compactMap({ string in Self.color(fromAutodetectedColorString: string) }), !inputColors.isEmpty else {
 			throw ArgumentError(description: "Missing input color sequence, need exactly nine (9) base colors to create theme.")
 		}
 		
-		let theme = try Self.theme(from: inputColors)
+		let intermediateTheme = try Self.theme(from: inputColors)
+		let outputFormat = outputFormat ?? .theme(format: .intermediate)
 		
-		if humanReadable {
-			let themeColors: IntermediateTheme.EnumeratedValues<Color> = theme.enumeratedSortedByValue()
-			
-			for (property, color) in themeColors {
-				printColor(color, description: property)
+		guard case .theme(let themeFormat) = outputFormat else {
+			throw ArgumentError(description: "Supplied output format must be a theme format.")
+		}
+		
+		let outputTheme = try coercedGeneratedTheme(intermediateTheme, to: themeFormat)
+		
+		switch outputTheme {
+		case let intermediateTheme as IntermediateTheme:
+			if humanReadable {
+				describeIntermediateTheme(intermediateTheme)
+			} else {
+				print(try Self.encodedTheme(intermediateTheme, with: .json))
 			}
-		} else {
-			print(theme.formattedEncodedDescription!)
+		case let xcodeTheme as XcodeTheme:
+			if humanReadable {
+				describeXcodeTheme(xcodeTheme)
+			} else {
+				print(try Self.encodedTheme(xcodeTheme, with: .plist))
+			}
+		default:
+			throw ImplementationError(description: "Generated output theme with format '\(outputFormat)' can not be described.")
 		}
 	}
+	
+	// MARK: Convert Theme
 
 	private func convertTheme() throws {
 		// Take existing theme file as input.
@@ -247,7 +333,7 @@ extension ColorThemeUtility: ColorFormatDetector,
 		print(try Self.encodedTheme(xcodeTheme, with: .plist))
 	}
 	
-	// MARK: Utility
+	// MARK: Common Utility
 	
 	private var colorBlock: String { "████████" }
 	
@@ -281,7 +367,12 @@ extension ColorThemeUtility: ColorFormatDetector,
 	
 	private func valueDescription(of value: CustomStringConvertible) -> (format: String, value: String) {
 		let description = value.description
-		
+
+		if let color = value as? Color {
+			let colorBlockDescription = colorBlock.colored(with: color)
+			return ("[Color]", "\(color.hexadecimalString) \(colorBlockDescription)")
+		}
+
 		if let color = Self.color(fromAutodetectedColorString: description) {
 			let colorBlockDescription = colorBlock.colored(with: color)
 			return ("[Color]", "\(color.hexadecimalString) \(colorBlockDescription)")

@@ -7,7 +7,11 @@
 import Foundation
 
 /// A theme of a fixed collection of color values, used for a specific domain or for exchange.
-public protocol Theme {}
+public protocol Theme {
+	
+	static var format: ThemeFormat { get }
+	
+}
 
 extension Theme where Self: Encodable {
 	
