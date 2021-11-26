@@ -18,8 +18,17 @@ extension ThemeColorCorrector {
 	private static var itermBackgroundColorCorrection: HSLColorComponents { (0, 0, 0.05) }
 
 	/// Applies color correction for *iTerm* to all colors in the given theme.
-	public static func colorCorrectedThemeForTerminal(_ theme: IntermediateTheme) -> IntermediateTheme {
-		theme.transformed { keyPath, color in
+	public static func colorCorrectedTheme(_ theme: IntermediateTheme, for terminal: TerminalApplication) -> IntermediateTheme {
+		switch terminal {
+		case .iterm:
+			return colorCorrectedThemeForIterm(theme)
+		default:
+			return theme
+		}
+	}
+
+	private static func colorCorrectedThemeForIterm(_ theme: IntermediateTheme) -> IntermediateTheme {
+		return theme.transformed { keyPath, color in
 			var (hue, saturation, lightness) = color.hsl
 
 			switch keyPath {
