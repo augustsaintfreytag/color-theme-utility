@@ -56,3 +56,48 @@ public struct IntermediateTheme: Theme, Codable, CustomPropertyEnumerable {
 	public let url: Color
 	
 }
+
+extension IntermediateTheme {
+	
+	public func transformed(_ block: (_ keyPath: KeyPath<IntermediateTheme, Color>, _ color: Color) -> Color) -> IntermediateTheme {
+		return IntermediateTheme(
+			format: format,
+			version: version,
+			foreground: block(\.foreground, foreground),
+			background: block(\.background, background),
+			selectionBackground: block(\.selectionBackground, selectionBackground),
+			activeLineBackground: block(\.activeLineBackground, activeLineBackground),
+			insertionPoint: block(\.insertionPoint, insertionPoint),
+			comment: block(\.comment, comment),
+			commentDocumentation: block(\.commentDocumentation, commentDocumentation),
+			commentSection: block(\.commentSection, commentSection),
+			commentSectionHeader: block(\.commentSectionHeader, commentSectionHeader),
+			keyword: block(\.keyword, keyword),
+			declarationAny: block(\.declarationAny, declarationAny),
+			declarationType: block(\.declarationType, declarationType),
+			functionProject: block(\.functionProject, functionProject),
+			functionSystem: block(\.functionSystem, functionSystem),
+			functionParameter: block(\.functionParameter, functionParameter),
+			preprocessorStatement: block(\.preprocessorStatement, preprocessorStatement),
+			preprocessorProject: block(\.preprocessorProject, preprocessorProject),
+			preprocessorSystem: block(\.preprocessorSystem, preprocessorSystem),
+			constantProject: block(\.constantProject, constantProject),
+			constantSystem: block(\.constantSystem, constantSystem),
+			variableProject: block(\.variableProject, variableProject),
+			variableSystem: block(\.variableSystem, variableSystem),
+			globalTypeProject: block(\.globalTypeProject, globalTypeProject),
+			globalTypeSystem: block(\.globalTypeSystem, globalTypeSystem),
+			referenceTypeProject: block(\.referenceTypeProject, referenceTypeProject),
+			referenceTypeSystem: block(\.referenceTypeSystem, referenceTypeSystem),
+			valueTypeProject: block(\.valueTypeProject, valueTypeProject),
+			valueTypeSystem: block(\.valueTypeSystem, valueTypeSystem),
+			attribute: block(\.attribute, attribute),
+			module: block(\.module, module),
+			number: block(\.number, number),
+			string: block(\.string, string),
+			character: block(\.character, character),
+			url: block(\.url, url)
+		)
+	}
+	
+}
