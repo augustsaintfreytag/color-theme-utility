@@ -40,6 +40,9 @@ struct ColorThemeUtility: ParsableCommand {
 	
 	@Flag(name: [.customShort("h"), .customLong("human-readable")], help: "Outputs data and models in a human-readable format. (default: false)")
 	var humanReadable: Bool = false
+
+	@Flag(name: [.customLong("color-correct-preview")], help: "Skips color correction for theme preview to account for differences in terminal rendering (iTerm 2). (default: true)")
+	var skipColorCorrectPreview: Bool = false
 	
 	// MARK: Run
 	
@@ -66,13 +69,15 @@ struct ColorThemeUtility: ParsableCommand {
 
 // MARK: Commands
 
-extension ColorThemeUtility: ColorFormatDetector,
+extension ColorThemeUtility: TerminalDetector,
+							 ColorFormatDetector,
 							 ColorModeler,
 							 ThemeImporter,
 							 ThemeCoder,
 							 HSLColorConverter,
 							 ColorExtrapolator,
 							 IntermediateThemeModeler,
+							 ThemeColorCorrector,
 							 XcodeThemeModeler,
 							 TableFormatter {
 	
@@ -194,7 +199,11 @@ extension ColorThemeUtility: ColorFormatDetector,
 	private func previewTheme() throws {
 		let themeData = try readInputThemeData()
 		let theme = try decodedTheme(from: themeData)
-		let intermediateTheme = try coercedIntermediateTheme(from: theme)
+		var intermediateTheme = try coercedIntermediateTheme(from: theme)
+		
+		if !skipColorCorrectPreview, let terminal = Self.terminalApplication {
+			intermediateTheme = Self.colorCorrectedTheme(intermediateTheme, for: terminal)
+		}
 		
 		let presetString = presetString(for: previewFormat ?? .code)
 		let themedPresetString = presetString.withLineNumbers.withPadding.themedString(with: intermediateTheme)
@@ -215,8 +224,14 @@ extension ColorThemeUtility: ColorFormatDetector,
 		}
 	}
 	
-	/// Tries to convert any given input theme to the specified theme format.
-	private func coercedTheme(_ intermediateTheme: IntermediateTheme, to format: ThemeFormat) throws -> Theme {
+	/// Tries to coerce a given generated theme to the specified theme format.
+	///
+	/// Coercion to intermediate theme format is lossless (data is not touched).
+	///
+	/// - Important: Will apply *color correction* when converting to Xcode theme
+	/// format (if enabled in command configuration).
+	///
+	private func coercedGeneratedTheme(_ intermediateTheme: IntermediateTheme, to format: ThemeFormat) throws -> Theme {
 		switch format {
 		case .intermediate:
 			return intermediateTheme
@@ -267,7 +282,7 @@ extension ColorThemeUtility: ColorFormatDetector,
 			throw ArgumentError(description: "Supplied output format must be a theme format.")
 		}
 		
-		let outputTheme = try coercedTheme(intermediateTheme, to: themeFormat)
+		let outputTheme = try coercedGeneratedTheme(intermediateTheme, to: themeFormat)
 		
 		switch outputTheme {
 		case let intermediateTheme as IntermediateTheme:
