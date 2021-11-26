@@ -40,6 +40,9 @@ struct ColorThemeUtility: ParsableCommand {
 	
 	@Flag(name: [.customShort("h"), .customLong("human-readable")], help: "Outputs data and models in a human-readable format. (default: false)")
 	var humanReadable: Bool = false
+
+	@Flag(name: [.customLong("color-correct-preview")], help: "Applies color correction to theme preview to account for differences in rendering in some terminals (iTerm 2). (default: true)")
+	var colorCorrectPreview: Bool = true
 	
 	// MARK: Run
 	
@@ -73,6 +76,7 @@ extension ColorThemeUtility: ColorFormatDetector,
 							 HSLColorConverter,
 							 ColorExtrapolator,
 							 IntermediateThemeModeler,
+							 ThemeColorCorrector,
 							 XcodeThemeModeler,
 							 TableFormatter {
 	
@@ -194,7 +198,11 @@ extension ColorThemeUtility: ColorFormatDetector,
 	private func previewTheme() throws {
 		let themeData = try readInputThemeData()
 		let theme = try decodedTheme(from: themeData)
-		let intermediateTheme = try coercedIntermediateTheme(from: theme)
+		var intermediateTheme = try coercedIntermediateTheme(from: theme)
+		
+		if colorCorrectPreview {
+			intermediateTheme = Self.colorCorrectedThemeForTerminal(intermediateTheme)
+		}
 		
 		let presetString = presetString(for: previewFormat ?? .code)
 		let themedPresetString = presetString.withLineNumbers.withPadding.themedString(with: intermediateTheme)
