@@ -26,15 +26,21 @@ public struct Color: Codable {
 	// MARK: Init
 	
 	public init(red: ColorValue, green: ColorValue, blue: ColorValue) {
-		self.red = red
-		self.green = green
-		self.blue = blue
+		self.red = Self.limit(red)
+		self.green = Self.limit(green)
+		self.blue = Self.limit(blue)
 	}
 	
 	// MARK: Convenience Properties
 	
 	public var rgb: (red: ColorValue, green: ColorValue, blue: ColorValue) {
 		return (red, green, blue)
+	}
+	
+	// MARK: Utility
+	
+	private static func limit(_ value: ColorValue) -> ColorValue {
+		return max(0, min(1, value))
 	}
 	
 }
