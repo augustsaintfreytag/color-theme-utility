@@ -6,13 +6,18 @@
 
 import Foundation
 
-public protocol IntermediateThemeColorCorrector: HSLColorConverter {}
+/// Functionality to color correct themes for display in terminals.
+///
+/// This protocol only supports applying color correction for *iTerm*.
+/// Support for other terminal applications may be added in a future version.
+public protocol ThemeColorCorrector: HSLColorConverter {}
 
-extension IntermediateThemeColorCorrector {
+extension ThemeColorCorrector {
 	
 	private static var itermForegroundColorCorrection: HSLColorComponents { (0, 0, 0.05) }
 	private static var itermBackgroundColorCorrection: HSLColorComponents { (0, 0, 0.05) }
-	
+
+	/// Applies color correction for *iTerm* to all colors in the given theme.
 	public static func colorCorrectedThemeForTerminal(_ theme: IntermediateTheme) -> IntermediateTheme {
 		theme.transformed { keyPath, color in
 			var (hue, saturation, lightness) = color.hsl
