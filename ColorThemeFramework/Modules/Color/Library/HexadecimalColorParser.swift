@@ -21,7 +21,7 @@ extension HexadecimalColorParser {
 	
 	/// The highest encodable hexadecimal value per color component.
 	/// Calculated as `Float(16 ^ 2 - 1)`.
-	private static var maxHexadecimalValue: Float { 255 }
+	private static var maxHexadecimalValue: ColorValue { 255 }
 	
 	// MARK: Input Computation
 	
@@ -67,7 +67,7 @@ extension HexadecimalColorParser {
 	
 	private static func colorValue(fromHexadecimalString string: String) -> ColorValue {
 		let standardizedValue = Int(string, radix: 16)!
-		return Float(standardizedValue) / maxHexadecimalValue
+		return ColorValue(standardizedValue) / maxHexadecimalValue
 	}
 	
 	// MARK: Output Computation

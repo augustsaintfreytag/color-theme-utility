@@ -35,8 +35,14 @@ struct ColorThemeUtility: ParsableCommand {
 	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating colors or themes. (options: \(OutputFormat.allCasesHelpDescription))")
 	var outputFormat: OutputFormat?
 	
+	@Option(name: [.customShort("p"), .customLong("preview")], help: "The sample content used to preview themes. (options: \(PreviewFormat.allCasesHelpDescription))")
+	var previewFormat: PreviewFormat?
+	
 	@Flag(name: [.customShort("h"), .customLong("human-readable")], help: "Outputs data and models in a human-readable format. (default: false)")
 	var humanReadable: Bool = false
+
+	@Flag(name: [.customLong("color-correct-preview")], help: "Skips color correction for theme preview to account for differences in terminal rendering (iTerm 2). (default: true)")
+	var skipColorCorrectPreview: Bool = false
 	
 	// MARK: Run
 	
@@ -61,17 +67,21 @@ struct ColorThemeUtility: ParsableCommand {
 
 }
 
-extension ColorThemeUtility: ColorFormatDetector,
-								ColorModeler,
-								ThemeImporter,
-								ThemeCoder,
-								HSLColorConverter,
-								ColorExtrapolator,
-								IntermediateThemeModeler,
-								XcodeThemeModeler,
-								TableFormatter {
+// MARK: Commands
+
+extension ColorThemeUtility: TerminalDetector,
+							 ColorFormatDetector,
+							 ColorModeler,
+							 ThemeImporter,
+							 ThemeCoder,
+							 HSLColorConverter,
+							 ColorExtrapolator,
+							 IntermediateThemeModeler,
+							 ThemeColorCorrector,
+							 XcodeThemeModeler,
+							 TableFormatter {
 	
-	// MARK: Commands
+	// MARK: Describe Color
 	
 	private func describeColor() throws {
 		guard let inputColor = inputColors?.first else {
@@ -93,6 +103,8 @@ extension ColorThemeUtility: ColorFormatDetector,
 		}
 	}
 	
+	// MARK: Convert Color
+	
 	private func convertColor() throws {
 		guard let inputColorString = inputColors?.first, let inputColor = Self.color(fromAutodetectedColorString: inputColorString) else {
 			throw ArgumentError(description: "Missing input color or given input has invalid or unsupported format.")
@@ -109,6 +121,8 @@ extension ColorThemeUtility: ColorFormatDetector,
 			print(inputColor.hexadecimalString)
 		}
 	}
+	
+	// MARK: Describe Theme
 	
 	/// Parses the given theme file and prints its contents in a readable format.
 	///
@@ -180,24 +194,44 @@ extension ColorThemeUtility: ColorFormatDetector,
 		return fileData
 	}
 	
+	// MARK: Preview Theme
+	
 	private func previewTheme() throws {
 		let themeData = try readInputThemeData()
 		let theme = try decodedTheme(from: themeData)
-		let intermediateTheme = try coercedIntermediateTheme(from: theme)
+		var intermediateTheme = try coercedIntermediateTheme(from: theme)
 		
-		let presetString = [
-			TokenizedString.Presets.structDefinition,
-			TokenizedString.Presets.protocolWithFunctionDefinition,
-			TokenizedString.Presets.literalDeclarations
-		].joinedWithDivider()
-
+		if !skipColorCorrectPreview, let terminal = Self.terminalApplication {
+			intermediateTheme = Self.colorCorrectedTheme(intermediateTheme, for: terminal)
+		}
+		
+		let presetString = presetString(for: previewFormat ?? .code)
 		let themedPresetString = presetString.withLineNumbers.withPadding.themedString(with: intermediateTheme)
 		
 		print(themedPresetString)
 	}
 	
-	/// Tries to convert any given input theme to the specified theme format.
-	private func coercedTheme(_ intermediateTheme: IntermediateTheme, to format: ThemeFormat) throws -> Theme {
+	private func presetString(for format: PreviewFormat) -> TokenizedString {
+		switch format {
+		case .code:
+			return [
+				TokenizedString.Presets.structDefinition,
+				TokenizedString.Presets.protocolWithFunctionDefinition,
+				TokenizedString.Presets.literalDeclarations
+			].joinedWithDivider()
+		case .xcode:
+			return TokenizedString.Presets.xcodePreferences
+		}
+	}
+	
+	/// Tries to coerce a given generated theme to the specified theme format.
+	///
+	/// Coercion to intermediate theme format is lossless (data is not touched).
+	///
+	/// - Important: Will apply *color correction* when converting to Xcode theme
+	/// format (if enabled in command configuration).
+	///
+	private func coercedGeneratedTheme(_ intermediateTheme: IntermediateTheme, to format: ThemeFormat) throws -> Theme {
 		switch format {
 		case .intermediate:
 			return intermediateTheme
@@ -218,6 +252,8 @@ extension ColorThemeUtility: ColorFormatDetector,
 		}
 	}
 	
+	// MARK: Generate Palette
+	
 	private func generatePalette() throws {
 		guard let inputColor = inputColors?.first, let color = Self.color(fromAutodetectedColorString: inputColor) else {
 			throw ArgumentError(description: "Missing or invalid input color, need base color to generate palette.")
@@ -232,6 +268,8 @@ extension ColorThemeUtility: ColorFormatDetector,
 		}
 	}
 	
+	// MARK: Generate Theme
+	
 	private func generateTheme() throws {
 		guard let inputColors = inputColors?.compactMap({ string in Self.color(fromAutodetectedColorString: string) }), !inputColors.isEmpty else {
 			throw ArgumentError(description: "Missing input color sequence, need exactly nine (9) base colors to create theme.")
@@ -244,7 +282,7 @@ extension ColorThemeUtility: ColorFormatDetector,
 			throw ArgumentError(description: "Supplied output format must be a theme format.")
 		}
 		
-		let outputTheme = try coercedTheme(intermediateTheme, to: themeFormat)
+		let outputTheme = try coercedGeneratedTheme(intermediateTheme, to: themeFormat)
 		
 		switch outputTheme {
 		case let intermediateTheme as IntermediateTheme:
@@ -263,6 +301,8 @@ extension ColorThemeUtility: ColorFormatDetector,
 			throw ImplementationError(description: "Generated output theme with format '\(outputFormat)' can not be described.")
 		}
 	}
+	
+	// MARK: Convert Theme
 
 	private func convertTheme() throws {
 		// Take existing theme file as input.
@@ -293,7 +333,7 @@ extension ColorThemeUtility: ColorFormatDetector,
 		print(try Self.encodedTheme(xcodeTheme, with: .plist))
 	}
 	
-	// MARK: Utility
+	// MARK: Common Utility
 	
 	private var colorBlock: String { "████████" }
 	

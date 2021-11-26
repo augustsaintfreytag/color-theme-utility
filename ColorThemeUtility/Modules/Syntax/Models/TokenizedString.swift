@@ -138,6 +138,8 @@ extension TokenizedString {
 	
 	public enum Presets {
 		
+		// MARK: Code Presets
+		
 		public static var structDefinition: TokenizedString {
 			TokenizedString(tokens: [
 				.word("///", as: \.commentDocumentation), .space, .word("Model of metadata associated with stored objects.", as: \.commentDocumentation), .newLine,
@@ -145,7 +147,7 @@ extension TokenizedString {
 				.indent, .word("let", as: \.keyword), .space, .word("id", as: \.declarationAny), .word(":"), .space, .word("UUID", as: \.referenceTypeSystem), .newLine,
 				.indent, .word("let", as: \.keyword), .space, .word("created", as: \.declarationAny), .word(":"), .space, .word("Date", as: \.referenceTypeSystem), .newLine,
 				.indent, .word("let", as: \.keyword), .space, .word("owners", as: \.declarationAny), .word(":"), .space, .word("Set", as: \.referenceTypeSystem), .word("<"), .word("Owner", as: \.valueTypeProject), .word("."), .word("Identifier", as: \.valueTypeProject), .word(">"), .newLine,
-				.indent, .word("let", as: \.keyword), .space, .word("data", as: \.declarationAny), .word(":"), .space, .word("String", as: \.valueTypeSystem), .newLine,
+				.indent, .word("let", as: \.keyword), .space, .word("data", as: \.declarationAny), .word(":"), .space, .word("String", as: \.globalTypeSystem), .newLine,
 				.word("}")
 			])
 		}
@@ -170,10 +172,44 @@ extension TokenizedString {
 				.word("///", as: \.commentDocumentation), .space, .word("Metadata describing a report of stored objects.", as: \.commentDocumentation), .newLine,
 				.word("struct", as: \.keyword), .space, .word("ObjectReport", as: \.declarationType), .space, .word("{"), .newLine,
 				.indent, .word("var", as: \.keyword), .space, .word("id", as: \.declarationAny), .space, .word("="), .space, .word("UUID", as: \.valueTypeSystem), .word("()"), .newLine,
-				.indent, .word("var", as: \.keyword), .space, .word("name", as: \.declarationAny), .word(":"), .space, .word("String", as: \.valueTypeSystem), .space, .word("="), .space, .word("\"Most Recent\"", as: \.string), .newLine,
+				.indent, .word("var", as: \.keyword), .space, .word("name", as: \.declarationAny), .word(":"), .space, .word("String", as: \.globalTypeSystem), .space, .word("="), .space, .word("\"Most Recent\"", as: \.string), .newLine,
 				.indent, .word("var", as: \.keyword), .space, .word("kind", as: \.declarationAny), .word(":"), .space, .word("ReportKind", as: \.valueTypeProject), .space, .word("="), .space, .word(".lastInterval", as: \.constantProject), .newLine,
 				.indent, .word("var", as: \.keyword), .space, .word("numberOfEntries", as: \.declarationAny), .word(":"), .space, .word("Int", as: \.valueTypeSystem), .space, .word("="), .space, .word("400", as: \.string), .newLine,
 				.word("}")
+			])
+		}
+		
+		// MARK: Editor Presets
+		
+		public static var xcodePreferences: TokenizedString {
+			TokenizedString(tokens: [
+				.word("Plain Text", as: \.foreground), .newLine,
+				.word("Comments", as: \.comment), .newLine,
+				.word("Documentation Markup", as: \.commentDocumentation), .newLine,
+				.word("Documentation Markup Keywords", as: \.commentSectionHeader), .newLine,
+				.word("Marks", as: \.commentSection), .newLine,
+				.word("Strings", as: \.string), .newLine,
+				.word("Characters", as: \.character), .newLine,
+				.word("Numbers", as: \.number), .newLine,
+				.word("Keywords", as: \.keyword), .newLine,
+				.word("Preprocessor Statements", as: \.preprocessorStatement), .newLine,
+				.word("URLs", as: \.url), .newLine,
+				.word("Attributes", as: \.attribute), .newLine,
+				.word("Type Declarations", as: \.declarationType), .newLine,
+				.word("Other Declarations", as: \.declarationAny), .newLine,
+				.word("Project Class Names", as: \.referenceTypeProject), .newLine,
+				.word("Project Function and Method Names", as: \.functionProject), .newLine,
+				.word("Project Constants", as: \.constantProject), .newLine,
+				.word("Project Type Names", as: \.valueTypeProject), .newLine,
+				.word("Project Instance Variables and Globals", as: \.variableProject), .newLine,
+				.word("Project Preprocessor Macros", as: \.preprocessorProject), .newLine,
+				.word("Other Class Names", as: \.referenceTypeSystem), .newLine,
+				.word("Other Function and Method Names", as: \.functionSystem), .newLine,
+				.word("Other Constants", as: \.constantSystem), .newLine,
+				.word("Other Type Names", as: \.valueTypeSystem), .newLine,
+				.word("Other Instance Variables and Globals", as: \.variableSystem), .newLine,
+				.word("Other Preprocessor Macros", as: \.preprocessorSystem), .newLine,
+				.word("Heading (Unspecified)")
 			])
 		}
 		

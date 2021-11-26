@@ -80,7 +80,7 @@ extension ColorExtrapolator {
 
 // MARK: Library
 
-public enum ColorTransform: String {
+public enum ColorTransform: String, CaseIterable {
 	case lighter
 	case darker
 }

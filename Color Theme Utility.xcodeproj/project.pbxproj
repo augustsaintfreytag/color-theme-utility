@@ -13,6 +13,7 @@
 		8B4150EB27143E3400873BBF /* IntermediateThemeModeler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4150EA27143E3400873BBF /* IntermediateThemeModeler.swift */; };
 		8B4150EE27147D8900873BBF /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4150ED27147D8900873BBF /* Transformers.swift */; };
 		8B57B5142705B3E500A60D1C /* ArgumentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57B5132705B3E500A60D1C /* ArgumentError.swift */; };
+		8B69B3A6274F906500732343 /* PreviewFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B3A5274F906500732343 /* PreviewFormat.swift */; };
 		8B6BE04D270C731D0063B0BA /* ColorThemeFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6BE044270C731D0063B0BA /* ColorThemeFramework.framework */; };
 		8B6BE052270C731D0063B0BA /* ColorModelingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE051270C731D0063B0BA /* ColorModelingTest.swift */; };
 		8B6BE054270C731D0063B0BA /* ColorThemeFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B6BE046270C731D0063B0BA /* ColorThemeFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -51,6 +52,9 @@
 		8B8C57A02726B93F00606BB9 /* ThemeEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8C579F2726B93F00606BB9 /* ThemeEncoding.swift */; };
 		8BA2BBAB272948B40012D844 /* ExpressibleByArgument+Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBAA272948B40012D844 /* ExpressibleByArgument+Description.swift */; };
 		8BA2BBAE2729CF600012D844 /* TableFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBAD2729CF600012D844 /* TableFormatter.swift */; };
+		8BBB859627510091004C7558 /* TerminalDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBB859527510091004C7558 /* TerminalDetector.swift */; };
+		8BBB859927510665004C7558 /* TerminalApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBB859827510665004C7558 /* TerminalApplication.swift */; };
+		8BD31ED5274915AB0019247D /* ThemeColorCorrector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD31ED4274915AB0019247D /* ThemeColorCorrector.swift */; };
 		8BDBB3E6273E7EFC00AA4E9F /* OriginColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDBB3E5273E7EFC00AA4E9F /* OriginColors.swift */; };
 		8BE17562272017030073805E /* XcodeThemeModeler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE17561272017030073805E /* XcodeThemeModeler.swift */; };
 		8BEDE620272DCB0500CFF886 /* TokenizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBB3272C04E20012D844 /* TokenizedString.swift */; };
@@ -109,6 +113,7 @@
 		8B57B5102704875D00A60D1C /* ColorFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorFormat.swift; sourceTree = "<group>"; };
 		8B57B5132705B3E500A60D1C /* ArgumentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentError.swift; sourceTree = "<group>"; };
 		8B57B5152705BABB00A60D1C /* ColorModeler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModeler.swift; sourceTree = "<group>"; };
+		8B69B3A5274F906500732343 /* PreviewFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewFormat.swift; sourceTree = "<group>"; };
 		8B6BE02A2709ABFE0063B0BA /* HexadecimalColorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexadecimalColorParser.swift; sourceTree = "<group>"; };
 		8B6BE02C2709B12C0063B0BA /* FloatRGBAColorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatRGBAColorParser.swift; sourceTree = "<group>"; };
 		8B6BE02E2709B9240063B0BA /* HSLColorConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSLColorConverter.swift; sourceTree = "<group>"; };
@@ -136,9 +141,12 @@
 		8BA2BBAA272948B40012D844 /* ExpressibleByArgument+Description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExpressibleByArgument+Description.swift"; sourceTree = "<group>"; };
 		8BA2BBAD2729CF600012D844 /* TableFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableFormatter.swift; sourceTree = "<group>"; };
 		8BA2BBB3272C04E20012D844 /* TokenizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizedString.swift; sourceTree = "<group>"; };
+		8BBB859527510091004C7558 /* TerminalDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalDetector.swift; sourceTree = "<group>"; };
+		8BBB859827510665004C7558 /* TerminalApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalApplication.swift; sourceTree = "<group>"; };
 		8BBF92A02701C49100386123 /* XcodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeTheme.swift; sourceTree = "<group>"; };
 		8BBF92A42701CE1D00386123 /* URL+CanonicalPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+CanonicalPath.swift"; sourceTree = "<group>"; };
 		8BBF92A92701F6D600386123 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		8BD31ED4274915AB0019247D /* ThemeColorCorrector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColorCorrector.swift; sourceTree = "<group>"; };
 		8BDBB3E5273E7EFC00AA4E9F /* OriginColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginColors.swift; sourceTree = "<group>"; };
 		8BE17561272017030073805E /* XcodeThemeModeler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeThemeModeler.swift; sourceTree = "<group>"; };
 		8BE70D18270855D3008D9991 /* ThemeModelingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeModelingError.swift; sourceTree = "<group>"; };
@@ -308,6 +316,7 @@
 			children = (
 				8BBF92A72701F6C600386123 /* Color */,
 				8B6BE05C270C73B20063B0BA /* Common */,
+				8BBB859327510082004C7558 /* Terminal */,
 				8B2E62A9270247F4000AEA95 /* Theme */,
 				8BE17560272016540073805E /* Theme Formats */,
 			);
@@ -415,6 +424,7 @@
 			children = (
 				8B79D52C273691B70010233E /* Mode.swift */,
 				8B79D52E273691D30010233E /* OutputFormat.swift */,
+				8B69B3A5274F906500732343 /* PreviewFormat.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -443,6 +453,23 @@
 				8BA2BBB3272C04E20012D844 /* TokenizedString.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8BBB859327510082004C7558 /* Terminal */ = {
+			isa = PBXGroup;
+			children = (
+				8BBB859427510089004C7558 /* Library */,
+			);
+			path = Terminal;
+			sourceTree = "<group>";
+		};
+		8BBB859427510089004C7558 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				8BBB859827510665004C7558 /* TerminalApplication.swift */,
+				8BBB859527510091004C7558 /* TerminalDetector.swift */,
+			);
+			path = Library;
 			sourceTree = "<group>";
 		};
 		8BBF929E2701C47F00386123 /* Models */ = {
@@ -503,6 +530,7 @@
 			children = (
 				8BE70D20270862D3008D9991 /* Theme.swift */,
 				8B8C579C2726B55C00606BB9 /* ThemeCoder.swift */,
+				8BD31ED4274915AB0019247D /* ThemeColorCorrector.swift */,
 				8B8C579F2726B93F00606BB9 /* ThemeEncoding.swift */,
 				8B79D51F2733FE2A0010233E /* ThemeFormat.swift */,
 				8B79D523273538CE0010233E /* ThemeFormatDetector.swift */,
@@ -661,6 +689,7 @@
 				8B79D52F273691D30010233E /* OutputFormat.swift in Sources */,
 				8B57B5142705B3E500A60D1C /* ArgumentError.swift in Sources */,
 				8B6BE092270DB5470063B0BA /* String+CustomColorable.swift in Sources */,
+				8B69B3A6274F906500732343 /* PreviewFormat.swift in Sources */,
 				8B79D52727353C300010233E /* TokenizedStringPaddingProvider.swift in Sources */,
 				8BEDE620272DCB0500CFF886 /* TokenizedString.swift in Sources */,
 			);
@@ -674,6 +703,7 @@
 				8B6BE08B270C77FB0063B0BA /* String+Split.swift in Sources */,
 				8B79D524273538CE0010233E /* ThemeFormatDetector.swift in Sources */,
 				8B6BE07D270C77FB0063B0BA /* CustomPropertyEnumerable.swift in Sources */,
+				8BD31ED5274915AB0019247D /* ThemeColorCorrector.swift in Sources */,
 				8B6BE087270C77FB0063B0BA /* ThemeCodingError.swift in Sources */,
 				8BE17562272017030073805E /* XcodeThemeModeler.swift in Sources */,
 				8B6BE088270C77FB0063B0BA /* XcodeThemeImporter.swift in Sources */,
@@ -685,6 +715,8 @@
 				8B6BE082270C77FB0063B0BA /* IntermediateTheme.swift in Sources */,
 				8B6BE07F270C77FB0063B0BA /* URL+CanonicalPath.swift in Sources */,
 				8B6BE084270C77FB0063B0BA /* ColorModeler.swift in Sources */,
+				8BBB859927510665004C7558 /* TerminalApplication.swift in Sources */,
+				8BBB859627510091004C7558 /* TerminalDetector.swift in Sources */,
 				8B6BE086270C77FB0063B0BA /* ColorFormatDetector.swift in Sources */,
 				8B4150EB27143E3400873BBF /* IntermediateThemeModeler.swift in Sources */,
 				8B6BE080270C77FB0063B0BA /* FloatRGBAColorParser.swift in Sources */,
