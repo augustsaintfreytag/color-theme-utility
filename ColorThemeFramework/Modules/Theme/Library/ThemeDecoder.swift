@@ -6,15 +6,28 @@
 
 import Foundation
 
-/// Functionality to process file paths, read and decode theme file contents into their appropriate model.
-public protocol ThemeImporter: ThemeFormatDetector {}
+/// Functionality to process file paths, read and decode theme file contents
+/// into their appropriate theme type.
+public protocol ThemeDecoder: ThemeFormatDetector {}
 
-extension ThemeImporter {
-	
-	// MARK: Theme In
+extension ThemeDecoder {
+
+	// MARK: Theme from Path
+
+	/// Resolves the given path string into a file URL, reads it, and decodes it into a
+	/// theme of its corresponding type if possible.
+	public static func decodedTheme(from path: String) throws -> Theme {
+		guard let fileData = encodedDataFromFileContents(from: path) else {
+			throw ThemeCodingError(description: "Could not read supplied theme file.")
+		}
+
+		return try decodedTheme(from: fileData)
+	}
+
+	// MARK: Theme from Data
 	
 	/// Auto-detects the format the encoded theme uses and decodes it to its corresponding type.
-	public func decodedTheme(from data: Data) throws -> Theme {
+	public static func decodedTheme(from data: Data) throws -> Theme {
 		let format = themeFormat(for: data)
 		
 		switch format {
@@ -29,12 +42,12 @@ extension ThemeImporter {
 		}
 	}
 	
-	// MARK: Data In
+	// MARK: Data from Path
 	
 	/// TODO: Rework import functions to `throw` for errors, move assertion to command.
 	
 	/// Reads the data of an encoded theme from the file at the given path.
-	public func encodedDataFromFileContents(from path: String) -> Data? {
+	public static func encodedDataFromFileContents(from path: String) -> Data? {
 		guard
 			let themeUrl = URL(fileURLWithNonCanonicalPath: path),
 			let data = encodedDataFromFileContents(from: themeUrl)
@@ -46,7 +59,7 @@ extension ThemeImporter {
 	}
 	
 	/// Reads the data of an encoded theme from the file at the given path.
-	public func encodedDataFromFileContents(from url: URL) -> Data? {
+	public static func encodedDataFromFileContents(from url: URL) -> Data? {
 		do {
 			return try Data(contentsOf: url)
 		} catch {
