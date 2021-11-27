@@ -6,9 +6,12 @@
 
 import Foundation
 
-public protocol ThemeCoder {}
+/// Functionality to encode a given theme into data that matches its format.
+public protocol ThemeEncoder {}
 
-extension ThemeCoder {
+extension ThemeEncoder {
+
+	// MARK: Data String from Theme
 
 	public static func encodedTheme<CodableTheme: Theme & Encodable>(_ theme: CodableTheme, with encoding: ThemeEncoding) throws -> String {
 		let encodedThemeData = try encodedThemeData(theme, with: encoding)
@@ -19,6 +22,8 @@ extension ThemeCoder {
 
 		return encodedTheme
 	}
+
+	// MARK: Data from Theme
 
 	private static func encodedThemeData<CodableTheme: Theme & Encodable>(_ theme: CodableTheme, with encoding: ThemeEncoding) throws -> Data {
 		do {
