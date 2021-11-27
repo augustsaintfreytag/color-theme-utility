@@ -6,6 +6,7 @@
 
 import Foundation
 
+/// Functionality to encode a given theme into data that matches its format.
 public protocol ThemeEncoder {}
 
 extension ThemeEncoder {
