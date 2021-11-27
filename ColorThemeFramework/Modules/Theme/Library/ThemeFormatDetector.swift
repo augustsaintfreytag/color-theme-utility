@@ -12,7 +12,10 @@ public protocol ThemeFormatDetector {}
 
 extension ThemeFormatDetector {
 	
-	/// Auto-detects the representative format of the given encoded theme data.
+	/// Auto-detects the format of the given encoded theme data.
+	///
+	/// Tries to determine the encoded format by checking for heuristics,
+	/// does not try to actually decode any data.
 	public static func themeFormat(for encodedThemeData: Data) -> ThemeFormat? {
 		guard let dataString = String(data: encodedThemeData, encoding: .utf8) else {
 			return nil
