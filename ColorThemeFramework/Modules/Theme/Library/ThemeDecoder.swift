@@ -17,7 +17,7 @@ extension ThemeDecoder {
 	/// Resolves the given path string into a file URL, reads it, and decodes it into a
 	/// theme of its corresponding type if possible.
 	public static func decodedTheme(from path: String) throws -> Theme {
-		guard let fileData = encodedDataFromFileContents(from: path) else {
+		guard let fileData = try encodedDataFromFileContents(from: path) else {
 			throw ThemeCodingError(description: "Could not read supplied theme file.")
 		}
 
@@ -44,27 +44,24 @@ extension ThemeDecoder {
 	
 	// MARK: Data from Path
 	
-	/// TODO: Rework import functions to `throw` for errors, move assertion to command.
-	
 	/// Reads the data of an encoded theme from the file at the given path.
-	public static func encodedDataFromFileContents(from path: String) -> Data? {
+	public static func encodedDataFromFileContents(from path: String) throws -> Data? {
 		guard
 			let themeUrl = URL(fileURLWithNonCanonicalPath: path),
-			let data = encodedDataFromFileContents(from: themeUrl)
+			let data = try encodedDataFromFileContents(from: themeUrl)
 		else {
-			return nil
+			throw ThemeCodingError(description: "Could not read encoded data from file path.")
 		}
 		
 		return data
 	}
 	
 	/// Reads the data of an encoded theme from the file at the given path.
-	public static func encodedDataFromFileContents(from url: URL) -> Data? {
+	public static func encodedDataFromFileContents(from url: URL) throws -> Data? {
 		do {
 			return try Data(contentsOf: url)
 		} catch {
-			assertionFailure("Could not load file content at url '\(url.description)'. \(error.localizedDescription)")
-			return nil
+			throw ThemeCodingError(description: "Could not read file contents at url '\(url.description)'. \(error.localizedDescription)")
 		}
 	}
 	
