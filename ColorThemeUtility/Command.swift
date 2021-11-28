@@ -62,6 +62,8 @@ struct ColorThemeUtility: ParsableCommand {
 			try generateTheme()
 		case .convertTheme:
 			try convertTheme()
+		case .unmapTheme:
+			try unmapTheme()
 		}
 	}
 
@@ -311,6 +313,45 @@ extension ColorThemeUtility: TerminalDetector,
 
 		let xcodeTheme = try Self.xcodeTheme(from: intermediateTheme)
 		print(try Self.encodedTheme(xcodeTheme, with: .plist))
+	}
+
+	// MARK: Unmap Theme
+
+	private func unmapTheme() throws {
+		// Take an existing intermediate theme and extract unskewed color values
+		// to produce the initial 10 colors used to generate the theme.
+
+		guard let inputFilePath = inputFile else {
+			throw ArgumentError(description: "Missing input file path for theme to be converted.")
+		}
+
+		let theme = try Self.decodedTheme(from: inputFilePath)
+		let intermediateTheme = try coercedIntermediateTheme(from: theme)
+		let colors = Self.colorSequence(from: intermediateTheme)
+
+		if humanReadable {
+			for (index, color) in colors.enumerated() {
+				printColor(color, description: "Color \(String(format: "%02d", index + 1))")
+			}
+		} else {
+			let colorDescriptions = colors.map { color in color.hexadecimalString }
+			let format: ColorCollectionFormat = {
+				guard case let .colorCollection(format: colorCollectionFormat) = outputFormat else {
+					return .parameter
+				}
+
+				return colorCollectionFormat
+			}()
+
+			switch format {
+			case .parameter:
+				print(colorDescriptions.joined(separator: ", "))
+			case .json:
+				let encoder = JSONEncoder()
+				let data = try! encoder.encode(colorDescriptions)
+				print(String(data: data, encoding: .utf8)!)
+			}
+		}
 	}
 	
 	// MARK: Common Utility
