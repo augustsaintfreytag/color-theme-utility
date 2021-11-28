@@ -12,6 +12,7 @@ enum OutputFormat {
 	
 	case theme(format: ThemeFormat)
 	case color(format: ColorFormat)
+	case colorCollection(format: ColorCollectionFormat)
 	
 }
 
@@ -23,6 +24,8 @@ extension OutputFormat: CustomStringConvertible {
 			return themeFormat.rawValue
 		case .color(let colorFormat):
 			return colorFormat.rawValue
+		case .colorCollection(let colorCollectionFormat):
+			return colorCollectionFormat.rawValue
 		}
 	}
 	
@@ -36,13 +39,18 @@ extension OutputFormat: CustomStringConvertible {
 extension OutputFormat: ExpressibleByArgument {
 	
 	init?(argument: String) {
-		if let themeFormat = ThemeFormat(argument: argument) {
+		if let themeFormat = ThemeFormat(rawValue: argument) {
 			self = .theme(format: themeFormat)
 			return
 		}
 		
-		if let colorFormat = ColorFormat(argument: argument) {
+		if let colorFormat = ColorFormat(rawValue: argument) {
 			self = .color(format: colorFormat)
+			return
+		}
+
+		if let colorCollectionFormat = ColorCollectionFormat(rawValue: argument) {
+			self = .colorCollection(format: colorCollectionFormat)
 			return
 		}
 		
