@@ -16,5 +16,6 @@ enum Mode: String, CaseIterable, ExpressibleByArgument {
 	case generateTheme = "generate-theme"
 	case previewTheme = "preview-theme"
 	case convertTheme = "convert-theme"
+	case unmapTheme = "unmap-theme"
 	
 }

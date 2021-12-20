@@ -6,7 +6,7 @@
 
 import Foundation
 
-public protocol XcodeThemeImporter: ThemeImporter {}
+public protocol XcodeThemeImporter: ThemeDecoder {}
 
 extension XcodeThemeImporter {
 	

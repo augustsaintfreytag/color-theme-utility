@@ -107,5 +107,43 @@ extension IntermediateThemeModeler {
 		
 		return originColors
 	}
+
+	public static func colorSequence(from theme: IntermediateTheme) -> [Color] {
+		let colors = originColors(from: theme)
+		return colorSequence(from: colors)
+	}
+
+	private static func originColors(from theme: IntermediateTheme) -> OriginColors {
+		return OriginColors(
+			background: theme.background,
+			foreground: theme.foreground,
+			keywords: theme.keyword,
+			referenceTypes: theme.declarationType,
+			valueTypes: theme.declarationAny,
+			functions: theme.functionSystem,
+			constants: theme.constantSystem,
+			variables: theme.variableSystem,
+			strings: theme.string,
+			numbers: theme.number
+		)
+	}
+
+	private static func colorSequence(from originColors: OriginColors) -> [Color] {
+		let colorSequence = [
+			originColors.background,
+			originColors.foreground,
+			originColors.keywords,
+			originColors.referenceTypes,
+			originColors.valueTypes,
+			originColors.functions,
+			originColors.constants,
+			originColors.variables,
+			originColors.strings,
+			originColors.numbers
+		]
+
+		assert(colorSequence.count == 10)
+		return colorSequence
+	}
 	
 }

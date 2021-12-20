@@ -62,6 +62,8 @@ struct ColorThemeUtility: ParsableCommand {
 			try generateTheme()
 		case .convertTheme:
 			try convertTheme()
+		case .unmapTheme:
+			try unmapTheme()
 		}
 	}
 
@@ -72,8 +74,8 @@ struct ColorThemeUtility: ParsableCommand {
 extension ColorThemeUtility: TerminalDetector,
 							 ColorFormatDetector,
 							 ColorModeler,
-							 ThemeImporter,
-							 ThemeCoder,
+							 ThemeDecoder,
+							 ThemeEncoder,
 							 HSLColorConverter,
 							 ColorExtrapolator,
 							 IntermediateThemeModeler,
@@ -131,26 +133,19 @@ extension ColorThemeUtility: TerminalDetector,
 	///   - `theme.<key>.enumerated()`
 	///
 	private func describeTheme() throws {
-		let themeData = try readInputThemeData()
-		let themeFormat = themeFormat(for: themeData)
+		guard let inputFilePath = inputFile else {
+			throw ArgumentError(description: "Missing input file path for theme to be described.")
+		}
 
-		do {
-			switch themeFormat {
-			case .intermediate:
-				let decoder = JSONDecoder()
-				let intermediateTheme = try decoder.decode(IntermediateTheme.self, from: themeData)
+		let theme = try Self.decodedTheme(from: inputFilePath)
 
-				describeIntermediateTheme(intermediateTheme)
-			case .xcode:
-				let decoder = PropertyListDecoder()
-				let xcodeTheme = try decoder.decode(XcodeTheme.self, from: themeData)
-
-				describeXcodeTheme(xcodeTheme)
-			case .none:
-				throw ThemeCodingError(description: "Could not determine format of supplied theme.")
-			}
-		} catch {
-			throw ThemeCodingError(description: "Could not decode theme. \(error.localizedDescription)")
+		switch theme {
+		case let intermediateTheme as IntermediateTheme:
+			describeIntermediateTheme(intermediateTheme)
+		case let xcodeTheme as XcodeTheme:
+			describeXcodeTheme(xcodeTheme)
+		default:
+			throw ThemeCodingError(description: "Could not determine format of supplied theme.")
 		}
 	}
 
@@ -182,23 +177,14 @@ extension ColorThemeUtility: TerminalDetector,
 		Self.tabulateAndPrintLines(rows)
 	}
 	
-	private func readInputThemeData() throws -> Data {
-		guard let inputFilePath = inputFile else {
-			throw ArgumentError(description: "Missing input theme file path.")
-		}
-		
-		guard let fileData = encodedDataFromFileContents(from: inputFilePath) else {
-			throw ArgumentError(description: "Could not read supplied theme file.")
-		}
-		
-		return fileData
-	}
-	
 	// MARK: Preview Theme
 	
 	private func previewTheme() throws {
-		let themeData = try readInputThemeData()
-		let theme = try decodedTheme(from: themeData)
+		guard let inputFilePath = inputFile else {
+			throw ArgumentError(description: "Missing input file path for theme to be previewed.")
+		}
+
+		let theme = try Self.decodedTheme(from: inputFilePath)
 		var intermediateTheme = try coercedIntermediateTheme(from: theme)
 		
 		if !skipColorCorrectPreview, let terminal = Self.terminalApplication {
@@ -313,24 +299,59 @@ extension ColorThemeUtility: TerminalDetector,
 		// Take existing intermediate theme file as input.
 		// Convert intermediate to target theme.
 
-		guard let inputFilePath = inputFile else {
-			throw ArgumentError(description: "Missing input file path for theme to be converted.")
-		}
-
-		guard let fileData = encodedDataFromFileContents(from: inputFilePath) else {
-			throw ArgumentError(description: "Could not read supplied theme file.")
-		}
-
 		guard case .theme(let outputThemeFormat) = outputFormat, outputThemeFormat == .xcode else {
 			throw ArgumentError(description: "Output format '\(outputFormat?.description ?? "<None>")' not supported. Supported formats: 'xcode'.")
 		}
 
-		/// TODO: Consider displacing this to function, throwing `ThemeCodingError`.
-		let decoder = JSONDecoder()
-		let intermediateTheme = try decoder.decode(IntermediateTheme.self, from: fileData)
-		let xcodeTheme = try Self.xcodeTheme(from: intermediateTheme)
+		guard let inputFilePath = inputFile else {
+			throw ArgumentError(description: "Missing input file path for theme to be converted.")
+		}
 
+		guard let intermediateTheme = try Self.decodedTheme(from: inputFilePath) as? IntermediateTheme else {
+			throw ArgumentError(description: "Supplied theme is not an intermediate theme. Only intermediate themes can be converted in this version.")
+		}
+
+		let xcodeTheme = try Self.xcodeTheme(from: intermediateTheme)
 		print(try Self.encodedTheme(xcodeTheme, with: .plist))
+	}
+
+	// MARK: Unmap Theme
+
+	private func unmapTheme() throws {
+		// Take an existing intermediate theme and extract unskewed color values
+		// to produce the initial 10 colors used to generate the theme.
+
+		guard let inputFilePath = inputFile else {
+			throw ArgumentError(description: "Missing input file path for theme to be converted.")
+		}
+
+		let theme = try Self.decodedTheme(from: inputFilePath)
+		let intermediateTheme = try coercedIntermediateTheme(from: theme)
+		let colors = Self.colorSequence(from: intermediateTheme)
+
+		if humanReadable {
+			for (index, color) in colors.enumerated() {
+				printColor(color, description: "Color \(String(format: "%02d", index + 1))")
+			}
+		} else {
+			let colorDescriptions = colors.map { color in color.hexadecimalString }
+			let format: ColorCollectionFormat = {
+				guard case let .colorCollection(format: colorCollectionFormat) = outputFormat else {
+					return .parameter
+				}
+
+				return colorCollectionFormat
+			}()
+
+			switch format {
+			case .parameter:
+				print(colorDescriptions.joined(separator: ", "))
+			case .json:
+				let encoder = JSONEncoder()
+				let data = try! encoder.encode(colorDescriptions)
+				print(String(data: data, encoding: .utf8)!)
+			}
+		}
 	}
 	
 	// MARK: Common Utility
