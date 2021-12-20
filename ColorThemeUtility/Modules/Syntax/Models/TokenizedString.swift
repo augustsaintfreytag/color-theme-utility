@@ -135,10 +135,61 @@ extension TokenizedString {
 // MARK: Presets
 
 extension TokenizedString {
+
+	// MARK: Code Presets
 	
-	public enum Presets {
+	public enum TypeScriptPresets {
 		
-		// MARK: Code Presets
+		public static var classDefinition: TokenizedString {
+			TokenizedString(tokens: [
+				.word("/**", as: \.commentDocumentation), .space, .word("Model of metadata associated with stored objects.", as: \.commentDocumentation), .word("*/", as: \.commentDocumentation), .newLine,
+				.word("class", as: \.keyword), .space, .word("ObjectMetadata", as: \.declarationType), .space, .word("implements", as: \.keyword), .space, .word("Hashable", as: \.referenceTypeSystem), .word(","), .space, .word("ObjectProperty", as: \.referenceTypeProject), .space, .word("{"), .newLine,
+				.indent, .word("id", as: \.declarationAny), .space, .word(":"), .space, .word("UUID", as: \.referenceTypeSystem), .newLine,
+				.indent, .word("created", as: \.declarationAny), .space, .word(":"), .space, .word("Date", as: \.referenceTypeSystem), .newLine,
+				.indent, .word("owners", as: \.declarationAny), .space, .word(":"), .space, .word("Set", as: \.referenceTypeSystem), .word("<"), .word("OwnerIdentifier", as: \.valueTypeProject), .word(">"), .newLine,
+				.indent, .word("data", as: \.declarationAny), .space, .word(":"), .space, .word("string", as: \.globalTypeSystem), .newLine,
+				.indent, .space, .newLine,
+				.indent, .word("constructor", as: \.keyword), .word("("),
+				.word("id", as: \.functionParameter), .word(":"), .space, .word("UUID", as: \.referenceTypeSystem), .word(","), .space,
+				.word("created", as: \.functionParameter), .word(":"), .space, .word("Date", as: \.referenceTypeSystem), .word(","), .space,
+				.word("owners", as: \.functionParameter), .word(":"), .space, .word("owners", as: \.functionParameter), .word(":"), .space, .word("UUID", as: \.referenceTypeSystem), .word(","), .space,
+				.word("data", as: \.functionParameter), .word(":"), .space, .word("string", as: \.referenceTypeSystem),
+				.word(")"), .space, .word("{"), .newLine,
+				.indent, .indent, .word("this", as: \.variableProject), .word("."), .word("id", as: \.variableProject), .space, .word("="), .space, .word("id", as: \.variableProject), .newLine,
+				.indent, .indent, .word("this", as: \.variableProject), .word("."), .word("created", as: \.variableProject), .space, .word("="), .space, .word("created", as: \.variableProject), .newLine,
+				.indent, .indent, .word("this", as: \.variableProject), .word("."), .word("owners", as: \.variableProject), .space, .word("="), .space, .word("owners", as: \.variableProject), .newLine,
+				.indent, .indent, .word("this", as: \.variableProject), .word("."), .word("data", as: \.variableProject), .space, .word("="), .space, .word("data", as: \.variableProject), .newLine,
+				.indent, .word("}"), .newLine,
+				.word("}"), .newLine
+			])
+		}
+		
+		public static var typeWithFunctionDefinition: TokenizedString {
+			TokenizedString(tokens: [
+				.word("type", as: \.keyword), .space, .word("GroupedObjects", as: \.declarationType), .space, .word("="), .space, .word("Dictionary", as: \.referenceTypeSystem), .word("<"), .word("ObjectGroup", as: \.referenceTypeProject), .word(","), .space, .word("Set", as: \.referenceTypeSystem), .word("<"), .word("Object", as: \.valueTypeProject), .word(">"), .word(">"), .newLine,
+				.space, .newLine,
+				.word("/**", as: \.commentDocumentation), .space, .word("Functionality to create collections of objects grouped by intrinsic properties.", as: \.commentDocumentation), .word("*/", as: \.commentDocumentation), .newLine,
+				.word("export", as: \.keyword), .space, .word("interface", as: \.keyword), .space, .word("ObjectProvider", as: \.declarationType), .space, .word("{"), .newLine,
+				.indent, .word("groupedObjects", as: \.functionProject), .word("("), .word("collection", as: \.functionParameter), .word(":"), .space, .word("Object", as: \.referenceTypeProject), .word("[]"), .word(")"), .word(":"), .space, .word("GroupedObjects", as: \.valueTypeProject), .newLine,
+				.word("}")
+			])
+		}
+
+		public static var literalDeclarations: TokenizedString {
+			TokenizedString(tokens: [
+				.word("/**", as: \.commentDocumentation), .space, .word("Metadata describing a report of stored objects.", as: \.commentDocumentation), .word("*/", as: \.commentDocumentation), .newLine,
+				.word("class", as: \.keyword), .space, .word("ObjectReport", as: \.declarationType), .space, .word("{"), .newLine,
+				.indent, .word("id", as: \.declarationAny), .word(":"), .space, .word("UUID", as: \.referenceTypeSystem), .space, .word("="), .space, .word("randomUUID", as: \.functionSystem), .word("()"), .newLine,
+				.indent, .word("name", as: \.declarationAny), .word(":"), .space, .word("string", as: \.globalTypeSystem), .space, .word("="), .space, .word("\"Most Recent\"", as: \.string), .newLine,
+				.indent, .word("kind", as: \.declarationAny), .word(":"), .space, .word("ReportKind", as: \.valueTypeProject), .space, .word("="), .space, .word("ReportKind", as: \.valueTypeProject), .word(".LastInterval", as: \.constantProject), .newLine,
+				.indent, .word("numberOfEntries", as: \.declarationAny), .word(":"), .space, .word("Int", as: \.valueTypeSystem), .space, .word("="), .space, .word("400", as: \.number), .newLine,
+				.word("}")
+			])
+		}
+		
+	}
+	
+	public enum SwiftPresets {
 		
 		public static var structDefinition: TokenizedString {
 			TokenizedString(tokens: [
@@ -174,14 +225,18 @@ extension TokenizedString {
 				.indent, .word("var", as: \.keyword), .space, .word("id", as: \.declarationAny), .space, .word("="), .space, .word("UUID", as: \.valueTypeSystem), .word("()"), .newLine,
 				.indent, .word("var", as: \.keyword), .space, .word("name", as: \.declarationAny), .word(":"), .space, .word("String", as: \.globalTypeSystem), .space, .word("="), .space, .word("\"Most Recent\"", as: \.string), .newLine,
 				.indent, .word("var", as: \.keyword), .space, .word("kind", as: \.declarationAny), .word(":"), .space, .word("ReportKind", as: \.valueTypeProject), .space, .word("="), .space, .word(".lastInterval", as: \.constantProject), .newLine,
-				.indent, .word("var", as: \.keyword), .space, .word("numberOfEntries", as: \.declarationAny), .word(":"), .space, .word("Int", as: \.valueTypeSystem), .space, .word("="), .space, .word("400", as: \.string), .newLine,
+				.indent, .word("var", as: \.keyword), .space, .word("numberOfEntries", as: \.declarationAny), .word(":"), .space, .word("Int", as: \.valueTypeSystem), .space, .word("="), .space, .word("400", as: \.number), .newLine,
 				.word("}")
 			])
 		}
 		
-		// MARK: Editor Presets
-		
-		public static var xcodePreferences: TokenizedString {
+	}
+
+	// MARK: Editor Presets
+	
+	public enum XcodePreferencesPresets {
+	
+		public static var preferences: TokenizedString {
 			TokenizedString(tokens: [
 				.word("Plain Text", as: \.foreground), .newLine,
 				.word("Comments", as: \.comment), .newLine,
