@@ -212,7 +212,7 @@ extension ColorThemeUtility: TerminalDetector,
 				TokenizedString.TypeScriptPresets.literalDeclarations
 			].joinedWithDivider()
 		case .markdown:
-			return [].joinedWithDivider()
+			return TokenizedString(tokens: [.word("Not supported.")])
 		case .xcode:
 			return TokenizedString.XcodePreferencesPresets.preferences
 		}
