@@ -50,8 +50,8 @@ struct ColorThemeUtility: ParsableCommand {
 	@Flag(name: [.customShort("h"), .customLong("human-readable")], help: "Outputs data and models in a human-readable format. (default: false)")
 	var humanReadable: Bool = false
 
-	@Flag(name: [.customLong("color-correct-preview")], help: "Skips color correction for theme preview to account for differences in terminal rendering (iTerm 2). (default: true)")
-	var skipColorCorrectPreview: Bool = false
+	@Flag(name: [.customLong("no-color-correct-preview")], help: "Disables color correction for theme preview to account for differences in terminal rendering (iTerm 2). (default: false)")
+	var disableColorCorrectPreview: Bool = false
 	
 	// MARK: Run
 	
@@ -211,7 +211,7 @@ extension ColorThemeUtility: TerminalDetector,
 		let theme: Theme = try inputThemeFileFromArguments()
 		var intermediateTheme = try coercedIntermediateTheme(from: theme)
 		
-		if !skipColorCorrectPreview, let terminal = Self.terminalApplication {
+		if !disableColorCorrectPreview, let terminal = Self.terminalApplication {
 			intermediateTheme = Self.colorCorrectedTheme(intermediateTheme, for: terminal)
 		}
 		
