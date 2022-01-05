@@ -29,6 +29,9 @@ struct ColorThemeUtility: ParsableCommand {
 	@Option(name: [.customShort("s"), .customLong("skew")], help: "The lightness direction skew to use for palette generation. (options: \(ColorTransform.allCasesHelpDescription))")
 	var colorTransform: ColorTransform?
 	
+	@Flag(name: [.customLong("no-palette-skew")], help: "Disables skewing colors when generating a color cascade from a base value. (default: false)")
+	var disablePaletteTransform: Bool = false
+	
 	@Option(name: [.customShort("n"), .customLong("number-of-colors")], help: "The number of colors created in palette generation (including provided base color).")
 	var colorCount: Int?
 	
@@ -289,8 +292,8 @@ extension ColorThemeUtility: TerminalDetector,
 	// MARK: Generate Theme
 	
 	private func generateTheme() throws {
-		let intermediateTheme = try Self.theme(from: inputColors)
 		let inputColors = try inputColorSequenceFromArguments()
+		let intermediateTheme = try Self.theme(from: inputColors, cascade: !disablePaletteTransform)
 		let outputFormat = outputFormat ?? .theme(format: .intermediate)
 		
 		guard case .theme(let themeFormat) = outputFormat else {
