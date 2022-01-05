@@ -29,6 +29,9 @@ struct ColorThemeUtility: ParsableCommand {
 	@Option(name: [.customShort("s"), .customLong("skew")], help: "The lightness direction skew to use for palette generation. (options: \(ColorTransform.allCasesHelpDescription))")
 	var colorTransform: ColorTransform?
 	
+	@Flag(name: [.customLong("no-palette-skew")], help: "Disables skewing colors when generating a color cascade from a base value. (default: false)")
+	var disablePaletteTransform: Bool = false
+	
 	@Option(name: [.customShort("n"), .customLong("number-of-colors")], help: "The number of colors created in palette generation (including provided base color).")
 	var colorCount: Int?
 	
@@ -47,8 +50,8 @@ struct ColorThemeUtility: ParsableCommand {
 	@Flag(name: [.customShort("h"), .customLong("human-readable")], help: "Outputs data and models in a human-readable format. (default: false)")
 	var humanReadable: Bool = false
 
-	@Flag(name: [.customLong("color-correct-preview")], help: "Skips color correction for theme preview to account for differences in terminal rendering (iTerm 2). (default: true)")
-	var skipColorCorrectPreview: Bool = false
+	@Flag(name: [.customLong("no-color-correct-preview")], help: "Disables color correction for theme preview to account for differences in terminal rendering (iTerm 2). (default: false)")
+	var disableColorCorrectPreview: Bool = false
 	
 	// MARK: Run
 	
@@ -208,7 +211,7 @@ extension ColorThemeUtility: TerminalDetector,
 		let theme: Theme = try inputThemeFileFromArguments()
 		var intermediateTheme = try coercedIntermediateTheme(from: theme)
 		
-		if !skipColorCorrectPreview, let terminal = Self.terminalApplication {
+		if !disableColorCorrectPreview, let terminal = Self.terminalApplication {
 			intermediateTheme = Self.colorCorrectedTheme(intermediateTheme, for: terminal)
 		}
 		
@@ -289,8 +292,8 @@ extension ColorThemeUtility: TerminalDetector,
 	// MARK: Generate Theme
 	
 	private func generateTheme() throws {
-		let intermediateTheme = try Self.theme(from: inputColors)
 		let inputColors = try inputColorSequenceFromArguments()
+		let intermediateTheme = try Self.theme(from: inputColors, cascade: !disablePaletteTransform)
 		let outputFormat = outputFormat ?? .theme(format: .intermediate)
 		
 		guard case .theme(let themeFormat) = outputFormat else {

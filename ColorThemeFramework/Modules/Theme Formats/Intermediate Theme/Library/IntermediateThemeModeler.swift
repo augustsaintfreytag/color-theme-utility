@@ -30,9 +30,11 @@ extension IntermediateThemeModeler {
 	/// Creates a theme from the given sequence of colors.
 	///
 	/// Currently only creates colors suitable for use in dark themes.
-	public static func theme(from colors: [Color]) throws -> IntermediateTheme {
+	public static func theme(from colors: [Color], cascade shouldCascade: Bool = true) throws -> IntermediateTheme {
 		let originColors = try originColors(from: colors)
 
+		let defaultColorTransform: ColorTransform = shouldCascade ? .darker : .none
+		
 		let backgroundColor = originColors.background
 		let foregroundColor = originColors.foreground
 
@@ -41,12 +43,12 @@ extension IntermediateThemeModeler {
 
 		let keywordColor = originColors.keywords
 
-		let referenceTypeColors = cascadingColorSequence(from: originColors.referenceTypes, numberOfColors: 3, skewing: .darker)
-		let valueTypeColors = cascadingColorSequence(from: originColors.valueTypes, numberOfColors: 3, skewing: .darker)
-		let functionColors = cascadingColorSequence(from: originColors.functions, numberOfColors: 4, skewing: .darker)
-		let constantColors = cascadingColorSequence(from: originColors.constants, numberOfColors: 3, skewing: .darker)
-		let variableColors = cascadingColorSequence(from: originColors.variables, numberOfColors: 4, skewing: .darker)
-		let stringColors = cascadingColorSequence(from: originColors.strings, numberOfColors: 3, skewing: .darker)
+		let referenceTypeColors = cascadingColorSequence(from: originColors.referenceTypes, numberOfColors: 3, skewing: defaultColorTransform)
+		let valueTypeColors = cascadingColorSequence(from: originColors.valueTypes, numberOfColors: 3, skewing: defaultColorTransform)
+		let functionColors = cascadingColorSequence(from: originColors.functions, numberOfColors: 4, skewing: defaultColorTransform)
+		let constantColors = cascadingColorSequence(from: originColors.constants, numberOfColors: 3, skewing: defaultColorTransform)
+		let variableColors = cascadingColorSequence(from: originColors.variables, numberOfColors: 4, skewing: defaultColorTransform)
+		let stringColors = cascadingColorSequence(from: originColors.strings, numberOfColors: 3, skewing: defaultColorTransform)
 		let numberColor = originColors.numbers
 		
 		let activeLineBackgroundColor = transformedColor(from: originColors.background, skewing: .lighter, modifier: 0.5)
