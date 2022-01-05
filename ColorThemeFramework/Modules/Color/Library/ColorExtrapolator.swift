@@ -79,6 +79,8 @@ extension ColorExtrapolator {
 	
 	private static func paletteStrideDelta(skewing colorChange: ColorTransform) -> (HSLColorComponents) {
 		switch colorChange {
+		case .none:
+			return paletteOffsetsZero
 		case .lighter:
 			return paletteOffsetsLight
 		case .darker:
@@ -91,6 +93,7 @@ extension ColorExtrapolator {
 // MARK: Library
 
 public enum ColorTransform: String, CaseIterable {
+	case none
 	case lighter
 	case darker
 }
