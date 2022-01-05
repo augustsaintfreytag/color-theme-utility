@@ -23,14 +23,20 @@ struct ColorThemeUtility: ParsableCommand {
 	@Option(name: [.customShort("c"), .customLong("color")], help: "The color or sequence of colors to use as input. (comma separated)", transform: stringSequenceFromArgument)
 	var inputColors: [String]?
 	
+	@Flag(name: [.customShort("C"), .customLong("colors-from-stdin")], help: "Read color sequence from stdin (default: false).")
+	var inputColorsFromStdin: Bool = false
+	
 	@Option(name: [.customShort("s"), .customLong("skew")], help: "The lightness direction skew to use for palette generation. (options: \(ColorTransform.allCasesHelpDescription))")
 	var colorTransform: ColorTransform?
 	
 	@Option(name: [.customShort("n"), .customLong("number-of-colors")], help: "The number of colors created in palette generation (including provided base color).")
 	var colorCount: Int?
 	
-	@Option(name: [.customShort("i"), .customLong("input")], help: "The theme file to use as input.")
-	var inputFile: String?
+	@Option(name: [.customShort("t"), .customLong("theme")], help: "The theme file to use as input.")
+	var inputThemeFile: String?
+	
+	@Flag(name: [.customShort("T"), .customLong("theme-from-stdin")], help: "Read theme file contents from stdin (default: false).")
+	var inputThemeContentsFromStdin: Bool = false
 	
 	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating colors or themes. (options: \(OutputFormat.allCasesHelpDescription))")
 	var outputFormat: OutputFormat?
@@ -108,7 +114,9 @@ extension ColorThemeUtility: TerminalDetector,
 	// MARK: Convert Color
 	
 	private func convertColor() throws {
-		guard let inputColorString = inputColors?.first, let inputColor = Self.color(fromAutodetectedColorString: inputColorString) else {
+		let inputColorArgument = lineFromStdin ?? inputColors?.first
+		
+		guard let inputColorString = inputColorArgument, let inputColor = Self.color(fromAutodetectedColorString: inputColorString) else {
 			throw ArgumentError(description: "Missing input color or given input has invalid or unsupported format.")
 		}
 		
@@ -133,11 +141,7 @@ extension ColorThemeUtility: TerminalDetector,
 	///   - `theme.<key>.enumerated()`
 	///
 	private func describeTheme() throws {
-		guard let inputFilePath = inputFile else {
-			throw ArgumentError(description: "Missing input file path for theme to be described.")
-		}
-
-		let theme = try Self.decodedTheme(from: inputFilePath)
+		let theme: Theme = try inputThemeFileFromArguments()
 
 		switch theme {
 		case let intermediateTheme as IntermediateTheme:
@@ -145,7 +149,7 @@ extension ColorThemeUtility: TerminalDetector,
 		case let xcodeTheme as XcodeTheme:
 			describeXcodeTheme(xcodeTheme)
 		default:
-			throw ThemeCodingError(description: "Could not determine format of supplied theme.")
+			throw ArgumentError(description: "Supplied theme is not in a describable supported format.")
 		}
 	}
 
@@ -201,11 +205,7 @@ extension ColorThemeUtility: TerminalDetector,
 	// MARK: Preview Theme
 	
 	private func previewTheme() throws {
-		guard let inputFilePath = inputFile else {
-			throw ArgumentError(description: "Missing input file path for theme to be previewed.")
-		}
-
-		let theme = try Self.decodedTheme(from: inputFilePath)
+		let theme: Theme = try inputThemeFileFromArguments()
 		var intermediateTheme = try coercedIntermediateTheme(from: theme)
 		
 		if !skipColorCorrectPreview, let terminal = Self.terminalApplication {
@@ -270,7 +270,10 @@ extension ColorThemeUtility: TerminalDetector,
 	// MARK: Generate Palette
 	
 	private func generatePalette() throws {
-		guard let inputColor = inputColors?.first, let color = Self.color(fromAutodetectedColorString: inputColor) else {
+		guard
+			let inputColor = linesFromStdin ?? inputColors?.first,
+			let color = Self.color(fromAutodetectedColorString: inputColor)
+		else {
 			throw ArgumentError(description: "Missing or invalid input color, need base color to generate palette.")
 		}
 		
@@ -286,11 +289,8 @@ extension ColorThemeUtility: TerminalDetector,
 	// MARK: Generate Theme
 	
 	private func generateTheme() throws {
-		guard let inputColors = inputColors?.compactMap({ string in Self.color(fromAutodetectedColorString: string) }), !inputColors.isEmpty else {
-			throw ArgumentError(description: "Missing input color sequence, need exactly nine (9) base colors to create theme.")
-		}
-		
 		let intermediateTheme = try Self.theme(from: inputColors)
+		let inputColors = try inputColorSequenceFromArguments()
 		let outputFormat = outputFormat ?? .theme(format: .intermediate)
 		
 		guard case .theme(let themeFormat) = outputFormat else {
@@ -362,11 +362,7 @@ extension ColorThemeUtility: TerminalDetector,
 			throw ArgumentError(description: "Output format '\(outputFormat?.description ?? "<None>")' not supported. Supported formats: 'xcode'.")
 		}
 
-		guard let inputFilePath = inputFile else {
-			throw ArgumentError(description: "Missing input file path for theme to be converted.")
-		}
-
-		guard let intermediateTheme = try Self.decodedTheme(from: inputFilePath) as? IntermediateTheme else {
+		guard let intermediateTheme = try inputThemeFileFromArguments() as? IntermediateTheme else {
 			throw ArgumentError(description: "Supplied theme is not an intermediate theme. Only intermediate themes can be converted in this version.")
 		}
 
@@ -380,12 +376,8 @@ extension ColorThemeUtility: TerminalDetector,
 		// Take an existing intermediate theme and extract unskewed color values
 		// to produce the initial 10 colors used to generate the theme.
 
-		guard let inputFilePath = inputFile else {
-			throw ArgumentError(description: "Missing input file path for theme to be converted.")
-		}
-
-		let theme = try Self.decodedTheme(from: inputFilePath)
-		let intermediateTheme = try coercedIntermediateTheme(from: theme)
+		let inputTheme = try inputThemeFileFromArguments()
+		let intermediateTheme = try coercedIntermediateTheme(from: inputTheme)
 		let colors = Self.colorSequence(from: intermediateTheme)
 
 		if humanReadable {
