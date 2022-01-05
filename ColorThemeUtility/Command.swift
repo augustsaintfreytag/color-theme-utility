@@ -191,7 +191,7 @@ extension ColorThemeUtility: TerminalDetector,
 			intermediateTheme = Self.colorCorrectedTheme(intermediateTheme, for: terminal)
 		}
 		
-		let presetString = presetString(for: previewFormat ?? .code)
+		let presetString = presetString(for: previewFormat ?? .swift)
 		let themedPresetString = presetString.withLineNumbers.withPadding.themedString(with: intermediateTheme)
 		
 		print(themedPresetString)
@@ -199,14 +199,22 @@ extension ColorThemeUtility: TerminalDetector,
 	
 	private func presetString(for format: PreviewFormat) -> TokenizedString {
 		switch format {
-		case .code:
+		case .swift:
 			return [
-				TokenizedString.Presets.structDefinition,
-				TokenizedString.Presets.protocolWithFunctionDefinition,
-				TokenizedString.Presets.literalDeclarations
+				TokenizedString.SwiftPresets.structDefinition,
+				TokenizedString.SwiftPresets.protocolWithFunctionDefinition,
+				TokenizedString.SwiftPresets.literalDeclarations
 			].joinedWithDivider()
+		case .typescript:
+			return [
+				TokenizedString.TypeScriptPresets.classDefinition,
+				TokenizedString.TypeScriptPresets.typeWithFunctionDefinition,
+				TokenizedString.TypeScriptPresets.literalDeclarations
+			].joinedWithDivider()
+		case .markdown:
+			return TokenizedString(tokens: [.word("Not supported.")])
 		case .xcode:
-			return TokenizedString.Presets.xcodePreferences
+			return TokenizedString.XcodePreferencesPresets.preferences
 		}
 	}
 	

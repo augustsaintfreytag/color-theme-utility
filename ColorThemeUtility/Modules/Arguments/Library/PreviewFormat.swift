@@ -9,7 +9,9 @@ import ArgumentParser
 
 enum PreviewFormat: String, CaseIterable, ExpressibleByArgument {
 	
-	case code
+	case swift
+	case typescript
+	case markdown
 	case xcode
 	
 }
