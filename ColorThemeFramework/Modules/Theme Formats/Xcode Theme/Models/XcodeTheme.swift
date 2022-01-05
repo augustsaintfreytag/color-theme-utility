@@ -6,6 +6,13 @@
 
 import Foundation
 
+/// Representation of a theme used by Apple Xcode.
+///
+/// All property names have been derived from default theme files.
+///
+/// - Note: Included misspellings (e.g. "dvtConsoleExecutable" and others) are
+/// intentionally preserved and re-mapped through the use of `CodingKeys` to their
+/// expected identifiers but presented as correctly spelled in the model.
 public struct XcodeTheme: Theme, CustomPropertyEnumerable {
 	
 	public typealias SourceTextSyntaxColors = XcodeThemeSourceTextSyntax
@@ -19,10 +26,10 @@ public struct XcodeTheme: Theme, CustomPropertyEnumerable {
 	public let dvtConsoleDebuggerOutputTextFont: String
 	public let dvtConsoleDebuggerPromptTextColor: String
 	public let dvtConsoleDebuggerPromptTextFont: String
-	public let dvtConsoleExectuableInputTextColor: String
-	public let dvtConsoleExectuableInputTextFont: String
-	public let dvtConsoleExectuableOutputTextColor: String
-	public let dvtConsoleExectuableOutputTextFont: String
+	public let dvtConsoleExecutableInputTextColor: String
+	public let dvtConsoleExecutableInputTextFont: String
+	public let dvtConsoleExecutableOutputTextColor: String
+	public let dvtConsoleExecutableOutputTextFont: String
 	public let dvtConsoleTextBackgroundColor: String
 	public let dvtConsoleTextInsertionPointColor: String
 	public let dvtConsoleTextSelectionColor: String
@@ -81,10 +88,10 @@ extension XcodeTheme: Codable {
 		case dvtConsoleDebuggerOutputTextFont = "DVTConsoleDebuggerOutputTextFont"
 		case dvtConsoleDebuggerPromptTextColor = "DVTConsoleDebuggerPromptTextColor"
 		case dvtConsoleDebuggerPromptTextFont = "DVTConsoleDebuggerPromptTextFont"
-		case dvtConsoleExectuableInputTextColor = "DVTConsoleExectuableInputTextColor"
-		case dvtConsoleExectuableInputTextFont = "DVTConsoleExectuableInputTextFont"
-		case dvtConsoleExectuableOutputTextColor = "DVTConsoleExectuableOutputTextColor"
-		case dvtConsoleExectuableOutputTextFont = "DVTConsoleExectuableOutputTextFont"
+		case dvtConsoleExecutableInputTextColor = "DVTConsoleExectuableInputTextColor"
+		case dvtConsoleExecutableInputTextFont = "DVTConsoleExectuableInputTextFont"
+		case dvtConsoleExecutableOutputTextColor = "DVTConsoleExectuableOutputTextColor"
+		case dvtConsoleExecutableOutputTextFont = "DVTConsoleExectuableOutputTextFont"
 		case dvtConsoleTextBackgroundColor = "DVTConsoleTextBackgroundColor"
 		case dvtConsoleTextInsertionPointColor = "DVTConsoleTextInsertionPointColor"
 		case dvtConsoleTextSelectionColor = "DVTConsoleTextSelectionColor"

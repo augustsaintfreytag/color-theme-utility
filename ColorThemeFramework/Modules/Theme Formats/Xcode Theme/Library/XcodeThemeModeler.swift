@@ -31,7 +31,7 @@ extension XcodeThemeModeler {
 	private static var markupFontHeadingOther: String { ".SFNS-Regular - 15.4" }
 
 	private static var consoleFontDefault: String { "InputMonoNarrow-Light - 11.0" }
-	private static var consoleFontOutput: String { "InputMonoNarrow-Medium - 11.0" }
+	private static var consoleFontEmphasis: String { "InputMonoNarrow-Medium - 11.0" }
 	
 	// MARK: Color Defaults
 
@@ -54,18 +54,18 @@ extension XcodeThemeModeler {
 		return XcodeTheme(
 			dvtConsoleDebuggerInputTextColor: value(theme.foreground),
 			dvtConsoleDebuggerInputTextFont: consoleFontDefault,
-			dvtConsoleDebuggerOutputTextColor: value(theme.foreground),	// TBD
-			dvtConsoleDebuggerOutputTextFont: consoleFontOutput,
-			dvtConsoleDebuggerPromptTextColor: value(theme.foreground),
-			dvtConsoleDebuggerPromptTextFont: consoleFontDefault,
-			dvtConsoleExectuableInputTextColor: value(theme.foreground),
-			dvtConsoleExectuableInputTextFont: consoleFontDefault,
-			dvtConsoleExectuableOutputTextColor: value(theme.foreground),
-			dvtConsoleExectuableOutputTextFont: consoleFontOutput,
+			dvtConsoleDebuggerOutputTextColor: value(theme.foreground),
+			dvtConsoleDebuggerOutputTextFont: consoleFontEmphasis,
+			dvtConsoleDebuggerPromptTextColor: value(theme.keyword),
+			dvtConsoleDebuggerPromptTextFont: consoleFontEmphasis,
+			dvtConsoleExecutableInputTextColor: value(theme.foreground),
+			dvtConsoleExecutableInputTextFont: consoleFontDefault,
+			dvtConsoleExecutableOutputTextColor: value(theme.foreground),
+			dvtConsoleExecutableOutputTextFont: consoleFontEmphasis,
 			dvtConsoleTextBackgroundColor: value(theme.background),
 			dvtConsoleTextInsertionPointColor: value(theme.insertionPoint),
 			dvtConsoleTextSelectionColor: value(theme.selectionBackground),
-			dvtDebuggerInstructionPointerColor: value(noSpecificColor),	// TBD
+			dvtDebuggerInstructionPointerColor: value(breakpointColor),
 			dvtFontAndColorVersion: version,
 			dvtLineSpacing: lineSpacing,
 			dvtMarkupTextBackgroundColor: value(theme.background),
@@ -94,7 +94,7 @@ extension XcodeThemeModeler {
 			dvtScrollbarMarkerRuntimeIssueColor: value(runtimeIssueColor),
 			dvtScrollbarMarkerWarningColor: value(warningColor),
 			dvtSourceTextBackground: value(theme.background),
-			dvtSourceTextBlockDimBackgroundColor: value(theme.background),		// TBD, lighter background color
+			dvtSourceTextBlockDimBackgroundColor: value(theme.background),
 			dvtSourceTextCurrentLineHighlightColor: value(theme.activeLineBackground),
 			dvtSourceTextInsertionPointColor: value(theme.insertionPoint),
 			dvtSourceTextInvisiblesColor: value(theme.comment),
