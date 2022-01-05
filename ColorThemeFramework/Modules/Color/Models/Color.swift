@@ -49,16 +49,24 @@ public struct Color: Codable {
 
 extension Color {
 	
+	static var white: Color {
+		return Color(red: 1, green: 1, blue: 1)
+	}
+	
+	static var black: Color {
+		return Color(red: 0, green: 0, blue: 0)
+	}
+	
 	static var red: Color {
-		return Color(red: 1.0, green: 0.0, blue: 0.0)
+		return Color(red: 1, green: 0, blue: 0)
 	}
 	
 	static var green: Color {
-		return Color(red: 0.0, green: 1.0, blue: 0.0)
+		return Color(red: 0, green: 1, blue: 0)
 	}
 	
 	static var blue: Color {
-		return Color(red: 0.0, green: 0.0, blue: 1.0)
+		return Color(red: 0, green: 0, blue: 1)
 	}
 	
 }
