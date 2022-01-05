@@ -16,8 +16,8 @@ public protocol ColorExtrapolator {
 extension ColorExtrapolator {
 	
 	public static var paletteOffsetsZero: HSLColorComponents { (0, 0, 0) }
-	public static var paletteOffsetsLight: HSLColorComponents { (0, -0.15, 0.15) }
-	public static var paletteOffsetsDark: HSLColorComponents { (0, 0.15, -0.25) }
+	public static var paletteOffsetsLight: HSLColorComponents { (0, -0.025, 0.1) }
+	public static var paletteOffsetsDark: HSLColorComponents { (0, 0.025, -0.2) }
 	
 	// MARK: Single Color
 	
