@@ -51,10 +51,10 @@ extension IntermediateThemeModeler {
 		let stringColors = cascadingColorSequence(from: originColors.strings, numberOfColors: 3, skewing: defaultColorTransform)
 		let numberColor = originColors.numbers
 		
-		let activeLineBackgroundColor = transformedColor(from: originColors.background, skewing: .lighter, modifier: 0.5)
-		let selectionBackgroundColor = transformedColor(from: originColors.keywords, applying: (0, 0.2, 0.2))
-		let insertionPointColor = transformedColor(from: originColors.keywords, skewing: .lighter)
-		let instructionPointerColor = transformedColor(from: originColors.keywords, applying: (0, 0.1, 0.15))
+		let activeLineBackgroundColor = transformedColor(from: originColors.background, skewing: .lighter, modifier: 0.6)
+		let selectionBackgroundColor = transformedColor(from: originColors.keywords, applying: (0, -0.1, -0.1))
+		let insertionPointColor = transformedColor(from: originColors.keywords, applying: (0, -0.1, -0.1))
+		let instructionPointerColor = transformedColor(from: originColors.keywords, applying: (0, -0.25, -0.25))
 
 		return IntermediateTheme(
 			format: IntermediateTheme.defaultFormat,
