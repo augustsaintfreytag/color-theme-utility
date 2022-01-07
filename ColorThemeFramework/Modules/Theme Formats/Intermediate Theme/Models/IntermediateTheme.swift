@@ -22,6 +22,7 @@ public struct IntermediateTheme: Theme, Codable, CustomPropertyEnumerable {
 	public let selectionBackground: Color
 	public let activeLineBackground: Color
 	public let insertionPoint: Color
+	public let instructionPointer: Color
 	
 	public let comment: Color
 	public let commentDocumentation: Color
@@ -68,6 +69,7 @@ extension IntermediateTheme {
 			selectionBackground: block(\.selectionBackground, selectionBackground),
 			activeLineBackground: block(\.activeLineBackground, activeLineBackground),
 			insertionPoint: block(\.insertionPoint, insertionPoint),
+			instructionPointer: block(\.instructionPointer, instructionPointer),
 			comment: block(\.comment, comment),
 			commentDocumentation: block(\.commentDocumentation, commentDocumentation),
 			commentSection: block(\.commentSection, commentSection),

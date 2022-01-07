@@ -52,8 +52,9 @@ extension IntermediateThemeModeler {
 		let numberColor = originColors.numbers
 		
 		let activeLineBackgroundColor = transformedColor(from: originColors.background, skewing: .lighter, modifier: 0.5)
-		let selectionBackgroundColor = transformedColor(from: originColors.keywords, applying: (0, 0.6, 0.2))
+		let selectionBackgroundColor = transformedColor(from: originColors.keywords, applying: (0, 0.2, 0.2))
 		let insertionPointColor = transformedColor(from: originColors.keywords, skewing: .lighter)
+		let instructionPointerColor = transformedColor(from: originColors.keywords, applying: (0, 0.1, 0.15))
 
 		return IntermediateTheme(
 			format: IntermediateTheme.defaultFormat,
@@ -63,6 +64,7 @@ extension IntermediateThemeModeler {
 			selectionBackground: selectionBackgroundColor,
 			activeLineBackground: activeLineBackgroundColor,
 			insertionPoint: insertionPointColor,
+			instructionPointer: instructionPointerColor,
 			comment: commentColors[1],
 			commentDocumentation: commentColors[1],
 			commentSection: commentColors[0],
