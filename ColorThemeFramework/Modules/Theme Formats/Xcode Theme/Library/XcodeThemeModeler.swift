@@ -19,9 +19,9 @@ extension XcodeThemeModeler {
 	
 	// MARK: Font Defaults
 	
-	private static var codeFontDefault: String { "InputMonoNarrow-Light - 12.0" }
-	private static var codeFontEmphasis: String { "InputMonoNarrow-Medium - 12.0" }
-	private static var codeDocFontDefault: String { "InputSansCondensed-Light - 12.0" }
+	private static var codeFontDefault: String { "SFMono-Regular - 12.0" }
+	private static var codeFontEmphasis: String { "SFMono-Bold - 12.0" }
+	private static var codeDocFontDefault: String { ".AppleSystemUIFont - 12.0" }
 	
 	private static var markupFontDefault: String { ".SFNS-Regular - 11.0" }				// Also used for "link font"
 	private static var markupFontEmphasis: String { ".SFNS-RegularItalic - 11.0" }
@@ -30,8 +30,8 @@ extension XcodeThemeModeler {
 	private static var markupFontHeadingSecondary: String { ".SFNS-Regular - 19.8" }
 	private static var markupFontHeadingOther: String { ".SFNS-Regular - 15.4" }
 
-	private static var consoleFontDefault: String { "InputMonoNarrow-Light - 11.0" }
-	private static var consoleFontEmphasis: String { "InputMonoNarrow-Medium - 11.0" }
+	private static var consoleFontDefault: String { "SFMono-Regular - 11.0" }
+	private static var consoleFontEmphasis: String { "SFMono-Bold - 11.0" }
 	
 	// MARK: Color Defaults
 
