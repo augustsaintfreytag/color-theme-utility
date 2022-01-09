@@ -38,7 +38,7 @@ extension IntermediateThemeModeler {
 		let backgroundColor = originColors.background
 		let foregroundColor = originColors.foreground
 
-		let commentBaseColor = transformedColor(from: originColors.foreground, skewing: .darker, modifier: 2.0)
+		let commentBaseColor = transformedColor(from: originColors.foreground, applying: (0, -0.05, -0.4))
 		let commentColors = cascadingColorSequence(from: commentBaseColor, numberOfColors: 2, skewing: .darker)
 
 		let keywordColor = originColors.keywords
@@ -52,7 +52,7 @@ extension IntermediateThemeModeler {
 		let numberColor = originColors.numbers
 		
 		let activeLineBackgroundColor = transformedColor(from: originColors.background, skewing: .lighter, modifier: 0.6)
-		let selectionBackgroundColor = transformedColor(from: originColors.keywords, applying: (0, -0.1, -0.1))
+		let selectionBackgroundColor = transformedColor(from: originColors.keywords, applying: (0, -0.05, -0.2))
 		let insertionPointColor = transformedColor(from: originColors.keywords, applying: (0, -0.1, -0.1))
 		let instructionPointerColor = transformedColor(from: originColors.keywords, applying: (0, -0.25, -0.25))
 
