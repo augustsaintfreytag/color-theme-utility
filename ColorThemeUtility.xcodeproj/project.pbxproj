@@ -105,11 +105,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8B16315027902BE400DF0E61 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		8B29630826F60ED20048CE17 /* ColorThemeUtility */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ColorThemeUtility; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B29630B26F60ED20048CE17 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		8B29631E26F630120048CE17 /* XcodeThemeImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeThemeImporter.swift; sourceTree = "<group>"; };
 		8B2E62AB27024807000AEA95 /* IntermediateTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntermediateTheme.swift; sourceTree = "<group>"; };
 		8B33B7EC2784E8C500785D9B /* Command+StandardStreams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Command+StandardStreams.swift"; sourceTree = "<group>"; };
+		8B3A7A1F278F6A9F00817948 /* ColorThemeAssembly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ColorThemeAssembly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B4150EA27143E3400873BBF /* IntermediateThemeModeler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntermediateThemeModeler.swift; sourceTree = "<group>"; };
 		8B4150ED27147D8900873BBF /* Transformers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformers.swift; sourceTree = "<group>"; };
 		8B57B50B2704797600A60D1C /* String+Split.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Split.swift"; sourceTree = "<group>"; };
@@ -173,6 +175,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8B3A7A1C278F6A9F00817948 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8B6BE041270C731D0063B0BA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -194,6 +203,7 @@
 		8B2962FF26F60ED20048CE17 = {
 			isa = PBXGroup;
 			children = (
+				8B16315027902BE400DF0E61 /* Package.swift */,
 				8B6BE045270C731D0063B0BA /* ColorThemeFramework */,
 				8B6BE050270C731D0063B0BA /* ColorThemeFrameworkTests */,
 				8B29630A26F60ED20048CE17 /* ColorThemeUtility */,
@@ -208,6 +218,7 @@
 				8B29630826F60ED20048CE17 /* ColorThemeUtility */,
 				8B6BE044270C731D0063B0BA /* ColorThemeFramework.framework */,
 				8B6BE04C270C731D0063B0BA /* ColorThemeFrameworkTests.xctest */,
+				8B3A7A1F278F6A9F00817948 /* ColorThemeAssembly.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -551,6 +562,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		8B3A7A1A278F6A9F00817948 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8B6BE03F270C731D0063B0BA /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -584,6 +602,24 @@
 			productName = "Xcode Color Theme Utility";
 			productReference = 8B29630826F60ED20048CE17 /* ColorThemeUtility */;
 			productType = "com.apple.product-type.tool";
+		};
+		8B3A7A1E278F6A9F00817948 /* ColorThemeAssembly */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B3A7A23278F6A9F00817948 /* Build configuration list for PBXNativeTarget "ColorThemeAssembly" */;
+			buildPhases = (
+				8B3A7A1A278F6A9F00817948 /* Headers */,
+				8B3A7A1B278F6A9F00817948 /* Sources */,
+				8B3A7A1C278F6A9F00817948 /* Frameworks */,
+				8B3A7A1D278F6A9F00817948 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ColorThemeAssembly;
+			productName = ColorThemeAssembly;
+			productReference = 8B3A7A1F278F6A9F00817948 /* ColorThemeAssembly.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 		8B6BE043270C731D0063B0BA /* ColorThemeFramework */ = {
 			isa = PBXNativeTarget;
@@ -633,6 +669,10 @@
 					8B29630726F60ED20048CE17 = {
 						CreatedOnToolsVersion = 12.5;
 					};
+					8B3A7A1E278F6A9F00817948 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
+					};
 					8B6BE043270C731D0063B0BA = {
 						CreatedOnToolsVersion = 12.5;
 					};
@@ -641,7 +681,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8B29630326F60ED20048CE17 /* Build configuration list for PBXProject "Color Theme Utility" */;
+			buildConfigurationList = 8B29630326F60ED20048CE17 /* Build configuration list for PBXProject "ColorThemeUtility" */;
 			compatibilityVersion = "Xcode 11.4";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -661,11 +701,19 @@
 				8B29630726F60ED20048CE17 /* ColorThemeUtility */,
 				8B6BE043270C731D0063B0BA /* ColorThemeFramework */,
 				8B6BE04B270C731D0063B0BA /* ColorThemeFrameworkTests */,
+				8B3A7A1E278F6A9F00817948 /* ColorThemeAssembly */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8B3A7A1D278F6A9F00817948 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8B6BE042270C731D0063B0BA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -703,6 +751,13 @@
 				8B69B3A6274F906500732343 /* PreviewFormat.swift in Sources */,
 				8B79D52727353C300010233E /* TokenizedStringPaddingProvider.swift in Sources */,
 				8BEDE620272DCB0500CFF886 /* TokenizedString.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B3A7A1B278F6A9F00817948 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -906,6 +961,71 @@
 			};
 			name = Release;
 		};
+		8B3A7A24278F6A9F00817948 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.ColorThemeAssembly;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8B3A7A25278F6A9F00817948 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.ColorThemeAssembly;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		8B6BE056270C731D0063B0BA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -997,7 +1117,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8B29630326F60ED20048CE17 /* Build configuration list for PBXProject "Color Theme Utility" */ = {
+		8B29630326F60ED20048CE17 /* Build configuration list for PBXProject "ColorThemeUtility" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8B29630D26F60ED20048CE17 /* Debug */,
@@ -1011,6 +1131,15 @@
 			buildConfigurations = (
 				8B29631026F60ED30048CE17 /* Debug */,
 				8B29631126F60ED30048CE17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B3A7A23278F6A9F00817948 /* Build configuration list for PBXNativeTarget "ColorThemeAssembly" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B3A7A24278F6A9F00817948 /* Debug */,
+				8B3A7A25278F6A9F00817948 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
