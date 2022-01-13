@@ -19,9 +19,9 @@ extension XcodeThemeModeler {
 	
 	// MARK: Font Defaults
 	
-	private static var codeFontDefault: String { "InputMonoNarrow-Light - 12.0" }
-	private static var codeFontEmphasis: String { "InputMonoNarrow-Medium - 12.0" }
-	private static var codeDocFontDefault: String { "InputSansCondensed-Light - 12.0" }
+	private static var codeFontDefault: String { "SFMono-Regular - 12.0" }
+	private static var codeFontEmphasis: String { "SFMono-Bold - 12.0" }
+	private static var codeDocFontDefault: String { ".AppleSystemUIFont - 12.0" }
 	
 	private static var markupFontDefault: String { ".SFNS-Regular - 11.0" }				// Also used for "link font"
 	private static var markupFontEmphasis: String { ".SFNS-RegularItalic - 11.0" }
@@ -30,8 +30,8 @@ extension XcodeThemeModeler {
 	private static var markupFontHeadingSecondary: String { ".SFNS-Regular - 19.8" }
 	private static var markupFontHeadingOther: String { ".SFNS-Regular - 15.4" }
 
-	private static var consoleFontDefault: String { "InputMonoNarrow-Light - 11.0" }
-	private static var consoleFontOutput: String { "InputMonoNarrow-Medium - 11.0" }
+	private static var consoleFontDefault: String { "SFMono-Regular - 11.0" }
+	private static var consoleFontEmphasis: String { "SFMono-Bold - 11.0" }
 	
 	// MARK: Color Defaults
 
@@ -54,18 +54,18 @@ extension XcodeThemeModeler {
 		return XcodeTheme(
 			dvtConsoleDebuggerInputTextColor: value(theme.foreground),
 			dvtConsoleDebuggerInputTextFont: consoleFontDefault,
-			dvtConsoleDebuggerOutputTextColor: value(theme.foreground),	// TBD
-			dvtConsoleDebuggerOutputTextFont: consoleFontOutput,
-			dvtConsoleDebuggerPromptTextColor: value(theme.foreground),
-			dvtConsoleDebuggerPromptTextFont: consoleFontDefault,
-			dvtConsoleExectuableInputTextColor: value(theme.foreground),
-			dvtConsoleExectuableInputTextFont: consoleFontDefault,
-			dvtConsoleExectuableOutputTextColor: value(theme.foreground),
-			dvtConsoleExectuableOutputTextFont: consoleFontOutput,
+			dvtConsoleDebuggerOutputTextColor: value(theme.foreground),
+			dvtConsoleDebuggerOutputTextFont: consoleFontEmphasis,
+			dvtConsoleDebuggerPromptTextColor: value(theme.keyword),
+			dvtConsoleDebuggerPromptTextFont: consoleFontEmphasis,
+			dvtConsoleExecutableInputTextColor: value(theme.foreground),
+			dvtConsoleExecutableInputTextFont: consoleFontDefault,
+			dvtConsoleExecutableOutputTextColor: value(theme.foreground),
+			dvtConsoleExecutableOutputTextFont: consoleFontEmphasis,
 			dvtConsoleTextBackgroundColor: value(theme.background),
 			dvtConsoleTextInsertionPointColor: value(theme.insertionPoint),
 			dvtConsoleTextSelectionColor: value(theme.selectionBackground),
-			dvtDebuggerInstructionPointerColor: value(noSpecificColor),	// TBD
+			dvtDebuggerInstructionPointerColor: value(theme.instructionPointer),
 			dvtFontAndColorVersion: version,
 			dvtLineSpacing: lineSpacing,
 			dvtMarkupTextBackgroundColor: value(theme.background),
@@ -94,7 +94,7 @@ extension XcodeThemeModeler {
 			dvtScrollbarMarkerRuntimeIssueColor: value(runtimeIssueColor),
 			dvtScrollbarMarkerWarningColor: value(warningColor),
 			dvtSourceTextBackground: value(theme.background),
-			dvtSourceTextBlockDimBackgroundColor: value(theme.background),		// TBD, lighter background color
+			dvtSourceTextBlockDimBackgroundColor: value(theme.background),
 			dvtSourceTextCurrentLineHighlightColor: value(theme.activeLineBackground),
 			dvtSourceTextInsertionPointColor: value(theme.insertionPoint),
 			dvtSourceTextInvisiblesColor: value(theme.comment),
@@ -188,6 +188,7 @@ extension XcodeThemeModeler {
 			selectionBackground: try color(theme.dvtSourceTextSelectionColor),
 			activeLineBackground: try color(theme.dvtSourceTextCurrentLineHighlightColor),
 			insertionPoint: try color(theme.dvtSourceTextInsertionPointColor),
+			instructionPointer: try color(theme.dvtDebuggerInstructionPointerColor),
 			comment: try color(themeSyntax.xcodeSyntaxComment),
 			commentDocumentation: try color(themeSyntax.xcodeSyntaxCommentDoc),
 			commentSection: try color(themeSyntax.xcodeSyntaxMark),

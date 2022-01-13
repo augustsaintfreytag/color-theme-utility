@@ -12,6 +12,8 @@ import ArgumentParser
 struct ColorThemeUtility: ParsableCommand {
 	
 	static let configuration = CommandConfiguration(
+		abstract: "Utility to inspect and create color themes for use with various editors.",
+		version: "0.2.0",
 		helpNames: [.customShort("?"), .long]
 	)
 	
