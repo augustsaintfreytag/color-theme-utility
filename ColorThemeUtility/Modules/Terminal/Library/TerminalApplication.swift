@@ -8,6 +8,8 @@ import Foundation
 
 /// A type denoting a supported terminal application.
 public enum TerminalApplication {
+	
 	case apple
 	case iterm
+	
 }

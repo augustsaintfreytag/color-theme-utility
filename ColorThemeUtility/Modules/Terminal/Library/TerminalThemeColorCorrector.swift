@@ -5,14 +5,15 @@
 //
 
 import Foundation
+import ColorThemeModelingFramework
 
 /// Functionality to color correct themes for display in terminals.
 ///
 /// This protocol only supports applying color correction for *iTerm*.
 /// Support for other terminal applications may be added in a future version.
-public protocol ThemeColorCorrector: HSLColorConverter {}
+public protocol TerminalThemeColorCorrector: HSLColorConverter {}
 
-extension ThemeColorCorrector {
+extension TerminalThemeColorCorrector {
 	
 	private static var itermForegroundColorCorrection: HSLColorComponents { (0, 0, 0.05) }
 	private static var itermBackgroundColorCorrection: HSLColorComponents { (0, 0, 0.05) }

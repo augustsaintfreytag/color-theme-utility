@@ -7,6 +7,7 @@
 import Foundation
 import ArgumentParser
 import ColorThemeModelingFramework
+import ColorThemeCodingFramework
 
 extension ColorFormat: ExpressibleByArgument {}
 

@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import ColorThemeModelingFramework
 
 /// Functionality to process file paths, read and decode theme file contents
 /// into their appropriate theme type.

@@ -91,7 +91,7 @@ extension ColorThemeUtility: TerminalDetector,
 							 HSLColorConverter,
 							 ColorExtrapolator,
 							 IntermediateThemeModeler,
-							 ThemeColorCorrector,
+							 TerminalThemeColorCorrector,
 							 XcodeThemeModeler,
 							 TableFormatter {
 	
