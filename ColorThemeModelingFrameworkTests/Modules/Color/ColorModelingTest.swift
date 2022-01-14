@@ -5,7 +5,7 @@
 //
 
 import XCTest
-@testable import ColorThemeFramework
+@testable import ColorThemeModelingFramework
 
 class ColorModelingTest: XCTestCase, ColorConversionTestProvider {
 	

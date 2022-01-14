@@ -5,7 +5,7 @@
 //
 
 import Foundation
-import ColorThemeFramework
+import ColorThemeModelingFramework
 
 /// A single token defining a word in a greater syntactical string and its kind
 /// related to a property in `IntermediateTheme`.

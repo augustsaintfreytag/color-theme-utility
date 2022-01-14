@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B16315927917CDE00DF0E61 /* ColorThemeCodingFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B16315827917CDE00DF0E61 /* ColorThemeCodingFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B16315E2791832500DF0E61 /* ColorThemeCodingFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B16315627917CDE00DF0E61 /* ColorThemeCodingFramework.framework */; };
+		8B16315F2791832500DF0E61 /* ColorThemeCodingFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B16315627917CDE00DF0E61 /* ColorThemeCodingFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B29630C26F60ED20048CE17 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29630B26F60ED20048CE17 /* Command.swift */; };
 		8B29631426F60F250048CE17 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 8B29631326F60F250048CE17 /* ArgumentParser */; };
 		8B29631C26F62F5A0048CE17 /* Rainbow in Frameworks */ = {isa = PBXBuildFile; productRef = 8B29631B26F62F5A0048CE17 /* Rainbow */; };
@@ -15,13 +18,12 @@
 		8B4150EE27147D8900873BBF /* Transformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4150ED27147D8900873BBF /* Transformers.swift */; };
 		8B57B5142705B3E500A60D1C /* ArgumentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57B5132705B3E500A60D1C /* ArgumentError.swift */; };
 		8B69B3A6274F906500732343 /* PreviewFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69B3A5274F906500732343 /* PreviewFormat.swift */; };
-		8B6BE04D270C731D0063B0BA /* ColorThemeFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6BE044270C731D0063B0BA /* ColorThemeFramework.framework */; };
+		8B6BE04D270C731D0063B0BA /* ColorThemeModelingFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6BE044270C731D0063B0BA /* ColorThemeModelingFramework.framework */; };
 		8B6BE052270C731D0063B0BA /* ColorModelingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE051270C731D0063B0BA /* ColorModelingTest.swift */; };
-		8B6BE054270C731D0063B0BA /* ColorThemeFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B6BE046270C731D0063B0BA /* ColorThemeFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8B6BE061270C74060063B0BA /* ColorThemeFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6BE044270C731D0063B0BA /* ColorThemeFramework.framework */; };
-		8B6BE062270C74060063B0BA /* ColorThemeFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6BE044270C731D0063B0BA /* ColorThemeFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8B6BE054270C731D0063B0BA /* ColorThemeModelingFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B6BE046270C731D0063B0BA /* ColorThemeModelingFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B6BE061270C74060063B0BA /* ColorThemeModelingFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6BE044270C731D0063B0BA /* ColorThemeModelingFramework.framework */; };
+		8B6BE062270C74060063B0BA /* ColorThemeModelingFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6BE044270C731D0063B0BA /* ColorThemeModelingFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B6BE07D270C77FB0063B0BA /* CustomPropertyEnumerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE031270A48290063B0BA /* CustomPropertyEnumerable.swift */; };
-		8B6BE07E270C77FB0063B0BA /* ThemeDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE70D1C27085F1A008D9991 /* ThemeDecoder.swift */; };
 		8B6BE07F270C77FB0063B0BA /* URL+CanonicalPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBF92A42701CE1D00386123 /* URL+CanonicalPath.swift */; };
 		8B6BE080270C77FB0063B0BA /* FloatRGBAColorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE02C2709B12C0063B0BA /* FloatRGBAColorParser.swift */; };
 		8B6BE081270C77FB0063B0BA /* HexadecimalColorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE02A2709ABFE0063B0BA /* HexadecimalColorParser.swift */; };
@@ -31,7 +33,6 @@
 		8B6BE085270C77FB0063B0BA /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE70D20270862D3008D9991 /* Theme.swift */; };
 		8B6BE086270C77FB0063B0BA /* ColorFormatDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57B50E2704875500A60D1C /* ColorFormatDetector.swift */; };
 		8B6BE087270C77FB0063B0BA /* ThemeCodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE70D1E270860DF008D9991 /* ThemeCodingError.swift */; };
-		8B6BE088270C77FB0063B0BA /* XcodeThemeImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29631E26F630120048CE17 /* XcodeThemeImporter.swift */; };
 		8B6BE089270C77FB0063B0BA /* HSLColorConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE02E2709B9240063B0BA /* HSLColorConverter.swift */; };
 		8B6BE08A270C77FB0063B0BA /* ThemeModelingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE70D18270855D3008D9991 /* ThemeModelingError.swift */; };
 		8B6BE08B270C77FB0063B0BA /* String+Split.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57B50B2704797600A60D1C /* String+Split.swift */; };
@@ -43,14 +44,16 @@
 		8B6BE09A270EF65D0063B0BA /* ColorHSLConversionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE099270EF65D0063B0BA /* ColorHSLConversionTest.swift */; };
 		8B6BE09C270EF7090063B0BA /* ColorHexadecimalConversionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE09B270EF7090063B0BA /* ColorHexadecimalConversionTest.swift */; };
 		8B6BE09E270F7A080063B0BA /* ColorExtrapolator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE09D270F7A080063B0BA /* ColorExtrapolator.swift */; };
-		8B79D5202733FE2A0010233E /* ThemeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79D51F2733FE2A0010233E /* ThemeFormat.swift */; };
 		8B79D522273408160010233E /* ImplementationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79D521273408160010233E /* ImplementationError.swift */; };
-		8B79D524273538CE0010233E /* ThemeFormatDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79D523273538CE0010233E /* ThemeFormatDetector.swift */; };
 		8B79D52727353C300010233E /* TokenizedStringPaddingProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79D52627353C300010233E /* TokenizedStringPaddingProvider.swift */; };
 		8B79D52D273691B70010233E /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79D52C273691B70010233E /* Mode.swift */; };
 		8B79D52F273691D30010233E /* OutputFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79D52E273691D30010233E /* OutputFormat.swift */; };
-		8B8C579D2726B55C00606BB9 /* ThemeEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8C579C2726B55C00606BB9 /* ThemeEncoder.swift */; };
-		8B8C57A02726B93F00606BB9 /* ThemeEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8C579F2726B93F00606BB9 /* ThemeEncoding.swift */; };
+		8B851B342791875B00A93814 /* ThemeDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE70D1C27085F1A008D9991 /* ThemeDecoder.swift */; };
+		8B851B352791875B00A93814 /* ThemeEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8C579F2726B93F00606BB9 /* ThemeEncoding.swift */; };
+		8B851B362791875B00A93814 /* ThemeEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8C579C2726B55C00606BB9 /* ThemeEncoder.swift */; };
+		8B851B382791875F00A93814 /* ThemeFormatDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79D523273538CE0010233E /* ThemeFormatDetector.swift */; };
+		8B851B3B2791886300A93814 /* ThemeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79D51F2733FE2A0010233E /* ThemeFormat.swift */; };
+		8B851B3E27918AC200A93814 /* XcodeThemeImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29631E26F630120048CE17 /* XcodeThemeImporter.swift */; };
 		8BA2BBAB272948B40012D844 /* ExpressibleByArgument+Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBAA272948B40012D844 /* ExpressibleByArgument+Description.swift */; };
 		8BA2BBAE2729CF600012D844 /* TableFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBAD2729CF600012D844 /* TableFormatter.swift */; };
 		8BBB859627510091004C7558 /* TerminalDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBB859527510091004C7558 /* TerminalDetector.swift */; };
@@ -65,6 +68,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8B1631602791832500DF0E61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B29630026F60ED20048CE17 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8B16315527917CDE00DF0E61;
+			remoteInfo = ColorThemeCodingFramework;
+		};
 		8B6BE04E270C731D0063B0BA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8B29630026F60ED20048CE17 /* Project object */;
@@ -97,7 +107,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8B6BE062270C74060063B0BA /* ColorThemeFramework.framework in Embed Frameworks */,
+				8B6BE062270C74060063B0BA /* ColorThemeModelingFramework.framework in Embed Frameworks */,
+				8B16315F2791832500DF0E61 /* ColorThemeCodingFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,12 +117,13 @@
 
 /* Begin PBXFileReference section */
 		8B16315027902BE400DF0E61 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		8B16315627917CDE00DF0E61 /* ColorThemeCodingFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ColorThemeCodingFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B16315827917CDE00DF0E61 /* ColorThemeCodingFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorThemeCodingFramework.h; sourceTree = "<group>"; };
 		8B29630826F60ED20048CE17 /* ColorThemeUtility */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ColorThemeUtility; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B29630B26F60ED20048CE17 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		8B29631E26F630120048CE17 /* XcodeThemeImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeThemeImporter.swift; sourceTree = "<group>"; };
 		8B2E62AB27024807000AEA95 /* IntermediateTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntermediateTheme.swift; sourceTree = "<group>"; };
 		8B33B7EC2784E8C500785D9B /* Command+StandardStreams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Command+StandardStreams.swift"; sourceTree = "<group>"; };
-		8B3A7A1F278F6A9F00817948 /* ColorThemeAssembly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ColorThemeAssembly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B4150EA27143E3400873BBF /* IntermediateThemeModeler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntermediateThemeModeler.swift; sourceTree = "<group>"; };
 		8B4150ED27147D8900873BBF /* Transformers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformers.swift; sourceTree = "<group>"; };
 		8B57B50B2704797600A60D1C /* String+Split.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Split.swift"; sourceTree = "<group>"; };
@@ -124,12 +136,10 @@
 		8B6BE02C2709B12C0063B0BA /* FloatRGBAColorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatRGBAColorParser.swift; sourceTree = "<group>"; };
 		8B6BE02E2709B9240063B0BA /* HSLColorConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSLColorConverter.swift; sourceTree = "<group>"; };
 		8B6BE031270A48290063B0BA /* CustomPropertyEnumerable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPropertyEnumerable.swift; sourceTree = "<group>"; };
-		8B6BE044270C731D0063B0BA /* ColorThemeFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ColorThemeFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B6BE046270C731D0063B0BA /* ColorThemeFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorThemeFramework.h; sourceTree = "<group>"; };
-		8B6BE047270C731D0063B0BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8B6BE04C270C731D0063B0BA /* ColorThemeFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ColorThemeFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B6BE044270C731D0063B0BA /* ColorThemeModelingFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ColorThemeModelingFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B6BE046270C731D0063B0BA /* ColorThemeModelingFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorThemeModelingFramework.h; sourceTree = "<group>"; };
+		8B6BE04C270C731D0063B0BA /* ColorThemeModelingFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ColorThemeModelingFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B6BE051270C731D0063B0BA /* ColorModelingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModelingTest.swift; sourceTree = "<group>"; };
-		8B6BE053270C731D0063B0BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B6BE08F270C78AC0063B0BA /* Types+ExpressibleByArgument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Types+ExpressibleByArgument.swift"; sourceTree = "<group>"; };
 		8B6BE091270DB5470063B0BA /* String+CustomColorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CustomColorable.swift"; sourceTree = "<group>"; };
 		8B6BE095270EF20B0063B0BA /* ColorConversionTestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConversionTestProvider.swift; sourceTree = "<group>"; };
@@ -165,20 +175,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8B16315327917CDE00DF0E61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8B29630526F60ED20048CE17 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B6BE061270C74060063B0BA /* ColorThemeFramework.framework in Frameworks */,
+				8B6BE061270C74060063B0BA /* ColorThemeModelingFramework.framework in Frameworks */,
 				8B29631426F60F250048CE17 /* ArgumentParser in Frameworks */,
 				8B29631C26F62F5A0048CE17 /* Rainbow in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8B3A7A1C278F6A9F00817948 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				8B16315E2791832500DF0E61 /* ColorThemeCodingFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,19 +204,57 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B6BE04D270C731D0063B0BA /* ColorThemeFramework.framework in Frameworks */,
+				8B6BE04D270C731D0063B0BA /* ColorThemeModelingFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B16315727917CDE00DF0E61 /* ColorThemeCodingFramework */ = {
+			isa = PBXGroup;
+			children = (
+				8B16315827917CDE00DF0E61 /* ColorThemeCodingFramework.h */,
+				8B16315D27917DCE00DF0E61 /* Modules */,
+			);
+			path = ColorThemeCodingFramework;
+			sourceTree = "<group>";
+		};
+		8B16315D27917DCE00DF0E61 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				8B1631622791851E00DF0E61 /* Theme Coding */,
+				8B851B322791872800A93814 /* Theme Format */,
+				8B851B3C27918A9400A93814 /* Theme Import */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		8B1631622791851E00DF0E61 /* Theme Coding */ = {
+			isa = PBXGroup;
+			children = (
+				8B1631632791852600DF0E61 /* Library */,
+			);
+			path = "Theme Coding";
+			sourceTree = "<group>";
+		};
+		8B1631632791852600DF0E61 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				8B8C579C2726B55C00606BB9 /* ThemeEncoder.swift */,
+				8B8C579F2726B93F00606BB9 /* ThemeEncoding.swift */,
+				8BE70D1C27085F1A008D9991 /* ThemeDecoder.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		8B2962FF26F60ED20048CE17 = {
 			isa = PBXGroup;
 			children = (
 				8B16315027902BE400DF0E61 /* Package.swift */,
-				8B6BE045270C731D0063B0BA /* ColorThemeFramework */,
-				8B6BE050270C731D0063B0BA /* ColorThemeFrameworkTests */,
+				8B16315727917CDE00DF0E61 /* ColorThemeCodingFramework */,
+				8B6BE045270C731D0063B0BA /* ColorThemeModelingFramework */,
+				8B6BE050270C731D0063B0BA /* ColorThemeModelingFrameworkTests */,
 				8B29630A26F60ED20048CE17 /* ColorThemeUtility */,
 				8B6BE060270C74060063B0BA /* Frameworks */,
 				8B29630926F60ED20048CE17 /* Products */,
@@ -216,9 +265,9 @@
 			isa = PBXGroup;
 			children = (
 				8B29630826F60ED20048CE17 /* ColorThemeUtility */,
-				8B6BE044270C731D0063B0BA /* ColorThemeFramework.framework */,
-				8B6BE04C270C731D0063B0BA /* ColorThemeFrameworkTests.xctest */,
-				8B3A7A1F278F6A9F00817948 /* ColorThemeAssembly.framework */,
+				8B6BE044270C731D0063B0BA /* ColorThemeModelingFramework.framework */,
+				8B6BE04C270C731D0063B0BA /* ColorThemeModelingFrameworkTests.xctest */,
+				8B16315627917CDE00DF0E61 /* ColorThemeCodingFramework.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -281,7 +330,6 @@
 			isa = PBXGroup;
 			children = (
 				8B4150EA27143E3400873BBF /* IntermediateThemeModeler.swift */,
-				8BDBB3E5273E7EFC00AA4E9F /* OriginColors.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -310,23 +358,21 @@
 			path = Errors;
 			sourceTree = "<group>";
 		};
-		8B6BE045270C731D0063B0BA /* ColorThemeFramework */ = {
+		8B6BE045270C731D0063B0BA /* ColorThemeModelingFramework */ = {
 			isa = PBXGroup;
 			children = (
-				8B6BE046270C731D0063B0BA /* ColorThemeFramework.h */,
-				8B6BE047270C731D0063B0BA /* Info.plist */,
+				8B6BE046270C731D0063B0BA /* ColorThemeModelingFramework.h */,
 				8B6BE05B270C73990063B0BA /* Modules */,
 			);
-			path = ColorThemeFramework;
+			path = ColorThemeModelingFramework;
 			sourceTree = "<group>";
 		};
-		8B6BE050270C731D0063B0BA /* ColorThemeFrameworkTests */ = {
+		8B6BE050270C731D0063B0BA /* ColorThemeModelingFrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
-				8B6BE053270C731D0063B0BA /* Info.plist */,
 				8B6BE097270EF2910063B0BA /* Modules */,
 			);
-			path = ColorThemeFrameworkTests;
+			path = ColorThemeModelingFrameworkTests;
 			sourceTree = "<group>";
 		};
 		8B6BE05B270C73990063B0BA /* Modules */ = {
@@ -448,6 +494,38 @@
 			path = Library;
 			sourceTree = "<group>";
 		};
+		8B851B322791872800A93814 /* Theme Format */ = {
+			isa = PBXGroup;
+			children = (
+				8B851B332791872B00A93814 /* Library */,
+			);
+			path = "Theme Format";
+			sourceTree = "<group>";
+		};
+		8B851B332791872B00A93814 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				8B79D523273538CE0010233E /* ThemeFormatDetector.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		8B851B3C27918A9400A93814 /* Theme Import */ = {
+			isa = PBXGroup;
+			children = (
+				8B851B3D27918AB100A93814 /* Library */,
+			);
+			path = "Theme Import";
+			sourceTree = "<group>";
+		};
+		8B851B3D27918AB100A93814 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				8B29631E26F630120048CE17 /* XcodeThemeImporter.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		8BA2BBAC2729CF510012D844 /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -503,7 +581,6 @@
 		8BBF929F2701C48200386123 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				8B29631E26F630120048CE17 /* XcodeThemeImporter.swift */,
 				8BE17561272017030073805E /* XcodeThemeModeler.swift */,
 			);
 			path = Library;
@@ -532,6 +609,7 @@
 			isa = PBXGroup;
 			children = (
 				8BBF92A92701F6D600386123 /* Color.swift */,
+				8BDBB3E5273E7EFC00AA4E9F /* OriginColors.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -549,12 +627,8 @@
 			isa = PBXGroup;
 			children = (
 				8BE70D20270862D3008D9991 /* Theme.swift */,
-				8B8C579C2726B55C00606BB9 /* ThemeEncoder.swift */,
 				8BD31ED4274915AB0019247D /* ThemeColorCorrector.swift */,
-				8B8C579F2726B93F00606BB9 /* ThemeEncoding.swift */,
 				8B79D51F2733FE2A0010233E /* ThemeFormat.swift */,
-				8B79D523273538CE0010233E /* ThemeFormatDetector.swift */,
-				8BE70D1C27085F1A008D9991 /* ThemeDecoder.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -562,10 +636,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		8B3A7A1A278F6A9F00817948 /* Headers */ = {
+		8B16315127917CDE00DF0E61 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B16315927917CDE00DF0E61 /* ColorThemeCodingFramework.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,13 +648,31 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B6BE054270C731D0063B0BA /* ColorThemeFramework.h in Headers */,
+				8B6BE054270C731D0063B0BA /* ColorThemeModelingFramework.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		8B16315527917CDE00DF0E61 /* ColorThemeCodingFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B16315A27917CDE00DF0E61 /* Build configuration list for PBXNativeTarget "ColorThemeCodingFramework" */;
+			buildPhases = (
+				8B16315127917CDE00DF0E61 /* Headers */,
+				8B16315227917CDE00DF0E61 /* Sources */,
+				8B16315327917CDE00DF0E61 /* Frameworks */,
+				8B16315427917CDE00DF0E61 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ColorThemeCodingFramework;
+			productName = ColorThemeCodingFramework;
+			productReference = 8B16315627917CDE00DF0E61 /* ColorThemeCodingFramework.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		8B29630726F60ED20048CE17 /* ColorThemeUtility */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B29630F26F60ED30048CE17 /* Build configuration list for PBXNativeTarget "ColorThemeUtility" */;
@@ -593,6 +686,7 @@
 			);
 			dependencies = (
 				8B6BE064270C74060063B0BA /* PBXTargetDependency */,
+				8B1631612791832500DF0E61 /* PBXTargetDependency */,
 			);
 			name = ColorThemeUtility;
 			packageProductDependencies = (
@@ -603,27 +697,9 @@
 			productReference = 8B29630826F60ED20048CE17 /* ColorThemeUtility */;
 			productType = "com.apple.product-type.tool";
 		};
-		8B3A7A1E278F6A9F00817948 /* ColorThemeAssembly */ = {
+		8B6BE043270C731D0063B0BA /* ColorThemeModelingFramework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8B3A7A23278F6A9F00817948 /* Build configuration list for PBXNativeTarget "ColorThemeAssembly" */;
-			buildPhases = (
-				8B3A7A1A278F6A9F00817948 /* Headers */,
-				8B3A7A1B278F6A9F00817948 /* Sources */,
-				8B3A7A1C278F6A9F00817948 /* Frameworks */,
-				8B3A7A1D278F6A9F00817948 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = ColorThemeAssembly;
-			productName = ColorThemeAssembly;
-			productReference = 8B3A7A1F278F6A9F00817948 /* ColorThemeAssembly.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		8B6BE043270C731D0063B0BA /* ColorThemeFramework */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8B6BE055270C731D0063B0BA /* Build configuration list for PBXNativeTarget "ColorThemeFramework" */;
+			buildConfigurationList = 8B6BE055270C731D0063B0BA /* Build configuration list for PBXNativeTarget "ColorThemeModelingFramework" */;
 			buildPhases = (
 				8B6BE03F270C731D0063B0BA /* Headers */,
 				8B6BE040270C731D0063B0BA /* Sources */,
@@ -634,14 +710,14 @@
 			);
 			dependencies = (
 			);
-			name = ColorThemeFramework;
+			name = ColorThemeModelingFramework;
 			productName = ColorThemeFramework;
-			productReference = 8B6BE044270C731D0063B0BA /* ColorThemeFramework.framework */;
+			productReference = 8B6BE044270C731D0063B0BA /* ColorThemeModelingFramework.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		8B6BE04B270C731D0063B0BA /* ColorThemeFrameworkTests */ = {
+		8B6BE04B270C731D0063B0BA /* ColorThemeModelingFrameworkTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8B6BE058270C731D0063B0BA /* Build configuration list for PBXNativeTarget "ColorThemeFrameworkTests" */;
+			buildConfigurationList = 8B6BE058270C731D0063B0BA /* Build configuration list for PBXNativeTarget "ColorThemeModelingFrameworkTests" */;
 			buildPhases = (
 				8B6BE048270C731D0063B0BA /* Sources */,
 				8B6BE049270C731D0063B0BA /* Frameworks */,
@@ -652,9 +728,9 @@
 			dependencies = (
 				8B6BE04F270C731D0063B0BA /* PBXTargetDependency */,
 			);
-			name = ColorThemeFrameworkTests;
+			name = ColorThemeModelingFrameworkTests;
 			productName = ColorThemeFrameworkTests;
-			productReference = 8B6BE04C270C731D0063B0BA /* ColorThemeFrameworkTests.xctest */;
+			productReference = 8B6BE04C270C731D0063B0BA /* ColorThemeModelingFrameworkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -666,12 +742,11 @@
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
+					8B16315527917CDE00DF0E61 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
 					8B29630726F60ED20048CE17 = {
 						CreatedOnToolsVersion = 12.5;
-					};
-					8B3A7A1E278F6A9F00817948 = {
-						CreatedOnToolsVersion = 13.2.1;
-						LastSwiftMigration = 1320;
 					};
 					8B6BE043270C731D0063B0BA = {
 						CreatedOnToolsVersion = 12.5;
@@ -699,15 +774,15 @@
 			projectRoot = "";
 			targets = (
 				8B29630726F60ED20048CE17 /* ColorThemeUtility */,
-				8B6BE043270C731D0063B0BA /* ColorThemeFramework */,
-				8B6BE04B270C731D0063B0BA /* ColorThemeFrameworkTests */,
-				8B3A7A1E278F6A9F00817948 /* ColorThemeAssembly */,
+				8B6BE043270C731D0063B0BA /* ColorThemeModelingFramework */,
+				8B6BE04B270C731D0063B0BA /* ColorThemeModelingFrameworkTests */,
+				8B16315527917CDE00DF0E61 /* ColorThemeCodingFramework */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8B3A7A1D278F6A9F00817948 /* Resources */ = {
+		8B16315427917CDE00DF0E61 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -731,6 +806,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8B16315227917CDE00DF0E61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B851B352791875B00A93814 /* ThemeEncoding.swift in Sources */,
+				8B851B342791875B00A93814 /* ThemeDecoder.swift in Sources */,
+				8B851B382791875F00A93814 /* ThemeFormatDetector.swift in Sources */,
+				8B851B362791875B00A93814 /* ThemeEncoder.swift in Sources */,
+				8B851B3E27918AC200A93814 /* XcodeThemeImporter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8B29630426F60ED20048CE17 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -754,29 +841,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8B3A7A1B278F6A9F00817948 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8B6BE040270C731D0063B0BA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8B6BE085270C77FB0063B0BA /* Theme.swift in Sources */,
 				8B6BE08B270C77FB0063B0BA /* String+Split.swift in Sources */,
-				8B79D524273538CE0010233E /* ThemeFormatDetector.swift in Sources */,
 				8B6BE07D270C77FB0063B0BA /* CustomPropertyEnumerable.swift in Sources */,
 				8BD31ED5274915AB0019247D /* ThemeColorCorrector.swift in Sources */,
 				8B6BE087270C77FB0063B0BA /* ThemeCodingError.swift in Sources */,
 				8BE17562272017030073805E /* XcodeThemeModeler.swift in Sources */,
-				8B6BE088270C77FB0063B0BA /* XcodeThemeImporter.swift in Sources */,
+				8B851B3B2791886300A93814 /* ThemeFormat.swift in Sources */,
 				8B6BE08C270C77FB0063B0BA /* Color.swift in Sources */,
 				8B6BE08D270C77FB0063B0BA /* ColorFormat.swift in Sources */,
-				8B6BE07E270C77FB0063B0BA /* ThemeDecoder.swift in Sources */,
-				8B79D5202733FE2A0010233E /* ThemeFormat.swift in Sources */,
 				8B6BE09E270F7A080063B0BA /* ColorExtrapolator.swift in Sources */,
 				8B6BE082270C77FB0063B0BA /* IntermediateTheme.swift in Sources */,
 				8B6BE07F270C77FB0063B0BA /* URL+CanonicalPath.swift in Sources */,
@@ -787,13 +864,11 @@
 				8BE678982752EB2200D20598 /* ColorCollectionFormat.swift in Sources */,
 				8B4150EB27143E3400873BBF /* IntermediateThemeModeler.swift in Sources */,
 				8B6BE080270C77FB0063B0BA /* FloatRGBAColorParser.swift in Sources */,
-				8B8C57A02726B93F00606BB9 /* ThemeEncoding.swift in Sources */,
 				8B6BE083270C77FB0063B0BA /* XcodeTheme.swift in Sources */,
 				8BDBB3E6273E7EFC00AA4E9F /* OriginColors.swift in Sources */,
 				8B6BE081270C77FB0063B0BA /* HexadecimalColorParser.swift in Sources */,
 				8B6BE08A270C77FB0063B0BA /* ThemeModelingError.swift in Sources */,
 				8B6BE089270C77FB0063B0BA /* HSLColorConverter.swift in Sources */,
-				8B8C579D2726B55C00606BB9 /* ThemeEncoder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,19 +886,86 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8B1631612791832500DF0E61 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8B16315527917CDE00DF0E61 /* ColorThemeCodingFramework */;
+			targetProxy = 8B1631602791832500DF0E61 /* PBXContainerItemProxy */;
+		};
 		8B6BE04F270C731D0063B0BA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8B6BE043270C731D0063B0BA /* ColorThemeFramework */;
+			target = 8B6BE043270C731D0063B0BA /* ColorThemeModelingFramework */;
 			targetProxy = 8B6BE04E270C731D0063B0BA /* PBXContainerItemProxy */;
 		};
 		8B6BE064270C74060063B0BA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8B6BE043270C731D0063B0BA /* ColorThemeFramework */;
+			target = 8B6BE043270C731D0063B0BA /* ColorThemeModelingFramework */;
 			targetProxy = 8B6BE063270C74060063B0BA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		8B16315B27917CDE00DF0E61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				MARKETING_VERSION = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8B16315C27917CDE00DF0E61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				MARKETING_VERSION = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		8B29630D26F60ED20048CE17 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -943,8 +1085,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Color Theme Utility/Color Theme Utility.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -954,75 +1098,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Color Theme Utility/Color Theme Utility.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		8B3A7A24278F6A9F00817948 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.ColorThemeAssembly;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		8B3A7A25278F6A9F00817948 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.ColorThemeAssembly;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -1036,14 +1117,15 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = ColorThemeFramework/Info.plist;
+				INFOPLIST_FILE = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.ColorThemeFramework;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				PRODUCT_BUNDLE_IDENTIFIER = "";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1062,14 +1144,15 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = ColorThemeFramework/Info.plist;
+				INFOPLIST_FILE = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.ColorThemeFramework;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				PRODUCT_BUNDLE_IDENTIFIER = "";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1084,13 +1167,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = ColorThemeFrameworkTests/Info.plist;
+				INFOPLIST_FILE = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.ColorThemeFrameworkTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -1102,13 +1185,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = ColorThemeFrameworkTests/Info.plist;
+				INFOPLIST_FILE = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.ColorThemeFrameworkTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -1117,6 +1200,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8B16315A27917CDE00DF0E61 /* Build configuration list for PBXNativeTarget "ColorThemeCodingFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B16315B27917CDE00DF0E61 /* Debug */,
+				8B16315C27917CDE00DF0E61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8B29630326F60ED20048CE17 /* Build configuration list for PBXProject "ColorThemeUtility" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1135,16 +1227,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8B3A7A23278F6A9F00817948 /* Build configuration list for PBXNativeTarget "ColorThemeAssembly" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8B3A7A24278F6A9F00817948 /* Debug */,
-				8B3A7A25278F6A9F00817948 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8B6BE055270C731D0063B0BA /* Build configuration list for PBXNativeTarget "ColorThemeFramework" */ = {
+		8B6BE055270C731D0063B0BA /* Build configuration list for PBXNativeTarget "ColorThemeModelingFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8B6BE056270C731D0063B0BA /* Debug */,
@@ -1153,7 +1236,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8B6BE058270C731D0063B0BA /* Build configuration list for PBXNativeTarget "ColorThemeFrameworkTests" */ = {
+		8B6BE058270C731D0063B0BA /* Build configuration list for PBXNativeTarget "ColorThemeModelingFrameworkTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8B6BE059270C731D0063B0BA /* Debug */,

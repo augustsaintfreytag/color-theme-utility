@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8B3A7A1E278F6A9F00817948"
-               BuildableName = "ColorThemeAssembly.framework"
-               BlueprintName = "ColorThemeAssembly"
+               BlueprintIdentifier = "8B6BE043270C731D0063B0BA"
+               BuildableName = "ColorThemeModelingFramework.framework"
+               BlueprintName = "ColorThemeModelingFramework"
                ReferencedContainer = "container:ColorThemeUtility.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8B6BE04B270C731D0063B0BA"
+               BuildableName = "ColorThemeModelingFrameworkTests.xctest"
+               BlueprintName = "ColorThemeModelingFrameworkTests"
+               ReferencedContainer = "container:ColorThemeUtility.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -50,9 +60,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8B3A7A1E278F6A9F00817948"
-            BuildableName = "ColorThemeAssembly.framework"
-            BlueprintName = "ColorThemeAssembly"
+            BlueprintIdentifier = "8B6BE043270C731D0063B0BA"
+            BuildableName = "ColorThemeModelingFramework.framework"
+            BlueprintName = "ColorThemeModelingFramework"
             ReferencedContainer = "container:ColorThemeUtility.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

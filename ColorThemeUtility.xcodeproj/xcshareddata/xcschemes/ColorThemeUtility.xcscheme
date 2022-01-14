@@ -17,7 +17,7 @@
                BlueprintIdentifier = "8B29630726F60ED20048CE17"
                BuildableName = "ColorThemeUtility"
                BlueprintName = "ColorThemeUtility"
-               ReferencedContainer = "container:Color Theme Utility.xcodeproj">
+               ReferencedContainer = "container:ColorThemeUtility.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,16 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8B6BE04B270C731D0063B0BA"
-               BuildableName = "ColorThemeFrameworkTests.xctest"
-               BlueprintName = "ColorThemeFrameworkTests"
-               ReferencedContainer = "container:Color Theme Utility.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -50,16 +40,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8B29630726F60ED20048CE17"
-            BuildableName = "ColorThemeUtility"
-            BlueprintName = "ColorThemeUtility"
-            ReferencedContainer = "container:Color Theme Utility.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -67,16 +47,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8B29630726F60ED20048CE17"
             BuildableName = "ColorThemeUtility"
             BlueprintName = "ColorThemeUtility"
-            ReferencedContainer = "container:Color Theme Utility.xcodeproj">
+            ReferencedContainer = "container:ColorThemeUtility.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

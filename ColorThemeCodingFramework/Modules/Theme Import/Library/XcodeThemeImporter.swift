@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import ColorThemeModelingFramework
 
 public protocol XcodeThemeImporter: ThemeDecoder {}
 

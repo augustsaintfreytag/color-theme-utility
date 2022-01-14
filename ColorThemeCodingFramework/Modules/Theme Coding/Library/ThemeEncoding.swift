@@ -6,7 +6,7 @@
 
 import Foundation
 
-/// Encoding of a theme.
+/// The encoding type of a theme.
 public enum ThemeEncoding: String {
 
 	case json

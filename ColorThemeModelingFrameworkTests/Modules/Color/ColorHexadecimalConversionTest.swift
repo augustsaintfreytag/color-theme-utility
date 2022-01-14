@@ -5,7 +5,7 @@
 //
 
 import XCTest
-import ColorThemeFramework
+import ColorThemeModelingFramework
 
 class ColorHexadecimalConversionTest: XCTestCase, ColorConversionTestProvider {
 

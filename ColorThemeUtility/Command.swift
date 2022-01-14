@@ -5,8 +5,9 @@
 //
 
 import Foundation
-import ColorThemeFramework
 import ArgumentParser
+import ColorThemeModelingFramework
+import ColorThemeCodingFramework
 
 @main
 struct ColorThemeUtility: ParsableCommand {

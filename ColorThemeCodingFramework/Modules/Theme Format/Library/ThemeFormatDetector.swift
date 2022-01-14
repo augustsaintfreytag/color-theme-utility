@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import ColorThemeModelingFramework
 
 /// Functionality to detect the format of themes from their encoded forms (raw data)
 /// via heuristics known about supported types.
