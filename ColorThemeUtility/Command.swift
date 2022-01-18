@@ -5,8 +5,9 @@
 //
 
 import Foundation
-import ColorThemeFramework
 import ArgumentParser
+import ColorThemeModelingFramework
+import ColorThemeCodingFramework
 
 @main
 struct ColorThemeUtility: ParsableCommand {
@@ -90,7 +91,7 @@ extension ColorThemeUtility: TerminalDetector,
 							 HSLColorConverter,
 							 ColorExtrapolator,
 							 IntermediateThemeModeler,
-							 ThemeColorCorrector,
+							 TerminalThemeColorCorrector,
 							 XcodeThemeModeler,
 							 TableFormatter {
 	

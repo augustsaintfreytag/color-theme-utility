@@ -5,7 +5,7 @@
 //
 
 import Foundation
-import ColorThemeFramework
+import ColorThemeModelingFramework
 
 /// A command line compatible string with applied formatting and colors on a
 /// snippet of predefined code, usable to demo a color theme with code.
