@@ -57,6 +57,7 @@
 		8B851B4227918DF100A93814 /* TerminalApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBB859827510665004C7558 /* TerminalApplication.swift */; };
 		8B851B4327918DF100A93814 /* TerminalDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBB859527510091004C7558 /* TerminalDetector.swift */; };
 		8B851B4427918E4A00A93814 /* TerminalThemeColorCorrector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD31ED4274915AB0019247D /* TerminalThemeColorCorrector.swift */; };
+		8B851B4D27918F3000A93814 /* ColorThemeAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B851B4C27918F3000A93814 /* ColorThemeAssembly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8BA2BBAB272948B40012D844 /* ExpressibleByArgument+Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBAA272948B40012D844 /* ExpressibleByArgument+Description.swift */; };
 		8BA2BBAE2729CF600012D844 /* TableFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBAD2729CF600012D844 /* TableFormatter.swift */; };
 		8BDBB3E6273E7EFC00AA4E9F /* OriginColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDBB3E5273E7EFC00AA4E9F /* OriginColors.swift */; };
@@ -152,6 +153,8 @@
 		8B79D52627353C300010233E /* TokenizedStringPaddingProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizedStringPaddingProvider.swift; sourceTree = "<group>"; };
 		8B79D52C273691B70010233E /* Mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
 		8B79D52E273691D30010233E /* OutputFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputFormat.swift; sourceTree = "<group>"; };
+		8B851B4A27918F2F00A93814 /* ColorThemeAssembly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ColorThemeAssembly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B851B4C27918F3000A93814 /* ColorThemeAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorThemeAssembly.h; sourceTree = "<group>"; };
 		8B8C579C2726B55C00606BB9 /* ThemeEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEncoder.swift; sourceTree = "<group>"; };
 		8B8C579F2726B93F00606BB9 /* ThemeEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEncoding.swift; sourceTree = "<group>"; };
 		8BA2BBAA272948B40012D844 /* ExpressibleByArgument+Description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExpressibleByArgument+Description.swift"; sourceTree = "<group>"; };
@@ -208,6 +211,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8B851B4727918F2F00A93814 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -253,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				8B16315027902BE400DF0E61 /* Package.swift */,
+				8B851B4B27918F3000A93814 /* ColorThemeAssembly */,
 				8B16315727917CDE00DF0E61 /* ColorThemeCodingFramework */,
 				8B6BE045270C731D0063B0BA /* ColorThemeModelingFramework */,
 				8B6BE050270C731D0063B0BA /* ColorThemeModelingFrameworkTests */,
@@ -269,6 +280,7 @@
 				8B6BE044270C731D0063B0BA /* ColorThemeModelingFramework.framework */,
 				8B6BE04C270C731D0063B0BA /* ColorThemeModelingFrameworkTests.xctest */,
 				8B16315627917CDE00DF0E61 /* ColorThemeCodingFramework.framework */,
+				8B851B4A27918F2F00A93814 /* ColorThemeAssembly.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -542,6 +554,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		8B851B4B27918F3000A93814 /* ColorThemeAssembly */ = {
+			isa = PBXGroup;
+			children = (
+				8B851B4C27918F3000A93814 /* ColorThemeAssembly.h */,
+			);
+			path = ColorThemeAssembly;
+			sourceTree = "<group>";
+		};
 		8BA2BBAC2729CF510012D844 /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -668,6 +688,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8B851B4527918F2F00A93814 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B851B4D27918F3000A93814 /* ColorThemeAssembly.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -749,6 +777,26 @@
 			productReference = 8B6BE04C270C731D0063B0BA /* ColorThemeModelingFrameworkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		8B851B4927918F2F00A93814 /* ColorThemeAssembly */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B851B4E27918F3000A93814 /* Build configuration list for PBXNativeTarget "ColorThemeAssembly" */;
+			buildPhases = (
+				8B851B4527918F2F00A93814 /* Headers */,
+				8B851B4627918F2F00A93814 /* Sources */,
+				8B851B4727918F2F00A93814 /* Frameworks */,
+				8B851B4827918F2F00A93814 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ColorThemeAssembly;
+			packageProductDependencies = (
+			);
+			productName = ColorThemeAssembly;
+			productReference = 8B851B4A27918F2F00A93814 /* ColorThemeAssembly.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -769,6 +817,10 @@
 					};
 					8B6BE04B270C731D0063B0BA = {
 						CreatedOnToolsVersion = 12.5;
+					};
+					8B851B4927918F2F00A93814 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
 					};
 				};
 			};
@@ -793,6 +845,7 @@
 				8B6BE043270C731D0063B0BA /* ColorThemeModelingFramework */,
 				8B6BE04B270C731D0063B0BA /* ColorThemeModelingFrameworkTests */,
 				8B16315527917CDE00DF0E61 /* ColorThemeCodingFramework */,
+				8B851B4927918F2F00A93814 /* ColorThemeAssembly */,
 			);
 		};
 /* End PBXProject section */
@@ -813,6 +866,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8B6BE04A270C731D0063B0BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B851B4827918F2F00A93814 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -899,6 +959,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8B851B4627918F2F00A93814 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -926,7 +993,6 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -956,7 +1022,6 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1207,6 +1272,69 @@
 			};
 			name = Release;
 		};
+		8B851B4F27918F3000A93814 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8B851B5027918F3000A93814 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1251,6 +1379,15 @@
 			buildConfigurations = (
 				8B6BE059270C731D0063B0BA /* Debug */,
 				8B6BE05A270C731D0063B0BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B851B4E27918F3000A93814 /* Build configuration list for PBXNativeTarget "ColorThemeAssembly" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B851B4F27918F3000A93814 /* Debug */,
+				8B851B5027918F3000A93814 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
