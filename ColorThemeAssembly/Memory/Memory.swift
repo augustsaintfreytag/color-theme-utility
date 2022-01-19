@@ -4,6 +4,8 @@
 //  Created by August Saint Freytag on 15/01/2022.
 //
 
+private let nullCharacter: CChar = "\0".cString(using: .utf8)!.first!
+
 @_cdecl("allocateMemoryForUInt8")
 func allocateMemoryForUInt8() -> UnsafeMutablePointer<UInt8> {
 	return UnsafeMutablePointer<UInt8>.allocate(capacity: 1)
@@ -26,7 +28,10 @@ func deallocateMemoryForUInt32(_ pointer: UnsafeMutablePointer<UInt32>) {
 
 @_cdecl("allocateMemoryForString")
 func allocateMemoryForString(_ size: Int) -> UnsafeMutablePointer<CChar> {
-	return UnsafeMutablePointer<CChar>.allocate(capacity: size)
+	let pointer = UnsafeMutablePointer<CChar>.allocate(capacity: size)
+	pointer.initialize(repeating: nullCharacter, count: size)
+	
+	return pointer
 }
 
 @_cdecl("deallocateMemoryForString")
