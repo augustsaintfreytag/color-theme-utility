@@ -7,7 +7,7 @@
 import Foundation
 
 /// General format of an encoded color string.
-public enum ColorFormat: String, CaseIterable {
+public enum ColorFormat: String, CaseIterable, Codable {
 	
 	case floatRGBA = "floatrgba"
 	case hexadecimal = "hex"
