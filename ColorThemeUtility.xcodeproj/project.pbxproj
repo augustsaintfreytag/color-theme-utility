@@ -10,6 +10,7 @@
 		8B16315927917CDE00DF0E61 /* ColorThemeCodingFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B16315827917CDE00DF0E61 /* ColorThemeCodingFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8B16315E2791832500DF0E61 /* ColorThemeCodingFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B16315627917CDE00DF0E61 /* ColorThemeCodingFramework.framework */; };
 		8B16315F2791832500DF0E61 /* ColorThemeCodingFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B16315627917CDE00DF0E61 /* ColorThemeCodingFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8B1ECA7427982A9E004137C0 /* Calls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1ECA7327982A9E004137C0 /* Calls.swift */; };
 		8B29630C26F60ED20048CE17 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29630B26F60ED20048CE17 /* Command.swift */; };
 		8B29631426F60F250048CE17 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 8B29631326F60F250048CE17 /* ArgumentParser */; };
 		8B29631C26F62F5A0048CE17 /* Rainbow in Frameworks */ = {isa = PBXBuildFile; productRef = 8B29631B26F62F5A0048CE17 /* Rainbow */; };
@@ -59,8 +60,8 @@
 		8B851B4427918E4A00A93814 /* TerminalThemeColorCorrector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD31ED4274915AB0019247D /* TerminalThemeColorCorrector.swift */; };
 		8B851B4D27918F3000A93814 /* ColorThemeAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B851B4C27918F3000A93814 /* ColorThemeAssembly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8B851B5327918F6C00A93814 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B851B5227918F6C00A93814 /* Module.swift */; };
-		8B851B552791BB0300A93814 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B851B542791BB0300A93814 /* main.swift */; };
 		8B851B572792F17D00A93814 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B851B562792F17D00A93814 /* Memory.swift */; };
+		8B851B602796D1C100A93814 /* AssemblyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B851B5F2796D1C100A93814 /* AssemblyError.swift */; };
 		8BA2BBAB272948B40012D844 /* ExpressibleByArgument+Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBAA272948B40012D844 /* ExpressibleByArgument+Description.swift */; };
 		8BA2BBAE2729CF600012D844 /* TableFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBAD2729CF600012D844 /* TableFormatter.swift */; };
 		8BDBB3E6273E7EFC00AA4E9F /* OriginColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDBB3E5273E7EFC00AA4E9F /* OriginColors.swift */; };
@@ -123,6 +124,7 @@
 		8B16315027902BE400DF0E61 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		8B16315627917CDE00DF0E61 /* ColorThemeCodingFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ColorThemeCodingFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B16315827917CDE00DF0E61 /* ColorThemeCodingFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorThemeCodingFramework.h; sourceTree = "<group>"; };
+		8B1ECA7327982A9E004137C0 /* Calls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calls.swift; sourceTree = "<group>"; };
 		8B29630826F60ED20048CE17 /* ColorThemeUtility */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ColorThemeUtility; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B29630B26F60ED20048CE17 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		8B29631E26F630120048CE17 /* XcodeThemeImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeThemeImporter.swift; sourceTree = "<group>"; };
@@ -159,8 +161,8 @@
 		8B851B4A27918F2F00A93814 /* ColorThemeAssembly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ColorThemeAssembly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B851B4C27918F3000A93814 /* ColorThemeAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorThemeAssembly.h; sourceTree = "<group>"; };
 		8B851B5227918F6C00A93814 /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
-		8B851B542791BB0300A93814 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		8B851B562792F17D00A93814 /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
+		8B851B5F2796D1C100A93814 /* AssemblyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyError.swift; sourceTree = "<group>"; };
 		8B8C579C2726B55C00606BB9 /* ThemeEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEncoder.swift; sourceTree = "<group>"; };
 		8B8C579F2726B93F00606BB9 /* ThemeEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEncoding.swift; sourceTree = "<group>"; };
 		8BA2BBAA272948B40012D844 /* ExpressibleByArgument+Description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExpressibleByArgument+Description.swift"; sourceTree = "<group>"; };
@@ -564,11 +566,28 @@
 			isa = PBXGroup;
 			children = (
 				8B851B4C27918F3000A93814 /* ColorThemeAssembly.h */,
-				8B851B542791BB0300A93814 /* main.swift */,
-				8B851B562792F17D00A93814 /* Memory.swift */,
+				8B1ECA7327982A9E004137C0 /* Calls.swift */,
 				8B851B5227918F6C00A93814 /* Module.swift */,
+				8B851B5D2796D1A200A93814 /* Errors */,
+				8B851B5E2796D1B000A93814 /* Memory */,
 			);
 			path = ColorThemeAssembly;
+			sourceTree = "<group>";
+		};
+		8B851B5D2796D1A200A93814 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				8B851B5F2796D1C100A93814 /* AssemblyError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		8B851B5E2796D1B000A93814 /* Memory */ = {
+			isa = PBXGroup;
+			children = (
+				8B851B562792F17D00A93814 /* Memory.swift */,
+			);
+			path = Memory;
 			sourceTree = "<group>";
 		};
 		8BA2BBAC2729CF510012D844 /* Library */ = {
@@ -972,8 +991,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B851B602796D1C100A93814 /* AssemblyError.swift in Sources */,
+				8B1ECA7427982A9E004137C0 /* Calls.swift in Sources */,
 				8B851B572792F17D00A93814 /* Memory.swift in Sources */,
-				8B851B552791BB0300A93814 /* main.swift in Sources */,
 				8B851B5327918F6C00A93814 /* Module.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
