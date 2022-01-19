@@ -4,6 +4,8 @@
 //  Created by August Saint Freytag on 19/01/2022.
 //
 
+import Foundation
+
 // MARK: Library
 
 typealias CallResults<Value> = (value: Value?, error: AssemblyError?)
