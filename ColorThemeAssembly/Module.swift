@@ -92,13 +92,38 @@ func describeColor(_ pointer: UnsafePointer<CChar>) {
 	print(unwrapAndEncode(results))
 }
 
+@_cdecl("convertColor")
+func convertColor(_ pointer: UnsafePointer<CChar>) {
+	guard
+		let argumentsDataString = String(cString: pointer, encoding: .utf8),
+		let argumentsData = argumentsDataString.data(using: .utf8),
+		let arguments = try? JSONDecoder().decode([String].self, from: argumentsData)
+	else {
+		let error = AssemblyError(kind: .invalidCoding, description: "Expected encoded argument tuple with color description and destination format.")
+		print(encode(error))
+		return
+	}
+	
+	guard arguments.count == 2 else {
+		let error = AssemblyError(kind: .missingArguments, description: "Decoded argument tuple is missing elements. Expected color description and destination format.")
+		print(encode(error))
+		return
+	}
+	
+	let colorDescription = arguments[0]
+	let colorFormat = ColorFormat(rawValue: arguments[1]) ?? .hexadecimal
+	
+	let results = call { try Module.convertColor(colorDescription, format: colorFormat) }
+	print(unwrapAndEncode(results))
+}
+
 @_cdecl("generateTheme")
 func generateTheme(_ pointer: UnsafePointer<CChar>) {
 	guard
 		let inputColorDataString = String(cString: pointer, encoding: .utf8),
 		let inputColorData = inputColorDataString.data(using: .utf8)
 	else {
-		let error = AssemblyError(kind: .missingArguments, description: "Expected arguments to be decodable as a sequence of color descriptions.")
+		let error = AssemblyError(kind: .invalidCoding, description: "Expected arguments to be decodable as a sequence of color descriptions.")
 		print(encode(error))
 		return
 	}
