@@ -14,8 +14,8 @@ public struct IntermediateTheme: Theme, Codable, CustomPropertyEnumerable {
 	public static var defaultFormat: String { "CTU Intermediate Theme Format" }
 	public static var defaultVersion: String { "1.0" }
 	
-	public let format: String
-	public let version: String
+	public let _format: String
+	public let _version: String
 	
 	public let foreground: Color
 	public let background: Color
@@ -62,8 +62,8 @@ extension IntermediateTheme {
 	
 	public func transformed(_ block: (_ keyPath: KeyPath<IntermediateTheme, Color>, _ color: Color) -> Color) -> IntermediateTheme {
 		return IntermediateTheme(
-			format: format,
-			version: version,
+			_format: _format,
+			_version: _version,
 			foreground: block(\.foreground, foreground),
 			background: block(\.background, background),
 			selectionBackground: block(\.selectionBackground, selectionBackground),

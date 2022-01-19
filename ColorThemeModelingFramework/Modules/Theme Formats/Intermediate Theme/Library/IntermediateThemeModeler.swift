@@ -57,8 +57,8 @@ extension IntermediateThemeModeler {
 		let instructionPointerColor = transformedColor(from: originColors.keywords, applying: (0, -0.25, -0.25))
 
 		return IntermediateTheme(
-			format: IntermediateTheme.defaultFormat,
-			version: IntermediateTheme.defaultVersion,
+			_format: IntermediateTheme.defaultFormat,
+			_version: IntermediateTheme.defaultVersion,
 			foreground: foregroundColor,
 			background: backgroundColor,
 			selectionBackground: selectionBackgroundColor,
