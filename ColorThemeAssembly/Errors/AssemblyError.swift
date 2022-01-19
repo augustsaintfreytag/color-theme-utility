@@ -21,6 +21,7 @@ struct AssemblyError: Error, LocalizedError, Codable {
 extension AssemblyError {
 	
 	enum Kind: String, Codable {
+		case invalidCoding
 		case missingArguments
 		case invalidArguments
 		case missingImplementation
