@@ -31,11 +31,6 @@ func call<ReturnType>(_ block: () throws -> ReturnType) -> CallResults<ReturnTyp
 
 // MARK: Encoding
 
-func callAndEncode<ReturnType: Encodable>(_ block: () throws -> ReturnType) -> EncodedCallResults {
-	let results = call(block)
-	return encode(results)
-}
-
 func encode<Value: Encodable>(_ results: CallResults<Value>) -> EncodedCallResults {
 	if let error = results.error {
 		return (nil, encode(error))
