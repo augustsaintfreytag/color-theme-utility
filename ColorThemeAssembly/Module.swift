@@ -68,9 +68,9 @@ struct Module: IntermediateThemeModeler, ColorFormatDetector, ColorModeler {
 			let theme = try Self.theme(from: inputColors)
 			
 			return theme
-		} catch let error as DecodingError {
+		} catch is DecodingError {
 			let encodedDataDescriptions = String(data: encodedColorData, encoding: .utf8) ?? ""
-			throw AssemblyError(kind: .invalidArguments, description: "Could not decode input colors from input '\(encodedDataDescriptions)'. \(error.localizedDescription)")
+			throw AssemblyError(kind: .invalidArguments, description: "Could not decode input colors from input '\(encodedDataDescriptions)'.")
 		} catch {
 			throw error
 		}
