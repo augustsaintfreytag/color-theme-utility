@@ -60,7 +60,6 @@
 		8B851B4427918E4A00A93814 /* TerminalThemeColorCorrector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD31ED4274915AB0019247D /* TerminalThemeColorCorrector.swift */; };
 		8B851B4D27918F3000A93814 /* ColorThemeAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B851B4C27918F3000A93814 /* ColorThemeAssembly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8B851B5327918F6C00A93814 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B851B5227918F6C00A93814 /* Module.swift */; };
-		8B851B552791BB0300A93814 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B851B542791BB0300A93814 /* main.swift */; };
 		8B851B572792F17D00A93814 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B851B562792F17D00A93814 /* Memory.swift */; };
 		8B851B602796D1C100A93814 /* AssemblyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B851B5F2796D1C100A93814 /* AssemblyError.swift */; };
 		8BA2BBAB272948B40012D844 /* ExpressibleByArgument+Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBAA272948B40012D844 /* ExpressibleByArgument+Description.swift */; };
@@ -162,7 +161,6 @@
 		8B851B4A27918F2F00A93814 /* ColorThemeAssembly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ColorThemeAssembly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B851B4C27918F3000A93814 /* ColorThemeAssembly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorThemeAssembly.h; sourceTree = "<group>"; };
 		8B851B5227918F6C00A93814 /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
-		8B851B542791BB0300A93814 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		8B851B562792F17D00A93814 /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
 		8B851B5F2796D1C100A93814 /* AssemblyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyError.swift; sourceTree = "<group>"; };
 		8B8C579C2726B55C00606BB9 /* ThemeEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEncoder.swift; sourceTree = "<group>"; };
@@ -568,7 +566,6 @@
 			isa = PBXGroup;
 			children = (
 				8B851B4C27918F3000A93814 /* ColorThemeAssembly.h */,
-				8B851B542791BB0300A93814 /* main.swift */,
 				8B1ECA7327982A9E004137C0 /* Calls.swift */,
 				8B851B5227918F6C00A93814 /* Module.swift */,
 				8B851B5D2796D1A200A93814 /* Errors */,
@@ -997,7 +994,6 @@
 				8B851B602796D1C100A93814 /* AssemblyError.swift in Sources */,
 				8B1ECA7427982A9E004137C0 /* Calls.swift in Sources */,
 				8B851B572792F17D00A93814 /* Memory.swift in Sources */,
-				8B851B552791BB0300A93814 /* main.swift in Sources */,
 				8B851B5327918F6C00A93814 /* Module.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

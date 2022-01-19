@@ -78,6 +78,11 @@ struct Module: IntermediateThemeModeler, ColorFormatDetector, ColorModeler {
 	
 }
 
+@_cdecl("main")
+func main(_ argv: Int, _ argc: Int) -> Int {
+	return 0
+}
+
 @_cdecl("generateRandomColor")
 func generateRandomColor() {
 	let results = call { Module.generateRandomColor() }
