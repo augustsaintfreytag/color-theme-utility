@@ -42,9 +42,17 @@ extension TerminalThemeColorCorrector {
 				saturation += itermForegroundColorCorrection.saturation
 				lightness += itermForegroundColorCorrection.lightness
 			}
-
-			return Color(hue: hue, saturation: saturation, lightness: lightness)
+			
+			return Color(
+				hue: limitedColorValue(hue),
+				saturation: limitedColorValue(saturation),
+				lightness: limitedColorValue(lightness)
+			)
 		}
+	}
+	
+	private static func limitedColorValue(_ value: ColorValue) -> ColorValue {
+		return max(0, min(1, value))
 	}
 	
 }
