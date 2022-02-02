@@ -6,20 +6,20 @@
 
 import Foundation
 import Rainbow
-import ColorThemeFramework
+import ColorThemeModelingFramework
 
 extension String {
 	
-	func colored(with color: ColorThemeFramework.Color) -> String {
+	func colored(with color: ColorThemeModelingFramework.Color) -> String {
 		return self.bit24(integerRGB(from: color))
 	}
 	
-	func coloredBackground(with color: ColorThemeFramework.Color) -> String {
+	func coloredBackground(with color: ColorThemeModelingFramework.Color) -> String {
 		return self.onBit24(integerRGB(from: color))
 		
 	}
 	
-	private func integerRGB(from color: ColorThemeFramework.Color) -> RGB {
+	private func integerRGB(from color: ColorThemeModelingFramework.Color) -> RGB {
 		return (
 			UInt8(color.red * 255),
 			UInt8(color.green * 255),
