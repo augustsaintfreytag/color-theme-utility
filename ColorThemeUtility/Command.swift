@@ -14,7 +14,7 @@ struct ColorThemeUtility: ParsableCommand {
 	
 	static let configuration = CommandConfiguration(
 		abstract: "Utility to inspect and create color themes for use with various editors.",
-		version: "0.3.1",
+		version: "\(Manifest.name), Version \(Manifest.versionDescription)",
 		helpNames: [.customShort("?"), .long]
 	)
 	
