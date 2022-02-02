@@ -118,10 +118,7 @@ extension Color: HSLColorConverter {
 	
 	public init(hue: ColorValue, saturation: ColorValue, lightness: ColorValue) {
 		let (red, green, blue) = Self.rgbComponents(from: (hue, saturation, lightness))
-		
-		self.red = red
-		self.green = green
-		self.blue = blue
+		self.init(red: red, green: green, blue: blue)
 	}
 	
 }
@@ -142,9 +139,7 @@ extension Color: HexadecimalColorParser {
 			return nil
 		}
 		
-		self.red = red
-		self.green = green
-		self.blue = blue
+		self.init(red: red, green: green, blue: blue)
 	}
 	
 }
@@ -164,9 +159,7 @@ extension Color: FloatRGBAColorParser {
 			return nil
 		}
 		
-		self.red = red
-		self.green = green
-		self.blue = blue
+		self.init(red: red, green: green, blue: blue)
 	}
 	
 }
