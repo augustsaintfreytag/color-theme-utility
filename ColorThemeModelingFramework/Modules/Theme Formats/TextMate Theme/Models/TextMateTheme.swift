@@ -101,6 +101,31 @@ public struct TextMateThemeSettings {
 		self.fontStyle = fontStyle
 	}
 	
+	public init(foreground: String?) {
+		self.init(
+			background: nil,
+			foreground: foreground,
+			caret: nil,
+			invisibles: nil,
+			guide: nil,
+			hoverHighlight: nil,
+			referenceHighlight: nil,
+			lineHighlight: nil,
+			rangeHighlight: nil,
+			selection: nil,
+			inactiveSelection: nil,
+			selectionHighlight: nil,
+			findRangeHighlight: nil,
+			findMatchHighlight: nil,
+			currentFindMatchHighlight: nil,
+			wordHighlight: nil,
+			wordHighlightStrong: nil,
+			activeLinkForeground: nil,
+			gotoDefinitionLinkForeground: nil,
+			fontStyle: nil
+		)
+	}
+	
 }
 
 extension TextMateThemeSettings: Codable {
