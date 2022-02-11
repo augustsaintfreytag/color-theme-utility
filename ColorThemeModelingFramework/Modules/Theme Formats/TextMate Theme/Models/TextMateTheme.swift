@@ -33,14 +33,18 @@ extension TextMateTheme: Codable {
 
 public struct TextMateThemeSetting {
 	
-	public let settings: TextMateThemeSettings
+	public typealias Settings = TextMateThemeSettings
+	
 	public let name: String?
 	public let scope: String?
+	public let settings: Settings
 	
-	public init(settings: TextMateThemeSettings, name: String?, scope: String?) {
-		self.settings = settings
-		self.name = name
-		self.scope = scope
+}
+
+extension TextMateThemeSetting {
+	
+	init(_ settings: Settings) {
+		self.init(name: nil, scope: nil, settings: settings)
 	}
 	
 }
@@ -48,9 +52,9 @@ public struct TextMateThemeSetting {
 extension TextMateThemeSetting: Codable {
 	
 	enum CodingKeys: String, CodingKey {
-		case settings = "settings"
 		case name = "name"
 		case scope = "scope"
+		case settings = "settings"
 	}
 	
 }
