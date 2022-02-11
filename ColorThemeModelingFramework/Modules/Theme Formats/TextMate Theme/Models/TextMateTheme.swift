@@ -8,17 +8,14 @@ import Foundation
 
 public struct TextMateTheme: Theme, CustomPropertyEnumerable {
 	
-	public let name: String
-	public let settings: [TextMateThemeSetting]
+	public typealias Setting = TextMateThemeSetting
+	public typealias Settings = TextMateThemeSettings
+	
 	public let uuid: String
+	public let name: String
+	public let settings: [Setting]
 	
 	public static var format: ThemeFormat { .textmate }
-	
-	public init(name: String, settings: [TextMateThemeSetting], uuid: String) {
-		self.name = name
-		self.settings = settings
-		self.uuid = uuid
-	}
 	
 }
 
