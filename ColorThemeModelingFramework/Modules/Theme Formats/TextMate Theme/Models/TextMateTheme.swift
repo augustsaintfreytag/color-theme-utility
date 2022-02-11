@@ -22,9 +22,9 @@ public struct TextMateTheme: Theme, CustomPropertyEnumerable {
 extension TextMateTheme: Codable {
 	
 	enum CodingKeys: String, CodingKey {
+		case uuid = "uuid"
 		case name = "name"
 		case settings = "settings"
-		case uuid = "uuid"
 	}
 	
 }
