@@ -180,12 +180,36 @@ extension ColorThemeUtility: TerminalDetector,
 
 		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxColors.enumerated(), childrenOf: "dvtSourceTextSyntaxColors").forEach { description in
 			rows.append(description)
+	private func describeTextMateTheme(_ theme: TextMateTheme) {
+		var rows: [[String]] = []
+		
+		rows.append(["uuid", "[UUID]", theme.uuid])
+		rows.append(["name", "[String]", theme.name])
+		
+		guard let masterSetting = theme.settings.first else {
+			Self.tabulateAndPrintLines(rows)
+			return
 		}
-
-		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxFonts.enumerated(), childrenOf: "dvtSourceTextSyntaxColors").forEach { description in
-			rows.append(description)
+		
+		rows.append(dividerRow)
+		rows.append(contentsOf: enumeratedPropertyDescriptions(from: masterSetting.settings.enumerated()))
+		
+		for setting in theme.settings {
+			rows.append(dividerRow)
+			
+			if let name = setting.name {
+				rows.append(["name", "[String]", name])
+			}
+			
+			rows.append(["scope", "[String]", setting.scope ?? ""])
+			
+			let settingValues = setting.settings.enumerated().filter { (property: String, value: CustomStringConvertible) in
+				return !value.description.isEmpty
+			}
+			
+			rows.append(contentsOf: enumeratedPropertyDescriptions(from: settingValues))
 		}
-
+		
 		Self.tabulateAndPrintLines(rows)
 	}
 	
@@ -260,6 +284,7 @@ extension ColorThemeUtility: TerminalDetector,
 			return intermediateTheme
 		case .xcode:
 			return try Self.xcodeTheme(from: intermediateTheme)
+		case .textmate:
 		}
 	}
 	
