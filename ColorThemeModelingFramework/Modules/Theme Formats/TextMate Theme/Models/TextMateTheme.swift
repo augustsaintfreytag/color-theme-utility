@@ -31,7 +31,7 @@ extension TextMateTheme: Codable {
 
 // MARK: Settings
 
-public struct TextMateThemeSetting {
+public struct TextMateThemeSetting: CustomPropertyEnumerable {
 	
 	public typealias Settings = TextMateThemeSettings
 	
@@ -59,7 +59,7 @@ extension TextMateThemeSetting: Codable {
 	
 }
 
-public struct TextMateThemeSettings {
+public struct TextMateThemeSettings: CustomPropertyEnumerable {
 	
 	public let background: String?
 	public let foreground: String?
