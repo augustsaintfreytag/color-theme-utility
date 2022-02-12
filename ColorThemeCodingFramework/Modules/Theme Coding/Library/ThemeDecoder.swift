@@ -38,6 +38,9 @@ extension ThemeDecoder {
 		case .xcode:
 			let decoder = PropertyListDecoder()
 			return try decoder.decode(XcodeTheme.self, from: data)
+		case .textmate:
+			let decoder = PropertyListDecoder()
+			return try decoder.decode(TextMateTheme.self, from: data)
 		default:
 			throw ThemeCodingError(description: "Decoding theme data with format '\(format?.rawValue.description ?? "<None>")' is not supported.")
 		}
