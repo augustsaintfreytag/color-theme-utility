@@ -93,6 +93,7 @@ extension ColorThemeUtility: TerminalDetector,
 							 IntermediateThemeModeler,
 							 TerminalThemeColorCorrector,
 							 XcodeThemeModeler,
+							 TextMateThemeModeler,
 							 TableFormatter {
 	
 	// MARK: Describe Color
@@ -156,30 +157,28 @@ extension ColorThemeUtility: TerminalDetector,
 			describeIntermediateTheme(intermediateTheme)
 		case let xcodeTheme as XcodeTheme:
 			describeXcodeTheme(xcodeTheme)
+		case let textMateTheme as TextMateTheme:
+			describeTextMateTheme(textMateTheme)
 		default:
 			throw ArgumentError(description: "Supplied theme is not in a describable supported format.")
 		}
 	}
 
-	private func describeIntermediateTheme(_ theme: IntermediateTheme) {
-		var rows: [[String]] = []
-
-		enumeratedPropertyDescriptions(from: theme.enumerated()).forEach { description in
-			rows.append(description)
-		}
-
+	private func describeIntermediateTheme<ThemeType: Theme & CustomPropertyEnumerable>(_ theme: ThemeType) {
+		let rows = enumeratedPropertyDescriptions(from: theme.enumerated())
 		Self.tabulateAndPrintLines(rows)
 	}
 
 	private func describeXcodeTheme(_ theme: XcodeTheme) {
 		var rows: [[String]] = []
 
-		enumeratedPropertyDescriptions(from: theme.enumerated()).forEach { description in
-			rows.append(description)
-		}
+		rows.append(contentsOf: enumeratedPropertyDescriptions(from: theme.enumerated()))
+		rows.append(contentsOf: enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxColors.enumerated(), childrenOf: "dvtSourceTextSyntaxColors"))
+		rows.append(contentsOf: enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxFonts.enumerated(), childrenOf: "dvtSourceTextSyntaxColors"))
 
-		enumeratedPropertyDescriptions(from: theme.dvtSourceTextSyntaxColors.enumerated(), childrenOf: "dvtSourceTextSyntaxColors").forEach { description in
-			rows.append(description)
+		Self.tabulateAndPrintLines(rows)
+	}
+	
 	private func describeTextMateTheme(_ theme: TextMateTheme) {
 		var rows: [[String]] = []
 		
@@ -285,6 +284,7 @@ extension ColorThemeUtility: TerminalDetector,
 		case .xcode:
 			return try Self.xcodeTheme(from: intermediateTheme)
 		case .textmate:
+			return try Self.textMateTheme(from: intermediateTheme)
 		}
 	}
 	
@@ -344,6 +344,12 @@ extension ColorThemeUtility: TerminalDetector,
 				describeXcodeTheme(xcodeTheme)
 			} else {
 				print(try Self.encodedTheme(xcodeTheme, with: .plist))
+			}
+		case let textMateTheme as TextMateTheme:
+			if humanReadable {
+				describeTextMateTheme(textMateTheme)
+			} else {
+				print(try Self.encodedTheme(textMateTheme, with: .plist))
 			}
 		default:
 			throw ImplementationError(description: "Generated output theme with format '\(outputFormat)' can not be described.")
