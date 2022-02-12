@@ -30,6 +30,10 @@ extension ThemeFormatDetector {
 			return .xcode
 		}
 		
+		if dataString.contains("<key>settings</key>") {
+			return .textmate
+		}
+		
 		return nil
 	}
 	
