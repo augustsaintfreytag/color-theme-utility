@@ -140,6 +140,8 @@ extension ColorThemeUtility: TerminalDetector,
 	
 	// MARK: Describe Theme
 	
+	private var dividerRow: [String] { ["──────────────────────────────"] }
+	
 	/// Parses the given theme file and prints its contents in a readable format.
 	///
 	/// Options to visualize and present a theme:
