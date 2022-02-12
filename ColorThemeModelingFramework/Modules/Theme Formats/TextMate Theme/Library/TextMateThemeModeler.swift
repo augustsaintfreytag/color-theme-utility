@@ -12,6 +12,8 @@ public protocol TextMateThemeModeler: ColorExtrapolator {}
 
 extension TextMateThemeModeler {
 	
+	private typealias Scope = TextMateScope
+	
 	// MARK: Intermediate → TextMate
 	
 	public static func textMateTheme(from theme: IntermediateTheme) throws -> TextMateTheme {
@@ -23,27 +25,37 @@ extension TextMateThemeModeler {
 			name: "Color Theme Utility Output",
 			settings: [
 				globalSetting,
-				setting(for: TextMateScopes.comment, color: theme.comment),
-				setting(for: TextMateScopes.markupQuote, color: theme.commentDocumentation),
-				setting(for: TextMateScopes.markupInline, color: theme.commentDocumentation),
-				setting(for: TextMateScopes.markupStyling, color: theme.commentDocumentation),
-				setting(for: TextMateScopes.markupSetextHeader, color: theme.commentSectionHeader),
-				setting(for: TextMateScopes.keyword, color: theme.keyword),
-				setting(for: TextMateScopes.builtInConstant, color: theme.constantSystem),
-				setting(for: TextMateScopes.libraryConstant, color: theme.constantSystem),
-				setting(for: TextMateScopes.userDefinedConstant, color: theme.constantProject),
-				setting(for: TextMateScopes.libraryVariable, color: theme.variableSystem),
-				setting(for: TextMateScopes.variable, color: theme.variableProject),
-				setting(for: TextMateScopes.libraryClassType, color: theme.referenceTypeSystem),
-				setting(for: TextMateScopes.inheritedClassType, color: theme.referenceTypeProject),
-				setting(for: TextMateScopes.classType, color: theme.referenceTypeProject),
-				setting(for: TextMateScopes.libraryFunctionType, color: theme.functionSystem),
-				setting(for: TextMateScopes.functionType, color: theme.functionProject),
-				setting(for: TextMateScopes.functionParameter, color: theme.functionParameter),
-				setting(for: TextMateScopes.tag, color: theme.attribute),
-				setting(for: TextMateScopes.tagAttribute, color: theme.attribute),
-				setting(for: TextMateScopes.string, color: theme.string),
-				setting(for: TextMateScopes.number, color: theme.number),
+				setting(scopes: [Scope.Comments.value], color: theme.comment),
+				setting(scopes: [Scope.Markup.value], color: theme.commentDocumentation),
+				setting(scopes: [Scope.Markup.Heading.value], color: theme.commentSectionHeader),
+				
+				setting(scopes: [Scope.Keywords.value], color: theme.keyword),
+				setting(scopes: [Scope.Storage.value], color: theme.keyword),
+				
+				setting(scopes: [Scope.Support.Constants.value], color: theme.constantSystem),
+				setting(scopes: [Scope.Constants.value], color: theme.constantProject),
+				
+				setting(scopes: [Scope.Support.Variables.value], color: theme.variableSystem),
+				setting(scopes: [Scope.Variables.value], color: theme.variableProject),
+				
+				setting(scopes: [Scope.Support.Classes.value], color: theme.referenceTypeSystem),
+				setting(scopes: [Scope.Entities.Name.Classes.value, Scope.Entities.Other.InheritedClasses.value], color: theme.referenceTypeProject),
+				
+				setting(scopes: [Scope.Support.Types.value], color: theme.valueTypeSystem),
+				setting(scopes: [Scope.Entities.Name.Types.value], color: theme.valueTypeProject),
+				
+				setting(scopes: [Scope.Support.Functions.value], color: theme.functionSystem),
+				setting(scopes: [Scope.Entities.Name.Functions.value], color: theme.functionProject),
+				setting(scopes: [Scope.Variables.Parameter.value], color: theme.functionParameter),
+
+				setting(scopes: [Scope.Entities.Name.Tags.value], color: theme.attribute),
+				setting(scopes: [Scope.Entities.Other.Attributes.value], color: theme.attribute),
+				
+				setting(scopes: [Scope.Constants.Character.value], color: theme.character),
+				setting(scopes: [Scope.Strings.RegularExpression.value], color: theme.character),
+				setting(scopes: [Scope.Strings.value], color: theme.string),
+				
+				setting(scopes: [Scope.Constants.Numeric.value], color: theme.number)
 			]
 		)
 	}
@@ -78,9 +90,11 @@ extension TextMateThemeModeler {
 	
 	// MARK: Type Utility
 	
-	private static func setting(for block: TextMateScopes.SettingBlock, color: Color) -> TextMateThemeSetting {
+	private static func setting(name: String? = nil, scopes: [String], color: Color) -> TextMateThemeSetting {
+		let scopeSelector = textMateScopeSelector(scopes)
 		let settings = settings(withForegroundColor: color)
-		return block(settings)
+		
+		return TextMateThemeSetting(name: name, scope: scopeSelector, settings: settings)
 	}
 	
 	private static func settings(withForegroundColor color: Color) -> TextMateThemeSettings {

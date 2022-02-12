@@ -63,6 +63,7 @@ enum TextMateScope {
 			static var value: String { "entity.name" }
 			
 			enum Functions: SubScope { static var value: String { "entity.name.function" } }
+			enum Classes: SubScope { static var value: String { "entity.name.class" } }
 			enum Types: SubScope { static var value: String { "entity.name.type" } }
 			enum Tags: SubScope { static var value: String { "entity.name.tag" } }
 			enum Sections: SubScope { static var value: String { "entity.name.section" } }
@@ -107,17 +108,15 @@ protocol TextMateSubScope {
 	static var value: String { get }
 }
 
-typealias TextMateScopeSet = Set<String>
-
-func textMateScopeSet(_ scopes: [TextMateSubScope.Type]) -> TextMateScopeSet {
-	return Set(scopes.map { SubScope in SubScope.value })
+func textMateScopeSet(_ scopes: [TextMateSubScope.Type]) -> [String] {
+	return scopes.map { SubScope in SubScope.value }
 }
 
 func textMateScope(_ scopes: [TextMateSubScope.Type]) -> String {
 	let set = textMateScopeSet(scopes)
-	return path(set)
+	return textMateScopeSelector(set)
 }
 
-private func path(_ components: Set<String>) -> String {
-	return components.joined(separator: ".")
+func textMateScopeSelector(_ scopeDescriptions: [String]) -> String {
+	return scopeDescriptions.joined(separator: ", ")
 }
