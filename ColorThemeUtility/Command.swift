@@ -95,7 +95,8 @@ extension ColorThemeUtility: TerminalDetector,
 							 XcodeThemeModeler,
 							 TextMateThemeModeler,
 							 TableFormatter,
-							 ThemePropertyEnumerator {
+							 ThemePropertyEnumerator,
+							 ColorDescriptionCommand {
 	
 	
 	// MARK: Convert Color

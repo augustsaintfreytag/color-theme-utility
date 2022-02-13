@@ -69,8 +69,10 @@
 		8BB2796A27B53648008E92FA /* TextMateThemeModeler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2796927B53648008E92FA /* TextMateThemeModeler.swift */; };
 		8BB2796C27B66F3C008E92FA /* TextMateScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2796B27B66F3C008E92FA /* TextMateScope.swift */; };
 		8BB2796E27B7C1B4008E92FA /* String+RegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2796D27B7C1B4008E92FA /* String+RegularExpression.swift */; };
+		8BB2797127B9127B008E92FA /* ColorDescriptionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2797027B9127B008E92FA /* ColorDescriptionCommand.swift */; };
 		8BB2797627B91346008E92FA /* ThemePropertyEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2797527B91346008E92FA /* ThemePropertyEnumerator.swift */; };
 		8BB2797827B91439008E92FA /* ColorPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2797727B91439008E92FA /* ColorPrinter.swift */; };
+		8BB2797A27B914E1008E92FA /* CommandFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2797927B914E1008E92FA /* CommandFragment.swift */; };
 		8BDBB3E6273E7EFC00AA4E9F /* OriginColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDBB3E5273E7EFC00AA4E9F /* OriginColors.swift */; };
 		8BE17562272017030073805E /* XcodeThemeModeler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE17561272017030073805E /* XcodeThemeModeler.swift */; };
 		8BE678982752EB2200D20598 /* ColorCollectionFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE678972752EB2200D20598 /* ColorCollectionFormat.swift */; };
@@ -180,8 +182,10 @@
 		8BB2796927B53648008E92FA /* TextMateThemeModeler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMateThemeModeler.swift; sourceTree = "<group>"; };
 		8BB2796B27B66F3C008E92FA /* TextMateScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMateScope.swift; sourceTree = "<group>"; };
 		8BB2796D27B7C1B4008E92FA /* String+RegularExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+RegularExpression.swift"; sourceTree = "<group>"; };
+		8BB2797027B9127B008E92FA /* ColorDescriptionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDescriptionCommand.swift; sourceTree = "<group>"; };
 		8BB2797527B91346008E92FA /* ThemePropertyEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePropertyEnumerator.swift; sourceTree = "<group>"; };
 		8BB2797727B91439008E92FA /* ColorPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPrinter.swift; sourceTree = "<group>"; };
+		8BB2797927B914E1008E92FA /* CommandFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandFragment.swift; sourceTree = "<group>"; };
 		8BBB859527510091004C7558 /* TerminalDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalDetector.swift; sourceTree = "<group>"; };
 		8BBB859827510665004C7558 /* TerminalApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalApplication.swift; sourceTree = "<group>"; };
 		8BBF92A02701C49100386123 /* XcodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeTheme.swift; sourceTree = "<group>"; };
@@ -312,6 +316,7 @@
 			children = (
 				8B29630B26F60ED20048CE17 /* Command.swift */,
 				8BAA176927AA96750043C183 /* Manifest.swift */,
+				8BB2797227B91281008E92FA /* Commands */,
 				8B29631926F629390048CE17 /* Modules */,
 			);
 			path = ColorThemeUtility;
@@ -650,6 +655,15 @@
 				8BB2796927B53648008E92FA /* TextMateThemeModeler.swift */,
 			);
 			path = Library;
+			sourceTree = "<group>";
+		};
+		8BB2797227B91281008E92FA /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				8BB2797027B9127B008E92FA /* ColorDescriptionCommand.swift */,
+				8BB2797927B914E1008E92FA /* CommandFragment.swift */,
+			);
+			path = Commands;
 			sourceTree = "<group>";
 		};
 		8BB2797327B9131D008E92FA /* Formatting */ = {
@@ -996,8 +1010,10 @@
 				8B57B5142705B3E500A60D1C /* ArgumentError.swift in Sources */,
 				8BAA176A27AA96750043C183 /* Manifest.swift in Sources */,
 				8B33B7ED2784E8C500785D9B /* Command+StandardStreams.swift in Sources */,
+				8BB2797127B9127B008E92FA /* ColorDescriptionCommand.swift in Sources */,
 				8BEB597D2773C738000C431D /* TokenizedString+Presets.swift in Sources */,
 				8B6BE092270DB5470063B0BA /* String+CustomColorable.swift in Sources */,
+				8BB2797A27B914E1008E92FA /* CommandFragment.swift in Sources */,
 				8B69B3A6274F906500732343 /* PreviewFormat.swift in Sources */,
 				8B79D52727353C300010233E /* TokenizedStringPaddingProvider.swift in Sources */,
 				8B851B4427918E4A00A93814 /* TerminalThemeColorCorrector.swift in Sources */,
