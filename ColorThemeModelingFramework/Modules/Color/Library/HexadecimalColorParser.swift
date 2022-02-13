@@ -54,15 +54,15 @@ extension HexadecimalColorParser {
 	///
 	/// Can convert a prefixed string of format `"#2AB1AF"` to `"2AB1AF"`.
 	private static func standardizedHexadecimalString(from string: String) -> String? {
+		guard try! string.matches("#?[0-9a-fA-F]{6}") else {
+			return nil
+		}
+		
 		if string.count == 7 {
 			return String(string.suffix(6))
 		}
 		
-		if string.count == 6 {
-			return string
-		}
-		
-		return nil
+		return string
 	}
 	
 	private static func colorValue(fromHexadecimalString string: String) -> ColorValue {

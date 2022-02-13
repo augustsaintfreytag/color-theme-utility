@@ -13,8 +13,10 @@ extension TableFormatter {
 	// MARK: Configuration
 	
 	private static var columnPadding: Int { 4 }
+	private static var space: Character { " " }
+	private static var divider: Character { "─" }
 	
-	private static var space: String { " " }
+	static var dividerRow: [String] { [repeatedString(divider, count: 30)] }
 	
 	// MARK: Formatting
 	
@@ -24,7 +26,7 @@ extension TableFormatter {
 	
 	public static func tabulatedLines(_ rows: [[String]]) -> [String] {
 		return tabulatedRows(rows).map { row in
-			return row.joined(separator: space)
+			return row.joined(separator: String(space))
 		}
 	}
 	
@@ -83,6 +85,11 @@ extension TableFormatter {
 		}.sorted()
 		
 		return numberOfCharactersPerColumn.last
+	}
+	
+	private static func repeatedString(_ character: Character, count: Int) -> String {
+		let chain = (0 ..< count).map { _ in character }
+		return String(chain)
 	}
 	
 }

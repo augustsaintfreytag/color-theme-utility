@@ -10,5 +10,6 @@ public enum ThemeFormat: String, CaseIterable {
 	
 	case intermediate
 	case xcode
+	case textmate
 	
 }
