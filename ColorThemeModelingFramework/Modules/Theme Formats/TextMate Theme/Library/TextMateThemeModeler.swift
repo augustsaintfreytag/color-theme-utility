@@ -42,7 +42,13 @@ extension TextMateThemeModeler {
 				setting(scopes: [Scope.Entities.Name.Classes.value, Scope.Entities.Other.InheritedClasses.value], color: theme.referenceTypeProject),
 				
 				setting(scopes: [Scope.Support.Types.value], color: theme.valueTypeSystem),
-				setting(scopes: [Scope.Entities.Name.Types.value], color: theme.valueTypeProject),
+				setting(scopes: [Scope.Entities.Name.Types.value, Scope.Entities.Name.Types.Structs.value], color: theme.valueTypeProject),
+				
+				setting(scopes: [Scope.Entities.Name.Types.Typealias.value], color: theme.declarationType),
+				setting(scopes: [Scope.Entities.Name.Types.Protocols.value], color: theme.declarationType),
+				
+				setting(scopes: [Scope.Variables.Object.Property.value], color: theme.declarationAny),
+				setting(scopes: [Scope.Constants.Object.Property.value], color: theme.declarationAny),
 				
 				setting(scopes: [Scope.Support.Functions.value], color: theme.functionSystem),
 				setting(scopes: [Scope.Entities.Name.Functions.value], color: theme.functionProject),

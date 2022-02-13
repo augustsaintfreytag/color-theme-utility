@@ -42,6 +42,11 @@ enum TextMateScope {
 	enum Constants {
 		static var value: String { "constant" }
 		
+		enum Object: SubScope {
+			static var value: String { "constant.object" }
+			enum Property: SubScope { static var value: String { "constant.object.property" } }
+		}
+		
 		enum Numeric: SubScope { static var value: String { "constant.numeric" } }
 		enum Character: SubScope { static var value: String { "constant.character" } }
 		enum Language: SubScope { static var value: String { "constant.language" } }
@@ -50,6 +55,11 @@ enum TextMateScope {
 	
 	enum Variables {
 		static var value: String { "variable" }
+		
+		enum Object: SubScope {
+			static var value: String { "variable.object" }
+			enum Property: SubScope { static var value: String { "variable.object.property" } }
+		}
 		
 		enum Parameter: SubScope { static var value: String { "variable.parameter" } }
 		enum Language: SubScope { static var value: String { "variable.language" } }
@@ -64,9 +74,16 @@ enum TextMateScope {
 			
 			enum Functions: SubScope { static var value: String { "entity.name.function" } }
 			enum Classes: SubScope { static var value: String { "entity.name.class" } }
-			enum Types: SubScope { static var value: String { "entity.name.type" } }
 			enum Tags: SubScope { static var value: String { "entity.name.tag" } }
 			enum Sections: SubScope { static var value: String { "entity.name.section" } }
+
+			enum Types: SubScope {
+				static var value: String { "entity.name.type" }
+				
+				enum Structs: SubScope { static var value: String { "entity.name.type.struct" } }
+				enum Protocols: SubScope { static var value: String { "entity.name.type.protocol" } }
+				enum Typealias: SubScope { static var value: String { "entity.name.type.typealias" } }
+			}
 		}
 		
 		enum Other: SubScope {
