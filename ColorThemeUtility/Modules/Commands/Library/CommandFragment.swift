@@ -9,6 +9,9 @@ import ColorThemeModelingFramework
 
 protocol CommandFragment {
 	
+	var linesFromStdin: String? { get }
+	var lineFromStdin: String? { get }
+	
 	var mode: Mode { get }
 	var inputColors: [String]? { get }
 	var inputColorsFromStdin: Bool { get }

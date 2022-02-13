@@ -25,7 +25,7 @@ extension ColorDescriptionCommand {
 		}
 		
 		if humanReadable {
-			printColor(color, description: "Input '\(inputColor)' is \(inputColorFormat.description) ('\(inputColorFormat.rawValue)')")
+			Self.printColor(color, description: "Input '\(inputColor)' is \(inputColorFormat.description) ('\(inputColorFormat.rawValue)')")
 		} else {
 			print(inputColorFormat.rawValue)
 		}

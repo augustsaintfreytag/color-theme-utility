@@ -9,8 +9,8 @@ import ArgumentParser
 
 extension ParsableCommand {
 	
-	/// Reads all lines sent to standard input stream and returns them as a
-	/// consecutive string joined with newline characters.
+	/// Reads all lines sent to standard input stream and returns them as
+	/// a consecutive string joined with newline characters.
 	var linesFromStdin: String? {
 		var lines: [String] = []
 		
@@ -31,6 +31,7 @@ extension ParsableCommand {
 		return joinedLines
 	}
 	
+	/// Reads one line sent to standard input stream and returns it if not empty.
 	var lineFromStdin: String? {
 		let line = readLine() ?? ""
 		

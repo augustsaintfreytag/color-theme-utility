@@ -32,12 +32,12 @@ extension ThemePropertyEnumerator {
 		let description = value.description
 		
 		if let color = value as? Color {
-			let colorBlockDescription = colorBlock.colored(with: color)
+			let colorBlockDescription = Self.colorBlock.colored(with: color)
 			return ("[Color]", "\(color.hexadecimalString) \(colorBlockDescription)")
 		}
 		
 		if let color = Self.color(fromAutodetectedColorString: description) {
-			let colorBlockDescription = colorBlock.colored(with: color)
+			let colorBlockDescription = Self.colorBlock.colored(with: color)
 			return ("[Color]", "\(color.hexadecimalString) \(colorBlockDescription)")
 		}
 		

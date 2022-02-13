@@ -22,6 +22,7 @@ public struct ThemeModelingError: Error, LocalizedError {
 extension ThemeModelingError {
 	
 	public enum Kind {
+		case unsupported
 		case insufficientData
 		case invalidData
 	}

@@ -5,14 +5,15 @@
 //
 
 import Foundation
+import ColorThemeModelingFramework
 
 protocol ColorPrinter {}
 
 extension ColorPrinter {
 	
-	var colorBlock: String { "████████" }
+	static var colorBlock: String { "████████" }
 	
-	func printColor(_ color: Color, description: String? = nil) {
+	static func printColor(_ color: Color, description: String? = nil) {
 		let colorDescription = colorBlock.colored(with: color)
 		
 		guard let key = description else {
