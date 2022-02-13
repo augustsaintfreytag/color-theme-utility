@@ -94,29 +94,9 @@ extension ColorThemeUtility: TerminalDetector,
 							 TerminalThemeColorCorrector,
 							 XcodeThemeModeler,
 							 TextMateThemeModeler,
-							 TableFormatter {
+							 TableFormatter,
+							 ThemePropertyEnumerator {
 	
-	// MARK: Describe Color
-	
-	private func describeColor() throws {
-		guard let inputColor = inputColors?.first else {
-			throw ArgumentError(description: "No color string given, color format could not be determined.")
-		}
-		
-		guard let inputColorFormat = Self.colorFormat(for: inputColor) else {
-			throw ArgumentError(description: "Color format could not be determined.")
-		}
-		
-		guard let color = Self.color(from: inputColor, format: inputColorFormat) else {
-			throw ArgumentError(description: "Could not create color in detected format '\(inputColorFormat)'.")
-		}
-		
-		if humanReadable {
-			printColor(color, description: "Input '\(inputColor)' is \(inputColorFormat.description) ('\(inputColorFormat.rawValue)')")
-		} else {
-			print(inputColorFormat.rawValue)
-		}
-	}
 	
 	// MARK: Convert Color
 	
@@ -441,80 +421,6 @@ extension ColorThemeUtility: TerminalDetector,
 				let data = try! encoder.encode(colorDescriptions)
 				print(String(data: data, encoding: .utf8)!)
 			}
-		}
-	}
-	
-	// MARK: Common Utility
-	
-	private var colorBlock: String { "████████" }
-	
-	private func printColor(_ color: Color, description: String? = nil) {
-		let colorDescription = colorBlock.colored(with: color)
-		
-		guard let key = description else {
-			print(colorDescription)
-			return
-		}
-		
-		print(colorDescription + " " + key)
-	}
-	
-	// MARK: Property Enumeration
-	
-	private func enumeratedPropertyDescriptions(from enumeratedProperties: [(property: String, value: CustomStringConvertible)], childrenOf parentProperty: String? = nil) -> [[String]] {
-		return enumeratedProperties.map { property, value in
-			let property = { () -> String in
-				guard let parentProperty = parentProperty else {
-					return property
-				}
-
-				return "\(parentProperty).\(property)"
-			}()
-			
-			let description = valueDescription(of: value)
-			return [property, description.format, description.value]
-		}
-	}
-	
-	private func valueDescription(of value: CustomStringConvertible) -> (format: String, value: String) {
-		let description = value.description
-
-		if let color = value as? Color {
-			let colorBlockDescription = colorBlock.colored(with: color)
-			return ("[Color]", "\(color.hexadecimalString) \(colorBlockDescription)")
-		}
-
-		if let color = Self.color(fromAutodetectedColorString: description) {
-			let colorBlockDescription = colorBlock.colored(with: color)
-			return ("[Color]", "\(color.hexadecimalString) \(colorBlockDescription)")
-		}
-		
-		return ("[Any]", description)
-	}
-	
-	private func enumeratedColors(in model: CustomPropertyEnumerable) -> [(property: String, color: Color)] {
-		return enumeratedColors(from: model.enumerated())
-	}
-	
-	private func enumeratedColors(from enumeratedProperties: [(property: String, value: String)]) -> [(property: String, color: Color)] {
-		return enumeratedProperties.reduce(into: [(property: String, color: Color)]()) { collection, element in
-			let (property, value) = element
-			
-			guard let color = Self.color(fromAutodetectedColorString: value) else {
-				return
-			}
-			
-			collection.append((property, color))
-		}
-	}
-	
-	private func orderedEnumeratedColors(in model: CustomPropertyEnumerable) -> [(property: String, color: Color)] {
-		return orderedEnumeratedColors(from: model.enumerated())
-	}
-	
-	private func orderedEnumeratedColors(from enumeratedProperties: [(property: String, value: String)]) -> [(property: String, color: Color)] {
-		return enumeratedColors(from: enumeratedProperties).sorted { lhs, rhs in
-			lhs.color < rhs.color
 		}
 	}
 	
