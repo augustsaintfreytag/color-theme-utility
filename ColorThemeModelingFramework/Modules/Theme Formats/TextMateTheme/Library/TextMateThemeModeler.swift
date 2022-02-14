@@ -69,6 +69,7 @@ extension TextMateThemeModeler {
 	private static func globalTextMateSetting(from theme: IntermediateTheme) -> TextMateThemeSetting {
 		let selectionColors = Self.cascadingColorSequence(from: theme.selectionBackground, numberOfColors: 3, skewing: .lighter)
 		let settings = TextMateThemeSettings(
+			fontStyle: nil,
 			background: value(theme.background),
 			foreground: value(theme.foreground),
 			caret: value(theme.insertionPoint),
@@ -87,8 +88,7 @@ extension TextMateThemeModeler {
 			wordHighlight: value(selectionColors[0]),
 			wordHighlightStrong: value(selectionColors[1]),
 			activeLinkForeground: value(theme.foreground),
-			gotoDefinitionLinkForeground: value(theme.foreground),
-			fontStyle: nil
+			gotoDefinitionLinkForeground: value(theme.foreground)
 		)
 		
 		return TextMateThemeSetting(settings)

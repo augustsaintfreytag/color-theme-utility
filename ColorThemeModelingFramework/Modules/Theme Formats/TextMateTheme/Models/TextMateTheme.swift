@@ -61,6 +61,9 @@ extension TextMateThemeSetting: Codable {
 
 public struct TextMateThemeSettings: CustomPropertyEnumerable {
 	
+	public typealias FontStyle = TextMateThemeFontStyle
+	
+	public let fontStyle: FontStyle?
 	public let background: String?
 	public let foreground: String?
 	public let caret: String?
@@ -80,9 +83,9 @@ public struct TextMateThemeSettings: CustomPropertyEnumerable {
 	public let wordHighlightStrong: String?
 	public let activeLinkForeground: String?
 	public let gotoDefinitionLinkForeground: String?
-	public let fontStyle: String?
 	
-	public init(background: String?, foreground: String?, caret: String?, invisibles: String?, guide: String?, hoverHighlight: String?, referenceHighlight: String?, lineHighlight: String?, rangeHighlight: String?, selection: String?, inactiveSelection: String?, selectionHighlight: String?, findRangeHighlight: String?, findMatchHighlight: String?, currentFindMatchHighlight: String?, wordHighlight: String?, wordHighlightStrong: String?, activeLinkForeground: String?, gotoDefinitionLinkForeground: String?, fontStyle: String?) {
+	public init(fontStyle: FontStyle?, background: String?, foreground: String?, caret: String?, invisibles: String?, guide: String?, hoverHighlight: String?, referenceHighlight: String?, lineHighlight: String?, rangeHighlight: String?, selection: String?, inactiveSelection: String?, selectionHighlight: String?, findRangeHighlight: String?, findMatchHighlight: String?, currentFindMatchHighlight: String?, wordHighlight: String?, wordHighlightStrong: String?, activeLinkForeground: String?, gotoDefinitionLinkForeground: String?) {
+		self.fontStyle = fontStyle
 		self.background = background
 		self.foreground = foreground
 		self.caret = caret
@@ -102,12 +105,12 @@ public struct TextMateThemeSettings: CustomPropertyEnumerable {
 		self.wordHighlightStrong = wordHighlightStrong
 		self.activeLinkForeground = activeLinkForeground
 		self.gotoDefinitionLinkForeground = gotoDefinitionLinkForeground
-		self.fontStyle = fontStyle
 	}
 	
-	public init(foreground: String?) {
+	public init(fontStyle: FontStyle? = nil, background: String? = nil, foreground: String? = nil) {
 		self.init(
-			background: nil,
+			fontStyle: fontStyle,
+			background: background,
 			foreground: foreground,
 			caret: nil,
 			invisibles: nil,
@@ -125,8 +128,7 @@ public struct TextMateThemeSettings: CustomPropertyEnumerable {
 			wordHighlight: nil,
 			wordHighlightStrong: nil,
 			activeLinkForeground: nil,
-			gotoDefinitionLinkForeground: nil,
-			fontStyle: nil
+			gotoDefinitionLinkForeground: nil
 		)
 	}
 	
@@ -156,5 +158,15 @@ extension TextMateThemeSettings: Codable {
 		case gotoDefinitionLinkForeground = "gotoDefinitionLinkForeground"
 		case fontStyle = "fontStyle"
 	}
+	
+}
+
+// MARK: Font Style
+
+public enum TextMateThemeFontStyle: String, Codable {
+	
+	case regular
+	case italic
+	case underline
 	
 }
