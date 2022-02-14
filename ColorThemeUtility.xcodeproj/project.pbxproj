@@ -81,6 +81,7 @@
 		8BB2798B27B92251008E92FA /* ThemeCoercionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2798A27B92251008E92FA /* ThemeCoercionProvider.swift */; };
 		8BB2798D27B9242B008E92FA /* ThemeConversionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2798C27B9242B008E92FA /* ThemeConversionCommand.swift */; };
 		8BB2798F27B92487008E92FA /* ThemeUnmapCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2798E27B92487008E92FA /* ThemeUnmapCommand.swift */; };
+		8BB2799427B99024008E92FA /* VisualStudioCodeTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2799327B99024008E92FA /* VisualStudioCodeTheme.swift */; };
 		8BDBB3E6273E7EFC00AA4E9F /* OriginColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDBB3E5273E7EFC00AA4E9F /* OriginColors.swift */; };
 		8BE17562272017030073805E /* XcodeThemeModeler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE17561272017030073805E /* XcodeThemeModeler.swift */; };
 		8BE678982752EB2200D20598 /* ColorCollectionFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE678972752EB2200D20598 /* ColorCollectionFormat.swift */; };
@@ -202,6 +203,7 @@
 		8BB2798A27B92251008E92FA /* ThemeCoercionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCoercionProvider.swift; sourceTree = "<group>"; };
 		8BB2798C27B9242B008E92FA /* ThemeConversionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeConversionCommand.swift; sourceTree = "<group>"; };
 		8BB2798E27B92487008E92FA /* ThemeUnmapCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeUnmapCommand.swift; sourceTree = "<group>"; };
+		8BB2799327B99024008E92FA /* VisualStudioCodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualStudioCodeTheme.swift; sourceTree = "<group>"; };
 		8BBB859527510091004C7558 /* TerminalDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalDetector.swift; sourceTree = "<group>"; };
 		8BBB859827510665004C7558 /* TerminalApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalApplication.swift; sourceTree = "<group>"; };
 		8BBF92A02701C49100386123 /* XcodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeTheme.swift; sourceTree = "<group>"; };
@@ -731,6 +733,30 @@
 			path = Library;
 			sourceTree = "<group>";
 		};
+		8BB2799027B98D1F008E92FA /* VisualStudioCodeTheme */ = {
+			isa = PBXGroup;
+			children = (
+				8BB2799127B98D34008E92FA /* Library */,
+				8BB2799227B98D37008E92FA /* Models */,
+			);
+			path = VisualStudioCodeTheme;
+			sourceTree = "<group>";
+		};
+		8BB2799127B98D34008E92FA /* Library */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		8BB2799227B98D37008E92FA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8BB2799327B99024008E92FA /* VisualStudioCodeTheme.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		8BBB859327510082004C7558 /* Terminal */ = {
 			isa = PBXGroup;
 			children = (
@@ -797,6 +823,7 @@
 			children = (
 				8B4150E627143DF600873BBF /* IntermediateTheme */,
 				8BB2796327B5276B008E92FA /* TextMateTheme */,
+				8BB2799027B98D1F008E92FA /* VisualStudioCodeTheme */,
 				8B29631D26F62F930048CE17 /* XcodeTheme */,
 			);
 			path = "Theme Formats";
@@ -1096,6 +1123,7 @@
 				8BB2796C27B66F3C008E92FA /* TextMateScope.swift in Sources */,
 				8BB2796E27B7C1B4008E92FA /* String+RegularExpression.swift in Sources */,
 				8B6BE086270C77FB0063B0BA /* ColorFormatDetector.swift in Sources */,
+				8BB2799427B99024008E92FA /* VisualStudioCodeTheme.swift in Sources */,
 				8BE678982752EB2200D20598 /* ColorCollectionFormat.swift in Sources */,
 				8B4150EB27143E3400873BBF /* IntermediateThemeModeler.swift in Sources */,
 				8B6BE080270C77FB0063B0BA /* FloatRGBAColorParser.swift in Sources */,
