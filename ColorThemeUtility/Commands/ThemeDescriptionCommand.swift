@@ -67,21 +67,71 @@ extension ThemeDescriptionCommand {
 		
 		for setting in theme.settings {
 			rows.append(Self.dividerRow)
-			
-			if let name = setting.name {
-				rows.append(["name", "[String]", name])
-			}
-			
-			rows.append(["scope", "[String]", setting.scope ?? ""])
-			
-			let settingValues = setting.settings.enumerated().filter { (property: String, value: CustomStringConvertible) in
-				return !value.description.isEmpty
-			}
-			
-			rows.append(contentsOf: enumeratedPropertyDescriptions(from: settingValues))
+			rows.append(contentsOf: enumeratedThemeSetting(setting))
 		}
 		
 		Self.tabulateAndPrintLines(rows)
+	}
+	
+	func describeVisualStudioCodeTheme(_ theme: VisualStudioCodeTheme) {
+		var rows: [[String]] = []
+		
+		rows.append(["name", "[String]", theme.name])
+		rows.append(["type", "[String]", theme.type.rawValue])
+		
+		rows.append(Self.dividerRow)
+		rows.append(contentsOf: enumeratedPropertyDescriptions(from: theme.colors.map { pair in pair }))
+		
+		for tokenColors in theme.tokenColors {
+			rows.append(Self.dividerRow)
+			rows.append(contentsOf: enumeratedThemeSetting(tokenColors))
+		}
+		
+		Self.tabulateAndPrintLines(rows)
+	}
+	
+	// MARK: Theme Enumeration
+	
+	private func enumeratedThemeSetting(_ setting: TextMateThemeSetting) -> [[String]] {
+		var rows: [[String]] = []
+		
+		if let name = setting.name {
+			rows.append(["name", "[String]", name])
+		}
+		
+		rows.append(["scope", "[String]", setting.scope ?? ""])
+		rows.append(contentsOf: enumeratedSettings(setting.settings))
+		
+		return rows
+	}
+	
+	private func enumeratedThemeSetting(_ setting: VisualStudioCodeThemeTokenColors) -> [[String]] {
+		var rows: [[String]] = []
+		
+		rows.append(["name", "[String]", setting.name])
+		rows.append(["scope", "[String]", truncatedString(setting.scope.joined(separator: ", "))])
+		rows.append(contentsOf: enumeratedSettings(setting.settings))
+		
+		return rows
+	}
+	
+	private func enumeratedSettings(_ settings: TextMateThemeSettings) -> [[String]] {
+		let elements = settings.enumerated().filter { (property: String, value: CustomStringConvertible) in
+			return !value.description.isEmpty
+		}
+		
+		return enumeratedPropertyDescriptions(from: elements)
+	}
+	
+	private var maxNumberOfCharactersBeforeTruncation: Int { 48 }
+	
+	private func truncatedString(_ value: String) -> String {
+		guard value.count > maxNumberOfCharactersBeforeTruncation else {
+			return value
+		}
+		
+		let truncatedString = value.prefix(maxNumberOfCharactersBeforeTruncation)
+		return truncatedString + "…"
 	}
 	
 }
