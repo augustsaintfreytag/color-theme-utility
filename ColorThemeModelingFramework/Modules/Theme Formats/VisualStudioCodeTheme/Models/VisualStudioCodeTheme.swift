@@ -10,6 +10,7 @@ public struct VisualStudioCodeTheme {
 	
 	public typealias Appearance = VisualStudioCodeThemeAppearance
 	public typealias TokenColors = VisualStudioCodeThemeTokenColors
+	public typealias ColorRoot = VisualStudioCodeThemeColorRoot
 	
 	public let name: String
 	public let type: Appearance
@@ -35,4 +36,35 @@ public struct VisualStudioCodeThemeTokenColors {
 	public let scope: [String]
 	public let settings: Settings
 	
+}
+
+public enum VisualStudioCodeThemeColorRoot: String {
+	case editor
+	case editorGroup
+	case editorGroupHeader
+	case editorPane
+	case editorLineNumber
+	case editorCursor
+	case sideBySideEditor
+	case tab
+	case window
+	case toolbar
+	case button
+	case dropdown
+	case input
+	case inputOption
+	case inputValidation
+	case scrollbar
+	case scrollbarSlider
+	case badge
+	case list
+	case tree
+	case activityBar
+	case activityBarBadge
+	case sideBar
+	case sideBarTitle
+	case sideBarSectionHeader
+	case minimap
+	case minimapSlider
+	case minimapGutter
 }
