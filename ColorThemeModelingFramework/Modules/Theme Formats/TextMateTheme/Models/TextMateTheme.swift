@@ -167,6 +167,7 @@ public enum TextMateThemeFontStyle: String, Codable {
 	
 	case regular
 	case italic
+	case bold
 	case underline
 	
 }
