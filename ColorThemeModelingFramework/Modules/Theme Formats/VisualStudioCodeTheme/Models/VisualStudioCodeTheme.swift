@@ -6,7 +6,9 @@
 
 import Foundation
 
-public struct VisualStudioCodeTheme {
+public struct VisualStudioCodeTheme: Theme, Codable, CustomPropertyEnumerable {
+	
+	public static var format: ThemeFormat { .vscode }
 	
 	public typealias Appearance = VisualStudioCodeThemeAppearance
 	public typealias TokenColors = VisualStudioCodeThemeTokenColors
@@ -20,14 +22,14 @@ public struct VisualStudioCodeTheme {
 	
 }
 
-public enum VisualStudioCodeThemeAppearance: String {
+public enum VisualStudioCodeThemeAppearance: String, Codable {
 	
 	case dark
 	case light
 	
 }
 
-public struct VisualStudioCodeThemeTokenColors {
+public struct VisualStudioCodeThemeTokenColors: Codable {
 	
 	/// Visual Studio Code uses some of the theme format of the TextMate editor.
 	public typealias Settings = TextMateThemeSettings
