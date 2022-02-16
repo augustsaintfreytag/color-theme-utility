@@ -72,8 +72,12 @@ public struct TextMateThemeSettings: CustomPropertyEnumerable {
 	public let hoverHighlight: String?
 	public let referenceHighlight: String?
 	public let lineHighlight: String?
+	public let lineHighlightBackground: String?
 	public let rangeHighlight: String?
+	public let rangeHighlightBackground: String?
 	public let selection: String?
+	public let selectionBackground: String?
+	public let selectionForeground: String?
 	public let inactiveSelection: String?
 	public let selectionHighlight: String?
 	public let findRangeHighlight: String?
@@ -81,31 +85,13 @@ public struct TextMateThemeSettings: CustomPropertyEnumerable {
 	public let currentFindMatchHighlight: String?
 	public let wordHighlight: String?
 	public let wordHighlightStrong: String?
+	public let wordHighlightBackground: String?
 	public let activeLinkForeground: String?
 	public let gotoDefinitionLinkForeground: String?
 	
-	public init(fontStyle: FontStyle?, background: String?, foreground: String?, caret: String?, invisibles: String?, guide: String?, hoverHighlight: String?, referenceHighlight: String?, lineHighlight: String?, rangeHighlight: String?, selection: String?, inactiveSelection: String?, selectionHighlight: String?, findRangeHighlight: String?, findMatchHighlight: String?, currentFindMatchHighlight: String?, wordHighlight: String?, wordHighlightStrong: String?, activeLinkForeground: String?, gotoDefinitionLinkForeground: String?) {
-		self.fontStyle = fontStyle
-		self.background = background
-		self.foreground = foreground
-		self.caret = caret
-		self.invisibles = invisibles
-		self.guide = guide
-		self.hoverHighlight = hoverHighlight
-		self.referenceHighlight = referenceHighlight
-		self.lineHighlight = lineHighlight
-		self.rangeHighlight = rangeHighlight
-		self.selection = selection
-		self.inactiveSelection = inactiveSelection
-		self.selectionHighlight = selectionHighlight
-		self.findRangeHighlight = findRangeHighlight
-		self.findMatchHighlight = findMatchHighlight
-		self.currentFindMatchHighlight = currentFindMatchHighlight
-		self.wordHighlight = wordHighlight
-		self.wordHighlightStrong = wordHighlightStrong
-		self.activeLinkForeground = activeLinkForeground
-		self.gotoDefinitionLinkForeground = gotoDefinitionLinkForeground
-	}
+}
+
+extension TextMateThemeSettings {
 	
 	public init(fontStyle: FontStyle? = nil, background: String? = nil, foreground: String? = nil) {
 		self.init(
@@ -118,8 +104,12 @@ public struct TextMateThemeSettings: CustomPropertyEnumerable {
 			hoverHighlight: nil,
 			referenceHighlight: nil,
 			lineHighlight: nil,
+			lineHighlightBackground: nil,
 			rangeHighlight: nil,
+			rangeHighlightBackground: nil,
 			selection: nil,
+			selectionBackground: nil,
+			selectionForeground: nil,
 			inactiveSelection: nil,
 			selectionHighlight: nil,
 			findRangeHighlight: nil,
@@ -127,6 +117,7 @@ public struct TextMateThemeSettings: CustomPropertyEnumerable {
 			currentFindMatchHighlight: nil,
 			wordHighlight: nil,
 			wordHighlightStrong: nil,
+			wordHighlightBackground: nil,
 			activeLinkForeground: nil,
 			gotoDefinitionLinkForeground: nil
 		)
@@ -137,6 +128,7 @@ public struct TextMateThemeSettings: CustomPropertyEnumerable {
 extension TextMateThemeSettings: Codable {
 	
 	enum CodingKeys: String, CodingKey {
+		case fontStyle = "fontStyle"
 		case background = "background"
 		case foreground = "foreground"
 		case caret = "caret"
@@ -145,8 +137,12 @@ extension TextMateThemeSettings: Codable {
 		case hoverHighlight = "hoverHighlight"
 		case referenceHighlight = "referenceHighlight"
 		case lineHighlight = "lineHighlight"
+		case lineHighlightBackground = "lineHighlightBackground"
 		case rangeHighlight = "rangeHighlight"
+		case rangeHighlightBackground = "rangeHighlightBackground"
 		case selection = "selection"
+		case selectionBackground = "selectionBackground"
+		case selectionForeground = "selectionForeground"
 		case inactiveSelection = "inactiveSelection"
 		case selectionHighlight = "selectionHighlight"
 		case findRangeHighlight = "findRangeHighlight"
@@ -154,9 +150,9 @@ extension TextMateThemeSettings: Codable {
 		case currentFindMatchHighlight = "currentFindMatchHighlight"
 		case wordHighlight = "wordHighlight"
 		case wordHighlightStrong = "wordHighlightStrong"
+		case wordHighlightBackground = "wordHighlightBackground"
 		case activeLinkForeground = "activeLinkForeground"
 		case gotoDefinitionLinkForeground = "gotoDefinitionLinkForeground"
-		case fontStyle = "fontStyle"
 	}
 	
 }
