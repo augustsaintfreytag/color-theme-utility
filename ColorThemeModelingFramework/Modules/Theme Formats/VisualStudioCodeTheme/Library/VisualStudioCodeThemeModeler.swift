@@ -15,7 +15,11 @@ extension VisualStudioCodeThemeModeler {
 	private typealias Theme = VisualStudioCodeTheme
 	private typealias ThemeSettings = VisualStudioCodeTheme.TokenColors.Settings
 	
-	// MARK: Intermediate → TextMate
+	// MARK: Intermediate → Visual Studio Code
+	
+	private static var markupInsertedColor: Color { Color(red: 0.478, green: 0.847, blue: 0.568) }
+	private static var markupUpdatedColor: Color { Color(red: 0.780, green: 0.573, blue: 0.918) }
+	private static var markupDeletedColor: Color { Color(red: 1, green: 0.325, blue: 0.439) }
 	
 	private static var errorColor: Color { Color(red: 1, green: 0.325, blue: 0.439) }
 	
@@ -56,7 +60,7 @@ extension VisualStudioCodeThemeModeler {
 			scope: [
 				"markup.inserted"
 			],
-			settings: ThemeSettings(foreground: color(theme.commentSection))
+			settings: ThemeSettings(foreground: color(markupInsertedColor))
 		)
 		
 		let markupDeletedTokenColors = Theme.TokenColors(
@@ -64,7 +68,7 @@ extension VisualStudioCodeThemeModeler {
 			scope: [
 				"markup.deleted"
 			],
-			settings: ThemeSettings(foreground: color(theme.commentSection))
+			settings: ThemeSettings(foreground: color(markupDeletedColor))
 		)
 		
 		let markupChangedTokenColors = Theme.TokenColors(
@@ -72,7 +76,7 @@ extension VisualStudioCodeThemeModeler {
 			scope: [
 				"markup.changed"
 			],
-			settings: ThemeSettings(foreground: color(theme.commentSection))
+			settings: ThemeSettings(foreground: color(markupUpdatedColor))
 		)
 		
 		// MARK: Keywords
