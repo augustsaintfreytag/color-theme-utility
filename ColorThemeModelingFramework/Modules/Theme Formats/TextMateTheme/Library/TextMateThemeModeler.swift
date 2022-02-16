@@ -53,7 +53,7 @@ extension TextMateThemeModeler {
 				setting(scopes: [Scope.Entities.Name.Functions.value], color: theme.functionProject),
 				setting(scopes: [Scope.Support.Functions.value], color: theme.functionSystem),
 				setting(scopes: [Scope.Variables.Parameter.value], color: theme.functionParameter),
-
+				
 				setting(scopes: [Scope.Entities.Other.Attributes.value], color: theme.attribute),
 				
 				setting(scopes: [Scope.Strings.value], color: theme.string),
@@ -76,16 +76,21 @@ extension TextMateThemeModeler {
 			guide: nil,
 			hoverHighlight: nil,
 			referenceHighlight: nil,
-			lineHighlight: color(theme.activeLineBackground),
-			rangeHighlight: color(theme.activeLineBackground),
-			selection: color(theme.selectionBackground),
+			lineHighlight: nil,
+			lineHighlightBackground: color(theme.activeLineBackground),
+			rangeHighlight: nil,
+			rangeHighlightBackground: color(theme.activeLineBackground),
+			selection: nil,
+			selectionBackground: color(selectionColors[0]),
+			selectionForeground: nil,
 			inactiveSelection: color(theme.selectionBackground),
 			selectionHighlight: color(selectionColors[0]),
 			findRangeHighlight: color(selectionColors[1]),
 			findMatchHighlight: color(selectionColors[1]),
 			currentFindMatchHighlight: color(selectionColors[2]),
-			wordHighlight: color(selectionColors[0]),
-			wordHighlightStrong: color(selectionColors[1]),
+			wordHighlight: nil,
+			wordHighlightStrong: nil,
+			wordHighlightBackground: color(selectionColors[1]),
 			activeLinkForeground: color(theme.foreground),
 			gotoDefinitionLinkForeground: color(theme.foreground)
 		)
