@@ -34,7 +34,7 @@ extension VisualStudioCodeThemeModeler {
 				"comment",
 				"punctuation.definition.comment"
 			],
-			settings: ThemeSettings(foreground: color(theme.comment))
+			settings: ThemeSettings(foreground: value(theme.comment))
 		)
 		
 		let markupTokenColors = Theme.TokenColors(
@@ -42,25 +42,23 @@ extension VisualStudioCodeThemeModeler {
 			scope: [
 				"markup"
 			],
-			settings: ThemeSettings(foreground: color(theme.commentDocumentation))
+			settings: ThemeSettings(foreground: value(theme.commentDocumentation))
 		)
 		
 		let markupHeadingTokenColors = Theme.TokenColors(
-			name: "Markup",
+			name: "Markup Heading",
 			scope: [
 				"markup.heading"
 			],
-			settings: ThemeSettings(foreground: color(theme.commentSectionHeader))
+			settings: ThemeSettings(foreground: value(theme.commentSectionHeader))
 		)
-		
-		// TODO: Define separate/predefined colors for inserted/deleted/changed.
 		
 		let markupInsertedTokenColors = Theme.TokenColors(
 			name: "Inserted",
 			scope: [
 				"markup.inserted"
 			],
-			settings: ThemeSettings(foreground: color(markupInsertedColor))
+			settings: ThemeSettings(foreground: value(markupInsertedColor))
 		)
 		
 		let markupDeletedTokenColors = Theme.TokenColors(
@@ -68,7 +66,7 @@ extension VisualStudioCodeThemeModeler {
 			scope: [
 				"markup.deleted"
 			],
-			settings: ThemeSettings(foreground: color(markupDeletedColor))
+			settings: ThemeSettings(foreground: value(markupDeletedColor))
 		)
 		
 		let markupChangedTokenColors = Theme.TokenColors(
@@ -76,7 +74,7 @@ extension VisualStudioCodeThemeModeler {
 			scope: [
 				"markup.changed"
 			],
-			settings: ThemeSettings(foreground: color(markupUpdatedColor))
+			settings: ThemeSettings(foreground: value(markupUpdatedColor))
 		)
 		
 		// MARK: Keywords
@@ -88,7 +86,7 @@ extension VisualStudioCodeThemeModeler {
 				"storage.type",
 				"storage.modifier"
 			],
-			settings: ThemeSettings(foreground: color(theme.keyword))
+			settings: ThemeSettings(foreground: value(theme.keyword))
 		)
 		
 		let operatorTokenColors = Theme.TokenColors(
@@ -107,7 +105,7 @@ extension VisualStudioCodeThemeModeler {
 				"keyword.other.template",
 				"keyword.other.substitution"
 			],
-			settings: ThemeSettings(foreground: color(theme.keyword))
+			settings: ThemeSettings(foreground: value(theme.keyword))
 		)
 		
 		// MARK: Constants
@@ -117,7 +115,7 @@ extension VisualStudioCodeThemeModeler {
 			scope: [
 				"constant"
 			],
-			settings: ThemeSettings(foreground: color(theme.constantProject))
+			settings: ThemeSettings(foreground: value(theme.constantProject))
 		)
 		
 		let constantSystemTokenColors = Theme.TokenColors(
@@ -128,7 +126,7 @@ extension VisualStudioCodeThemeModeler {
 				"constant.other.symbol",
 				"constant.other.key"
 			],
-			settings: ThemeSettings(foreground: color(theme.constantSystem))
+			settings: ThemeSettings(foreground: value(theme.constantSystem))
 		)
 		
 		let unitTokenColors = Theme.TokenColors(
@@ -139,11 +137,10 @@ extension VisualStudioCodeThemeModeler {
 				"support.constant",
 				"constant.character",
 				"constant.escape",
-				"variable.parameter",
 				"keyword.other.unit",
 				"keyword.other"
 			],
-			settings: ThemeSettings(foreground: color(theme.constantSystem))
+			settings: ThemeSettings(foreground: value(theme.constantSystem))
 		)
 		
 		// MARK: Variables
@@ -154,7 +151,7 @@ extension VisualStudioCodeThemeModeler {
 				"variable",
 				"string constant.other.placeholder"
 			],
-			settings: ThemeSettings(foreground: color(theme.variableProject))
+			settings: ThemeSettings(foreground: value(theme.variableProject))
 		)
 		
 		let variableSystemTokenColors = Theme.TokenColors(
@@ -163,26 +160,27 @@ extension VisualStudioCodeThemeModeler {
 				"support.variable",
 				"meta.block variable.other"
 			],
-			settings: ThemeSettings(foreground: color(theme.variableSystem))
+			settings: ThemeSettings(foreground: value(theme.variableSystem))
 		)
 		
 		// MARK: Global Types
 		
-		let typeTokenColors = Theme.TokenColors(
+		let typeSystemTokenColors = Theme.TokenColors(
 			name: "Global Type",
 			scope: [
 				"support.type"
 			],
-			settings: ThemeSettings(foreground: color(theme.globalTypeSystem))
+			settings: ThemeSettings(foreground: value(theme.globalTypeSystem))
 		)
 		
-		let decoratorTokenColors = Theme.TokenColors(
-			name: "Decorator",
+		let typeProjectTokenColors = Theme.TokenColors(
+			name: "Type, Decorator",
 			scope: [
+				"entity.name.type",
 				"tag.decorator.js entity.name.tag.js",
 				"tag.decorator.js punctuation.definition.tag.js"
 			],
-			settings: ThemeSettings(foreground: color(theme.globalTypeSystem))
+			settings: ThemeSettings(foreground: value(theme.globalTypeProject))
 		)
 		
 		// MARK: Reference Types
@@ -194,7 +192,7 @@ extension VisualStudioCodeThemeModeler {
 				"entity.other.inherited-class",
 				"support.type.sys-types"
 			],
-			settings: ThemeSettings(foreground: color(theme.referenceTypeProject))
+			settings: ThemeSettings(foreground: value(theme.referenceTypeProject))
 		)
 		
 		let referenceTypeSystemTokenColors = Theme.TokenColors(
@@ -203,7 +201,7 @@ extension VisualStudioCodeThemeModeler {
 				"support.class",
 				"support.type.sys-types"
 			],
-			settings: ThemeSettings(foreground: color(theme.referenceTypeSystem))
+			settings: ThemeSettings(foreground: value(theme.referenceTypeSystem))
 		)
 		
 		let constructorTokenColors = Theme.TokenColors(
@@ -212,7 +210,7 @@ extension VisualStudioCodeThemeModeler {
 				"meta.class-method.js entity.name.function.js",
 				"variable.function.constructor"
 			],
-			settings: ThemeSettings(foreground: color(theme.declarationAny))
+			settings: ThemeSettings(foreground: value(theme.declarationAny))
 		)
 		
 		// MARK: Value Types
@@ -223,7 +221,7 @@ extension VisualStudioCodeThemeModeler {
 				"entity.name.type",
 				"entity.name.type.struct"
 			],
-			settings: ThemeSettings(foreground: color(theme.valueTypeProject))
+			settings: ThemeSettings(foreground: value(theme.valueTypeProject))
 		)
 		
 		let valueTypeSystemTokenColors = Theme.TokenColors(
@@ -231,7 +229,7 @@ extension VisualStudioCodeThemeModeler {
 			scope: [
 				"support.type"
 			],
-			settings: ThemeSettings(foreground: color(theme.valueTypeSystem))
+			settings: ThemeSettings(foreground: value(theme.valueTypeSystem))
 		)
 		
 		// MARK: Declarations
@@ -242,7 +240,7 @@ extension VisualStudioCodeThemeModeler {
 				"variable.object.property",
 				"constant.object.property"
 			],
-			settings: ThemeSettings(foreground: color(theme.declarationAny))
+			settings: ThemeSettings(foreground: value(theme.declarationAny))
 		)
 		
 		let typeDeclarationTokenColors = Theme.TokenColors(
@@ -251,7 +249,7 @@ extension VisualStudioCodeThemeModeler {
 				"entity.name.type.typealias",
 				"entity.name.type.protocol"
 			],
-			settings: ThemeSettings(foreground: color(theme.declarationType))
+			settings: ThemeSettings(foreground: value(theme.declarationType))
 		)
 		
 		// MARK: Functions
@@ -263,16 +261,24 @@ extension VisualStudioCodeThemeModeler {
 				"meta.function-call",
 				"variable.function"
 			],
-			settings: ThemeSettings(foreground: color(theme.functionProject))
+			settings: ThemeSettings(foreground: value(theme.functionProject))
 		)
 		
 		let functionSystemTokenColors = Theme.TokenColors(
-			name: "Function, Special Method",
+			name: "Built-in Function, Special Method",
 			scope: [
 				"support.function",
 				"keyword.other.special-method"
 			],
-			settings: ThemeSettings(foreground: color(theme.functionSystem))
+			settings: ThemeSettings(foreground: value(theme.functionSystem))
+		)
+		
+		let functionParameterTokenColors = Theme.TokenColors(
+			name: "Function Parameter",
+			scope: [
+				"variable.parameter"
+			],
+			settings: ThemeSettings(foreground: value(theme.functionParameter))
 		)
 		
 		let languageMethodTokenColors = Theme.TokenColors(
@@ -280,52 +286,72 @@ extension VisualStudioCodeThemeModeler {
 			scope: [
 				"variable.language"
 			],
-			settings: ThemeSettings(foreground: color(theme.functionSystem))
+			settings: ThemeSettings(foreground: value(theme.functionSystem))
 		)
 		
 		// MARK: Attributes
 		
 		let attributeTokenColors = Theme.TokenColors(
-			name: "Attributes",
+			name: "Attribute",
 			scope: [
 				"entity.other.attribute-name"
 			],
-			settings: ThemeSettings(foreground: color(theme.attribute))
+			settings: ThemeSettings(foreground: value(theme.attribute))
 		)
 		
 		// MARK: Modules
 		
 		let moduleTokenColors = Theme.TokenColors(
-			name: "Modules",
+			name: "Module, Import",
 			scope: [
-				"entity.name.module.js",
-				"variable.import.parameter.js",
-				"variable.other.class.js",
+				"entity.name.module",
+				"variable.import.parameter",
+				"variable.other.class",
 				"support.other.namespace.use.php",
 				"meta.use.php",
 				"support.other.namespace.php"
 			],
-			settings: ThemeSettings(foreground: color(theme.module))
+			settings: ThemeSettings(foreground: value(theme.module))
+		)
+		
+		// MARK: Preprocessor
+		
+		let preprocessorProjectTokenColors = Theme.TokenColors(
+			name: "Preprocessor",
+			scope: [
+				"entity.name.function.preprocessor"
+			],
+			settings: ThemeSettings(foreground: value(theme.preprocessorProject))
+		)
+		
+		let preprocessorSystemTokenColors = Theme.TokenColors(
+			name: "Built-in Preprocessor",
+			scope: [
+				"comment.block.preprocessor",
+				"meta.preprocessor",
+				"support.*.preprocessor"
+			],
+			settings: ThemeSettings(foreground: value(theme.preprocessorSystem))
 		)
 		
 		// MARK: Strings
 		
 		let stringTokenColors = Theme.TokenColors(
-			name: "String, Symbols, Inherited Class, Markup Heading",
+			name: "String",
 			scope: [
 				"string",
 				"markup.inserted.git_gutter",
 				"meta.group.braces.curly constant.other.object.key.js string.unquoted.label.js"
 			],
-			settings: ThemeSettings(foreground: color(theme.string))
+			settings: ThemeSettings(foreground: value(theme.string))
 		)
 		
 		let characterTokenColors = Theme.TokenColors(
-			name: "Characters",
+			name: "Character",
 			scope: [
 				"constant.character"
 			],
-			settings: ThemeSettings(foreground: color(theme.character))
+			settings: ThemeSettings(foreground: value(theme.character))
 		)
 		
 		let regularExpressionTokenColors = Theme.TokenColors(
@@ -333,7 +359,7 @@ extension VisualStudioCodeThemeModeler {
 			scope: [
 				"string.regexp"
 			],
-			settings: ThemeSettings(foreground: color(theme.character))
+			settings: ThemeSettings(foreground: value(theme.character))
 		)
 		
 		// MARK: URLs
@@ -345,7 +371,7 @@ extension VisualStudioCodeThemeModeler {
 				"*link*",
 				"*uri*"
 			],
-			settings: ThemeSettings(foreground: color(theme.url))
+			settings: ThemeSettings(foreground: value(theme.url))
 		)
 		
 		let variableLinkTokenColors = Theme.TokenColors(
@@ -354,7 +380,7 @@ extension VisualStudioCodeThemeModeler {
 				"support.other.variable",
 				"string.other.link"
 			],
-			settings: ThemeSettings(foreground: color(theme.url))
+			settings: ThemeSettings(foreground: value(theme.url))
 		)
 		
 		// MARK: Numbers
@@ -364,7 +390,7 @@ extension VisualStudioCodeThemeModeler {
 			scope: [
 				"constant.numeric"
 			],
-			settings: ThemeSettings(foreground: color(theme.number))
+			settings: ThemeSettings(foreground: value(theme.number))
 		)
 		
 		// MARK: Special: Tags
@@ -376,7 +402,7 @@ extension VisualStudioCodeThemeModeler {
 				"meta.tag.sgml",
 				"markup.deleted.git_gutter"
 			],
-			settings: ThemeSettings(foreground: color(theme.declarationAny))
+			settings: ThemeSettings(foreground: value(theme.declarationAny))
 		)
 		
 		// MARK: Special: HTML
@@ -387,7 +413,7 @@ extension VisualStudioCodeThemeModeler {
 				"text.html.basic entity.other.attribute-name.html",
 				"text.html.basic entity.other.attribute-name"
 			],
-			settings: ThemeSettings(foreground: color(theme.variableSystem))
+			settings: ThemeSettings(foreground: value(theme.variableSystem))
 		)
 		
 		// MARK: Special: Styles
@@ -402,7 +428,7 @@ extension VisualStudioCodeThemeModeler {
 				"source.stylus support.type.property-name",
 				"source.postcss support.type.property-name"
 			],
-			settings: ThemeSettings(foreground: color(theme.declarationAny))
+			settings: ThemeSettings(foreground: value(theme.declarationAny))
 		)
 		
 		// MARK: Errors
@@ -413,16 +439,19 @@ extension VisualStudioCodeThemeModeler {
 				"invalid",
 				"invalid.illegal"
 			],
-			settings: ThemeSettings(foreground: color(errorColor))
+			settings: ThemeSettings(foreground: value(errorColor))
 		)
 		
 		return VisualStudioCodeTheme(
 			name: "Color Theme Utility Output",
 			type: .dark,
 			colors: [
-				key(.editor, .background): color(theme.background),
-				key(.editor, .foreground): color(theme.foreground),
-				key(.activityBarBadge, .background): color(backgroundColors[1])
+				key(.editor, .background): value(theme.background),
+				key(.editor, .foreground): value(theme.foreground),
+				key(.editorCursor, .foreground): value(theme.insertionPoint),
+				key(.editor, .lineHighlightBackground): value(theme.activeLineBackground),
+				key(.editor, .selectionBackground): value(theme.selectionBackground),
+				key(.activityBarBadge, .background): value(backgroundColors[1]),
 			],
 			tokenColors: [
 				commentTokenColors,
@@ -438,8 +467,8 @@ extension VisualStudioCodeThemeModeler {
 				unitTokenColors,
 				variableProjectTokenColors,
 				variableSystemTokenColors,
-				typeTokenColors,
-				decoratorTokenColors,
+				typeSystemTokenColors,
+				typeProjectTokenColors,
 				referenceTypeProjectTokenColors,
 				referenceTypeSystemTokenColors,
 				constructorTokenColors,
@@ -449,7 +478,10 @@ extension VisualStudioCodeThemeModeler {
 				typeDeclarationTokenColors,
 				functionProjectTokenColors,
 				functionSystemTokenColors,
+				functionParameterTokenColors,
 				languageMethodTokenColors,
+				preprocessorProjectTokenColors,
+				preprocessorSystemTokenColors,
 				attributeTokenColors,
 				moduleTokenColors,
 				stringTokenColors,
@@ -466,7 +498,87 @@ extension VisualStudioCodeThemeModeler {
 		)
 	}
 	
-	private static func color(_ color: Color) -> String {
+	// MARK: Visual Studio Code → Intermediate
+	
+	public static func intermediateTheme(from theme: VisualStudioCodeTheme) throws -> IntermediateTheme {
+		let tokenColorsByName = try indexedTokenColors(theme)
+		
+		let backgroundColor = try color(theme.colors[key(.editor, .background)])
+		let foregroundColor = try color(theme.colors[key(.editor, .foreground)])
+		
+		return IntermediateTheme(
+			_format: IntermediateTheme.defaultFormat,
+			_version: IntermediateTheme.defaultVersion,
+			foreground: foregroundColor,
+			background: backgroundColor,
+			selectionBackground: try color(theme.colors[key(.editor, .selectionBackground)]),
+			activeLineBackground: try color(theme.colors[key(.editor, .lineHighlightBackground)]),
+			insertionPoint: try color(theme.colors[key(.editorCursor, .foreground)]),
+			instructionPointer: try color(theme.colors[key(.editor, .lineHighlightBackground)]),
+			comment: try color(in: tokenColorsByName, name: "Comment"),
+			commentDocumentation: try color(in: tokenColorsByName, name: "Markup"),
+			commentSection: try color(in: tokenColorsByName, name: "Markup"),
+			commentSectionHeader: try color(in: tokenColorsByName, name: "Markup Heading"),
+			keyword: try color(in: tokenColorsByName, name: "Keyword, Storage"),
+			declarationAny: try color(in: tokenColorsByName, name: "Value Declaration"),
+			declarationType: try color(in: tokenColorsByName, name: "Type Declaration"),
+			functionProject: try color(in: tokenColorsByName, name: "Function, Special Method"),
+			functionSystem: try color(in: tokenColorsByName, name: "Built-in Function, Special Method"),
+			functionParameter: try color(in: tokenColorsByName, name: "Function Parameter"),
+			preprocessorStatement: try color(in: tokenColorsByName, name: "Built-in Preprocessor"),
+			preprocessorProject: try color(in: tokenColorsByName, name: "Preprocessor"),
+			preprocessorSystem: try color(in: tokenColorsByName, name: "Built-in Preprocessor"),
+			constantProject: try color(in: tokenColorsByName, name: "Constant"),
+			constantSystem: try color(in: tokenColorsByName, name: "Built-in Constant"),
+			variableProject: try color(in: tokenColorsByName, name: "Variable"),
+			variableSystem: try color(in: tokenColorsByName, name: "Built-in Variable"),
+			globalTypeProject: try color(in: tokenColorsByName, name: "Type, Decorator"),
+			globalTypeSystem: try color(in: tokenColorsByName, name: "Global Type"),
+			referenceTypeProject: try color(in: tokenColorsByName, name: "Reference Type"),
+			referenceTypeSystem: try color(in: tokenColorsByName, name: "Built-in Reference Type"),
+			valueTypeProject: try color(in: tokenColorsByName, name: "Value Type"),
+			valueTypeSystem: try color(in: tokenColorsByName, name: "Built-in Value Type"),
+			attribute: try color(in: tokenColorsByName, name: "Attribute"),
+			module: try color(in: tokenColorsByName, name: "Module, Import"),
+			number: try color(in: tokenColorsByName, name: "Number"),
+			string: try color(in: tokenColorsByName, name: "String"),
+			character: try color(in: tokenColorsByName, name: "Character"),
+			url: try color(in: tokenColorsByName, name: "URL")
+		)
+	}
+	
+	private static func indexedTokenColors(_ theme: VisualStudioCodeTheme) throws -> [String: Color] {
+		var index = [String: Color]()
+		
+		for tokenColors in theme.tokenColors {
+			guard let primaryColorValue = tokenColors.settings.foreground else {
+				continue
+			}
+			
+			let primaryColor = try color(primaryColorValue)
+			index[tokenColors.name] = primaryColor
+		}
+		
+		return index
+	}
+
+	private static func color(in index: [String: Color], name: String) throws -> Color {
+		guard let color = index[name] else {
+			throw ThemeCodingError(description: "Missing required color for key '\(name)' in theme. May be prevalidation error.")
+		}
+		
+		return color
+	}
+	
+	private static func color(_ value: String?) throws -> Color {
+		guard let value = value, let color = Color(fromHexadecimalString: value) else {
+			throw ThemeCodingError(description: "Could not decode color from expected hexadecimal value '\(value ?? "<None>")'.")
+		}
+		
+		return color
+	}
+	
+	private static func value(_ color: Color) -> String {
 		return color.hexadecimalString
 	}
 	

@@ -41,6 +41,9 @@ extension ThemeDecoder {
 		case .textmate:
 			let decoder = PropertyListDecoder()
 			return try decoder.decode(TextMateTheme.self, from: data)
+		case .vscode:
+			let decoder = JSONDecoder()
+			return try decoder.decode(VisualStudioCodeTheme.self, from: data)
 		default:
 			throw ThemeCodingError(description: "Decoding theme data with format '\(format?.rawValue.description ?? "<None>")' is not supported.")
 		}
