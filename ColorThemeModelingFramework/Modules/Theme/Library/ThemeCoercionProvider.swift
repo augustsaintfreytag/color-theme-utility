@@ -6,7 +6,7 @@
 
 import Foundation
 
-public protocol ThemeCoercionProvider: XcodeThemeModeler, IntermediateThemeModeler, TextMateThemeModeler {}
+public protocol ThemeCoercionProvider: XcodeThemeModeler, IntermediateThemeModeler, TextMateThemeModeler, VisualStudioCodeThemeModeler {}
 
 extension ThemeCoercionProvider {
 	
@@ -25,6 +25,8 @@ extension ThemeCoercionProvider {
 			return try xcodeTheme(from: intermediateTheme)
 		case .textmate:
 			return try textMateTheme(from: intermediateTheme)
+		case .vscode:
+			return try visualStudioCodeTheme(from: intermediateTheme)
 		}
 	}
 	
@@ -35,6 +37,8 @@ extension ThemeCoercionProvider {
 			return intermediateTheme
 		case let xcodeTheme as XcodeTheme:
 			return try intermediateTheme(from: xcodeTheme)
+		case let visualStudioCodeTheme as VisualStudioCodeTheme:
+			return try intermediateTheme(from: visualStudioCodeTheme)
 		default:
 			throw ThemeModelingError(kind: .unsupported, description: "Can not convert theme of type '\(type(of: theme))' to intermediate theme for unified coercion.")
 		}

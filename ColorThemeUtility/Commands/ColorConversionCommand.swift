@@ -12,9 +12,7 @@ protocol ColorConversionCommand: CommandFragment, ColorModeler {}
 extension ColorConversionCommand {
 	
 	func convertColor() throws {
-		let inputColorArgument = lineFromStdin ?? inputColors?.first
-		
-		guard let inputColorString = inputColorArgument, let inputColor = Self.color(fromAutodetectedColorString: inputColorString) else {
+		guard let inputColorString = inputColors?.first, let inputColor = Self.color(fromAutodetectedColorString: inputColorString) else {
 			throw ArgumentError(description: "Missing input color or given input has invalid or unsupported format.")
 		}
 		

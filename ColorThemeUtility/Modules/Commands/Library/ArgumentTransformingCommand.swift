@@ -22,7 +22,7 @@ protocol ArgumentTransformingCommand: ThemeDecoder, ColorModeler {
 
 extension ArgumentTransformingCommand {
 	
-	// MARK: Strings
+	// MARK: Transformations
 	
 	static func stringSequenceFromArgument(_ string: String) -> [String] {
 		return string.split(separator: ",").map { substring in

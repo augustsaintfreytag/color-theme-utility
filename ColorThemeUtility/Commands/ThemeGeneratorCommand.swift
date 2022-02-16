@@ -48,6 +48,12 @@ extension ThemeGeneratorCommand {
 			} else {
 				print(try Self.encodedTheme(textMateTheme, with: .plist))
 			}
+		case let visualStudioCodeTheme as VisualStudioCodeTheme:
+			if humanReadable {
+				describeVisualStudioCodeTheme(visualStudioCodeTheme)
+			} else {
+				print(try Self.encodedTheme(visualStudioCodeTheme, with: .json))
+			}
 		default:
 			throw ImplementationError(description: "Generated output theme with format '\(outputFormat)' can not be described.")
 		}

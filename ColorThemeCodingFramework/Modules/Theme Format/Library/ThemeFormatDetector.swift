@@ -34,6 +34,10 @@ extension ThemeFormatDetector {
 			return .textmate
 		}
 		
+		if dataString.contains("editor.foreground") {
+			return .vscode
+		}
+		
 		return nil
 	}
 	

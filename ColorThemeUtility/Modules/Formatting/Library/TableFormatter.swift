@@ -92,4 +92,17 @@ extension TableFormatter {
 		return String(chain)
 	}
 	
+	// MARK: Truncation
+	
+	private static var maxNumberOfCharactersBeforeTruncation: Int { 48 }
+	
+	public static func truncatedString(_ value: String) -> String {
+		guard value.count > maxNumberOfCharactersBeforeTruncation else {
+			return value
+		}
+		
+		let truncatedString = value.prefix(maxNumberOfCharactersBeforeTruncation)
+		return truncatedString + "…"
+	}
+	
 }

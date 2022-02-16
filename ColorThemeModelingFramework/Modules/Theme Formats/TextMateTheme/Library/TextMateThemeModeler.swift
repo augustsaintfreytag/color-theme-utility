@@ -32,14 +32,14 @@ extension TextMateThemeModeler {
 				setting(scopes: [Scope.Keywords.value], color: theme.keyword),
 				setting(scopes: [Scope.Storage.value], color: theme.keyword),
 				
-				setting(scopes: [Scope.Support.Constants.value], color: theme.constantSystem),
 				setting(scopes: [Scope.Constants.value], color: theme.constantProject),
+				setting(scopes: [Scope.Support.Constants.value], color: theme.constantSystem),
 				
-				setting(scopes: [Scope.Support.Variables.value], color: theme.variableSystem),
 				setting(scopes: [Scope.Variables.value], color: theme.variableProject),
+				setting(scopes: [Scope.Support.Variables.value], color: theme.variableSystem),
 				
-				setting(scopes: [Scope.Support.Classes.value], color: theme.referenceTypeSystem),
 				setting(scopes: [Scope.Entities.Name.Classes.value, Scope.Entities.Other.InheritedClasses.value], color: theme.referenceTypeProject),
+				setting(scopes: [Scope.Support.Classes.value], color: theme.referenceTypeSystem),
 				
 				setting(scopes: [Scope.Support.Types.value], color: theme.valueTypeSystem),
 				setting(scopes: [Scope.Entities.Name.Types.value, Scope.Entities.Name.Types.Structs.value], color: theme.valueTypeProject),
@@ -50,16 +50,15 @@ extension TextMateThemeModeler {
 				setting(scopes: [Scope.Variables.Object.Property.value], color: theme.declarationAny),
 				setting(scopes: [Scope.Constants.Object.Property.value], color: theme.declarationAny),
 				
-				setting(scopes: [Scope.Support.Functions.value], color: theme.functionSystem),
 				setting(scopes: [Scope.Entities.Name.Functions.value], color: theme.functionProject),
+				setting(scopes: [Scope.Support.Functions.value], color: theme.functionSystem),
 				setting(scopes: [Scope.Variables.Parameter.value], color: theme.functionParameter),
-
-				setting(scopes: [Scope.Entities.Name.Tags.value], color: theme.attribute),
+				
 				setting(scopes: [Scope.Entities.Other.Attributes.value], color: theme.attribute),
 				
+				setting(scopes: [Scope.Strings.value], color: theme.string),
 				setting(scopes: [Scope.Constants.Character.value], color: theme.character),
 				setting(scopes: [Scope.Strings.RegularExpression.value], color: theme.character),
-				setting(scopes: [Scope.Strings.value], color: theme.string),
 				
 				setting(scopes: [Scope.Constants.Numeric.value], color: theme.number)
 			]
@@ -69,26 +68,31 @@ extension TextMateThemeModeler {
 	private static func globalTextMateSetting(from theme: IntermediateTheme) -> TextMateThemeSetting {
 		let selectionColors = Self.cascadingColorSequence(from: theme.selectionBackground, numberOfColors: 3, skewing: .lighter)
 		let settings = TextMateThemeSettings(
-			background: value(theme.background),
-			foreground: value(theme.foreground),
-			caret: value(theme.insertionPoint),
-			invisibles: value(theme.comment),
+			fontStyle: nil,
+			background: color(theme.background),
+			foreground: color(theme.foreground),
+			caret: color(theme.insertionPoint),
+			invisibles: color(theme.comment),
 			guide: nil,
 			hoverHighlight: nil,
 			referenceHighlight: nil,
-			lineHighlight: value(theme.activeLineBackground),
-			rangeHighlight: value(theme.activeLineBackground),
-			selection: value(theme.selectionBackground),
-			inactiveSelection: value(theme.selectionBackground),
-			selectionHighlight: value(selectionColors[0]),
-			findRangeHighlight: value(selectionColors[1]),
-			findMatchHighlight: value(selectionColors[1]),
-			currentFindMatchHighlight: value(selectionColors[2]),
-			wordHighlight: value(selectionColors[0]),
-			wordHighlightStrong: value(selectionColors[1]),
-			activeLinkForeground: value(theme.foreground),
-			gotoDefinitionLinkForeground: value(theme.foreground),
-			fontStyle: nil
+			lineHighlight: nil,
+			lineHighlightBackground: color(theme.activeLineBackground),
+			rangeHighlight: nil,
+			rangeHighlightBackground: color(theme.activeLineBackground),
+			selection: nil,
+			selectionBackground: color(selectionColors[0]),
+			selectionForeground: nil,
+			inactiveSelection: color(theme.selectionBackground),
+			selectionHighlight: color(selectionColors[0]),
+			findRangeHighlight: color(selectionColors[1]),
+			findMatchHighlight: color(selectionColors[1]),
+			currentFindMatchHighlight: color(selectionColors[2]),
+			wordHighlight: nil,
+			wordHighlightStrong: nil,
+			wordHighlightBackground: color(selectionColors[1]),
+			activeLinkForeground: color(theme.foreground),
+			gotoDefinitionLinkForeground: color(theme.foreground)
 		)
 		
 		return TextMateThemeSetting(settings)
@@ -103,13 +107,13 @@ extension TextMateThemeModeler {
 		return TextMateThemeSetting(name: name, scope: scopeSelector, settings: settings)
 	}
 	
-	private static func settings(withForegroundColor color: Color) -> TextMateThemeSettings {
-		return TextMateThemeSettings(foreground: value(color))
+	private static func settings(withForegroundColor foregroundColor: Color) -> TextMateThemeSettings {
+		return TextMateThemeSettings(foreground: color(foregroundColor))
 	}
 	
 	// MARK: Color Utility
 	
-	private static func value(_ color: Color) -> String {
+	private static func color(_ color: Color) -> String {
 		return color.hexadecimalString
 	}
 	
