@@ -109,7 +109,7 @@ extension ThemeDescriptionCommand {
 		var rows: [[String]] = []
 		
 		rows.append(["name", "[String]", setting.name])
-		rows.append(["scope", "[String]", truncatedString(setting.scope.joined(separator: ", "))])
+		rows.append(["scope", "[String]", Self.truncatedString(setting.scope.joined(separator: ", "))])
 		rows.append(contentsOf: enumeratedSettings(setting.settings))
 		
 		return rows
@@ -121,17 +121,6 @@ extension ThemeDescriptionCommand {
 		}
 		
 		return enumeratedPropertyDescriptions(from: elements)
-	}
-	
-	private var maxNumberOfCharactersBeforeTruncation: Int { 48 }
-	
-	private func truncatedString(_ value: String) -> String {
-		guard value.count > maxNumberOfCharactersBeforeTruncation else {
-			return value
-		}
-		
-		let truncatedString = value.prefix(maxNumberOfCharactersBeforeTruncation)
-		return truncatedString + "…"
 	}
 	
 }
