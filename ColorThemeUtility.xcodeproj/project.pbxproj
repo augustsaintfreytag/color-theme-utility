@@ -140,7 +140,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8B16315027902BE400DF0E61 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		8B16315027902BE400DF0E61 /* PackageAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageAssembly.swift; sourceTree = "<group>"; };
 		8B16315627917CDE00DF0E61 /* ColorThemeCodingFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ColorThemeCodingFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B16315827917CDE00DF0E61 /* ColorThemeCodingFramework-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ColorThemeCodingFramework-Swift.h"; sourceTree = "<group>"; };
 		8B1ECA7327982A9E004137C0 /* Calls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calls.swift; sourceTree = "<group>"; };
@@ -206,6 +206,7 @@
 		8BB2798E27B92487008E92FA /* ThemeUnmapCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeUnmapCommand.swift; sourceTree = "<group>"; };
 		8BB2799327B99024008E92FA /* VisualStudioCodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualStudioCodeTheme.swift; sourceTree = "<group>"; };
 		8BB2799527BAFD29008E92FA /* VisualStudioCodeThemeModeler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualStudioCodeThemeModeler.swift; sourceTree = "<group>"; };
+		8BB279B227BD2195008E92FA /* PackageUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageUtility.swift; sourceTree = "<group>"; };
 		8BBB859527510091004C7558 /* TerminalDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalDetector.swift; sourceTree = "<group>"; };
 		8BBB859827510665004C7558 /* TerminalApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalApplication.swift; sourceTree = "<group>"; };
 		8BBF92A02701C49100386123 /* XcodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeTheme.swift; sourceTree = "<group>"; };
@@ -308,7 +309,8 @@
 		8B2962FF26F60ED20048CE17 = {
 			isa = PBXGroup;
 			children = (
-				8B16315027902BE400DF0E61 /* Package.swift */,
+				8B16315027902BE400DF0E61 /* PackageAssembly.swift */,
+				8BB279B227BD2195008E92FA /* PackageUtility.swift */,
 				8B851B4B27918F3000A93814 /* ColorThemeAssembly */,
 				8B16315727917CDE00DF0E61 /* ColorThemeCodingFramework */,
 				8B6BE045270C731D0063B0BA /* ColorThemeModelingFramework */,
