@@ -45,10 +45,7 @@ let package = Package(
 		.target(
 			name: "ColorThemeEnclosureFramework",
 			dependencies: [],
-			path: "ColorThemeEnclosureFramework",
-			resources: [
-				.process("Resources/theme-thumbnail-r.jpeg")
-			]
+			path: "ColorThemeEnclosureFramework"
 		)
 	]
 )
