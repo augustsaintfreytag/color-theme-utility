@@ -46,7 +46,7 @@ extension ThemeEncoder {
 	}
 	
 	public static func defaultEncoding(for theme: Theme) -> ThemeEncoding {
-		switch theme.typeFormat {
+		switch theme.format {
 		case .intermediate:
 			return .json
 		case .xcode:

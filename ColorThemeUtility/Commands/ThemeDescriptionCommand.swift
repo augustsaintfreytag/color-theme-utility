@@ -37,7 +37,7 @@ extension ThemeDescriptionCommand {
 		case let visualStudioCodeTheme as VisualStudioCodeTheme:
 			describeVisualStudioCodeTheme(visualStudioCodeTheme)
 		default:
-			throw ImplementationError(description: "Generated output theme with format \(theme.typeFormat) can not be described.")
+			throw ImplementationError(description: "Generated output theme with format \(theme.format) can not be described.")
 		}
 	}
 	

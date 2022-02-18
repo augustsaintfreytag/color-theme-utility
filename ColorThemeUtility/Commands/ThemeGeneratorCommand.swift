@@ -61,7 +61,7 @@ extension ThemeGeneratorCommand {
 		case let visualStudioCodeTheme as VisualStudioCodeTheme:
 			print(try Self.encodedTheme(visualStudioCodeTheme))
 		default:
-			throw ImplementationError(description: "Generated theme data with format '\(outputTheme.typeFormat)' can not be output.")
+			throw ImplementationError(description: "Generated theme data with format '\(outputTheme.format)' can not be output.")
 		}
 	}
 	

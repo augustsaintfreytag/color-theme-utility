@@ -23,7 +23,7 @@ extension ThemeEnclosureWriter {
 		case let visualStudioCodeTheme as VisualStudioCodeTheme:
 			try writeEnclosedTheme(visualStudioCodeTheme, to: path)
 		default:
-			throw ThemeCodingError(description: "Generated theme data with format '\(theme.typeFormat)' can not be output.")
+			throw ThemeCodingError(description: "Generated theme data with format '\(theme.format)' can not be output.")
 		}
 	}
 	
