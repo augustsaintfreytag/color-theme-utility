@@ -33,7 +33,7 @@ extension ThemeConversionCommand {
 		}
 		
 		let xcodeTheme = try Self.xcodeTheme(from: intermediateTheme)
-		print(try Self.encodedTheme(xcodeTheme, with: .plist))
+		print(try Self.encodedTheme(xcodeTheme, as: .plist))
 	}
 	
 }
