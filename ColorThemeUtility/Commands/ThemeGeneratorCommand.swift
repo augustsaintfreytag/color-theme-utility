@@ -55,7 +55,7 @@ extension ThemeGeneratorCommand {
 				print(try Self.encodedTheme(visualStudioCodeTheme, with: .json))
 			}
 		default:
-			throw ImplementationError(description: "Generated output theme with format '\(outputFormat)' can not be described.")
+			throw ImplementationError(description: "Generated theme data with format '\(outputTheme.typeFormat)' can not be output.")
 		}
 	}
 	
