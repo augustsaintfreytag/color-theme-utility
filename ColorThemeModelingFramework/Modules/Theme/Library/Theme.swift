@@ -11,9 +11,13 @@ public protocol Theme {
 	
 	static var format: ThemeFormat { get }
 	
+	var typeFormat: ThemeFormat { get }
+	
 }
 
 extension Theme where Self: Encodable {
+	
+	public var typeFormat: ThemeFormat { Self.format }
 	
 	/// A pretty-printed description of the encoded theme contents for
 	/// debugging or outputting to streams.
