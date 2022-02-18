@@ -83,9 +83,12 @@
 		8BB2798F27B92487008E92FA /* ThemeUnmapCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2798E27B92487008E92FA /* ThemeUnmapCommand.swift */; };
 		8BB2799427B99024008E92FA /* VisualStudioCodeTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2799327B99024008E92FA /* VisualStudioCodeTheme.swift */; };
 		8BB2799627BAFD29008E92FA /* VisualStudioCodeThemeModeler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2799527BAFD29008E92FA /* VisualStudioCodeThemeModeler.swift */; };
-		8BB279B127BD1EA5008E92FA /* VisualStudioCodeThemeEnclosureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB279B027BD1EA5008E92FA /* VisualStudioCodeThemeEnclosureProvider.swift */; };
 		8BB279A727BD1C79008E92FA /* ColorThemeEnclosureFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BB279A627BD1C79008E92FA /* ColorThemeEnclosureFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8BB279B127BD1EA5008E92FA /* VisualStudioCodeThemeEnclosureWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB279B027BD1EA5008E92FA /* VisualStudioCodeThemeEnclosureWriter.swift */; };
 		8BB279B927BE5AA2008E92FA /* VisualStudioCodeDocumentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB279B827BE5AA2008E92FA /* VisualStudioCodeDocumentation.swift */; };
+		8BB279C127BE7BC4008E92FA /* ThemeEnclosureWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB279C027BE7BC4008E92FA /* ThemeEnclosureWriter.swift */; };
+		8BB279C327BE82BB008E92FA /* ColorThemeEnclosureFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB279A427BD1C79008E92FA /* ColorThemeEnclosureFramework.framework */; };
+		8BB279C427BE82BB008E92FA /* ColorThemeEnclosureFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB279A427BD1C79008E92FA /* ColorThemeEnclosureFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8BDBB3E6273E7EFC00AA4E9F /* OriginColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDBB3E5273E7EFC00AA4E9F /* OriginColors.swift */; };
 		8BE17562272017030073805E /* XcodeThemeModeler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE17561272017030073805E /* XcodeThemeModeler.swift */; };
 		8BE678982752EB2200D20598 /* ColorCollectionFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE678972752EB2200D20598 /* ColorCollectionFormat.swift */; };
@@ -116,6 +119,13 @@
 			remoteGlobalIDString = 8B6BE043270C731D0063B0BA;
 			remoteInfo = ColorThemeFramework;
 		};
+		8BB279C527BE82BB008E92FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B29630026F60ED20048CE17 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8BB279A327BD1C79008E92FA;
+			remoteInfo = ColorThemeEnclosureFramework;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -136,6 +146,7 @@
 			files = (
 				8B6BE062270C74060063B0BA /* ColorThemeModelingFramework.framework in Embed Frameworks */,
 				8B16315F2791832500DF0E61 /* ColorThemeCodingFramework.framework in Embed Frameworks */,
+				8BB279C427BE82BB008E92FA /* ColorThemeEnclosureFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,10 +221,11 @@
 		8BB2799327B99024008E92FA /* VisualStudioCodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualStudioCodeTheme.swift; sourceTree = "<group>"; };
 		8BB2799527BAFD29008E92FA /* VisualStudioCodeThemeModeler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualStudioCodeThemeModeler.swift; sourceTree = "<group>"; };
 		8BB279A427BD1C79008E92FA /* ColorThemeEnclosureFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ColorThemeEnclosureFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8BB279B027BD1EA5008E92FA /* VisualStudioCodeThemeEnclosureProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualStudioCodeThemeEnclosureProvider.swift; sourceTree = "<group>"; };
 		8BB279A627BD1C79008E92FA /* ColorThemeEnclosureFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorThemeEnclosureFramework.h; sourceTree = "<group>"; };
+		8BB279B027BD1EA5008E92FA /* VisualStudioCodeThemeEnclosureWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualStudioCodeThemeEnclosureWriter.swift; sourceTree = "<group>"; };
 		8BB279B227BD2195008E92FA /* PackageUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageUtility.swift; sourceTree = "<group>"; };
 		8BB279B827BE5AA2008E92FA /* VisualStudioCodeDocumentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualStudioCodeDocumentation.swift; sourceTree = "<group>"; };
+		8BB279C027BE7BC4008E92FA /* ThemeEnclosureWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEnclosureWriter.swift; sourceTree = "<group>"; };
 		8BBB859527510091004C7558 /* TerminalDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalDetector.swift; sourceTree = "<group>"; };
 		8BBB859827510665004C7558 /* TerminalApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalApplication.swift; sourceTree = "<group>"; };
 		8BBF92A02701C49100386123 /* XcodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeTheme.swift; sourceTree = "<group>"; };
@@ -244,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B6BE061270C74060063B0BA /* ColorThemeModelingFramework.framework in Frameworks */,
+				8BB279C327BE82BB008E92FA /* ColorThemeEnclosureFramework.framework in Frameworks */,
 				8B29631426F60F250048CE17 /* ArgumentParser in Frameworks */,
 				8B29631C26F62F5A0048CE17 /* Rainbow in Frameworks */,
 				8B16315E2791832500DF0E61 /* ColorThemeCodingFramework.framework in Frameworks */,
@@ -332,6 +345,7 @@
 				8B6BE050270C731D0063B0BA /* ColorThemeModelingFrameworkTests */,
 				8B29630A26F60ED20048CE17 /* ColorThemeUtility */,
 				8B29630926F60ED20048CE17 /* Products */,
+				8BB279C227BE82BB008E92FA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -461,7 +475,7 @@
 				8BBF92A72701F6C600386123 /* Color */,
 				8B6BE05C270C73B20063B0BA /* Common */,
 				8B2E62A9270247F4000AEA95 /* Theme */,
-				8BE17560272016540073805E /* Theme Formats */,
+				8BE17560272016540073805E /* ThemeFormats */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -782,25 +796,25 @@
 		8BB279AB27BD1C84008E92FA /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				8BB279BA27BE5DFE008E92FA /* Common */,
-				8BB279AC27BD1CD6008E92FA /* Theme Formats */,
+				8BB279BE27BE7BAB008E92FA /* ThemeEnclosure */,
+				8BB279AC27BD1CD6008E92FA /* ThemeFormats */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
 		};
-		8BB279AC27BD1CD6008E92FA /* Theme Formats */ = {
+		8BB279AC27BD1CD6008E92FA /* ThemeFormats */ = {
 			isa = PBXGroup;
 			children = (
 				8BB279B627BE5A58008E92FA /* VisualStudioCode */,
 			);
-			path = "Theme Formats";
+			path = ThemeFormats;
 			sourceTree = "<group>";
 		};
 		8BB279B527BE5A54008E92FA /* Library */ = {
 			isa = PBXGroup;
 			children = (
 				8BB279B827BE5AA2008E92FA /* VisualStudioCodeDocumentation.swift */,
-				8BB279B027BD1EA5008E92FA /* VisualStudioCodeThemeEnclosureProvider.swift */,
+				8BB279B027BD1EA5008E92FA /* VisualStudioCodeThemeEnclosureWriter.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -813,11 +827,27 @@
 			path = VisualStudioCode;
 			sourceTree = "<group>";
 		};
-		8BB279BA27BE5DFE008E92FA /* Common */ = {
+		8BB279BE27BE7BAB008E92FA /* ThemeEnclosure */ = {
+			isa = PBXGroup;
+			children = (
+				8BB279BF27BE7BBF008E92FA /* Library */,
+			);
+			path = ThemeEnclosure;
+			sourceTree = "<group>";
+		};
+		8BB279BF27BE7BBF008E92FA /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				8BB279C027BE7BC4008E92FA /* ThemeEnclosureWriter.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		8BB279C227BE82BB008E92FA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Common;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		8BBB859327510082004C7558 /* Terminal */ = {
@@ -881,7 +911,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		8BE17560272016540073805E /* Theme Formats */ = {
+		8BE17560272016540073805E /* ThemeFormats */ = {
 			isa = PBXGroup;
 			children = (
 				8B4150E627143DF600873BBF /* IntermediateTheme */,
@@ -889,7 +919,7 @@
 				8BB2799027B98D1F008E92FA /* VisualStudioCodeTheme */,
 				8B29631D26F62F930048CE17 /* XcodeTheme */,
 			);
-			path = "Theme Formats";
+			path = ThemeFormats;
 			sourceTree = "<group>";
 		};
 		8BE70D1B27085EF5008D9991 /* Library */ = {
@@ -972,6 +1002,7 @@
 			dependencies = (
 				8B6BE064270C74060063B0BA /* PBXTargetDependency */,
 				8B1631612791832500DF0E61 /* PBXTargetDependency */,
+				8BB279C627BE82BB008E92FA /* PBXTargetDependency */,
 			);
 			name = ColorThemeUtility;
 			packageProductDependencies = (
@@ -1264,8 +1295,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BB279B127BD1EA5008E92FA /* VisualStudioCodeThemeEnclosureProvider.swift in Sources */,
+				8BB279B127BD1EA5008E92FA /* VisualStudioCodeThemeEnclosureWriter.swift in Sources */,
 				8BB279B927BE5AA2008E92FA /* VisualStudioCodeDocumentation.swift in Sources */,
+				8BB279C127BE7BC4008E92FA /* ThemeEnclosureWriter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1286,6 +1318,11 @@
 			isa = PBXTargetDependency;
 			target = 8B6BE043270C731D0063B0BA /* ColorThemeModelingFramework */;
 			targetProxy = 8B6BE063270C74060063B0BA /* PBXContainerItemProxy */;
+		};
+		8BB279C627BE82BB008E92FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8BB279A327BD1C79008E92FA /* ColorThemeEnclosureFramework */;
+			targetProxy = 8BB279C527BE82BB008E92FA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
