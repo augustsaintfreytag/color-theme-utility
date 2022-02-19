@@ -31,8 +31,13 @@ public enum VisualStudioCodeThemeAppearance: String, Codable {
 
 public struct VisualStudioCodeThemeTokenColors: Codable {
 	
-	/// Visual Studio Code uses some of the theme format of the TextMate editor.
-	public typealias Settings = TextMateThemeSettings
+	/// The key for a specific setting used to color elements.
+	///
+	/// Visual Studio Code shares some of the theme format of the
+	/// TextMate editor and the setting key is equal in both.
+	public typealias SettingKey = TextMateThemeSettingKey
+	
+	public typealias Settings = [SettingKey: String]
 	
 	public let name: String
 	public let scope: [String]

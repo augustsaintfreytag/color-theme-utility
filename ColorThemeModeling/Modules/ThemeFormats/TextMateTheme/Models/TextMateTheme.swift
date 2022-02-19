@@ -9,7 +9,6 @@ import Foundation
 public struct TextMateTheme: Theme, CustomPropertyEnumerable {
 	
 	public typealias Setting = TextMateThemeSetting
-	public typealias Settings = TextMateThemeSettings
 	
 	public let uuid: String
 	public let name: String
@@ -32,8 +31,8 @@ extension TextMateTheme: Codable {
 // MARK: Settings
 
 public struct TextMateThemeSetting: CustomPropertyEnumerable {
-	
-	public typealias Settings = TextMateThemeSettings
+		
+	public typealias Settings = [TextMateThemeSettingKey: String]
 	
 	public let name: String?
 	public let scope: String?
@@ -59,101 +58,41 @@ extension TextMateThemeSetting: Codable {
 	
 }
 
-public struct TextMateThemeSettings: CustomPropertyEnumerable {
-	
-	public typealias FontStyle = TextMateThemeFontStyle
-	
-	public let fontStyle: FontStyle?
-	public let background: String?
-	public let foreground: String?
-	public let caret: String?
-	public let invisibles: String?
-	public let guide: String?
-	public let hoverHighlight: String?
-	public let referenceHighlight: String?
-	public let lineHighlight: String?
-	public let lineHighlightBackground: String?
-	public let rangeHighlight: String?
-	public let rangeHighlightBackground: String?
-	public let selection: String?
-	public let selectionBackground: String?
-	public let selectionForeground: String?
-	public let inactiveSelection: String?
-	public let selectionHighlight: String?
-	public let findRangeHighlight: String?
-	public let findMatchHighlight: String?
-	public let currentFindMatchHighlight: String?
-	public let wordHighlight: String?
-	public let wordHighlightStrong: String?
-	public let wordHighlightBackground: String?
-	public let activeLinkForeground: String?
-	public let gotoDefinitionLinkForeground: String?
-	
+
+public enum TextMateThemeSettingKey: String, Codable {
+	case fontStyle
+	case background
+	case foreground
+	case border
+	case caret
+	case invisibles
+	case guide
+	case hoverHighlight
+	case referenceHighlight
+	case lineHighlight
+	case lineHighlightBackground
+	case rangeHighlight
+	case rangeHighlightBackground
+	case selection
+	case selectionBackground
+	case selectionForeground
+	case inactiveSelection
+	case selectionHighlight
+	case findRangeHighlight
+	case findMatchHighlight
+	case currentFindMatchHighlight
+	case wordHighlight
+	case wordHighlightStrong
+	case wordHighlightBackground
+	case activeLinkForeground
+	case gotoDefinitionLinkForeground
+	case tabsBorder
+	case tabsBackground
 }
 
-extension TextMateThemeSettings {
+extension TextMateThemeSettingKey: CustomStringConvertible {
 	
-	public init(fontStyle: FontStyle? = nil, background: String? = nil, foreground: String? = nil) {
-		self.init(
-			fontStyle: fontStyle,
-			background: background,
-			foreground: foreground,
-			caret: nil,
-			invisibles: nil,
-			guide: nil,
-			hoverHighlight: nil,
-			referenceHighlight: nil,
-			lineHighlight: nil,
-			lineHighlightBackground: nil,
-			rangeHighlight: nil,
-			rangeHighlightBackground: nil,
-			selection: nil,
-			selectionBackground: nil,
-			selectionForeground: nil,
-			inactiveSelection: nil,
-			selectionHighlight: nil,
-			findRangeHighlight: nil,
-			findMatchHighlight: nil,
-			currentFindMatchHighlight: nil,
-			wordHighlight: nil,
-			wordHighlightStrong: nil,
-			wordHighlightBackground: nil,
-			activeLinkForeground: nil,
-			gotoDefinitionLinkForeground: nil
-		)
-	}
-	
-}
-
-extension TextMateThemeSettings: Codable {
-	
-	enum CodingKeys: String, CodingKey {
-		case fontStyle = "fontStyle"
-		case background = "background"
-		case foreground = "foreground"
-		case caret = "caret"
-		case invisibles = "invisibles"
-		case guide = "guide"
-		case hoverHighlight = "hoverHighlight"
-		case referenceHighlight = "referenceHighlight"
-		case lineHighlight = "lineHighlight"
-		case lineHighlightBackground = "lineHighlightBackground"
-		case rangeHighlight = "rangeHighlight"
-		case rangeHighlightBackground = "rangeHighlightBackground"
-		case selection = "selection"
-		case selectionBackground = "selectionBackground"
-		case selectionForeground = "selectionForeground"
-		case inactiveSelection = "inactiveSelection"
-		case selectionHighlight = "selectionHighlight"
-		case findRangeHighlight = "findRangeHighlight"
-		case findMatchHighlight = "findMatchHighlight"
-		case currentFindMatchHighlight = "currentFindMatchHighlight"
-		case wordHighlight = "wordHighlight"
-		case wordHighlightStrong = "wordHighlightStrong"
-		case wordHighlightBackground = "wordHighlightBackground"
-		case activeLinkForeground = "activeLinkForeground"
-		case gotoDefinitionLinkForeground = "gotoDefinitionLinkForeground"
-	}
+	public var description: String { rawValue }
 	
 }
 
@@ -165,5 +104,11 @@ public enum TextMateThemeFontStyle: String, Codable {
 	case italic
 	case bold
 	case underline
+	
+}
+
+extension TextMateThemeFontStyle: CustomStringConvertible {
+	
+	public var description: String { rawValue }
 	
 }

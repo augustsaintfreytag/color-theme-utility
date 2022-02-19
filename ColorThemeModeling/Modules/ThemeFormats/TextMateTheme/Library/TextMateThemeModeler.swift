@@ -65,35 +65,25 @@ extension TextMateThemeModeler {
 		)
 	}
 	
-	private static func globalTextMateSetting(from theme: IntermediateTheme) -> TextMateThemeSetting {
+	private static func globalTextMateSetting(from theme: IntermediateTheme) -> TextMateTheme.Setting {
 		let selectionColors = Self.cascadingColorSequence(from: theme.selectionBackground, numberOfColors: 3, skewing: .lighter)
-		let settings = TextMateThemeSettings(
-			fontStyle: nil,
-			background: color(theme.background),
-			foreground: color(theme.foreground),
-			caret: color(theme.insertionPoint),
-			invisibles: color(theme.comment),
-			guide: nil,
-			hoverHighlight: nil,
-			referenceHighlight: nil,
-			lineHighlight: nil,
-			lineHighlightBackground: color(theme.activeLineBackground),
-			rangeHighlight: nil,
-			rangeHighlightBackground: color(theme.activeLineBackground),
-			selection: nil,
-			selectionBackground: color(selectionColors[0]),
-			selectionForeground: nil,
-			inactiveSelection: color(theme.selectionBackground),
-			selectionHighlight: color(selectionColors[0]),
-			findRangeHighlight: color(selectionColors[1]),
-			findMatchHighlight: color(selectionColors[1]),
-			currentFindMatchHighlight: color(selectionColors[2]),
-			wordHighlight: nil,
-			wordHighlightStrong: nil,
-			wordHighlightBackground: color(selectionColors[1]),
-			activeLinkForeground: color(theme.foreground),
-			gotoDefinitionLinkForeground: color(theme.foreground)
-		)
+		let settings: TextMateThemeSetting.Settings = [
+			.background: color(theme.background),
+			.foreground: color(theme.foreground),
+			.caret: color(theme.insertionPoint),
+			.invisibles: color(theme.comment),
+			.lineHighlightBackground: color(theme.activeLineBackground),
+			.rangeHighlightBackground: color(theme.activeLineBackground),
+			.selectionBackground: color(selectionColors[0]),
+			.inactiveSelection: color(theme.selectionBackground),
+			.selectionHighlight: color(selectionColors[0]),
+			.findRangeHighlight: color(selectionColors[1]),
+			.findMatchHighlight: color(selectionColors[1]),
+			.currentFindMatchHighlight: color(selectionColors[2]),
+			.wordHighlightBackground: color(selectionColors[1]),
+			.activeLinkForeground: color(theme.foreground),
+			.gotoDefinitionLinkForeground: color(theme.foreground)
+		]
 		
 		return TextMateThemeSetting(settings)
 	}
@@ -107,8 +97,8 @@ extension TextMateThemeModeler {
 		return TextMateThemeSetting(name: name, scope: scopeSelector, settings: settings)
 	}
 	
-	private static func settings(withForegroundColor foregroundColor: Color) -> TextMateThemeSettings {
-		return TextMateThemeSettings(foreground: color(foregroundColor))
+	private static func settings(withForegroundColor foregroundColor: Color) -> TextMateTheme.Setting.Settings {
+		return [.foreground: color(foregroundColor)]
 	}
 	
 	// MARK: Color Utility
