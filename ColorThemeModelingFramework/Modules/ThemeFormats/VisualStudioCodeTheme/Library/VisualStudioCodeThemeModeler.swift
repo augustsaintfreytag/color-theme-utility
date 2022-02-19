@@ -509,6 +509,7 @@ extension VisualStudioCodeThemeModeler {
 		return IntermediateTheme(
 			_format: IntermediateTheme.defaultFormat,
 			_version: IntermediateTheme.defaultVersion,
+			_name: theme.name,
 			foreground: foregroundColor,
 			background: backgroundColor,
 			selectionBackground: try color(theme.colors[key(.editor, .selectionBackground)]),

@@ -30,7 +30,10 @@ extension IntermediateThemeModeler {
 	/// Creates a theme from the given sequence of colors.
 	///
 	/// Currently only creates colors suitable for use in dark themes.
-	public static func theme(from colors: [Color], cascade shouldCascade: Bool = true) throws -> IntermediateTheme {
+	///
+	/// Note that the `name` parameter will be transformed into a tuple type
+	/// once additional values are needed as input.
+	public static func theme(from colors: [Color], name: String? = nil, cascade shouldCascade: Bool = true) throws -> IntermediateTheme {
 		let originColors = try originColors(from: colors)
 
 		let defaultColorTransform: ColorTransform = shouldCascade ? .darker : .none
@@ -59,6 +62,7 @@ extension IntermediateThemeModeler {
 		return IntermediateTheme(
 			_format: IntermediateTheme.defaultFormat,
 			_version: IntermediateTheme.defaultVersion,
+			_name: name,
 			foreground: foregroundColor,
 			background: backgroundColor,
 			selectionBackground: selectionBackgroundColor,

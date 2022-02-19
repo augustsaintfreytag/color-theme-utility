@@ -17,6 +17,7 @@ public struct IntermediateTheme: Theme, Codable, CustomPropertyEnumerable {
 	
 	public let _format: String
 	public let _version: String
+	public let _name: String?
 	
 	public let foreground: Color
 	public let background: Color
@@ -65,6 +66,7 @@ extension IntermediateTheme {
 		return IntermediateTheme(
 			_format: _format,
 			_version: _version,
+			_name: _name,
 			foreground: block(\.foreground, foreground),
 			background: block(\.background, background),
 			selectionBackground: block(\.selectionBackground, selectionBackground),
