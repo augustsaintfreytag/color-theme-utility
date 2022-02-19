@@ -12,8 +12,10 @@ public protocol VisualStudioCodeThemeEnclosureWriter: ThemeCoercionProvider, The
 
 extension VisualStudioCodeThemeEnclosureWriter {
 	
-	private static var vendorName: String { "color-theme-utility" }
+	private static var vendorIdentifier: String { "color-theme-utility" }
+	private static var publisherName: String { "Color Theme Utility" }
 	
+	private static var defaultThemeName: String { "Theme" }
 	private static var defaultThemeVersion: String { "1.0.0" }
 	private static var defaultBannerColor: Color { Color(red: 0.235, green: 0.270, blue: 0.341) }
 	
@@ -23,16 +25,20 @@ extension VisualStudioCodeThemeEnclosureWriter {
 	private typealias Metadata = VisualStudioCodePackageManifest.Metadata
 	private typealias UserInterfaceTheme = VisualStudioCodeUserInterfaceTheme
 	
-	public static func writeEnclosedTheme(_ theme: VisualStudioCodeTheme, to path: URL) throws {
-		let packageName = themePackageName(theme.name)
-		let packageManifest = themePackageManifest(for: theme)
-		let readmeFileContents = readmeTextForVisualStudioCodeTheme(name: theme.name, description: nil)
+	// MARK: Enclosure Write
+	
+	public static func writeEnclosedTheme(_ theme: VisualStudioCodeTheme, to path: URL, properties: ThemeEnclosureProperties? = nil) throws {
+		let (name, description) = themeProperties(for: theme, from: properties)
+		
+		let packageName = themePackageName(name)
+		let packageManifest = themePackageManifest(for: theme, properties: properties)
+		let readmeFileContents = readmeTextForVisualStudioCodeTheme(name: name, description: description)
 		
 		do {
 			let fileManager = FileManager.default
 			
 			let packagePath = path.appendingPathComponent(packageName, isDirectory: true)
-			try fileManager.createDirectory(at: packagePath, withIntermediateDirectories: false)
+			try fileManager.createDirectory(at: packagePath, withIntermediateDirectories: true)
 			
 			let packageManifestPath = packagePath.appendingPathComponent("package.json")
 			try encodedPackageManifest(for: packageManifest).write(to: packageManifestPath)
@@ -41,7 +47,7 @@ extension VisualStudioCodeThemeEnclosureWriter {
 			try readmeFileContents.write(to: readmeFilePath, atomically: false, encoding: .utf8)
 			
 			let packageThemeDirectoryPath = packagePath.appendingPathComponent("themes", isDirectory: true)
-			try fileManager.createDirectory(at: packageThemeDirectoryPath, withIntermediateDirectories: false)
+			try fileManager.createDirectory(at: packageThemeDirectoryPath, withIntermediateDirectories: true)
 			
 			let encodedThemePath = packageThemeDirectoryPath.appendingPathComponent("theme.json")
 			let encodedTheme = try encodedThemeData(theme, as: .json)
@@ -51,21 +57,27 @@ extension VisualStudioCodeThemeEnclosureWriter {
 		}
 	}
 	
+	// MARK: Name Processing
+	
 	private static func themePackageName(_ name: String) -> String {
-		return "\(vendorName).\(normalizedThemeName(name))-\(defaultThemeVersion)"
+		return "\(vendorIdentifier).\(normalizedThemeName(name))-\(defaultThemeVersion)"
 	}
 	
 	private static func normalizedThemeName(_ name: String) -> String {
 		return name.lowercased().replacingOccurrences(of: " ", with: "-")
 	}
 	
-	private static func themePackageManifest(for theme: VisualStudioCodeTheme) -> PackageManifest {
-		PackageManifest(
+	// MARK: Package Manifest
+	
+	private static func themePackageManifest(for theme: VisualStudioCodeTheme, properties: ThemeEnclosureProperties? = nil) -> PackageManifest {
+		let (name, description) = themeProperties(for: theme, from: properties)
+		
+		return PackageManifest(
 			version: "1.0.0",
 			preview: true,
-			name: theme.name,
-			displayName: theme.name,
-			description: defaultThemeDescription,
+			name: normalizedThemeName(name),
+			displayName: name,
+			description: description ?? "",
 			license: "UNLICENSED",
 			categories: ["Themes"],
 			keywords: ["theme", "color-theme", "color-theme-utility"],
@@ -75,13 +87,13 @@ extension VisualStudioCodeThemeEnclosureWriter {
 				[
 					"label": theme.name,
 					"uiTheme": userInterfaceTheme(for: theme.type).rawValue,
-					"path": "./theme/theme.json"
+					"path": "./themes/theme.json"
 				]
 			]],
 			metadata: Metadata(
 				id: UUID(),
 				publisherId: nil,
-				publisherDisplayName: "Color Theme Utility",
+				publisherDisplayName: publisherName,
 				preRelease: true,
 				installedTimestamp: nil
 			)
@@ -95,9 +107,7 @@ extension VisualStudioCodeThemeEnclosureWriter {
 		return try! encoder.encode(manifest)
 	}
 	
-	private static var defaultThemeDescription: String {
-		"This theme package was generated with the Color Theme Utility, a project by August Saint Freytag (https://augustfreytag.com)."
-	}
+	// MARK: Utility
 	
 	private static func userInterfaceTheme(for appearance: VisualStudioCodeThemeAppearance) -> UserInterfaceTheme {
 		switch appearance {
@@ -106,6 +116,10 @@ extension VisualStudioCodeThemeEnclosureWriter {
 		case .light:
 			return .light
 		}
+	}
+	
+	private static func themeProperties(for theme: VisualStudioCodeTheme, from properties: ThemeEnclosureProperties?) -> (name: String, description: String?) {
+		return (properties?.name ?? defaultThemeName, properties?.description)
 	}
 	
 }
@@ -147,7 +161,7 @@ public struct VisualStudioCodePackageManifest {
 
 extension VisualStudioCodePackageManifest: Codable {
 	
-	public enum CodingKeys: String, CodingKey {
+	public enum CodingKeys: String, CaseIterable, CodingKey {
 		case version
 		case preview
 		case name
