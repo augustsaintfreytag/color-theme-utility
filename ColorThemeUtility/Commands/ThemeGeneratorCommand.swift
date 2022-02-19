@@ -33,7 +33,7 @@ extension ThemeGeneratorCommand {
 	
 	private func generateThemeContents() throws -> Theme {
 		let inputColors = try inputColorSequenceFromArguments()
-		let intermediateTheme = try Self.theme(from: inputColors, cascade: !disablePaletteTransform)
+		let intermediateTheme = try Self.theme(from: inputColors, name: outputThemeName, cascade: !disablePaletteTransform)
 		let outputFormat = outputFormat ?? .theme(format: .intermediate)
 		
 		guard case .theme(let themeFormat) = outputFormat else {
@@ -72,8 +72,9 @@ extension ThemeGeneratorCommand {
 		
 		let outputTheme = try generateThemeContents()
 		let outputPath = URL(fileURLWithPath: outputDirectory, isDirectory: true)
+		let outputProperties: ThemeEnclosureProperties = (outputThemeName, outputThemeDescription)
 		
-		try Self.writeTheme(outputTheme, to: outputPath)
+		try Self.writeTheme(outputTheme, to: outputPath, properties: outputProperties)
 	}
 	
 }
