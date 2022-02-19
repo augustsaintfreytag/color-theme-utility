@@ -23,7 +23,10 @@ extension ThemeDescriptionCommand {
 	///
 	func describeTheme() throws {
 		let theme: Theme = try inputThemeFileFromArguments()
-		
+		try describeTheme(theme)
+	}
+	
+	func describeTheme(_ theme: Theme) throws {
 		switch theme {
 		case let intermediateTheme as IntermediateTheme:
 			describeIntermediateTheme(intermediateTheme)
@@ -31,8 +34,10 @@ extension ThemeDescriptionCommand {
 			describeXcodeTheme(xcodeTheme)
 		case let textMateTheme as TextMateTheme:
 			describeTextMateTheme(textMateTheme)
+		case let visualStudioCodeTheme as VisualStudioCodeTheme:
+			describeVisualStudioCodeTheme(visualStudioCodeTheme)
 		default:
-			throw ArgumentError(description: "Supplied theme is not in a describable supported format.")
+			throw ImplementationError(description: "Generated output theme with format \(theme.format) can not be described.")
 		}
 	}
 	

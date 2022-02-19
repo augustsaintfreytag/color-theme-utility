@@ -15,7 +15,7 @@ extension VisualStudioCodeThemeModeler {
 	private typealias Theme = VisualStudioCodeTheme
 	private typealias ThemeSettings = VisualStudioCodeTheme.TokenColors.Settings
 	
-	// MARK: Intermediate → Visual Studio Code
+	private static var defaultThemeName: String { "Color Theme Utility Output" }
 	
 	private static var markupInsertedColor: Color { Color(red: 0.478, green: 0.847, blue: 0.568) }
 	private static var markupUpdatedColor: Color { Color(red: 0.780, green: 0.573, blue: 0.918) }
@@ -23,9 +23,27 @@ extension VisualStudioCodeThemeModeler {
 	
 	private static var errorColor: Color { Color(red: 1, green: 0.325, blue: 0.439) }
 	
+	// MARK: Intermediate → Visual Studio Code
+	
 	public static func visualStudioCodeTheme(from theme: IntermediateTheme) throws -> VisualStudioCodeTheme {
-		let backgroundColors = cascadingColorSequence(from: theme.background, numberOfColors: 3, skewing: .lighter)
+		let backgroundColors = cascadingColorSequence(from: theme.background, numberOfColors: 2, skewing: .lighter)
 
+		return VisualStudioCodeTheme(
+			name: theme._name ?? defaultThemeName,
+			type: .dark,
+			colors: [
+				key(.editor, .background): value(theme.background),
+				key(.editor, .foreground): value(theme.foreground),
+				key(.editorCursor, .foreground): value(theme.insertionPoint),
+				key(.editor, .lineHighlightBackground): value(theme.activeLineBackground),
+				key(.editor, .selectionBackground): value(theme.selectionBackground),
+				key(.activityBarBadge, .background): value(backgroundColors[1]),
+			],
+			tokenColors: tokenColors(from: theme)
+		)
+	}
+	
+	private static func tokenColors(from theme: IntermediateTheme) -> [VisualStudioCodeThemeTokenColors] {
 		// MARK: Comments
 		
 		let commentTokenColors = Theme.TokenColors(
@@ -442,60 +460,48 @@ extension VisualStudioCodeThemeModeler {
 			settings: ThemeSettings(foreground: value(errorColor))
 		)
 		
-		return VisualStudioCodeTheme(
-			name: "Color Theme Utility Output",
-			type: .dark,
-			colors: [
-				key(.editor, .background): value(theme.background),
-				key(.editor, .foreground): value(theme.foreground),
-				key(.editorCursor, .foreground): value(theme.insertionPoint),
-				key(.editor, .lineHighlightBackground): value(theme.activeLineBackground),
-				key(.editor, .selectionBackground): value(theme.selectionBackground),
-				key(.activityBarBadge, .background): value(backgroundColors[1]),
-			],
-			tokenColors: [
-				commentTokenColors,
-				markupTokenColors,
-				markupHeadingTokenColors,
-				markupInsertedTokenColors,
-				markupDeletedTokenColors,
-				markupChangedTokenColors,
-				keywordTokenColors,
-				operatorTokenColors,
-				constantProjectTokenColor,
-				constantSystemTokenColors,
-				unitTokenColors,
-				variableProjectTokenColors,
-				variableSystemTokenColors,
-				typeSystemTokenColors,
-				typeProjectTokenColors,
-				referenceTypeProjectTokenColors,
-				referenceTypeSystemTokenColors,
-				constructorTokenColors,
-				valueTypeProjectTokenColors,
-				valueTypeSystemTokenColors,
-				variableDeclarationTokenColors,
-				typeDeclarationTokenColors,
-				functionProjectTokenColors,
-				functionSystemTokenColors,
-				functionParameterTokenColors,
-				languageMethodTokenColors,
-				preprocessorProjectTokenColors,
-				preprocessorSystemTokenColors,
-				attributeTokenColors,
-				moduleTokenColors,
-				stringTokenColors,
-				characterTokenColors,
-				regularExpressionTokenColors,
-				urlTokenColors,
-				variableLinkTokenColors,
-				numberTokenColors,
-				tagTokenColors,
-				attributeHTMLTokenColors,
-				styleClassTokenColors,
-				invalidTokenColors
-			]
-		)
+		return [
+			commentTokenColors,
+			markupTokenColors,
+			markupHeadingTokenColors,
+			markupInsertedTokenColors,
+			markupDeletedTokenColors,
+			markupChangedTokenColors,
+			keywordTokenColors,
+			operatorTokenColors,
+			constantProjectTokenColor,
+			constantSystemTokenColors,
+			unitTokenColors,
+			variableProjectTokenColors,
+			variableSystemTokenColors,
+			typeSystemTokenColors,
+			typeProjectTokenColors,
+			referenceTypeProjectTokenColors,
+			referenceTypeSystemTokenColors,
+			constructorTokenColors,
+			valueTypeProjectTokenColors,
+			valueTypeSystemTokenColors,
+			variableDeclarationTokenColors,
+			typeDeclarationTokenColors,
+			functionProjectTokenColors,
+			functionSystemTokenColors,
+			functionParameterTokenColors,
+			languageMethodTokenColors,
+			preprocessorProjectTokenColors,
+			preprocessorSystemTokenColors,
+			attributeTokenColors,
+			moduleTokenColors,
+			stringTokenColors,
+			characterTokenColors,
+			regularExpressionTokenColors,
+			urlTokenColors,
+			variableLinkTokenColors,
+			numberTokenColors,
+			tagTokenColors,
+			attributeHTMLTokenColors,
+			styleClassTokenColors,
+			invalidTokenColors
+		]
 	}
 	
 	// MARK: Visual Studio Code → Intermediate
@@ -509,6 +515,7 @@ extension VisualStudioCodeThemeModeler {
 		return IntermediateTheme(
 			_format: IntermediateTheme.defaultFormat,
 			_version: IntermediateTheme.defaultVersion,
+			_name: theme.name,
 			foreground: foregroundColor,
 			background: backgroundColor,
 			selectionBackground: try color(theme.colors[key(.editor, .selectionBackground)]),

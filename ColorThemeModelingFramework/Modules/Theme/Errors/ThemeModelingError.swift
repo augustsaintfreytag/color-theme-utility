@@ -25,6 +25,7 @@ extension ThemeModelingError {
 		case unsupported
 		case insufficientData
 		case invalidData
+		case invalidDestination
 	}
 	
 }

@@ -8,6 +8,7 @@ import Foundation
 import ArgumentParser
 import ColorThemeModelingFramework
 import ColorThemeCodingFramework
+import ColorThemeEnclosureFramework
 
 @main
 struct ColorThemeUtility: ParsableCommand,
@@ -52,8 +53,17 @@ struct ColorThemeUtility: ParsableCommand,
 	@Flag(name: [.customShort("T"), .customLong("theme-from-stdin")], help: "Read theme file contents from stdin (default: false).")
 	var inputThemeContentsFromStdin: Bool = false
 	
-	@Option(name: [.customShort("o"), .customLong("output")], help: "The format used for output when inspecting, converting, or generating colors or themes. (options: \(OutputFormat.allCasesHelpDescription))")
+	@Option(name: [.customShort("f"), .customLong("output-format")], help: "The format used for output when inspecting, converting, or generating colors or themes. (options: \(OutputFormat.allCasesHelpDescription))")
 	var outputFormat: OutputFormat?
+	
+	@Option(name: [.customShort("o"), .customLong("output-directory")], help: "A directory path to write enclosed theme packages to. An output path can be reused for multiple generated themes if names differ as themes will be written into their own subdirectory.")
+	var outputDirectory: String?
+	
+	@Option(name: [.customLong("name")], help: "The name of the generated theme, used in generated manifests and supplementary content.")
+	var outputThemeName: String?
+	
+	@Option(name: [.customLong("description")], help: "The name of the generated theme, used in generated manifests and supplementary content.")
+	var outputThemeDescription: String?
 	
 	@Option(name: [.customShort("p"), .customLong("preview")], help: "The sample content used to preview themes. (options: \(PreviewFormat.allCasesHelpDescription))")
 	var previewFormat: PreviewFormat?

@@ -9,7 +9,7 @@ import Foundation
 /// A theme of a fixed collection of color values, used for a specific domain or for exchange.
 public protocol Theme {
 	
-	static var format: ThemeFormat { get }
+	var format: ThemeFormat { get }
 	
 }
 

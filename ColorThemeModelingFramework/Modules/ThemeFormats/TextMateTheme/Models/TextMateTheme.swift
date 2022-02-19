@@ -15,7 +15,7 @@ public struct TextMateTheme: Theme, CustomPropertyEnumerable {
 	public let name: String
 	public let settings: [Setting]
 	
-	public static var format: ThemeFormat { .textmate }
+	public var format: ThemeFormat { .textmate }
 	
 }
 
