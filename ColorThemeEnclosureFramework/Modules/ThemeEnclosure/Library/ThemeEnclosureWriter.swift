@@ -8,11 +8,13 @@ import Foundation
 import ColorThemeModelingFramework
 import ColorThemeCodingFramework
 
+public typealias ThemeEnclosureProperties = (name: String?, description: String?)
+
 public protocol ThemeEnclosureWriter: VisualStudioCodeThemeEnclosureWriter {}
 
 extension ThemeEnclosureWriter {
 	
-	public static func writeTheme(_ theme: Theme, to path: URL) throws {
+	public static func writeTheme(_ theme: Theme, to path: URL, properties: ThemeEnclosureProperties? = nil) throws {
 		switch theme {
 		case let intermediateTheme as IntermediateTheme:
 			try writeUnenclosedTheme(intermediateTheme, to: path)
@@ -21,9 +23,9 @@ extension ThemeEnclosureWriter {
 		case let textMateTheme as TextMateTheme:
 			try writeUnenclosedTheme(textMateTheme, to: path)
 		case let visualStudioCodeTheme as VisualStudioCodeTheme:
-			try writeEnclosedTheme(visualStudioCodeTheme, to: path)
+			try writeEnclosedTheme(visualStudioCodeTheme, to: path, properties: properties)
 		default:
-			throw ThemeCodingError(description: "Generated theme data with format '\(theme.typeFormat)' can not be output.")
+			throw ThemeCodingError(description: "Generated theme data with format '\(theme.format)' can not be output.")
 		}
 	}
 	

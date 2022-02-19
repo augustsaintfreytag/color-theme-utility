@@ -175,7 +175,7 @@ extension XcodeThemeModeler {
 	/// Note that this conversion is lossy, not all colors defined in `IntermediateTheme`
 	/// are used or transferred to a created `XcodeTheme`.
 	///
-	/// - Note: This mapping sets `module` and `parameter` to `plain` as fallback.
+	/// - Note: This mapping loses the values `_name`, `module`, `parameter`.
 	///
 	public static func intermediateTheme(from theme: XcodeTheme) throws -> IntermediateTheme {
 		let themeSyntax = theme.dvtSourceTextSyntaxColors
@@ -183,6 +183,7 @@ extension XcodeThemeModeler {
 		return IntermediateTheme(
 			_format: IntermediateTheme.defaultFormat,
 			_version: IntermediateTheme.defaultVersion,
+			_name: nil,
 			foreground: try color(themeSyntax.xcodeSyntaxPlain),
 			background: try color(theme.dvtSourceTextBackground),
 			selectionBackground: try color(theme.dvtSourceTextSelectionColor),

@@ -33,7 +33,7 @@ extension ThemeGeneratorCommand {
 	
 	private func generateThemeContents() throws -> Theme {
 		let inputColors = try inputColorSequenceFromArguments()
-		let intermediateTheme = try Self.theme(from: inputColors, cascade: !disablePaletteTransform)
+		let intermediateTheme = try Self.theme(from: inputColors, name: outputThemeName, cascade: !disablePaletteTransform)
 		let outputFormat = outputFormat ?? .theme(format: .intermediate)
 		
 		guard case .theme(let themeFormat) = outputFormat else {
@@ -61,7 +61,7 @@ extension ThemeGeneratorCommand {
 		case let visualStudioCodeTheme as VisualStudioCodeTheme:
 			print(try Self.encodedTheme(visualStudioCodeTheme))
 		default:
-			throw ImplementationError(description: "Generated theme data with format '\(outputTheme.typeFormat)' can not be output.")
+			throw ImplementationError(description: "Generated theme data with format '\(outputTheme.format)' can not be output.")
 		}
 	}
 	
@@ -72,8 +72,9 @@ extension ThemeGeneratorCommand {
 		
 		let outputTheme = try generateThemeContents()
 		let outputPath = URL(fileURLWithPath: outputDirectory, isDirectory: true)
+		let outputProperties: ThemeEnclosureProperties = (outputThemeName, outputThemeDescription)
 		
-		try Self.writeTheme(outputTheme, to: outputPath)
+		try Self.writeTheme(outputTheme, to: outputPath, properties: outputProperties)
 	}
 	
 }

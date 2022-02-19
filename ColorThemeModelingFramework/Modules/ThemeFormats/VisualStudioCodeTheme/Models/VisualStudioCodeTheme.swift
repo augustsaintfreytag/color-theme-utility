@@ -8,7 +8,7 @@ import Foundation
 
 public struct VisualStudioCodeTheme: Theme, Codable, CustomPropertyEnumerable {
 	
-	public static var format: ThemeFormat { .vscode }
+	public var format: ThemeFormat { .vscode }
 	
 	public typealias Appearance = VisualStudioCodeThemeAppearance
 	public typealias TokenColors = VisualStudioCodeThemeTokenColors

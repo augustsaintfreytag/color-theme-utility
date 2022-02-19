@@ -22,6 +22,8 @@ protocol CommandFragment {
 	var inputThemeContentsFromStdin: Bool { get }
 	var outputFormat: OutputFormat? { get }
 	var outputDirectory: String? { get }
+	var outputThemeName: String? { get }
+	var outputThemeDescription: String? { get }
 	var previewFormat: PreviewFormat? { get }
 	var humanReadable: Bool { get }
 	var disableColorCorrectPreview: Bool { get }

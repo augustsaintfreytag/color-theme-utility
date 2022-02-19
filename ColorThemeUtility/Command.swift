@@ -59,6 +59,12 @@ struct ColorThemeUtility: ParsableCommand,
 	@Option(name: [.customShort("o"), .customLong("output-directory")], help: "A directory path to write enclosed theme packages to. An output path can be reused for multiple generated themes if names differ as themes will be written into their own subdirectory.")
 	var outputDirectory: String?
 	
+	@Option(name: [.customLong("name")], help: "The name of the generated theme, used in generated manifests and supplementary content.")
+	var outputThemeName: String?
+	
+	@Option(name: [.customLong("description")], help: "The name of the generated theme, used in generated manifests and supplementary content.")
+	var outputThemeDescription: String?
+	
 	@Option(name: [.customShort("p"), .customLong("preview")], help: "The sample content used to preview themes. (options: \(PreviewFormat.allCasesHelpDescription))")
 	var previewFormat: PreviewFormat?
 	

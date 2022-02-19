@@ -40,7 +40,7 @@ extension ThemeCoercionProvider {
 		case let visualStudioCodeTheme as VisualStudioCodeTheme:
 			return try intermediateTheme(from: visualStudioCodeTheme)
 		default:
-			throw ThemeModelingError(kind: .unsupported, description: "Can not convert theme with format '\(theme.typeFormat)' to intermediate theme for unified coercion.")
+			throw ThemeModelingError(kind: .unsupported, description: "Can not convert theme with format '\(theme.format)' to intermediate theme for unified coercion.")
 		}
 	}
 	
