@@ -73,7 +73,7 @@ extension HexadecimalColorParser {
 	// MARK: Output Computation
 	
 	/// Return a hexadecimal string from the given color components.
-	static func hexadecimalString(from components: RGBColorValueComponents) -> String {
+	public static func hexadecimalString(from components: RGBColorValueComponents) -> String {
 		let (red, green, blue) = components
 		let redComponent = hexadecimalStringComponent(for: red)
 		let greenComponent = hexadecimalStringComponent(for: green)
@@ -82,7 +82,7 @@ extension HexadecimalColorParser {
 		return "#\(redComponent)\(greenComponent)\(blueComponent)"
 	}
 	
-	private static func hexadecimalStringComponent(for value: ColorValue) -> String {
+	public static func hexadecimalStringComponent(for value: ColorValue) -> String {
 		let standardizedValue = Int(value * maxHexadecimalValue)
 		let formattedValue = String(standardizedValue, radix: 16, uppercase: true)
 		
