@@ -6,7 +6,7 @@
 
 import Foundation
 import ArgumentParser
-import ColorThemeModelingFramework
+import ColorThemeModeling
 
 enum OutputFormat {
 	

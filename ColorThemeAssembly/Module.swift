@@ -5,7 +5,7 @@
 //
 
 import Foundation
-import ColorThemeModelingFramework
+import ColorThemeModeling
 
 /// The main color theme module, optimized for WebAssembly.
 ///

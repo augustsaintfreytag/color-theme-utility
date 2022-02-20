@@ -6,18 +6,18 @@
 
 import Foundation
 import Rainbow
-import ColorThemeModelingFramework
+import ColorThemeModeling
 
 extension String {
 	
-	private typealias FrameworkColor = ColorThemeModelingFramework.Color
-	private typealias FrameworkColorValue = ColorThemeModelingFramework.Color.ColorValue
+	private typealias FrameworkColor = ColorThemeModeling.Color
+	private typealias FrameworkColorValue = ColorThemeModeling.Color.ColorValue
 	
-	func colored(with color: ColorThemeModelingFramework.Color) -> String {
+	func colored(with color: ColorThemeModeling.Color) -> String {
 		return self.bit24(integerRGB(from: color))
 	}
 	
-	func coloredBackground(with color: ColorThemeModelingFramework.Color) -> String {
+	func coloredBackground(with color: ColorThemeModeling.Color) -> String {
 		return self.onBit24(integerRGB(from: color))
 	}
 	

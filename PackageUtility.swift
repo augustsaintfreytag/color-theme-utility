@@ -9,7 +9,10 @@ let package = Package(
 		.macOS(.v11)
 	],
 	products: [
-		.executable(name: "ColorThemeUtility", targets: ["ColorThemeUtility"])
+		.executable(name: "ColorThemeUtility", targets: ["ColorThemeUtility"]),
+		.library(name: "ColorThemeModeling", targets: ["ColorThemeModeling"]),
+		.library(name: "ColorThemeCoding", targets: ["ColorThemeCoding"]),
+		.library(name: "ColorThemeEnclosure", targets: ["ColorThemeEnclosure"])
 	],
 	dependencies: [
 		// Dependencies declare other packages that this package depends on.
@@ -24,28 +27,28 @@ let package = Package(
 			dependencies: [
 				.product(name: "ArgumentParser", package: "swift-argument-parser"),
 				.product(name: "Rainbow", package: "rainbow"),
-				.target(name: "ColorThemeModelingFramework"),
-				.target(name: "ColorThemeCodingFramework"),
-				.target(name: "ColorThemeEnclosureFramework")
+				.target(name: "ColorThemeModeling"),
+				.target(name: "ColorThemeCoding"),
+				.target(name: "ColorThemeEnclosure")
 			],
 			path: "ColorThemeUtility"
 		),
 		.target(
-			name: "ColorThemeModelingFramework",
+			name: "ColorThemeModeling",
 			dependencies: [],
-			path: "ColorThemeModelingFramework"
+			path: "ColorThemeModeling"
 		),
 		.target(
-			name: "ColorThemeCodingFramework",
+			name: "ColorThemeCoding",
 			dependencies: [
-				.target(name: "ColorThemeModelingFramework")
+				.target(name: "ColorThemeModeling")
 			],
-			path: "ColorThemeCodingFramework"
+			path: "ColorThemeCoding"
 		),
 		.target(
-			name: "ColorThemeEnclosureFramework",
+			name: "ColorThemeEnclosure",
 			dependencies: [],
-			path: "ColorThemeEnclosureFramework"
+			path: "ColorThemeEnclosure"
 		)
 	]
 )

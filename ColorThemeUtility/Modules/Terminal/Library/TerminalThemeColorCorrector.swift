@@ -5,7 +5,7 @@
 //
 
 import Foundation
-import ColorThemeModelingFramework
+import ColorThemeModeling
 
 /// Functionality to color correct themes for display in terminals.
 ///
