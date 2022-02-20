@@ -67,8 +67,10 @@ extension ThemeDescriptionCommand {
 			return
 		}
 		
+		let masterSettingElements = masterSetting.settings.map { key, value in (key.description, value) }
+		
 		rows.append(Self.dividerRow)
-		rows.append(contentsOf: enumeratedPropertyDescriptions(from: masterSetting.settings.enumerated()))
+		rows.append(contentsOf: enumeratedPropertyDescriptions(from: masterSettingElements))
 		
 		for setting in theme.settings {
 			rows.append(Self.dividerRow)
@@ -97,7 +99,7 @@ extension ThemeDescriptionCommand {
 	
 	// MARK: Theme Enumeration
 	
-	private func enumeratedThemeSetting(_ setting: TextMateThemeSetting) -> [[String]] {
+	private func enumeratedThemeSetting(_ setting: TextMateTheme.Setting) -> [[String]] {
 		var rows: [[String]] = []
 		
 		if let name = setting.name {
@@ -110,7 +112,7 @@ extension ThemeDescriptionCommand {
 		return rows
 	}
 	
-	private func enumeratedThemeSetting(_ setting: VisualStudioCodeThemeTokenColors) -> [[String]] {
+	private func enumeratedThemeSetting(_ setting: VisualStudioCodeTheme.TokenColors) -> [[String]] {
 		var rows: [[String]] = []
 		
 		rows.append(["name", "[String]", setting.name])
@@ -120,10 +122,10 @@ extension ThemeDescriptionCommand {
 		return rows
 	}
 	
-	private func enumeratedSettings(_ settings: TextMateThemeSettings) -> [[String]] {
-		let elements = settings.enumerated().filter { (property: String, value: CustomStringConvertible) in
+	private func enumeratedSettings(_ settings: TextMateTheme.Setting.Settings) -> [[String]] {
+		let elements = settings.filter { (property: CustomStringConvertible, value: String) in
 			return !value.description.isEmpty
-		}
+		}.map { key, value in (key.description, value) }
 		
 		return enumeratedPropertyDescriptions(from: elements)
 	}
