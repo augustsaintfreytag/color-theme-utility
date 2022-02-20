@@ -31,18 +31,58 @@ extension VisualStudioCodeThemeModeler {
 	// MARK: Intermediate → Visual Studio Code
 	
 	public static func visualStudioCodeTheme(from theme: IntermediateTheme) throws -> VisualStudioCodeTheme {
-		let backgroundColors = cascadingColorSequence(from: theme.background, numberOfColors: 2, skewing: .lighter)
+		let foregroundColor = theme.foreground
+		let inactiveForegroundColor = transformedColor(from: foregroundColor, skewing: .darker, modifier: 1)
+		let backgroundColor = theme.background
+		let panelBackgroundColor = transformedColor(from: theme.background, skewing: .darker, modifier: 0.5)
+		let decorationBackgroundColor = transformedColor(from: panelBackgroundColor, skewing: .darker, modifier: 0.75)
+		let inactiveDecorationBackgroundColor = transformedColor(from: decorationBackgroundColor, skewing: .darker, modifier: 0.5)
+		let overlayBackgroundColor = transformedColor(from: theme.background, skewing: .lighter, modifier: 0.5)
+		let hoverColor = transformedColor(from: theme.background, skewing: .lighter, modifier: 0.35)
+		let borderColor = transformedColor(from: decorationBackgroundColor, skewing: .lighter, modifier: 0.5)
+		let shadowColor = transformedColor(from: theme.background, skewing: .darker, modifier: 1.0)
+		let accentColor = theme.globalTypeProject
 
 		return VisualStudioCodeTheme(
 			name: theme._name ?? defaultThemeName,
 			type: .dark,
 			colors: [
-				key(.editor, .background): value(theme.background),
-				key(.editor, .foreground): value(theme.foreground),
-				key(.editorCursor, .foreground): value(theme.insertionPoint),
+				key(.foreground): value(foregroundColor),
+				key(.titleBar, .border): value(borderColor),
+				key(.titleBar, .activeBackground): value(decorationBackgroundColor),
+				key(.titleBar, .inactiveBackground): value(inactiveDecorationBackgroundColor),
+				key(.editor, .background): value(backgroundColor),
+				key(.editor, .foreground): value(foregroundColor),
 				key(.editor, .lineHighlightBackground): value(theme.activeLineBackground),
 				key(.editor, .selectionBackground): value(theme.selectionBackground),
-				key(.activityBarBadge, .background): value(backgroundColors[1]),
+				key(.editorCursor, .foreground): value(theme.insertionPoint),
+				key(.editorGroup, .border): value(borderColor),
+				key(.editorGroupHeader, .tabsBackground): value(panelBackgroundColor),
+				key(.editorGroupHeader, .tabsBorder): value(borderColor),
+				key(.tab, .border): value(borderColor, alpha: alphaFaded),
+				key(.tab, .lastPinnedBorder): value(borderColor, alpha: alphaFaded),
+				key(.tab, .activeBackground): value(backgroundColor),
+				key(.tab, .inactiveBackground): value(panelBackgroundColor),
+				key(.tab, .hoverBackground): value(hoverColor),
+				key(.tab, .activeBorderTop): value(accentColor),
+				key(.activityBar, .border): value(borderColor),
+				key(.activityBar, .background): value(decorationBackgroundColor),
+				key(.activityBar, .foreground): value(foregroundColor),
+				key(.activityBar, .inactiveForeground): value(inactiveForegroundColor),
+				key(.activityBarBadge, .background): value(decorationBackgroundColor),
+				key(.panel, .background): value(panelBackgroundColor),
+				key(.panel, .border): value(borderColor),
+				key(.panelSectionHeader, .background): value(panelBackgroundColor),
+				key(.sideBar, .background): value(panelBackgroundColor),
+				key(.sideBar, .border): value(borderColor),
+				key(.sideBarSectionHeader, .border): value(borderColor),
+				key(.statusBar, .background): value(decorationBackgroundColor),
+				key(.statusBar, .border): value(borderColor),
+				key(.widget, .background): value(overlayBackgroundColor),
+				key(.widget, .shadow): value(shadowColor, alpha: alphaShadow),
+				key(.scrollbar, .shadow): value(shadowColor, alpha: alphaShadow),
+				key(.notifications, .background): value(overlayBackgroundColor),
+				key(.notifications, .border): value(borderColor, alpha: alphaFaded)
 			],
 			tokenColors: tokenColors(from: theme)
 		)
