@@ -8,7 +8,7 @@ import Foundation
 
 /// Functionality to create Visual Studio Code themes from
 /// prepared intermediate theme models.
-public protocol VisualStudioCodeThemeModeler: ColorExtrapolator {}
+public protocol VisualStudioCodeThemeModeler: ColorExtrapolator, HexadecimalColorParser {}
 
 extension VisualStudioCodeThemeModeler {
 	
@@ -22,6 +22,11 @@ extension VisualStudioCodeThemeModeler {
 	private static var markupDeletedColor: Color { Color(red: 1, green: 0.325, blue: 0.439) }
 	
 	private static var errorColor: Color { Color(red: 1, green: 0.325, blue: 0.439) }
+	
+	private static var alphaFaded: ColorValue { 0.35 }
+	private static var alphaShadow: ColorValue { 0.5 }
+	
+	private static var clearValue: String { value(.black, alpha: 0) }
 	
 	// MARK: Intermediate → Visual Studio Code
 	
@@ -585,8 +590,14 @@ extension VisualStudioCodeThemeModeler {
 		return color
 	}
 	
-	private static func value(_ color: Color) -> String {
-		return color.hexadecimalString
+	private static func value(_ color: Color, alpha: ColorValue? = nil) -> String {
+		guard let alpha = alpha else {
+			return color.hexadecimalString
+		}
+		
+		return color.hexadecimalString + hexadecimalStringComponent(for: alpha)
+	}
+	
 	private static func key(_ root: Theme.ColorRoot, _ setting: Theme.TokenColors.SettingKey) -> String {
 		return "\(root.description).\(setting.description)"
 	}
