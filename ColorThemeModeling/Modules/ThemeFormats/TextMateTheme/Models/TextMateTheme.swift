@@ -31,8 +31,9 @@ extension TextMateTheme: Codable {
 // MARK: Settings
 
 public struct TextMateThemeSetting: CustomPropertyEnumerable {
-		
-	public typealias Settings = [TextMateThemeSettingKey: String]
+	
+	public typealias SettingKey = TextMateThemeSettingKey
+	public typealias Settings = [SettingKey: String]
 	
 	public let name: String?
 	public let scope: String?
@@ -58,12 +59,19 @@ extension TextMateThemeSetting: Codable {
 	
 }
 
-
-public enum TextMateThemeSettingKey: String, Codable {
+public enum TextMateThemeSettingKey: String, Codable, CaseIterable {
 	case fontStyle
 	case background
+	case activeBackground
+	case inactiveBackground
+	case hoverBackground
+	case hoverBorder
+	case activeBorderTop
 	case foreground
+	case inactiveForeground
 	case border
+	case activeBorder
+	case shadow
 	case caret
 	case invisibles
 	case guide
@@ -88,6 +96,7 @@ public enum TextMateThemeSettingKey: String, Codable {
 	case gotoDefinitionLinkForeground
 	case tabsBorder
 	case tabsBackground
+	case lastPinnedBorder
 }
 
 extension TextMateThemeSettingKey: CustomStringConvertible {

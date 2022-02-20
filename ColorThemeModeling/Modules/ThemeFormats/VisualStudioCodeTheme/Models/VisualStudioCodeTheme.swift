@@ -55,6 +55,11 @@ public enum VisualStudioCodeThemeColorRoot: String {
 	case sideBySideEditor
 	case tab
 	case window
+	case titleBar
+	case panel
+	case panelTitle
+	case panelSection
+	case panelSectionHeader
 	case toolbar
 	case button
 	case dropdown
@@ -71,7 +76,17 @@ public enum VisualStudioCodeThemeColorRoot: String {
 	case sideBar
 	case sideBarTitle
 	case sideBarSectionHeader
+	case statusBar
+	case statusBarItem
 	case minimap
 	case minimapSlider
 	case minimapGutter
+	case widget
+	case notifications
+}
+
+extension VisualStudioCodeThemeColorRoot: CustomStringConvertible {
+	
+	public var description: String { rawValue }
+	
 }
