@@ -57,6 +57,20 @@ extension TextMateThemeSetting: Codable {
 		case settings = "settings"
 	}
 	
+	public func encode(to encoder: Encoder) throws {
+		var container = encoder.container(keyedBy: CodingKeys.self)
+		
+		try container.encode(name, forKey: .name)
+		try container.encode(scope, forKey: .scope)
+		
+		let codableSettings = settings.reduce(into: [String: String]()) { dictionary, element in
+			let (key, value) = element
+			dictionary[key.description] = value
+		}
+		
+		try container.encode(codableSettings, forKey: .settings)
+	}
+	
 }
 
 public enum TextMateThemeSettingKey: String, Codable, CaseIterable {

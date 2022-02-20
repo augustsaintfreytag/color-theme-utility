@@ -29,7 +29,7 @@ public enum VisualStudioCodeThemeAppearance: String, Codable {
 	
 }
 
-public struct VisualStudioCodeThemeTokenColors: Codable {
+public struct VisualStudioCodeThemeTokenColors {
 	
 	/// The key for a specific setting used to color elements.
 	///
@@ -42,6 +42,24 @@ public struct VisualStudioCodeThemeTokenColors: Codable {
 	public let name: String
 	public let scope: [String]
 	public let settings: Settings
+	
+}
+
+extension VisualStudioCodeThemeTokenColors: Codable {
+	
+	public func encode(to encoder: Encoder) throws {
+		var container = encoder.container(keyedBy: CodingKeys.self)
+		
+		try container.encode(name, forKey: .name)
+		try container.encode(scope, forKey: .scope)
+		
+		let codableSettings = settings.reduce(into: [String: String]()) { dictionary, element in
+			let (key, value) = element
+			dictionary[key.description] = value
+		}
+		
+		try container.encode(codableSettings, forKey: .settings)
+	}
 	
 }
 
