@@ -39,15 +39,15 @@ compile_linux() {
 	docker run -t \
 		-v="$SRC_DIR:/host:cached" \
 		-v="$SRC_DIR/ColorThemeUtility:/work/ColorThemeUtility:cached" \
-		-v="$SRC_DIR/ColorThemeModelingFramework:/work/ColorThemeModelingFramework:cached" \
-		-v="$SRC_DIR/ColorThemeCodingFramework:/work/ColorThemeCodingFramework:cached" \
-		-v="$SRC_DIR/ColorThemeEnclosureFramework:/work/ColorThemeEnclosureFramework:cached" \
+		-v="$SRC_DIR/ColorThemeModeling:/work/ColorThemeModeling:cached" \
+		-v="$SRC_DIR/ColorThemeCoding:/work/ColorThemeCoding:cached" \
+		-v="$SRC_DIR/ColorThemeEnclosure:/work/ColorThemeEnclosure:cached" \
 		-v="$SRC_DIR/Package.swift:/work/Package.swift:cached" \
 		-v="$DIST_DIR:/releases:cached" \
 		-v="$BUILD_VOLUME_NAME:/build" \
 		-w="/work" \
 		custom/swift bash -c "\
-			swift build --build-path /build -c release && \
+			swift build --build-path /build -c release -Xswiftc -static-executable && \
 			cd /build/release && \
 			tar czfv '/releases/$DIST_NAME.tar.gz' \$(find . -maxdepth 1 -type f ! -name '*.*') \
 		"
