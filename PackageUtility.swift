@@ -9,10 +9,7 @@ let package = Package(
 		.macOS(.v11)
 	],
 	products: [
-		.executable(name: "ColorThemeUtility", targets: ["ColorThemeUtility"]),
-		.library(name: "ColorThemeModeling", targets: ["ColorThemeModeling"]),
-		.library(name: "ColorThemeCoding", targets: ["ColorThemeCoding"]),
-		.library(name: "ColorThemeEnclosure", targets: ["ColorThemeEnclosure"])
+		.executable(name: "ColorThemeUtility", targets: ["ColorThemeUtility"])
 	],
 	dependencies: [
 		// Dependencies declare other packages that this package depends on.
@@ -27,9 +24,9 @@ let package = Package(
 			dependencies: [
 				.product(name: "ArgumentParser", package: "swift-argument-parser"),
 				.product(name: "Rainbow", package: "rainbow"),
-				.target(name: "ColorThemeModeling"),
-				.target(name: "ColorThemeCoding"),
-				.target(name: "ColorThemeEnclosure")
+				"ColorThemeModeling",
+				"ColorThemeCoding",
+				"ColorThemeEnclosure"
 			],
 			path: "ColorThemeUtility"
 		),
@@ -47,7 +44,10 @@ let package = Package(
 		),
 		.target(
 			name: "ColorThemeEnclosure",
-			dependencies: [],
+			dependencies: [
+				"ColorThemeModeling",
+				"ColorThemeCoding"
+			],
 			path: "ColorThemeEnclosure"
 		)
 	]
