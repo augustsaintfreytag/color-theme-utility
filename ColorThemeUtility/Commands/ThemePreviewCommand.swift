@@ -5,7 +5,7 @@
 //
 
 import Foundation
-import ColorThemeModelingFramework
+import ColorThemeModeling
 
 protocol ThemePreviewCommand: CommandFragment,
 							  ArgumentTransformingCommand,

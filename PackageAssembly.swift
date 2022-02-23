@@ -17,13 +17,13 @@ let package = Package(
 		// Targets can depend on other targets in this package, and on products in packages this package depends on.
 		.executableTarget(
 			name: "ColorThemeAssembly",
-			dependencies: ["ColorThemeModelingFramework"],
+			dependencies: ["ColorThemeModeling"],
 			path: "ColorThemeAssembly"
 		),
 		.target(
-			name: "ColorThemeModelingFramework",
+			name: "ColorThemeModeling",
 			dependencies: [],
-			path: "ColorThemeModelingFramework"
+			path: "ColorThemeModeling"
 		)
 	]
 )

@@ -24,28 +24,31 @@ let package = Package(
 			dependencies: [
 				.product(name: "ArgumentParser", package: "swift-argument-parser"),
 				.product(name: "Rainbow", package: "rainbow"),
-				.target(name: "ColorThemeModelingFramework"),
-				.target(name: "ColorThemeCodingFramework"),
-				.target(name: "ColorThemeEnclosureFramework")
+				"ColorThemeModeling",
+				"ColorThemeCoding",
+				"ColorThemeEnclosure"
 			],
 			path: "ColorThemeUtility"
 		),
 		.target(
-			name: "ColorThemeModelingFramework",
+			name: "ColorThemeModeling",
 			dependencies: [],
-			path: "ColorThemeModelingFramework"
+			path: "ColorThemeModeling"
 		),
 		.target(
-			name: "ColorThemeCodingFramework",
+			name: "ColorThemeCoding",
 			dependencies: [
-				.target(name: "ColorThemeModelingFramework")
+				.target(name: "ColorThemeModeling")
 			],
-			path: "ColorThemeCodingFramework"
+			path: "ColorThemeCoding"
 		),
 		.target(
-			name: "ColorThemeEnclosureFramework",
-			dependencies: [],
-			path: "ColorThemeEnclosureFramework"
+			name: "ColorThemeEnclosure",
+			dependencies: [
+				"ColorThemeModeling",
+				"ColorThemeCoding"
+			],
+			path: "ColorThemeEnclosure"
 		)
 	]
 )

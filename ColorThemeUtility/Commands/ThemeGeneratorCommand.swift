@@ -5,9 +5,9 @@
 //
 
 import Foundation
-import ColorThemeModelingFramework
-import ColorThemeCodingFramework
-import ColorThemeEnclosureFramework
+import ColorThemeModeling
+import ColorThemeCoding
+import ColorThemeEnclosure
 
 protocol ThemeGeneratorCommand: ThemeDescriptionCommand, ThemeEnclosureWriter {}
 

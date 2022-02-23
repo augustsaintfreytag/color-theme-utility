@@ -5,7 +5,7 @@
 //
 
 import Foundation
-import ColorThemeModelingFramework
+import ColorThemeModeling
 
 protocol ColorDescriptionCommand: CommandFragment, ColorModeler, ColorPrinter {}
 
