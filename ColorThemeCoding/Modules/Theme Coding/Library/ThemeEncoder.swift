@@ -45,6 +45,19 @@ extension ThemeEncoder {
 		}
 	}
 	
+	public static func defaultFileEnding(for theme: Theme) -> String? {
+		switch theme.format {
+		case .intermediate:
+			return "intertheme"
+		case .xcode:
+			return "xccolortheme"
+		case .textmate:
+			return "tmtheme"
+		case .vscode:
+			return nil
+		}
+	}
+	
 	public static func defaultEncoding(for theme: Theme) -> ThemeEncoding {
 		switch theme.format {
 		case .intermediate:

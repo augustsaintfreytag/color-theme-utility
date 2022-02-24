@@ -47,7 +47,7 @@ compile_linux() {
 		-v="$BUILD_VOLUME_NAME:/build" \
 		-w="/work" \
 		custom/swift bash -c "\
-			swift build --build-path /build -c release -Xswiftc -static-executable && \
+			swift build --build-path /build -c release && \
 			cd /build/release && \
 			tar czfv '/releases/$DIST_NAME.tar.gz' \$(find . -maxdepth 1 -type f ! -name '*.*') \
 		"
