@@ -12,7 +12,7 @@ enum Manifest {
 	// MARK: Data
 	
 	static let name = "Color Theme Utility"
-	static let version = "0.7.1"
+	static let version = "0.8.1"
 	
 	// MARK: Formatting
 	

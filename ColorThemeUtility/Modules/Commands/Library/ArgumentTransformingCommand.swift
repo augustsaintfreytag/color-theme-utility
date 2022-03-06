@@ -5,8 +5,8 @@
 //
 
 import Foundation
-import ColorThemeModelingFramework
-import ColorThemeCodingFramework
+import ColorThemeModeling
+import ColorThemeCoding
 
 protocol ArgumentTransformingCommand: ThemeDecoder, ColorModeler {
 	
