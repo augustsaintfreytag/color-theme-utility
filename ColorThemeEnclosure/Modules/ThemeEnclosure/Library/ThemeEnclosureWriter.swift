@@ -40,7 +40,7 @@ extension ThemeEnclosureWriter {
 	}
 	
 	private static func fileName(for theme: Theme, name: String?) -> String {
-		let themeName = name ?? "Theme"
+		let themeName = sanitizedThemeName(name ?? defaultThemeName)
 		
 		guard let fileEnding = defaultFileEnding(for: theme) else {
 			return themeName
