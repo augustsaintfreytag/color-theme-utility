@@ -5,7 +5,6 @@
 //
 
 import Foundation
-import ColorThemeModeling
 
 public protocol ThemeNameProvider {}
 
@@ -25,7 +24,8 @@ extension ThemeNameProvider {
 	public static func normalizedThemeName(_ name: String) -> String {
 		return try! name
 			.lowercased()
-			.replacingMatches(matching: " ", with: "-")
+			.replacingMatches(matching: "\\s+", with: "-")
+			.removingMatches(matching: "[^a-zA-Z0-9-]")
 	}
 
 }
