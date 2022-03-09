@@ -25,7 +25,6 @@ extension ThemeNameProvider {
 		return try! name
 			.lowercased()
 			.replacingMatches(matching: "\\s+", with: "-")
-			.removingMatches(matching: "[^a-zA-Z0-9-]")
 	}
 
 }
