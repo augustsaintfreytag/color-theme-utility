@@ -8,15 +8,15 @@ import Foundation
 import ColorThemeModeling
 import ColorThemeCoding
 
-public protocol VisualStudioCodeThemeEnclosureWriter: ThemeCoercionProvider, ThemeEncoder {}
+public protocol VisualStudioCodeThemeEnclosureWriter: ThemeNameProvider,
+													  ThemeCoercionProvider,
+													  ThemeEncoder {}
 
 extension VisualStudioCodeThemeEnclosureWriter {
 	
 	private static var vendorIdentifier: String { "color-theme-utility" }
 	private static var publisherName: String { "Color Theme Utility" }
-	
-	private static var defaultThemeName: String { "Theme" }
-	private static var defaultThemeVersion: String { "1.0.0" }
+
 	private static var defaultBannerColor: Color { Color(red: 0.235, green: 0.270, blue: 0.341) }
 	
 	private typealias PackageManifest = VisualStudioCodePackageManifest
@@ -31,7 +31,7 @@ extension VisualStudioCodeThemeEnclosureWriter {
 		let (name, description) = themeProperties(for: theme, from: properties)
 		
 		let packageName = themePackageName(name)
-		let packageManifest = themePackageManifest(for: theme, properties: properties)
+		let packageManifest = themePackageManifest(for: theme, name: name, description: description)
 		let readmeFileContents = readmeTextForVisualStudioCodeTheme(name: name, description: description)
 		
 		do {
@@ -63,19 +63,13 @@ extension VisualStudioCodeThemeEnclosureWriter {
 		return "\(vendorIdentifier).\(normalizedThemeName(name))-\(defaultThemeVersion)"
 	}
 	
-	private static func normalizedThemeName(_ name: String) -> String {
-		return name.lowercased().replacingOccurrences(of: " ", with: "-")
-	}
-	
 	// MARK: Package Manifest
 	
-	private static func themePackageManifest(for theme: VisualStudioCodeTheme, properties: ThemeEnclosureProperties? = nil) -> PackageManifest {
-		let (name, description) = themeProperties(for: theme, from: properties)
-		
+	private static func themePackageManifest(for theme: VisualStudioCodeTheme, name: String, description: String?) -> PackageManifest {
 		return PackageManifest(
 			version: "1.0.0",
 			preview: true,
-			name: normalizedThemeName(name),
+			name: name,
 			displayName: name,
 			description: description ?? "",
 			license: "UNLICENSED",
@@ -119,7 +113,10 @@ extension VisualStudioCodeThemeEnclosureWriter {
 	}
 	
 	private static func themeProperties(for theme: VisualStudioCodeTheme, from properties: ThemeEnclosureProperties?) -> (name: String, description: String?) {
-		return (properties?.name ?? defaultThemeName, properties?.description)
+		let name = sanitizedThemeName(properties?.name ?? defaultThemeName)
+		let description = properties?.description
+
+		return (name, description)
 	}
 	
 }

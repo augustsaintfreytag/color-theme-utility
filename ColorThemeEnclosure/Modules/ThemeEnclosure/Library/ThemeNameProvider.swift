@@ -23,7 +23,7 @@ extension ThemeNameProvider {
 	}
 	
 	public static func normalizedThemeName(_ name: String) -> String {
-		return try! sanitizedThemeName(name)
+		return try! name
 			.lowercased()
 			.replacingMatches(matching: " ", with: "-")
 	}

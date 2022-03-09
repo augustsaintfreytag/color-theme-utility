@@ -29,24 +29,25 @@ extension ThemeEnclosureWriter {
 		}
 	}
 	
+	// MARK: Unenclosed Themes
+	
 	private static func writeUnenclosedTheme<CodableTheme: Theme & Encodable>(_ theme: CodableTheme, to outputDirectoryPath: URL, properties: ThemeEnclosureProperties? = nil) throws {
 		let encoding = defaultEncoding(for: theme)
 		let encodedTheme = try encodedTheme(theme, as: encoding)
 		
-		let fileName = fileName(for: theme, name: properties?.name)
+		let themeName = sanitizedThemeName(properties?.name ?? defaultThemeName)
+		let fileName = fileName(for: theme, name: themeName)
 		let filePath = outputDirectoryPath.appendingPathComponent(fileName)
 		
 		try encodedTheme.write(to: filePath, atomically: false, encoding: .utf8)
 	}
 	
-	private static func fileName(for theme: Theme, name: String?) -> String {
-		let themeName = sanitizedThemeName(name ?? defaultThemeName)
-		
+	private static func fileName(for theme: Theme, name: String) -> String {
 		guard let fileEnding = defaultFileEnding(for: theme) else {
-			return themeName
+			return name
 		}
 		
-		return "\(themeName).\(fileEnding)"
+		return "\(name).\(fileEnding)"
 	}
 	
 }
