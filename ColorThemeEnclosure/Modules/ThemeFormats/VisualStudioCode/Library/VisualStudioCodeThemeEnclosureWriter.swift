@@ -69,9 +69,10 @@ extension VisualStudioCodeThemeEnclosureWriter {
 		return PackageManifest(
 			version: "1.0.0",
 			preview: true,
-			name: name,
+			name: normalizedThemeName(name),
 			displayName: name,
 			description: description ?? "",
+			publisher: publisherName,
 			license: "UNLICENSED",
 			categories: ["Themes"],
 			keywords: ["theme", "color-theme", "color-theme-utility"],
@@ -128,6 +129,7 @@ public struct VisualStudioCodePackageManifest {
 	public let name: String
 	public let displayName: String
 	public let description: String
+	public let publisher: String
 	public let license: String
 	public let categories: [String]
 	public let keywords: [String]
@@ -164,6 +166,7 @@ extension VisualStudioCodePackageManifest: Codable {
 		case name
 		case displayName
 		case description
+		case publisher
 		case license
 		case categories
 		case keywords
