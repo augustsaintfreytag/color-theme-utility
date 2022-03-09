@@ -16,7 +16,7 @@ extension ThemeNameProvider {
 
 	public static func sanitizedThemeName(_ name: String) -> String {
 		return try! name
-			.removingMatches(matching: "[^0-9a-zA-Z #&@()+_,;.\\-\u{00c0}-\u{017f}]")
+			.removingMatches(matching: "[^0-9a-zA-Z #&@()+_,;.'\\-\u{00c0}-\u{017f}]")
 			.replacingMatches(matching: "\\s+", with: " ")
 			.trimmingCharacters(in: .whitespacesAndNewlines)
 	}

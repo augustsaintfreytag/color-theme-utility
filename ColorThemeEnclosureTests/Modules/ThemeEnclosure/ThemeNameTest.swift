@@ -30,7 +30,8 @@ class ThemeNameTest: XCTestCase {
 		let names: [String] = [
 			"Punctuate, punctuate.",
 			"TL;DR",
-			"Amper & Sands"
+			"Amper & Sands",
+			"Carter's Theme"
 		]
 		
 		for name in names {
