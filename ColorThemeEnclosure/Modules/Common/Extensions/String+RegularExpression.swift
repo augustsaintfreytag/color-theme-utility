@@ -52,8 +52,7 @@ extension String {
 	public func replacingMatches(matching expression: NSRegularExpression, options: NSRegularExpression.MatchingOptions = [], with template: String) -> String {
 		let mutableString = NSMutableString(string: self)
 		let range = NSRange(location: 0, length: mutableString.length)
-		
-		expression.replaceMatches(in: mutableString, options: options, range: range, withTemplate: template)
+		let _ = expression.replaceMatches(in: mutableString, options: options, range: range, withTemplate: template)
 		
 		return String(mutableString)
 	}
