@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B26320527D76E39007D8C00 /* ColorThemeEnclosure.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC6916827C2977900665B3C /* ColorThemeEnclosure.a */; };
+		8B26320E27D76E5A007D8C00 /* ThemeNameTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B26320D27D76E5A007D8C00 /* ThemeNameTest.swift */; };
 		8B29630C26F60ED20048CE17 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29630B26F60ED20048CE17 /* Command.swift */; };
 		8B29631426F60F250048CE17 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 8B29631326F60F250048CE17 /* ArgumentParser */; };
 		8B29631C26F62F5A0048CE17 /* Rainbow in Frameworks */ = {isa = PBXBuildFile; productRef = 8B29631B26F62F5A0048CE17 /* Rainbow */; };
@@ -22,6 +24,8 @@
 		8B851B4227918DF100A93814 /* TerminalApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBB859827510665004C7558 /* TerminalApplication.swift */; };
 		8B851B4327918DF100A93814 /* TerminalDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBB859527510091004C7558 /* TerminalDetector.swift */; };
 		8B851B4427918E4A00A93814 /* TerminalThemeColorCorrector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD31ED4274915AB0019247D /* TerminalThemeColorCorrector.swift */; };
+		8B943DFD27D7940F00DA63AB /* String+RegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2796D27B7C1B4008E92FA /* String+RegularExpression.swift */; };
+		8B943DFF27D7942000DA63AB /* String+RegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B943DFE27D7942000DA63AB /* String+RegularExpression.swift */; };
 		8BA2BBAB272948B40012D844 /* ExpressibleByArgument+Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBAA272948B40012D844 /* ExpressibleByArgument+Description.swift */; };
 		8BA2BBAE2729CF600012D844 /* TableFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA2BBAD2729CF600012D844 /* TableFormatter.swift */; };
 		8BAA176A27AA96750043C183 /* Manifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAA176927AA96750043C183 /* Manifest.swift */; };
@@ -37,6 +41,7 @@
 		8BB2798927B920ED008E92FA /* ThemeGeneratorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2798827B920ED008E92FA /* ThemeGeneratorCommand.swift */; };
 		8BB2798D27B9242B008E92FA /* ThemeConversionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2798C27B9242B008E92FA /* ThemeConversionCommand.swift */; };
 		8BB2798F27B92487008E92FA /* ThemeUnmapCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2798E27B92487008E92FA /* ThemeUnmapCommand.swift */; };
+		8BBA7EF127D4FA3700BCB7E8 /* ThemeNameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBA7EF027D4FA3700BCB7E8 /* ThemeNameProvider.swift */; };
 		8BC6912F27C294F400665B3C /* ColorCollectionFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE678972752EB2200D20598 /* ColorCollectionFormat.swift */; };
 		8BC6913027C294F400665B3C /* ColorExtrapolator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE09D270F7A080063B0BA /* ColorExtrapolator.swift */; };
 		8BC6913127C294F400665B3C /* ColorFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57B5102704875D00A60D1C /* ColorFormat.swift */; };
@@ -48,7 +53,6 @@
 		8BC6913727C294F400665B3C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBF92A92701F6D600386123 /* Color.swift */; };
 		8BC6913827C294F400665B3C /* OriginColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDBB3E5273E7EFC00AA4E9F /* OriginColors.swift */; };
 		8BC6913927C294F400665B3C /* String+Split.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B57B50B2704797600A60D1C /* String+Split.swift */; };
-		8BC6913A27C294F400665B3C /* String+RegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2796D27B7C1B4008E92FA /* String+RegularExpression.swift */; };
 		8BC6913B27C294F400665B3C /* CustomPropertyEnumerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6BE031270A48290063B0BA /* CustomPropertyEnumerable.swift */; };
 		8BC6913C27C294F400665B3C /* ThemeCodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE70D1E270860DF008D9991 /* ThemeCodingError.swift */; };
 		8BC6913D27C294F400665B3C /* ThemeModelingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE70D18270855D3008D9991 /* ThemeModelingError.swift */; };
@@ -91,6 +95,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8B26320627D76E39007D8C00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B29630026F60ED20048CE17 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8BC6916727C2977900665B3C;
+			remoteInfo = ColorThemeEnclosure;
+		};
+		8B943DF927D78E6200DA63AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B29630026F60ED20048CE17 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8BC6912927C2939B00665B3C;
+			remoteInfo = ColorThemeModeling;
+		};
 		8BC6918A27C298ED00665B3C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8B29630026F60ED20048CE17 /* Project object */;
@@ -146,6 +164,8 @@
 /* Begin PBXFileReference section */
 		8B16315027902BE400DF0E61 /* PackageAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageAssembly.swift; sourceTree = "<group>"; };
 		8B1ECA7327982A9E004137C0 /* Calls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calls.swift; sourceTree = "<group>"; };
+		8B26320127D76E39007D8C00 /* ColorThemeEnclosureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ColorThemeEnclosureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B26320D27D76E5A007D8C00 /* ThemeNameTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeNameTest.swift; sourceTree = "<group>"; };
 		8B29630826F60ED20048CE17 /* ColorThemeUtility */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ColorThemeUtility; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B29630B26F60ED20048CE17 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		8B29631E26F630120048CE17 /* XcodeThemeImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeThemeImporter.swift; sourceTree = "<group>"; };
@@ -180,6 +200,7 @@
 		8B851B5F2796D1C100A93814 /* AssemblyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyError.swift; sourceTree = "<group>"; };
 		8B8C579C2726B55C00606BB9 /* ThemeEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEncoder.swift; sourceTree = "<group>"; };
 		8B8C579F2726B93F00606BB9 /* ThemeEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEncoding.swift; sourceTree = "<group>"; };
+		8B943DFE27D7942000DA63AB /* String+RegularExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+RegularExpression.swift"; sourceTree = "<group>"; };
 		8BA2BBAA272948B40012D844 /* ExpressibleByArgument+Description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExpressibleByArgument+Description.swift"; sourceTree = "<group>"; };
 		8BA2BBAD2729CF600012D844 /* TableFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableFormatter.swift; sourceTree = "<group>"; };
 		8BA2BBB3272C04E20012D844 /* TokenizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizedString.swift; sourceTree = "<group>"; };
@@ -207,6 +228,7 @@
 		8BB279B227BD2195008E92FA /* PackageUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageUtility.swift; sourceTree = "<group>"; };
 		8BB279B827BE5AA2008E92FA /* VisualStudioCodeDocumentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualStudioCodeDocumentation.swift; sourceTree = "<group>"; };
 		8BB279C027BE7BC4008E92FA /* ThemeEnclosureWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEnclosureWriter.swift; sourceTree = "<group>"; };
+		8BBA7EF027D4FA3700BCB7E8 /* ThemeNameProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeNameProvider.swift; sourceTree = "<group>"; };
 		8BBB859527510091004C7558 /* TerminalDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalDetector.swift; sourceTree = "<group>"; };
 		8BBB859827510665004C7558 /* TerminalApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalApplication.swift; sourceTree = "<group>"; };
 		8BBF92A02701C49100386123 /* XcodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeTheme.swift; sourceTree = "<group>"; };
@@ -230,6 +252,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8B2631FE27D76E39007D8C00 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B26320527D76E39007D8C00 /* ColorThemeEnclosure.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8B29630526F60ED20048CE17 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -318,6 +348,30 @@
 			path = Library;
 			sourceTree = "<group>";
 		};
+		8B26320227D76E39007D8C00 /* ColorThemeEnclosureTests */ = {
+			isa = PBXGroup;
+			children = (
+				8B26320B27D76E42007D8C00 /* Modules */,
+			);
+			path = ColorThemeEnclosureTests;
+			sourceTree = "<group>";
+		};
+		8B26320B27D76E42007D8C00 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				8B26320C27D76E47007D8C00 /* ThemeEnclosure */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		8B26320C27D76E47007D8C00 /* ThemeEnclosure */ = {
+			isa = PBXGroup;
+			children = (
+				8B26320D27D76E5A007D8C00 /* ThemeNameTest.swift */,
+			);
+			path = ThemeEnclosure;
+			sourceTree = "<group>";
+		};
 		8B2962FF26F60ED20048CE17 = {
 			isa = PBXGroup;
 			children = (
@@ -326,9 +380,10 @@
 				8B851B4B27918F3000A93814 /* ColorThemeAssembly */,
 				8B16315727917CDE00DF0E61 /* ColorThemeCoding */,
 				8BB279A527BD1C79008E92FA /* ColorThemeEnclosure */,
+				8B26320227D76E39007D8C00 /* ColorThemeEnclosureTests */,
 				8B6BE045270C731D0063B0BA /* ColorThemeModeling */,
-				8B29630A26F60ED20048CE17 /* ColorThemeUtility */,
 				8BC6918627C298ED00665B3C /* ColorThemeModelingTests */,
+				8B29630A26F60ED20048CE17 /* ColorThemeUtility */,
 				8BB279C227BE82BB008E92FA /* Frameworks */,
 				8B29630926F60ED20048CE17 /* Products */,
 			);
@@ -343,6 +398,7 @@
 				8BC6916027C2976B00665B3C /* ColorThemeCoding.a */,
 				8BC6916827C2977900665B3C /* ColorThemeEnclosure.a */,
 				8BC6918527C298ED00665B3C /* ColorThemeModelingTests.xctest */,
+				8B26320127D76E39007D8C00 /* ColorThemeEnclosureTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -477,8 +533,8 @@
 		8B6BE05E270C73BD0063B0BA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8B943DFE27D7942000DA63AB /* String+RegularExpression.swift */,
 				8B57B50B2704797600A60D1C /* String+Split.swift */,
-				8BB2796D27B7C1B4008E92FA /* String+RegularExpression.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -623,6 +679,22 @@
 			path = Memory;
 			sourceTree = "<group>";
 		};
+		8B943DFB27D7940200DA63AB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				8B943DFC27D7940500DA63AB /* Extensions */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		8B943DFC27D7940500DA63AB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8BB2796D27B7C1B4008E92FA /* String+RegularExpression.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		8BA2BBB1272C04B00012D844 /* Syntax */ = {
 			isa = PBXGroup;
 			children = (
@@ -762,6 +834,7 @@
 		8BB279AB27BD1C84008E92FA /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8B943DFB27D7940200DA63AB /* Common */,
 				8BB279BE27BE7BAB008E92FA /* ThemeEnclosure */,
 				8BB279AC27BD1CD6008E92FA /* ThemeFormats */,
 			);
@@ -805,6 +878,7 @@
 			isa = PBXGroup;
 			children = (
 				8BB279C027BE7BC4008E92FA /* ThemeEnclosureWriter.swift */,
+				8BBA7EF027D4FA3700BCB7E8 /* ThemeNameProvider.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -948,6 +1022,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		8B26320027D76E39007D8C00 /* ColorThemeEnclosureTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B26320A27D76E39007D8C00 /* Build configuration list for PBXNativeTarget "ColorThemeEnclosureTests" */;
+			buildPhases = (
+				8B2631FD27D76E39007D8C00 /* Sources */,
+				8B2631FE27D76E39007D8C00 /* Frameworks */,
+				8B2631FF27D76E39007D8C00 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8B943DFA27D78E6200DA63AB /* PBXTargetDependency */,
+				8B26320727D76E39007D8C00 /* PBXTargetDependency */,
+			);
+			name = ColorThemeEnclosureTests;
+			productName = ColorThemeEnclosureTests;
+			productReference = 8B26320127D76E39007D8C00 /* ColorThemeEnclosureTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8B29630726F60ED20048CE17 /* ColorThemeUtility */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B29630F26F60ED30048CE17 /* Build configuration list for PBXNativeTarget "ColorThemeUtility" */;
@@ -1068,6 +1161,9 @@
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
+					8B26320027D76E39007D8C00 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
 					8B29630726F60ED20048CE17 = {
 						CreatedOnToolsVersion = 12.5;
 					};
@@ -1111,11 +1207,19 @@
 				8BC6915F27C2976B00665B3C /* ColorThemeCoding */,
 				8BC6916727C2977900665B3C /* ColorThemeEnclosure */,
 				8BC6918427C298ED00665B3C /* ColorThemeModelingTests */,
+				8B26320027D76E39007D8C00 /* ColorThemeEnclosureTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8B2631FF27D76E39007D8C00 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8BC6918327C298ED00665B3C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1126,6 +1230,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8B2631FD27D76E39007D8C00 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B26320E27D76E5A007D8C00 /* ThemeNameTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8B29630426F60ED20048CE17 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1179,9 +1291,9 @@
 				8BC6913727C294F400665B3C /* Color.swift in Sources */,
 				8BC6913827C294F400665B3C /* OriginColors.swift in Sources */,
 				8BC6913927C294F400665B3C /* String+Split.swift in Sources */,
-				8BC6913A27C294F400665B3C /* String+RegularExpression.swift in Sources */,
 				8BC6913B27C294F400665B3C /* CustomPropertyEnumerable.swift in Sources */,
 				8BC6913C27C294F400665B3C /* ThemeCodingError.swift in Sources */,
+				8B943DFF27D7942000DA63AB /* String+RegularExpression.swift in Sources */,
 				8BC6913D27C294F400665B3C /* ThemeModelingError.swift in Sources */,
 				8BC6913E27C294F400665B3C /* Theme.swift in Sources */,
 				8BC6913F27C294F400665B3C /* ThemeFormat.swift in Sources */,
@@ -1227,6 +1339,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BC6917B27C297F100665B3C /* ThemeEnclosureWriter.swift in Sources */,
+				8B943DFD27D7940F00DA63AB /* String+RegularExpression.swift in Sources */,
+				8BBA7EF127D4FA3700BCB7E8 /* ThemeNameProvider.swift in Sources */,
 				8BC6917C27C297F100665B3C /* VisualStudioCodeDocumentation.swift in Sources */,
 				8BC6917D27C297F100665B3C /* VisualStudioCodeThemeEnclosureWriter.swift in Sources */,
 			);
@@ -1246,6 +1360,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8B26320727D76E39007D8C00 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8BC6916727C2977900665B3C /* ColorThemeEnclosure */;
+			targetProxy = 8B26320627D76E39007D8C00 /* PBXContainerItemProxy */;
+		};
+		8B943DFA27D78E6200DA63AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8BC6912927C2939B00665B3C /* ColorThemeModeling */;
+			targetProxy = 8B943DF927D78E6200DA63AB /* PBXContainerItemProxy */;
+		};
 		8BC6918B27C298ED00665B3C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8BC6912927C2939B00665B3C /* ColorThemeModeling */;
@@ -1269,6 +1393,34 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		8B26320827D76E39007D8C00 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ColorThemeEnclosureTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8B26320927D76E39007D8C00 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ColorThemeEnclosureTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		8B29630D26F60ED20048CE17 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1514,7 +1666,6 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ColorThemeModelingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1529,7 +1680,6 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ColorThemeModelingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -1537,6 +1687,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8B26320A27D76E39007D8C00 /* Build configuration list for PBXNativeTarget "ColorThemeEnclosureTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B26320827D76E39007D8C00 /* Debug */,
+				8B26320927D76E39007D8C00 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8B29630326F60ED20048CE17 /* Build configuration list for PBXProject "ColorThemeUtility" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
