@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /usr/bin/env zsh
 
 WORK_DIR="$(pwd)"
 SRC_DIR="$WORK_DIR"
@@ -7,7 +7,7 @@ BUILD_VOLUME_NAME="swift_linux_build"
 
 # Help
 
-if [ "$1" == "--help" ]; then
+if [ "$1" = "--help" ]; then
 	echo "Compiles and bundles a Swift project for either Linux or macOS and produces";
 	echo "an archive with binaries to a local \"Releases\" directory for distribution.";
 	echo "This variant of the build script only compiles for Linux (x86).";
@@ -23,7 +23,7 @@ fi
 
 # Argument Validation
 
-if [ "$1" == "" ]; then
+if [ "$1" = "" ]; then
 	echo "Missing release version string."
 	exit 1
 fi
