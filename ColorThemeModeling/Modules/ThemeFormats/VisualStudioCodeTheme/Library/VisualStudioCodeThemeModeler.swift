@@ -1,5 +1,5 @@
 //
-//  ColorThemeUtility
+//  Color Theme Utility
 //
 //  Created by August Saint Freytag on 14/02/2022.
 //

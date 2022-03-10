@@ -1,5 +1,5 @@
 //
-//  ColorThemeUtility
+//  Color Theme Utility
 //
 //  Created by August Saint Freytag on 02/02/2022.
 //
@@ -12,7 +12,7 @@ enum Manifest {
 	// MARK: Data
 	
 	static let name = "Color Theme Utility"
-	static let version = "0.8.1"
+	static let version = "0.8.4"
 	
 	// MARK: Formatting
 	
