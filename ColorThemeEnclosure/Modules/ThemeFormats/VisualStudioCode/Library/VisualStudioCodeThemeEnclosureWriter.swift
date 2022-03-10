@@ -14,7 +14,7 @@ public protocol VisualStudioCodeThemeEnclosureWriter: ThemeNameProvider,
 
 extension VisualStudioCodeThemeEnclosureWriter {
 	
-	private static var vendorIdentifier: String { "color-theme-utility" }
+	private static var publisherIdentifier: String { "color-theme-utility" }
 	private static var publisherName: String { "Color Theme Utility" }
 
 	private static var defaultBannerColor: Color { Color(red: 0.235, green: 0.270, blue: 0.341) }
@@ -60,7 +60,7 @@ extension VisualStudioCodeThemeEnclosureWriter {
 	// MARK: Name Processing
 	
 	private static func themePackageName(_ name: String) -> String {
-		return "\(vendorIdentifier).\(normalizedThemeName(name))-\(defaultThemeVersion)"
+		return "\(publisherIdentifier).\(normalizedThemeName(name))-\(defaultThemeVersion)"
 	}
 	
 	// MARK: Package Manifest
@@ -72,7 +72,7 @@ extension VisualStudioCodeThemeEnclosureWriter {
 			name: normalizedThemeName(name),
 			displayName: name,
 			description: description ?? "",
-			publisher: publisherName,
+			publisher: publisherIdentifier,
 			license: "UNLICENSED",
 			categories: ["Themes"],
 			keywords: ["theme", "color-theme", "color-theme-utility"],
