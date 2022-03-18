@@ -3,7 +3,7 @@
 WORK_DIR="$(pwd)"
 SRC_DIR="$WORK_DIR"
 DIST_DIR="$WORK_DIR/Releases"
-BUILD_VOLUME_NAME="swift_linux_build"
+BUILD_VOLUME_NAME="swift-linux-build"
 
 # Help
 
