@@ -8,13 +8,13 @@ import Foundation
 import ColorThemeModeling
 import ColorThemeCoding
 
-public typealias ThemeEnclosureProperties = (name: String?, description: String?)
+public typealias ThemeMetadataProperties = (name: String?, description: String?)
 
-public protocol ThemeEnclosureWriter: VisualStudioCodeThemeEnclosureWriter {}
+public protocol ThemeWriter: VisualStudioCodeThemeEnclosureWriter {}
 
-extension ThemeEnclosureWriter {
+extension ThemeWriter {
 	
-	public static func writeTheme(_ theme: Theme, to path: URL, properties: ThemeEnclosureProperties? = nil) throws {
+	public static func writeTheme(_ theme: Theme, to path: URL, properties: ThemeMetadataProperties? = nil) throws {
 		switch theme {
 		case let intermediateTheme as IntermediateTheme:
 			try writeUnenclosedTheme(intermediateTheme, to: path, properties: properties)
@@ -31,7 +31,7 @@ extension ThemeEnclosureWriter {
 	
 	// MARK: Unenclosed Themes
 	
-	private static func writeUnenclosedTheme<CodableTheme: Theme & Encodable>(_ theme: CodableTheme, to outputDirectoryPath: URL, properties: ThemeEnclosureProperties? = nil) throws {
+	private static func writeUnenclosedTheme<CodableTheme: Theme & Encodable>(_ theme: CodableTheme, to outputDirectoryPath: URL, properties: ThemeMetadataProperties? = nil) throws {
 		let encoding = defaultEncoding(for: theme)
 		let encodedTheme = try encodedTheme(theme, as: encoding)
 		
@@ -48,6 +48,19 @@ extension ThemeEnclosureWriter {
 		}
 		
 		return "\(name).\(fileEnding)"
+	}
+
+	private static func unenclosedThemeFileEnding(for format: ThemeFormat) -> String {
+		switch format {
+		case .intermediate:
+			return ".json"
+		case .xcode:
+			return ".xccolortheme"
+		case .textmate:
+			return ".plist"
+		case .vscode:
+			return ".json"
+		}
 	}
 	
 }

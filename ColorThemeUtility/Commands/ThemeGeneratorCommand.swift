@@ -9,7 +9,7 @@ import ColorThemeModeling
 import ColorThemeCoding
 import ColorThemeEnclosure
 
-protocol ThemeGeneratorCommand: ThemeDescriptionCommand, ThemeEnclosureWriter {}
+protocol ThemeGeneratorCommand: ThemeDescriptionCommand, ThemeWriter {}
 
 extension ThemeGeneratorCommand {
 	
@@ -72,7 +72,7 @@ extension ThemeGeneratorCommand {
 		
 		let outputTheme = try generateThemeContents()
 		let outputPath = URL(fileURLWithPath: outputDirectory, isDirectory: true)
-		let outputProperties: ThemeEnclosureProperties = (outputThemeName, outputThemeDescription)
+		let outputProperties: ThemeMetadataProperties = (outputThemeName, outputThemeDescription)
 		
 		try Self.writeTheme(outputTheme, to: outputPath, properties: outputProperties)
 	}

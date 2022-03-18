@@ -27,7 +27,7 @@ extension VisualStudioCodeThemeEnclosureWriter {
 	
 	// MARK: Enclosure Write
 	
-	public static func writeEnclosedTheme(_ theme: VisualStudioCodeTheme, to path: URL, properties: ThemeEnclosureProperties? = nil) throws {
+	public static func writeEnclosedTheme(_ theme: VisualStudioCodeTheme, to path: URL, properties: ThemeMetadataProperties? = nil) throws {
 		let (name, description) = themeProperties(for: theme, from: properties)
 		
 		let packageName = themePackageName(name)
@@ -113,7 +113,7 @@ extension VisualStudioCodeThemeEnclosureWriter {
 		}
 	}
 	
-	private static func themeProperties(for theme: VisualStudioCodeTheme, from properties: ThemeEnclosureProperties?) -> (name: String, description: String?) {
+	private static func themeProperties(for theme: VisualStudioCodeTheme, from properties: ThemeMetadataProperties?) -> (name: String, description: String?) {
 		let name = sanitizedThemeName(properties?.name ?? defaultThemeName)
 		let description = properties?.description
 

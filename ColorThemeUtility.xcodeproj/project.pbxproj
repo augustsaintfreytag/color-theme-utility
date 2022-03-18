@@ -78,7 +78,7 @@
 		8BC6917827C297E800665B3C /* ThemeDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE70D1C27085F1A008D9991 /* ThemeDecoder.swift */; };
 		8BC6917927C297E800665B3C /* ThemeFormatDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B79D523273538CE0010233E /* ThemeFormatDetector.swift */; };
 		8BC6917A27C297E800665B3C /* XcodeThemeImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29631E26F630120048CE17 /* XcodeThemeImporter.swift */; };
-		8BC6917B27C297F100665B3C /* ThemeEnclosureWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB279C027BE7BC4008E92FA /* ThemeEnclosureWriter.swift */; };
+		8BC6917B27C297F100665B3C /* ThemeWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB279C027BE7BC4008E92FA /* ThemeWriter.swift */; };
 		8BC6917C27C297F100665B3C /* VisualStudioCodeDocumentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB279B827BE5AA2008E92FA /* VisualStudioCodeDocumentation.swift */; };
 		8BC6917D27C297F100665B3C /* VisualStudioCodeThemeEnclosureWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB279B027BD1EA5008E92FA /* VisualStudioCodeThemeEnclosureWriter.swift */; };
 		8BC6918927C298ED00665B3C /* ColorThemeModeling.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC6912A27C2939B00665B3C /* ColorThemeModeling.a */; };
@@ -227,8 +227,8 @@
 		8BB279B027BD1EA5008E92FA /* VisualStudioCodeThemeEnclosureWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualStudioCodeThemeEnclosureWriter.swift; sourceTree = "<group>"; };
 		8BB279B227BD2195008E92FA /* PackageUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageUtility.swift; sourceTree = "<group>"; };
 		8BB279B827BE5AA2008E92FA /* VisualStudioCodeDocumentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualStudioCodeDocumentation.swift; sourceTree = "<group>"; };
-		8BB279C027BE7BC4008E92FA /* ThemeEnclosureWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEnclosureWriter.swift; sourceTree = "<group>"; };
 		8BBA7EF027D4FA3700BCB7E8 /* ThemeNameProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeNameProvider.swift; sourceTree = "<group>"; };
+		8BB279C027BE7BC4008E92FA /* ThemeWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeWriter.swift; sourceTree = "<group>"; };
 		8BBB859527510091004C7558 /* TerminalDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalDetector.swift; sourceTree = "<group>"; };
 		8BBB859827510665004C7558 /* TerminalApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalApplication.swift; sourceTree = "<group>"; };
 		8BBF92A02701C49100386123 /* XcodeTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeTheme.swift; sourceTree = "<group>"; };
@@ -877,8 +877,8 @@
 		8BB279BF27BE7BBF008E92FA /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				8BB279C027BE7BC4008E92FA /* ThemeEnclosureWriter.swift */,
 				8BBA7EF027D4FA3700BCB7E8 /* ThemeNameProvider.swift */,
+				8BB279C027BE7BC4008E92FA /* ThemeWriter.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -1338,7 +1338,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BC6917B27C297F100665B3C /* ThemeEnclosureWriter.swift in Sources */,
+				8BC6917B27C297F100665B3C /* ThemeWriter.swift in Sources */,
 				8B943DFD27D7940F00DA63AB /* String+RegularExpression.swift in Sources */,
 				8BBA7EF127D4FA3700BCB7E8 /* ThemeNameProvider.swift in Sources */,
 				8BC6917C27C297F100665B3C /* VisualStudioCodeDocumentation.swift in Sources */,
