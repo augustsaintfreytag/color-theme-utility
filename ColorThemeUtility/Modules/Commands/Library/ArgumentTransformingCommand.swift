@@ -32,6 +32,28 @@ extension ArgumentTransformingCommand {
 	
 	// MARK: Colors
 	
+	func inputColorFromArguments() throws -> Color {
+		if inputColorsFromStdin {
+			guard
+				let colorDescription = linesFromStdin,
+				let color = Self.color(fromAutodetectedColorString: colorDescription)
+			else {
+				throw ArgumentError(description: "Color string from stdin not viable. Command requires a color in a supported format as input.")
+			}
+			
+			return color
+		} else {
+			guard
+				let colorDescription = inputColors?.first,
+				let color = Self.color(fromAutodetectedColorString: colorDescription)
+			else {
+				throw ArgumentError(description: "Supplied color string not viable. Command requires a color in a supported format as input.")
+			}
+			
+			return color
+		}
+	}
+	
 	/// Determines and returns a viable color sequence from command arguments.
 	/// Input is read from `stdin` if flag `inputColorsFromStdin` is set and uses
 	/// directly supplied data otherwise.
