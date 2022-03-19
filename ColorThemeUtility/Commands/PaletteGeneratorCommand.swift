@@ -15,13 +15,7 @@ protocol PaletteGeneratorCommand: CommandFragment,
 extension PaletteGeneratorCommand {
 	
 	func generatePalette() throws {
-		guard
-			let inputColor = linesFromStdin ?? inputColors?.first,
-			let color = Self.color(fromAutodetectedColorString: inputColor)
-		else {
-			throw ArgumentError(description: "Missing or invalid input color, need base color to generate palette.")
-		}
-		
+		let color = try inputColorFromArguments()
 		let numberOfColors = colorCount ?? 3
 		let transform: ColorTransform = colorTransform ?? .lighter
 		let palette = Self.cascadingColorSequence(from: color, numberOfColors: numberOfColors, skewing: transform)
