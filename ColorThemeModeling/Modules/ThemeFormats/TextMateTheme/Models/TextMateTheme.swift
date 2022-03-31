@@ -82,6 +82,7 @@ public enum TextMateThemeSettingKey: String, Codable, CaseIterable {
 	case hoverBorder
 	case activeBorderTop
 	case foreground
+	case activeForeground
 	case inactiveForeground
 	case descriptionForeground
 	case border

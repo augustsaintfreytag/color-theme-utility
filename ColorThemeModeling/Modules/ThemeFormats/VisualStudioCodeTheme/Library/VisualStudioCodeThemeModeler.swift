@@ -41,8 +41,10 @@ extension VisualStudioCodeThemeModeler {
 		let accentColorTertiary = theme.valueTypeProject
 		
 		let foregroundColor = theme.foreground
-		let fadedForegroundColor = transformedColor(from: foregroundColor, skewing: .darker, modifier: 0.5)
-		let inactiveForegroundColor = transformedColor(from: foregroundColor, skewing: .darker, modifier: 1)
+		let inactiveForegroundColor = transformedColor(from: foregroundColor, applying: (0, 0, -0.3))
+		
+		let fadedForegroundColor = transformedColor(from: foregroundColor, applying: (0, 0.05, -0.2))
+		let fadedInactiveForegroundColor = transformedColor(from: foregroundColor, applying: (0, 0, -0.35))
 		
 		let backgroundColor = theme.background
 		let panelBackgroundColor = transformedColor(from: backgroundColor, applying: (0, 0.015, -0.025))
@@ -75,11 +77,14 @@ extension VisualStudioCodeThemeModeler {
 				key(.editor, .background): value(backgroundColor),
 				key(.editor, .foreground): value(foregroundColor),
 				key(.editor, .lineHighlightBackground): value(theme.activeLineBackground),
-				key(.editor, .selectionBackground): value(theme.selectionBackground),
 				key(.editorCursor, .foreground): value(theme.insertionPoint),
 				key(.editorGroup, .border): value(borderColor),
 				key(.editorGroupHeader, .tabsBackground): value(panelBackgroundColor),
 				key(.editorGroupHeader, .tabsBorder): value(borderColor),
+				key(.editorLineNumber, .foreground): value(fadedInactiveForegroundColor),
+				key(.editorLineNumber, .activeForeground): value(fadedForegroundColor),
+				key(.editor, .selectionBackground): value(theme.selectionBackground),
+				key(.selection, .background): value(theme.selectionBackground),
 				key(.tab, .border): value(borderColor, alpha: alphaFaded),
 				key(.tab, .lastPinnedBorder): value(borderColor, alpha: alphaFaded),
 				key(.tab, .activeBackground): value(backgroundColor),

@@ -54,8 +54,8 @@ extension IntermediateThemeModeler {
 		let stringColors = cascadingColorSequence(from: originColors.strings, numberOfColors: 3, skewing: defaultColorTransform)
 		let numberColor = originColors.numbers
 		
-		let activeLineBackgroundColor = transformedColor(from: originColors.background, skewing: .lighter, modifier: 0.6)
-		let selectionBackgroundColor = transformedColor(from: originColors.keywords, applying: (0, -0.05, -0.2))
+		let activeLineBackgroundColor = transformedColor(from: originColors.background, applying: (0, 0, 0.025))
+		let selectionBackgroundColor = transformedColor(from: originColors.keywords, applying: (0, 0.25, -0.2))
 		let insertionPointColor = transformedColor(from: originColors.keywords, applying: (0, -0.1, -0.1))
 		let instructionPointerColor = transformedColor(from: originColors.keywords, applying: (0, -0.25, -0.25))
 

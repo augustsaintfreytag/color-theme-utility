@@ -74,6 +74,7 @@ public enum VisualStudioCodeThemeColorRoot: String {
 	case editorSuggestWidget
 	case editorHoverWidget
 	case editorGhostText
+	case selection
 	case sideBySideEditor
 	case tab
 	case window
