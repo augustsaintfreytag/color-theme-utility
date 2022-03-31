@@ -89,7 +89,9 @@ public enum TextMateThemeSettingKey: String, Codable, CaseIterable {
 	case caret
 	case invisibles
 	case guide
+	case hover
 	case hoverHighlight
+	case focusBackground
 	case referenceHighlight
 	case lineHighlight
 	case lineHighlightBackground
@@ -100,6 +102,8 @@ public enum TextMateThemeSettingKey: String, Codable, CaseIterable {
 	case selectionForeground
 	case inactiveSelection
 	case selectionHighlight
+	case activeSelectionBackground
+	case inactiveSelectionBackground
 	case findRangeHighlight
 	case findMatchHighlight
 	case currentFindMatchHighlight
@@ -111,6 +115,7 @@ public enum TextMateThemeSettingKey: String, Codable, CaseIterable {
 	case tabsBorder
 	case tabsBackground
 	case lastPinnedBorder
+	case dropBackground
 }
 
 extension TextMateThemeSettingKey: CustomStringConvertible {
