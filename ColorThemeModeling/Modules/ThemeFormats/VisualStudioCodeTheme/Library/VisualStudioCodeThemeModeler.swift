@@ -26,6 +26,11 @@ extension VisualStudioCodeThemeModeler {
 	private static var alphaFaded: ColorValue { 0.35 }
 	private static var alphaShadow: ColorValue { 0.5 }
 	
+	private static var alphaBackgroundLight: ColorValue { 0.15 }
+	private static var alphaBackgroundRegular: ColorValue { 0.25 }
+	private static var alphaBackgroundMedium: ColorValue { 0.40 }
+	private static var alphaBackgroundBold: ColorValue { 0.60 }
+	
 	private static var clearValue: String { value(.black, alpha: 0) }
 	
 	// MARK: Intermediate → Visual Studio Code
@@ -34,13 +39,17 @@ extension VisualStudioCodeThemeModeler {
 		let foregroundColor = theme.foreground
 		let inactiveForegroundColor = transformedColor(from: foregroundColor, skewing: .darker, modifier: 1)
 		let backgroundColor = theme.background
-		let panelBackgroundColor = transformedColor(from: theme.background, skewing: .darker, modifier: 0.5)
-		let decorationBackgroundColor = transformedColor(from: panelBackgroundColor, skewing: .darker, modifier: 0.75)
-		let inactiveDecorationBackgroundColor = transformedColor(from: decorationBackgroundColor, skewing: .darker, modifier: 0.5)
-		let overlayBackgroundColor = transformedColor(from: theme.background, skewing: .lighter, modifier: 0.5)
-		let hoverColor = transformedColor(from: theme.background, skewing: .lighter, modifier: 0.35)
-		let borderColor = transformedColor(from: decorationBackgroundColor, skewing: .lighter, modifier: 0.5)
-		let shadowColor = transformedColor(from: theme.background, skewing: .darker, modifier: 1.0)
+		
+		let panelBackgroundColor = transformedColor(from: backgroundColor, applying: (0, 0.02, -0.02))
+		let decorationBackgroundColor = panelBackgroundColor
+		
+		let inactiveDecorationBackgroundColor = transformedColor(from: decorationBackgroundColor, skewing: .darker, modifier: 0.25)
+		let overlayBackgroundColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 0.25)
+		
+		let hoverColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 0.35)
+		let borderColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 0.35)
+		let shadowColor = transformedColor(from: backgroundColor, skewing: .darker, modifier: 1.0)
+		
 		let accentColor = theme.globalTypeProject
 
 		return VisualStudioCodeTheme(
@@ -82,13 +91,19 @@ extension VisualStudioCodeThemeModeler {
 				key(.widget, .shadow): value(shadowColor, alpha: alphaShadow),
 				key(.scrollbar, .shadow): value(shadowColor, alpha: alphaShadow),
 				key(.notifications, .background): value(overlayBackgroundColor),
-				key(.notifications, .border): value(borderColor, alpha: alphaFaded)
+				key(.notifications, .border): value(borderColor, alpha: alphaFaded),
+				key(.list, .dropBackground): value(panelBackgroundColor, alpha: alphaBackgroundLight),
+				key(.list, .activeSelectionBackground): value(panelBackgroundColor, alpha: alphaBackgroundRegular),
+				key(.list, .inactiveSelectionBackground): value(panelBackgroundColor, alpha: alphaBackgroundRegular),
+				key(.list, .focusBackground): value(panelBackgroundColor, alpha: alphaBackgroundMedium),
+				key(.list, .hoverBackground): value(borderColor, alpha: alphaBackgroundBold)
 			],
 			tokenColors: tokenColors(from: theme)
 		)
 	}
 	
 	private static func tokenColors(from theme: IntermediateTheme) -> [VisualStudioCodeThemeTokenColors] {
+		
 		// MARK: Comments
 		
 		let commentTokenColors = Theme.TokenColors(
