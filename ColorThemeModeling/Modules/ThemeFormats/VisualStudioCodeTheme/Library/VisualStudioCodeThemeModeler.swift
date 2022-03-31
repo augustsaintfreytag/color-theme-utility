@@ -38,6 +38,7 @@ extension VisualStudioCodeThemeModeler {
 	public static func visualStudioCodeTheme(from theme: IntermediateTheme) throws -> VisualStudioCodeTheme {
 		let accentColorPrimary = theme.globalTypeProject
 		let accentColorSecondary = theme.referenceTypeProject
+		let accentColorTertiary = theme.valueTypeProject
 		
 		let foregroundColor = theme.foreground
 		let fadedForegroundColor = transformedColor(from: foregroundColor, skewing: .darker, modifier: 0.5)
@@ -45,15 +46,19 @@ extension VisualStudioCodeThemeModeler {
 		
 		let backgroundColor = theme.background
 		let panelBackgroundColor = transformedColor(from: backgroundColor, applying: (0, 0.015, -0.025))
+		let panelHighlightColor = transformedColor(from: panelBackgroundColor, skewing: .lighter, modifier: 1.75)
+		let overlayBackgroundColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 1)
 		let decorationBackgroundColor = transformedColor(from: accentColorSecondary, applying: (0, 0.075, -0.1))
+		
 		let windowDecorationColor = transformedColor(from: backgroundColor, applying: (0, -0.025, 0.075))
 		let inactiveWindowDecorationColor = transformedColor(from: windowDecorationColor, skewing: .darker, modifier: 0.25)
-		let overlayBackgroundColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 0.25)
+		let statusDebuggingColor = transformedColor(from: accentColorSecondary, applying: (0, 0.1, -0.25))
+		let statusTemporaryColor = transformedColor(from: accentColorSecondary, applying: (0, 0.1, -0.25))
 		
 		let hoverColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 0.35)
 		let borderColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 0.35)
 		let activeBorderColor = transformedColor(from: accentColorPrimary, skewing: .darker, modifier: 0.5)
-		let shadowColor = transformedColor(from: backgroundColor, skewing: .darker, modifier: 1.0)
+		let shadowColor = transformedColor(from: backgroundColor, skewing: .darker, modifier: 1)
 
 		return VisualStudioCodeTheme(
 			name: theme._name ?? defaultThemeName,
@@ -63,6 +68,7 @@ extension VisualStudioCodeThemeModeler {
 				key(.descriptionForeground): value(fadedForegroundColor),
 				key(.focusBorder): value(borderColor, alpha: alphaFaded),
 				key(.badge, .background): value(decorationBackgroundColor),
+				key(.badge, .foreground): value(theme.foreground),
 				key(.titleBar, .border): value(borderColor),
 				key(.titleBar, .activeBackground): value(windowDecorationColor),
 				key(.titleBar, .inactiveBackground): value(inactiveWindowDecorationColor),
@@ -90,14 +96,18 @@ extension VisualStudioCodeThemeModeler {
 				key(.panelSectionHeader, .background): value(panelBackgroundColor),
 				key(.sideBar, .background): value(panelBackgroundColor),
 				key(.sideBar, .border): value(borderColor),
+				key(.sideBarSectionHeader, .background): value(panelHighlightColor),
 				key(.sideBarSectionHeader, .border): value(borderColor),
 				key(.statusBar, .background): value(windowDecorationColor),
 				key(.statusBar, .border): value(borderColor),
+				key(.statusBar, .debuggingBackground): value(statusDebuggingColor),
+				key(.statusBar, .noFolderBackground): value(statusTemporaryColor),
 				key(.widget, .background): value(overlayBackgroundColor),
 				key(.widget, .shadow): value(shadowColor, alpha: alphaShadow),
 				key(.scrollbar, .shadow): value(shadowColor, alpha: alphaShadow),
 				key(.notifications, .background): value(overlayBackgroundColor),
 				key(.notifications, .border): value(borderColor, alpha: alphaFaded),
+				key(.notifications, .shadow): value(shadowColor, alpha: alphaShadow),
 				key(.list, .dropBackground): value(panelBackgroundColor, alpha: alphaBackgroundLight),
 				key(.list, .activeSelectionBackground): value(panelBackgroundColor, alpha: alphaBackgroundRegular),
 				key(.list, .inactiveSelectionBackground): value(panelBackgroundColor, alpha: alphaBackgroundRegular),

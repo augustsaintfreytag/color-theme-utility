@@ -118,6 +118,8 @@ public enum TextMateThemeSettingKey: String, Codable, CaseIterable {
 	case tabsBackground
 	case lastPinnedBorder
 	case dropBackground
+	case debuggingBackground
+	case noFolderBackground
 }
 
 extension TextMateThemeSettingKey: CustomStringConvertible {
