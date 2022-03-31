@@ -46,7 +46,7 @@ extension VisualStudioCodeThemeModeler {
 		let backgroundColor = theme.background
 		let panelBackgroundColor = transformedColor(from: backgroundColor, applying: (0, 0.015, -0.025))
 		let decorationBackgroundColor = transformedColor(from: accentColorSecondary, applying: (0, 0.075, -0.1))
-		let windowDecorationColor = transformedColor(from: backgroundColor, applying: (0, 0.025, 0.05))
+		let windowDecorationColor = transformedColor(from: backgroundColor, applying: (0, -0.025, 0.075))
 		let inactiveWindowDecorationColor = transformedColor(from: windowDecorationColor, skewing: .darker, modifier: 0.25)
 		let overlayBackgroundColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 0.25)
 		
@@ -91,7 +91,7 @@ extension VisualStudioCodeThemeModeler {
 				key(.sideBar, .background): value(panelBackgroundColor),
 				key(.sideBar, .border): value(borderColor),
 				key(.sideBarSectionHeader, .border): value(borderColor),
-				key(.statusBar, .background): value(decorationBackgroundColor),
+				key(.statusBar, .background): value(windowDecorationColor),
 				key(.statusBar, .border): value(borderColor),
 				key(.widget, .background): value(overlayBackgroundColor),
 				key(.widget, .shadow): value(shadowColor, alpha: alphaShadow),
