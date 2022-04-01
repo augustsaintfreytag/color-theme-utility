@@ -55,7 +55,7 @@ extension IntermediateThemeModeler {
 		let numberColor = originColors.numbers
 		
 		let activeLineBackgroundColor = transformedColor(from: originColors.background, applying: (0, 0, 0.025))
-		let selectionBackgroundColor = transformedColor(from: originColors.keywords, applying: (0, 0.25, -0.2))
+		let selectionBackgroundColor = transformedColor(from: originColors.keywords, applying: (0, 0.35, -0.15))
 		let insertionPointColor = transformedColor(from: originColors.keywords, applying: (0, -0.1, -0.1))
 		let instructionPointerColor = transformedColor(from: originColors.keywords, applying: (0, -0.25, -0.25))
 
