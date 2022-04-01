@@ -17,8 +17,8 @@ extension VisualStudioCodeThemeModeler {
 	
 	private static var defaultThemeName: String { "Color Theme Utility Output" }
 	
-	private static var markupInsertedColor: Color { Color(red: 0.478, green: 0.847, blue: 0.568) }
-	private static var markupUpdatedColor: Color { Color(red: 0.780, green: 0.573, blue: 0.918) }
+	private static var markupAddedColor: Color { Color(red: 0.478, green: 0.847, blue: 0.568) }
+	private static var markupModifiedColor: Color { Color(red: 0.780, green: 0.573, blue: 0.918) }
 	private static var markupDeletedColor: Color { Color(red: 1, green: 0.325, blue: 0.439) }
 	
 	private static var errorColor: Color { Color(red: 1, green: 0.325, blue: 0.439) }
@@ -44,8 +44,8 @@ extension VisualStudioCodeThemeModeler {
 		let foregroundColor = theme.foreground
 		let inactiveForegroundColor = transformedColor(from: foregroundColor, applying: (0, 0, -0.3))
 		
-		let fadedForegroundColor = transformedColor(from: foregroundColor, applying: (0, 0.05, -0.2))
-		let fadedInactiveForegroundColor = transformedColor(from: foregroundColor, applying: (0, 0, -0.35))
+		let fadedForegroundColor = transformedColor(from: foregroundColor, applying: (0, 0, -0.2))
+		let fadedInactiveForegroundColor = transformedColor(from: foregroundColor, applying: (0, -0.1, -0.35))
 		
 		let backgroundColor = theme.background
 		let panelBackgroundColor = transformedColor(from: backgroundColor, applying: (0, 0.01, -0.03))
@@ -98,6 +98,12 @@ extension VisualStudioCodeThemeModeler {
 				key(.editorGroupHeader, .tabsBorder): value(borderColor),
 				key(.editorLineNumber, .foreground): value(fadedInactiveForegroundColor),
 				key(.editorLineNumber, .activeForeground): value(fadedForegroundColor),
+				key(.editorGutter, .addedBackground): value(markupAddedColor),
+				key(.editorGutter, .modifiedBackground): value(markupModifiedColor),
+				key(.editorGutter, .deletedBackground): value(markupDeletedColor),
+				key(.minimapGutter, .addedBackground): value(markupAddedColor),
+				key(.minimapGutter, .modifiedBackground): value(markupModifiedColor),
+				key(.minimapGutter, .deletedBackground): value(markupDeletedColor),
 				key(.selection, .background): value(selectionBackground, alpha: alphaBackgroundStrong),
 				key(.list, .background): value(overlayBackgroundColor),
 				key(.list, .focusBackground): value(overlayHighlightColor, alpha: alphaBackgroundMedium),
@@ -179,7 +185,7 @@ extension VisualStudioCodeThemeModeler {
 			scope: [
 				"markup.inserted"
 			],
-			settings: [.foreground: value(markupInsertedColor)]
+			settings: [.foreground: value(markupAddedColor)]
 		)
 		
 		let markupDeletedTokenColors = Theme.TokenColors(
@@ -195,7 +201,7 @@ extension VisualStudioCodeThemeModeler {
 			scope: [
 				"markup.changed"
 			],
-			settings: [.foreground: value(markupUpdatedColor)]
+			settings: [.foreground: value(markupModifiedColor)]
 		)
 		
 		// MARK: Keywords
