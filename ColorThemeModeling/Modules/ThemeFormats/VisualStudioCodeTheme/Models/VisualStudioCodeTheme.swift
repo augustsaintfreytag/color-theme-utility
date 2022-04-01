@@ -74,6 +74,11 @@ public enum VisualStudioCodeThemeColorRoot: String {
 	case editorSuggestWidget
 	case editorHoverWidget
 	case editorGhostText
+	case editorIndentGuide
+	case editorLink
+	case editorGutter
+	case editorWhitespace
+	case editorWarning
 	case selection
 	case sideBySideEditor
 	case tab
@@ -106,6 +111,7 @@ public enum VisualStudioCodeThemeColorRoot: String {
 	case minimapGutter
 	case widget
 	case notifications
+	case diffEditor
 }
 
 extension VisualStudioCodeThemeColorRoot: CustomStringConvertible {

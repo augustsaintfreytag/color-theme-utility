@@ -109,10 +109,14 @@ public enum TextMateThemeSettingKey: String, Codable, CaseIterable {
 	case inactiveSelectionBackground
 	case findRangeHighlight
 	case findMatchHighlight
+	case findMatchBackground
+	case findMatchHighlightBackground
+	case findMatchBorder
 	case currentFindMatchHighlight
 	case wordHighlight
 	case wordHighlightStrong
 	case wordHighlightBackground
+	case wordHighlightStrongBackground
 	case activeLinkForeground
 	case gotoDefinitionLinkForeground
 	case tabsBorder

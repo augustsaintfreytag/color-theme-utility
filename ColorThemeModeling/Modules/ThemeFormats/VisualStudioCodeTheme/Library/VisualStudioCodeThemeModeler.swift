@@ -27,18 +27,17 @@ extension VisualStudioCodeThemeModeler {
 	private static var alphaShadow: ColorValue { 0.5 }
 	
 	private static var alphaBackgroundLight: ColorValue { 0.15 }
-	private static var alphaBackgroundRegular: ColorValue { 0.25 }
-	private static var alphaBackgroundMedium: ColorValue { 0.40 }
-	private static var alphaBackgroundBold: ColorValue { 0.60 }
+	private static var alphaBackgroundMedium: ColorValue { 0.6 }
+	private static var alphaBackgroundStrong: ColorValue { 0.85 }
 	
 	private static var clearValue: String { value(.black, alpha: 0) }
 	
 	// MARK: Intermediate → Visual Studio Code
 	
 	public static func visualStudioCodeTheme(from theme: IntermediateTheme) throws -> VisualStudioCodeTheme {
-		let accentColorPrimary = theme.globalTypeProject
-		let accentColorSecondary = theme.referenceTypeProject
-		let accentColorTertiary = theme.valueTypeProject
+		let accentColorPrimary = theme.keyword
+		let accentColorSecondary = theme.globalTypeProject
+		let accentColorTertiary = theme.globalTypeSystem
 		
 		let foregroundColor = theme.foreground
 		let inactiveForegroundColor = transformedColor(from: foregroundColor, applying: (0, 0, -0.3))
@@ -50,16 +49,19 @@ extension VisualStudioCodeThemeModeler {
 		let panelBackgroundColor = transformedColor(from: backgroundColor, applying: (0, 0.015, -0.025))
 		let panelHighlightColor = transformedColor(from: panelBackgroundColor, skewing: .lighter, modifier: 1.75)
 		let overlayBackgroundColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 1)
-		let decorationBackgroundColor = transformedColor(from: accentColorSecondary, applying: (0, 0.075, -0.1))
+		let decorationBackgroundColor = transformedColor(from: accentColorTertiary, applying: (0, 0.075, -0.1))
 		
-		let windowDecorationColor = transformedColor(from: backgroundColor, applying: (0, -0.025, 0.075))
+		let selectionBackground = theme.selectionBackground
+		let inactiveSelectionBackground = transformedColor(from: selectionBackground, applying: (0, 0, -0.1))
+		
+		let windowDecorationColor = transformedColor(from: backgroundColor, applying: (0, 0, 0.075))
 		let inactiveWindowDecorationColor = transformedColor(from: windowDecorationColor, skewing: .darker, modifier: 0.25)
-		let statusDebuggingColor = transformedColor(from: accentColorSecondary, applying: (0, 0.1, -0.25))
-		let statusTemporaryColor = transformedColor(from: accentColorSecondary, applying: (0, 0.1, -0.25))
+		let statusDebuggingColor = transformedColor(from: accentColorTertiary, applying: (0, 0.1, -0.25))
+		let statusTemporaryColor = transformedColor(from: accentColorTertiary, applying: (0, 0.1, -0.25))
 		
 		let hoverColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 0.35)
 		let borderColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 0.35)
-		let activeBorderColor = transformedColor(from: accentColorPrimary, skewing: .darker, modifier: 0.5)
+		let activeBorderColor = transformedColor(from: accentColorSecondary, skewing: .darker, modifier: 0.5)
 		let shadowColor = transformedColor(from: backgroundColor, skewing: .darker, modifier: 1)
 
 		return VisualStudioCodeTheme(
@@ -77,14 +79,19 @@ extension VisualStudioCodeThemeModeler {
 				key(.editor, .background): value(backgroundColor),
 				key(.editor, .foreground): value(foregroundColor),
 				key(.editor, .lineHighlightBackground): value(theme.activeLineBackground),
+				key(.editor, .selectionBackground): value(selectionBackground, alpha: alphaBackgroundStrong),
+				key(.editor, .inactiveSelectionBackground): value(inactiveSelectionBackground, alpha: alphaBackgroundMedium),
+				key(.editor, .findMatchBackground): value(selectionBackground, alpha: alphaBackgroundStrong),
+				key(.editor, .findMatchHighlightBackground): value(inactiveSelectionBackground, alpha: alphaBackgroundMedium),
 				key(.editorCursor, .foreground): value(theme.insertionPoint),
 				key(.editorGroup, .border): value(borderColor),
 				key(.editorGroupHeader, .tabsBackground): value(panelBackgroundColor),
 				key(.editorGroupHeader, .tabsBorder): value(borderColor),
 				key(.editorLineNumber, .foreground): value(fadedInactiveForegroundColor),
 				key(.editorLineNumber, .activeForeground): value(fadedForegroundColor),
-				key(.editor, .selectionBackground): value(theme.selectionBackground),
-				key(.selection, .background): value(theme.selectionBackground),
+				key(.selection, .background): value(selectionBackground, alpha: alphaBackgroundStrong),
+				key(.editor, .wordHighlightStrongBackground): value(Color.red, alpha: alphaBackgroundMedium),
+				key(.editor, .wordHighlightBackground): value(Color.red, alpha: alphaBackgroundMedium),
 				key(.tab, .border): value(borderColor, alpha: alphaFaded),
 				key(.tab, .lastPinnedBorder): value(borderColor, alpha: alphaFaded),
 				key(.tab, .activeBackground): value(backgroundColor),
@@ -114,10 +121,10 @@ extension VisualStudioCodeThemeModeler {
 				key(.notifications, .border): value(borderColor, alpha: alphaFaded),
 				key(.notifications, .shadow): value(shadowColor, alpha: alphaShadow),
 				key(.list, .dropBackground): value(panelBackgroundColor, alpha: alphaBackgroundLight),
-				key(.list, .activeSelectionBackground): value(panelBackgroundColor, alpha: alphaBackgroundRegular),
-				key(.list, .inactiveSelectionBackground): value(panelBackgroundColor, alpha: alphaBackgroundRegular),
+				key(.list, .activeSelectionBackground): value(panelBackgroundColor, alpha: alphaBackgroundLight),
+				key(.list, .inactiveSelectionBackground): value(panelBackgroundColor, alpha: alphaBackgroundLight),
 				key(.list, .focusBackground): value(panelBackgroundColor, alpha: alphaBackgroundMedium),
-				key(.list, .hoverBackground): value(borderColor, alpha: alphaBackgroundBold)
+				key(.list, .hoverBackground): value(borderColor, alpha: alphaBackgroundStrong)
 			],
 			tokenColors: tokenColors(from: theme)
 		)
