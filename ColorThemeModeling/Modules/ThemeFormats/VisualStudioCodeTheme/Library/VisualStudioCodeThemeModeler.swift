@@ -23,7 +23,7 @@ extension VisualStudioCodeThemeModeler {
 	
 	private static var errorColor: Color { Color(red: 1, green: 0.325, blue: 0.439) }
 	
-	private static var alphaFaded: ColorValue { 0.35 }
+	private static var alphaBorder: ColorValue { 0.35 }
 	private static var alphaShadow: ColorValue { 0.5 }
 	
 	private static var alphaBackgroundLight: ColorValue { 0.15 }
@@ -70,7 +70,7 @@ extension VisualStudioCodeThemeModeler {
 			colors: [
 				key(.foreground): value(foregroundColor),
 				key(.descriptionForeground): value(fadedForegroundColor),
-				key(.focusBorder): value(borderColor, alpha: alphaFaded),
+				key(.focusBorder): value(borderColor, alpha: alphaBorder),
 				key(.badge, .background): value(decorationBackgroundColor),
 				key(.badge, .foreground): value(theme.foreground),
 				key(.titleBar, .border): value(borderColor),
@@ -83,6 +83,8 @@ extension VisualStudioCodeThemeModeler {
 				key(.editor, .inactiveSelectionBackground): value(inactiveSelectionBackground, alpha: alphaBackgroundMedium),
 				key(.editor, .findMatchBackground): value(selectionBackground, alpha: alphaBackgroundStrong),
 				key(.editor, .findMatchHighlightBackground): value(inactiveSelectionBackground, alpha: alphaBackgroundMedium),
+				key(.editor, .wordHighlightStrongBackground): value(Color.red, alpha: alphaBackgroundMedium),
+				key(.editor, .wordHighlightBackground): value(Color.red, alpha: alphaBackgroundMedium),
 				key(.editorCursor, .foreground): value(theme.insertionPoint),
 				key(.editorGroup, .border): value(borderColor),
 				key(.editorGroupHeader, .tabsBackground): value(panelBackgroundColor),
@@ -90,10 +92,13 @@ extension VisualStudioCodeThemeModeler {
 				key(.editorLineNumber, .foreground): value(fadedInactiveForegroundColor),
 				key(.editorLineNumber, .activeForeground): value(fadedForegroundColor),
 				key(.selection, .background): value(selectionBackground, alpha: alphaBackgroundStrong),
-				key(.editor, .wordHighlightStrongBackground): value(Color.red, alpha: alphaBackgroundMedium),
-				key(.editor, .wordHighlightBackground): value(Color.red, alpha: alphaBackgroundMedium),
-				key(.tab, .border): value(borderColor, alpha: alphaFaded),
-				key(.tab, .lastPinnedBorder): value(borderColor, alpha: alphaFaded),
+				key(.list, .dropBackground): value(panelBackgroundColor, alpha: alphaBackgroundLight),
+				key(.list, .activeSelectionBackground): value(panelBackgroundColor, alpha: alphaBackgroundLight),
+				key(.list, .inactiveSelectionBackground): value(panelBackgroundColor, alpha: alphaBackgroundLight),
+				key(.list, .focusBackground): value(panelBackgroundColor, alpha: alphaBackgroundMedium),
+				key(.list, .hoverBackground): value(borderColor, alpha: alphaBackgroundStrong),
+				key(.tab, .border): value(borderColor, alpha: alphaBorder),
+				key(.tab, .lastPinnedBorder): value(borderColor, alpha: alphaBorder),
 				key(.tab, .activeBackground): value(backgroundColor),
 				key(.tab, .inactiveBackground): value(panelBackgroundColor),
 				key(.tab, .hoverBackground): value(hoverColor),
@@ -118,13 +123,8 @@ extension VisualStudioCodeThemeModeler {
 				key(.widget, .shadow): value(shadowColor, alpha: alphaShadow),
 				key(.scrollbar, .shadow): value(shadowColor, alpha: alphaShadow),
 				key(.notifications, .background): value(overlayBackgroundColor),
-				key(.notifications, .border): value(borderColor, alpha: alphaFaded),
+				key(.notifications, .border): value(borderColor, alpha: alphaBorder),
 				key(.notifications, .shadow): value(shadowColor, alpha: alphaShadow),
-				key(.list, .dropBackground): value(panelBackgroundColor, alpha: alphaBackgroundLight),
-				key(.list, .activeSelectionBackground): value(panelBackgroundColor, alpha: alphaBackgroundLight),
-				key(.list, .inactiveSelectionBackground): value(panelBackgroundColor, alpha: alphaBackgroundLight),
-				key(.list, .focusBackground): value(panelBackgroundColor, alpha: alphaBackgroundMedium),
-				key(.list, .hoverBackground): value(borderColor, alpha: alphaBackgroundStrong)
 			],
 			tokenColors: tokenColors(from: theme)
 		)
