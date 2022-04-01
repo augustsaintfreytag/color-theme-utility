@@ -151,7 +151,12 @@ extension VisualStudioCodeThemeModeler {
 				key(.button, .background): value(buttonColorPrimary),
 				key(.button, .foreground): value(foregroundColor),
 				key(.button, .secondaryBackground): value(buttonColorSecondary),
-				key(.button, .secondaryForeground): value(foregroundColor)
+				key(.button, .secondaryForeground): value(foregroundColor),
+				key(.gitDecoration, .modifiedResourceForeground): value(markupModifiedColor),
+				key(.gitDecoration, .deletedResourceForeground): value(markupDeletedColor),
+				key(.gitDecoration, .untrackedResourceForeground): value(fadedForegroundColor),
+				key(.gitDecoration, .ignoredResourceForeground): value(fadedInactiveForegroundColor),
+				key(.gitDecoration, .conflictingResourceForeground): value(markupConflictColor)
 			],
 			tokenColors: tokenColors(from: theme)
 		)
