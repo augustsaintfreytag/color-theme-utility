@@ -130,6 +130,11 @@ public enum TextMateThemeSettingKey: String, Codable, CaseIterable {
 	case addedBackground
 	case modifiedBackground
 	case deletedBackground
+	case modifiedResourceForeground
+	case deletedResourceForeground
+	case untrackedResourceForeground
+	case ignoredResourceForeground
+	case conflictingResourceForeground
 }
 
 extension TextMateThemeSettingKey: CustomStringConvertible {

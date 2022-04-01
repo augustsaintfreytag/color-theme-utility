@@ -113,6 +113,7 @@ public enum VisualStudioCodeThemeColorRoot: String {
 	case notifications
 	case notificationCenterHeader
 	case diffEditor
+	case gitDecoration
 }
 
 extension VisualStudioCodeThemeColorRoot: CustomStringConvertible {

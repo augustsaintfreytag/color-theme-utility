@@ -17,9 +17,15 @@ extension VisualStudioCodeThemeModeler {
 	
 	private static var defaultThemeName: String { "Color Theme Utility Output" }
 	
-	private static var markupAddedColor: Color { Color(red: 0.478, green: 0.847, blue: 0.568) }
-	private static var markupModifiedColor: Color { Color(red: 0.780, green: 0.573, blue: 0.918) }
+	private static var markupAddedColor: Color { Color(red: 0.474, green: 0.909, blue: 0.584) }
+	private static var markupModifiedColor: Color { Color(red: 0.808, green: 0.608, blue: 0.950) }
 	private static var markupDeletedColor: Color { Color(red: 1, green: 0.325, blue: 0.439) }
+	private static var markupConflictColor: Color { Color(red: 1, green: 0.608, blue: 0.412) }
+	
+	private static var markupAddedBackgroundColor: Color { transformedColor(from: markupAddedColor, applying: (0, 0, 0.2)) }
+	private static var markupModifiedBackgroundColor: Color { transformedColor(from: markupModifiedColor, applying: (0, 0, 0.2)) }
+	private static var markupDeletedBackgroundColor: Color { transformedColor(from: markupDeletedColor, applying: (0, 0, 0.2)) }
+	private static var markupConflictBackgroundColor: Color { transformedColor(from: markupConflictColor, applying: (0, 0, 0.2)) }
 	
 	private static var errorColor: Color { Color(red: 1, green: 0.325, blue: 0.439) }
 	
@@ -98,12 +104,12 @@ extension VisualStudioCodeThemeModeler {
 				key(.editorGroupHeader, .tabsBorder): value(borderColor),
 				key(.editorLineNumber, .foreground): value(fadedInactiveForegroundColor),
 				key(.editorLineNumber, .activeForeground): value(fadedForegroundColor),
-				key(.editorGutter, .addedBackground): value(markupAddedColor),
-				key(.editorGutter, .modifiedBackground): value(markupModifiedColor),
-				key(.editorGutter, .deletedBackground): value(markupDeletedColor),
-				key(.minimapGutter, .addedBackground): value(markupAddedColor),
-				key(.minimapGutter, .modifiedBackground): value(markupModifiedColor),
-				key(.minimapGutter, .deletedBackground): value(markupDeletedColor),
+				key(.editorGutter, .addedBackground): value(markupAddedBackgroundColor),
+				key(.editorGutter, .modifiedBackground): value(markupModifiedBackgroundColor),
+				key(.editorGutter, .deletedBackground): value(markupDeletedBackgroundColor),
+				key(.minimapGutter, .addedBackground): value(markupAddedBackgroundColor),
+				key(.minimapGutter, .modifiedBackground): value(markupModifiedBackgroundColor),
+				key(.minimapGutter, .deletedBackground): value(markupDeletedBackgroundColor),
 				key(.selection, .background): value(selectionBackground, alpha: alphaBackgroundStrong),
 				key(.list, .background): value(overlayBackgroundColor),
 				key(.list, .focusBackground): value(overlayHighlightColor, alpha: alphaBackgroundMedium),
