@@ -111,6 +111,7 @@ public enum VisualStudioCodeThemeColorRoot: String {
 	case minimapGutter
 	case widget
 	case notifications
+	case notificationCenterHeader
 	case diffEditor
 }
 
