@@ -76,6 +76,10 @@ extension VisualStudioCodeThemeModeler {
 		let buttonColorPrimary = transformedColor(from: accentColorPrimary, applying: (0, 0.075, -0.2))
 		let buttonColorSecondary = transformedColor(from: accentColorSecondary, applying: (0, 0.075, -0.2))
 		
+		let inputForegroundColor = foregroundColor
+		let inputPlaceholderForegroundColor = transformedColor(from: inputForegroundColor, skewing: .darker, modifier: 1)
+		let inputBackgroundColor = transformedColor(from: panelBackgroundColor, skewing: .lighter, modifier: 2.5)
+		
 		let hoverColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 0.35)
 		let borderColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 0.35)
 		let activeBorderColor = transformedColor(from: accentColorSecondary, skewing: .darker, modifier: 0.5)
@@ -115,6 +119,8 @@ extension VisualStudioCodeThemeModeler {
 				key(.list, .focusBackground): value(overlayHighlightColor, alpha: alphaBackgroundMedium),
 				key(.list, .hoverBackground): value(overlayHighlightColor, alpha: alphaBackgroundMedium),
 				key(.list, .dropBackground): value(overlayHighlightColor, alpha: alphaBackgroundMedium),
+				key(.list, .activeSelectionBackground): value(overlayBackgroundColor, alpha: alphaBackgroundLight),
+				key(.list, .inactiveSelectionBackground): value(overlayBackgroundColor, alpha: alphaBackgroundLight),
 				key(.tab, .border): value(borderColor, alpha: alphaBorder),
 				key(.tab, .lastPinnedBorder): value(borderColor, alpha: alphaBorder),
 				key(.tab, .activeBackground): value(backgroundColor),
@@ -156,7 +162,14 @@ extension VisualStudioCodeThemeModeler {
 				key(.gitDecoration, .deletedResourceForeground): value(markupDeletedColor),
 				key(.gitDecoration, .untrackedResourceForeground): value(fadedForegroundColor),
 				key(.gitDecoration, .ignoredResourceForeground): value(fadedInactiveForegroundColor),
-				key(.gitDecoration, .conflictingResourceForeground): value(markupConflictColor)
+				key(.gitDecoration, .conflictingResourceForeground): value(markupConflictColor),
+				key(.input, .background): value(inputBackgroundColor),
+				key(.input, .foreground): value(inputForegroundColor),
+				key(.input, .placeholderForeground): value(inputPlaceholderForegroundColor),
+				key(.input, .border): value(borderColor, alpha: alphaBorder),
+				key(.inputOption, .background): value(inputBackgroundColor),
+				key(.inputOption, .foreground): value(inputForegroundColor),
+				key(.inputOption, .border): value(borderColor, alpha: alphaBorder)
 			],
 			tokenColors: tokenColors(from: theme)
 		)
