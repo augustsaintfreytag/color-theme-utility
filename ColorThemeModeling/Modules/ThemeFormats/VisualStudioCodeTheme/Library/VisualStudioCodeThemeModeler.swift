@@ -96,6 +96,9 @@ extension VisualStudioCodeThemeModeler {
 		let inputHighlightBackgroundColor = transformedColor(from: accentColorSecondary, applying: (0, 0.075, -0.2))
 		let inputHighlightForegroundColor = transformedColor(from: inputForegroundColor, applying: (0, 0.075, 0.1))
 		
+		let terminalBlackLikeColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 2.5)
+		let terminalWhiteLikeColor = foregroundColor
+		
 		let hoverColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 0.35)
 		let borderColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 0.5)
 		let activeBorderColor = transformedColor(from: accentColorSecondary, skewing: .darker, modifier: 0.5)
@@ -240,7 +243,24 @@ extension VisualStudioCodeThemeModeler {
 				key(.inputValidation, .warningBackground): value(inputBackgroundColor),
 				key(.inputValidation, .warningBorder): value(warningColor),
 				key(.inputValidation, .infoBackground): value(inputBackgroundColor),
-				key(.inputValidation, .infoBorder): value(accentColorPrimary)
+				key(.inputValidation, .infoBorder): value(accentColorPrimary),
+				
+				terminalKey(.ansiBlack): value(terminalBlackLikeColor),
+				terminalKey(.ansiWhite): value(terminalWhiteLikeColor),
+				terminalKey(.ansiRed): value(theme.globalTypeProject),
+				terminalKey(.ansiGreen): value(theme.referenceTypeProject),
+				terminalKey(.ansiYellow): value(theme.valueTypeProject),
+				terminalKey(.ansiBlue): value(theme.constantProject),
+				terminalKey(.ansiMagenta): value(theme.variableProject),
+				terminalKey(.ansiCyan): value(theme.functionProject),
+				terminalKey(.ansiBrightBlack): value(transformedColor(from: terminalBlackLikeColor, skewing: .lighter, modifier: 1)),
+				terminalKey(.ansiBrightWhite): value(transformedColor(from: terminalWhiteLikeColor, skewing: .lighter, modifier: 1)),
+				terminalKey(.ansiBrightRed): value(transformedColor(from: theme.globalTypeProject, skewing: .lighter, modifier: 1)),
+				terminalKey(.ansiBrightGreen): value(transformedColor(from: theme.referenceTypeProject, skewing: .lighter, modifier: 1)),
+				terminalKey(.ansiBrightYellow): value(transformedColor(from: theme.valueTypeProject, skewing: .lighter, modifier: 1)),
+				terminalKey(.ansiBrightBlue): value(transformedColor(from: theme.constantProject, skewing: .lighter, modifier: 1)),
+				terminalKey(.ansiBrightMagenta): value(transformedColor(from: theme.variableProject, skewing: .lighter, modifier: 1)),
+				terminalKey(.ansiBrightCyan): value(transformedColor(from: theme.functionProject, skewing: .lighter, modifier: 1))
 			],
 			tokenColors: tokenColors(from: theme)
 		)
@@ -789,11 +809,11 @@ extension VisualStudioCodeThemeModeler {
 		return color
 	}
 	
-	private static func value(_ color: Color, alpha: ColorValue? = nil) -> String {
-		guard let alpha = alpha else {
-			return color.hexadecimalString
-		}
-		
+	private static func value(_ color: Color) -> String {
+		return color.hexadecimalString
+	}
+	
+	private static func value(_ color: Color, alpha: ColorValue) -> String {
 		return color.hexadecimalString + hexadecimalStringComponent(for: alpha)
 	}
 	
@@ -803,6 +823,10 @@ extension VisualStudioCodeThemeModeler {
 	
 	private static func key(_ setting: Theme.TokenColors.SettingKey) -> String {
 		return setting.description
+	}
+	
+	private static func terminalKey(_ setting: Theme.TokenColors.TerminalSettingKey) -> String {
+		return "\(Theme.ColorRoot.terminal.description).\(setting.description)"
 	}
 	
 }
