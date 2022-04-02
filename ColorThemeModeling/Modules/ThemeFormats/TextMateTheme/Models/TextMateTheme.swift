@@ -110,6 +110,7 @@ public enum TextMateThemeSettingKey: String, Codable, CaseIterable {
 	case selectionForeground
 	case selectionHighlightBackground
 	case selectionHighlightBorder
+	case selectionOccurrenceHighlight
 	case inactiveSelection
 	case selectionHighlight
 	case activeSelectionBackground
@@ -141,18 +142,24 @@ public enum TextMateThemeSettingKey: String, Codable, CaseIterable {
 	case resizeBorder
 	case errorBackground
 	case errorBorder
+	case errorHighlight
 	case warningBackground
 	case warningBorder
+	case warningHighlight
 	case infoBackground
 	case infoBorder
 	case addedBackground
 	case modifiedBackground
 	case deletedBackground
+	case addedResourceForeground
 	case modifiedResourceForeground
 	case deletedResourceForeground
 	case untrackedResourceForeground
 	case ignoredResourceForeground
 	case conflictingResourceForeground
+	case renamedResourceForeground
+	case stageModifiedResourceForeground
+	case stageDeletedResourceForeground
 }
 
 extension TextMateThemeSettingKey: CustomStringConvertible {

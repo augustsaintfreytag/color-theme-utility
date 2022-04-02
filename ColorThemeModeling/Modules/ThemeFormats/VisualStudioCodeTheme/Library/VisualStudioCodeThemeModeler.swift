@@ -17,15 +17,15 @@ extension VisualStudioCodeThemeModeler {
 	
 	private static var defaultThemeName: String { "Color Theme Utility Output" }
 	
-	private static var markupAddedColor: Color { Color(red: 0.474, green: 0.909, blue: 0.584) }
+	private static var markupAddedColor: Color { Color(red: 0.365, green: 0.941, blue: 0.616) }		// #5df09d
 	private static var markupModifiedColor: Color { Color(red: 0.808, green: 0.608, blue: 0.950) }
 	private static var markupDeletedColor: Color { Color(red: 1, green: 0.325, blue: 0.439) }
 	private static var markupConflictColor: Color { Color(red: 1, green: 0.608, blue: 0.412) }
 	
-	private static var markupAddedBackgroundColor: Color { transformedColor(from: markupAddedColor, applying: (0, 0, 0.2)) }
-	private static var markupModifiedBackgroundColor: Color { transformedColor(from: markupModifiedColor, applying: (0, 0, 0.2)) }
-	private static var markupDeletedBackgroundColor: Color { transformedColor(from: markupDeletedColor, applying: (0, 0, 0.2)) }
-	private static var markupConflictBackgroundColor: Color { transformedColor(from: markupConflictColor, applying: (0, 0, 0.2)) }
+	private static var markupAddedBackgroundColor: Color { transformedColor(from: markupAddedColor, applying: (0, 0, -0.2)) }
+	private static var markupModifiedBackgroundColor: Color { transformedColor(from: markupModifiedColor, applying: (0, 0, -0.2)) }
+	private static var markupDeletedBackgroundColor: Color { transformedColor(from: markupDeletedColor, applying: (0, 0, -0.2)) }
+	private static var markupConflictBackgroundColor: Color { transformedColor(from: markupConflictColor, applying: (0, 0, -0.2)) }
 	
 	private static var errorColor: Color { Color(red: 0.988, green: 0.530, blue: 0.416) }
 	private static var warningColor: Color { Color(red: 0.988, green: 0.827, blue: 0.415) }
@@ -36,6 +36,7 @@ extension VisualStudioCodeThemeModeler {
 	private static var alphaBackgroundLight: ColorValue { 0.15 }
 	private static var alphaBackgroundMedium: ColorValue { 0.35 }
 	private static var alphaBackgroundStrong: ColorValue { 0.6 }
+	private static var alphaBackgroundFull: ColorValue { 1.0 }
 	
 	private static var clearValue: String { value(.black, alpha: 0) }
 	
@@ -53,7 +54,8 @@ extension VisualStudioCodeThemeModeler {
 		
 		let backgroundColor = theme.background
 		let panelBackgroundColor = transformedColor(from: backgroundColor, applying: (0, 0.01, -0.03))
-		let panelHighlightColor = transformedColor(from: panelBackgroundColor, skewing: .lighter, modifier: 1.5)
+		let panelActiveBackgroundColor = transformedColor(from: panelBackgroundColor, skewing: .lighter, modifier: 1.5)
+		let panelHighlightColor = transformedColor(from: panelBackgroundColor, skewing: .lighter, modifier: 2.5)
 		let panelHeaderBackgroundColor = transformedColor(from: panelBackgroundColor, skewing: .lighter, modifier: 0.75)
 		
 		let overlayHeaderBackgroundColor = transformedColor(from: panelHeaderBackgroundColor, skewing: .lighter, modifier: 2)
@@ -67,12 +69,14 @@ extension VisualStudioCodeThemeModeler {
 		let itemSelectedHighlightForegroundColor = transformedColor(from: accentColorPrimary, skewing: .lighter, modifier: 1.5)
 
 		let decorationBackgroundColor = transformedColor(from: accentColorPrimary, applying: (0, 0.15, -0.2))
+		let decorationForegroundColor = transformedColor(from: accentColorPrimary, applying: (0, -0.15, -0.5))
+		let decorationActiveForegroundColor = transformedColor(from: decorationForegroundColor, applying: (0, 0.1, 0.2))
 		
-		let selectionBackground = theme.selectionBackground
-		let inactiveSelectionBackground = transformedColor(from: selectionBackground, applying: (0, 0, -0.1))
+		let selectionBackgroundColor = theme.selectionBackground
+		let inactiveSelectionBackgroundColor = transformedColor(from: selectionBackgroundColor, applying: (0, -0.15, -0.2))
 		
-		let searchSelectionBackground = transformedColor(from: selectionBackground, applying: (0, -0.1, -0.1))
-		let inactiveSearchSelectionBackground = transformedColor(from: searchSelectionBackground, applying: (0, 0, -0.1))
+		let searchSelectionBackgroundColor = transformedColor(from: selectionBackgroundColor, applying: (0, -0.1, -0.15))
+		let inactiveSearchSelectionBackgroundColor = transformedColor(from: searchSelectionBackgroundColor, applying: (0, 0, -0.1))
 		
 		let windowDecorationColor = transformedColor(from: backgroundColor, applying: (0, 0, 0.075))
 		let inactiveWindowDecorationColor = transformedColor(from: windowDecorationColor, skewing: .darker, modifier: 0.25)
@@ -80,10 +84,10 @@ extension VisualStudioCodeThemeModeler {
 		let statusDebuggingColor = transformedColor(from: accentColorSecondary, applying: (0, 0.075, -0.2))
 		let statusTemporaryColor = transformedColor(from: accentColorSecondary, applying: (0, 0.075, -0.2))
 		
-		let buttonForegroundColor = transformedColor(from: foregroundColor, skewing: .lighter, modifier: 2.5)
-		let buttonColorPrimary = transformedColor(from: accentColorPrimary, applying: (0, 0.05, -0.25))
+		let buttonForegroundColor = decorationForegroundColor
+		let buttonColorPrimary = transformedColor(from: accentColorPrimary, applying: (0, 0.05, -0.2))
 		let buttonHighlightColorPrimary = transformedColor(from: buttonColorPrimary, skewing: .lighter, modifier: 1.5)
-		let buttonColorSecondary = transformedColor(from: accentColorSecondary, applying: (0, 0.05, -0.25))
+		let buttonColorSecondary = transformedColor(from: accentColorSecondary, applying: (0, 0.05, -0.2))
 		let buttonHighlightColorSecondary = transformedColor(from: accentColorSecondary, skewing: .lighter, modifier: 1.5)
 		
 		let inputForegroundColor = foregroundColor
@@ -109,20 +113,20 @@ extension VisualStudioCodeThemeModeler {
 				key(.titleBar, .activeBackground): value(windowDecorationColor),
 				key(.titleBar, .inactiveBackground): value(inactiveWindowDecorationColor),
 				
-				key(.selection, .background): value(selectionBackground, alpha: alphaBackgroundStrong),
+				key(.selection, .background): value(selectionBackgroundColor, alpha: alphaBackgroundStrong),
 				key(.scrollbar, .shadow): value(shadowColor, alpha: alphaShadow),
 				key(.widget, .shadow): value(shadowColor, alpha: alphaShadow),
 				
 				key(.editor, .background): value(backgroundColor),
 				key(.editor, .foreground): value(foregroundColor),
 				key(.editor, .lineHighlightBackground): value(theme.activeLineBackground),
-				key(.editor, .inactiveSelectionBackground): value(inactiveSelectionBackground, alpha: alphaBackgroundStrong),
-				key(.editor, .selectionBackground): value(selectionBackground, alpha: alphaBackgroundStrong),
-				key(.editor, .selectionHighlightBackground): value(inactiveSelectionBackground, alpha: alphaBackgroundStrong),
-				key(.editor, .findMatchBackground): value(searchSelectionBackground, alpha: alphaBackgroundStrong),
-				key(.editor, .findMatchHighlightBackground): value(inactiveSearchSelectionBackground, alpha: alphaBackgroundStrong),
-				key(.editor, .wordHighlightBackground): value(inactiveSearchSelectionBackground, alpha: alphaBackgroundMedium),
-				key(.editor, .wordHighlightStrongBackground): value(inactiveSearchSelectionBackground, alpha: alphaBackgroundMedium),
+				key(.editor, .selectionBackground): value(selectionBackgroundColor, alpha: alphaBackgroundFull),
+				key(.editor, .inactiveSelectionBackground): value(inactiveSelectionBackgroundColor, alpha: alphaBackgroundFull),
+				key(.editor, .selectionHighlightBackground): value(searchSelectionBackgroundColor, alpha: alphaBackgroundFull),
+				key(.editor, .findMatchBackground): value(searchSelectionBackgroundColor, alpha: alphaBackgroundFull),
+				key(.editor, .findMatchHighlightBackground): value(inactiveSearchSelectionBackgroundColor, alpha: alphaBackgroundFull),
+				key(.editor, .wordHighlightBackground): value(inactiveSearchSelectionBackgroundColor, alpha: alphaBackgroundFull),
+				key(.editor, .wordHighlightStrongBackground): value(inactiveSearchSelectionBackgroundColor, alpha: alphaBackgroundFull),
 				
 				key(.editorCursor, .foreground): value(theme.insertionPoint),
 				key(.editorGroup, .border): value(borderColor),
@@ -143,7 +147,11 @@ extension VisualStudioCodeThemeModeler {
 				key(.editorSuggestWidget, .focusHighlightForeground): value(itemSelectedHighlightForegroundColor),
 				key(.editorCodeLens, .foreground): value(fadedForegroundColor),
 
-				key(.minimap, .findMatchHighlight): value(searchSelectionBackground),
+				key(.minimap, .selectionHighlight): value(selectionBackgroundColor, alpha: alphaBackgroundStrong),
+				key(.minimap, .findMatchHighlight): value(searchSelectionBackgroundColor, alpha: alphaBackgroundStrong),
+				key(.minimap, .selectionOccurrenceHighlight): value(inactiveSearchSelectionBackgroundColor, alpha: alphaBackgroundStrong),
+				key(.minimap, .warningHighlight): value(warningColor, alpha: alphaBackgroundStrong),
+				key(.minimap, .errorHighlight): value(errorColor, alpha: alphaBackgroundStrong),
 				key(.minimapGutter, .addedBackground): value(markupAddedBackgroundColor),
 				key(.minimapGutter, .modifiedBackground): value(markupModifiedBackgroundColor),
 				key(.minimapGutter, .deletedBackground): value(markupDeletedBackgroundColor),
@@ -164,12 +172,14 @@ extension VisualStudioCodeThemeModeler {
 				
 				key(.activityBar, .border): value(borderColor),
 				key(.activityBar, .background): value(panelBackgroundColor),
-				key(.activityBar, .foreground): value(foregroundColor),
-				key(.activityBar, .inactiveForeground): value(inactiveForegroundColor),
+				key(.activityBar, .activeBackground): value(panelActiveBackgroundColor),
+				key(.activityBar, .foreground): value(decorationActiveForegroundColor),
+				key(.activityBar, .inactiveForeground): value(decorationForegroundColor),
 				key(.activityBarBadge, .background): value(decorationBackgroundColor),
+				key(.activityBarBadge, .foreground): value(decorationForegroundColor),
 				
 				key(.badge, .background): value(decorationBackgroundColor),
-				key(.badge, .foreground): value(foregroundColor),
+				key(.badge, .foreground): value(decorationForegroundColor),
 				
 				key(.panel, .background): value(panelBackgroundColor),
 				key(.panel, .border): value(borderColor),
@@ -199,11 +209,15 @@ extension VisualStudioCodeThemeModeler {
 				key(.button, .secondaryHoverBackground): value(buttonHighlightColorSecondary),
 				key(.button, .secondaryForeground): value(buttonForegroundColor),
 				
+				key(.gitDecoration, .addedResourceForeground): value(markupAddedColor),
 				key(.gitDecoration, .modifiedResourceForeground): value(markupModifiedColor),
 				key(.gitDecoration, .deletedResourceForeground): value(markupDeletedColor),
 				key(.gitDecoration, .untrackedResourceForeground): value(fadedForegroundColor),
 				key(.gitDecoration, .ignoredResourceForeground): value(fadedInactiveForegroundColor),
 				key(.gitDecoration, .conflictingResourceForeground): value(markupConflictColor),
+				key(.gitDecoration, .renamedResourceForeground): value(markupModifiedColor),
+				key(.gitDecoration, .stageModifiedResourceForeground): value(markupModifiedColor),
+				key(.gitDecoration, .stageDeletedResourceForeground): value(markupDeletedColor),
 				
 				key(.input, .background): value(inputBackgroundColor),
 				key(.input, .foreground): value(inputForegroundColor),
