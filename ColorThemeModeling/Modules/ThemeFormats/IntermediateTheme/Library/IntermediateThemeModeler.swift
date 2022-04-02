@@ -35,8 +35,10 @@ extension IntermediateThemeModeler {
 	/// once additional values are needed as input.
 	public static func theme(from colors: [Color], name: String? = nil, cascade shouldCascade: Bool = true) throws -> IntermediateTheme {
 		let originColors = try originColors(from: colors)
-
 		let defaultColorTransform: ColorTransform = shouldCascade ? .darker : .none
+		
+		let primaryAccentColor = originColors.keywords
+		let secondaryAccentColor = originColors.variables
 		
 		let backgroundColor = originColors.background
 		let foregroundColor = originColors.foreground
@@ -45,7 +47,7 @@ extension IntermediateThemeModeler {
 		let commentColors = cascadingColorSequence(from: commentBaseColor, numberOfColors: 2, skewing: .darker)
 
 		let keywordColor = originColors.keywords
-
+		
 		let referenceTypeColors = cascadingColorSequence(from: originColors.referenceTypes, numberOfColors: 3, skewing: defaultColorTransform)
 		let valueTypeColors = cascadingColorSequence(from: originColors.valueTypes, numberOfColors: 3, skewing: defaultColorTransform)
 		let functionColors = cascadingColorSequence(from: originColors.functions, numberOfColors: 4, skewing: defaultColorTransform)
@@ -55,9 +57,9 @@ extension IntermediateThemeModeler {
 		let numberColor = originColors.numbers
 		
 		let activeLineBackgroundColor = transformedColor(from: originColors.background, applying: (0, 0, 0.025))
-		let selectionBackgroundColor = transformedColor(from: originColors.keywords, applying: (0, 0.35, -0.15))
-		let insertionPointColor = transformedColor(from: originColors.keywords, applying: (0, -0.1, -0.1))
-		let instructionPointerColor = transformedColor(from: originColors.keywords, applying: (0, -0.25, -0.25))
+		let selectionBackgroundColor = transformedColor(from: secondaryAccentColor, applying: (0, 0.25, -0.15))
+		let insertionPointColor = transformedColor(from: primaryAccentColor, applying: (0, -0.1, -0.1))
+		let instructionPointerColor = transformedColor(from: primaryAccentColor, applying: (0, -0.25, -0.25))
 
 		return IntermediateTheme(
 			_format: IntermediateTheme.defaultFormat,
