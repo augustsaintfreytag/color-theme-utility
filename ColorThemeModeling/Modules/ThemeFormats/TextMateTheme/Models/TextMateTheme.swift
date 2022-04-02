@@ -73,7 +73,7 @@ extension TextMateThemeSetting: Codable {
 	
 }
 
-public enum TextMateThemeSettingKey: String, Codable, CaseIterable {
+public enum TextMateThemeSettingKey: String, Codable {
 	case fontStyle
 	case background
 	case activeBackground
