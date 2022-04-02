@@ -60,7 +60,7 @@ extension VisualStudioCodeThemeModeler {
 		
 		let overlayHeaderBackgroundColor = transformedColor(from: panelHeaderBackgroundColor, skewing: .lighter, modifier: 2)
 		let overlayBackgroundColor = transformedColor(from: panelBackgroundColor, skewing: .lighter, modifier: 2)
-		let overlayHighlightColor = transformedColor(from: overlayBackgroundColor, skewing: .lighter, modifier: 1)
+		let overlayHighlightColor = transformedColor(from: overlayBackgroundColor, skewing: .lighter, modifier: 2.5)
 		
 		let itemBackgroundColor = overlayBackgroundColor
 		let itemForegroundColor = foregroundColor
@@ -69,7 +69,7 @@ extension VisualStudioCodeThemeModeler {
 		let itemSelectedHighlightForegroundColor = transformedColor(from: accentColorPrimary, skewing: .lighter, modifier: 1.5)
 
 		let decorationBackgroundColor = transformedColor(from: accentColorPrimary, applying: (0, 0.15, -0.2))
-		let decorationForegroundColor = transformedColor(from: accentColorPrimary, applying: (0, -0.15, -0.5))
+		let decorationForegroundColor = transformedColor(from: accentColorPrimary, applying: (0, -0.1, -0.55))
 		let decorationActiveForegroundColor = transformedColor(from: decorationForegroundColor, applying: (0, 0.1, 0.2))
 		
 		let selectionBackgroundColor = theme.selectionBackground
@@ -80,6 +80,9 @@ extension VisualStudioCodeThemeModeler {
 		
 		let windowDecorationColor = transformedColor(from: backgroundColor, applying: (0, 0, 0.075))
 		let inactiveWindowDecorationColor = transformedColor(from: windowDecorationColor, skewing: .darker, modifier: 0.25)
+
+		let windowInterfaceElementColor = transformedColor(from: windowDecorationColor, applying: (0, 0, 0.25))
+		let windowInterfaceActiveElementColor = transformedColor(from: windowInterfaceElementColor, applying: (0, 0, 0.1))
 		
 		let statusDebuggingColor = transformedColor(from: accentColorSecondary, applying: (0, 0.075, -0.2))
 		let statusTemporaryColor = transformedColor(from: accentColorSecondary, applying: (0, 0.075, -0.2))
@@ -118,6 +121,9 @@ extension VisualStudioCodeThemeModeler {
 				
 				key(.selection, .background): value(selectionBackgroundColor, alpha: alphaBackgroundStrong),
 				key(.scrollbar, .shadow): value(shadowColor, alpha: alphaShadow),
+				key(.scrollbarSlider, .background): value(windowInterfaceElementColor, alpha: alphaBackgroundMedium),
+				key(.scrollbarSlider, .activeBackground): value(windowInterfaceActiveElementColor, alpha: alphaBackgroundMedium),
+				key(.scrollbarSlider, .hoverBackground): value(windowInterfaceActiveElementColor, alpha: alphaBackgroundMedium),
 				key(.widget, .shadow): value(shadowColor, alpha: alphaShadow),
 				
 				key(.editor, .background): value(backgroundColor),
