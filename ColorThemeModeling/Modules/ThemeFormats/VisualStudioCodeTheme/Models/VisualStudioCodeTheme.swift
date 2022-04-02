@@ -36,6 +36,7 @@ public struct VisualStudioCodeThemeTokenColors {
 	/// Visual Studio Code shares some of the theme format of the
 	/// TextMate editor and the setting key is equal in both.
 	public typealias SettingKey = TextMateThemeSettingKey
+	public typealias TerminalSettingKey = VisualStudioCodeTerminalSettingKey
 	
 	public typealias Settings = [SettingKey: String]
 	
@@ -115,10 +116,36 @@ public enum VisualStudioCodeThemeColorRoot: String {
 	case notificationCenterHeader
 	case diffEditor
 	case gitDecoration
+	case terminal
 	case settings
 }
 
 extension VisualStudioCodeThemeColorRoot: CustomStringConvertible {
+	
+	public var description: String { rawValue }
+	
+}
+
+public enum VisualStudioCodeTerminalSettingKey: String {
+	case ansiBlack
+	case ansiRed
+	case ansiGreen
+	case ansiYellow
+	case ansiBlue
+	case ansiMagenta
+	case ansiCyan
+	case ansiWhite
+	case ansiBrightBlack
+	case ansiBrightRed
+	case ansiBrightGreen
+	case ansiBrightYellow
+	case ansiBrightBlue
+	case ansiBrightMagenta
+	case ansiBrightCyan
+	case ansiBrightWhite
+}
+
+extension VisualStudioCodeTerminalSettingKey: CustomStringConvertible {
 	
 	public var description: String { rawValue }
 	
