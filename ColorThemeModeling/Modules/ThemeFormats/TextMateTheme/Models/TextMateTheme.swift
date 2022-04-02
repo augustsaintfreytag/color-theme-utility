@@ -128,6 +128,9 @@ public enum TextMateThemeSettingKey: String, Codable, CaseIterable {
 	case dropBackground
 	case debuggingBackground
 	case noFolderBackground
+	case checkboxBackground
+	case dropdownBackground
+	case listBackground
 	case addedBackground
 	case modifiedBackground
 	case deletedBackground

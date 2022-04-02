@@ -79,6 +79,7 @@ extension VisualStudioCodeThemeModeler {
 		let inputForegroundColor = foregroundColor
 		let inputPlaceholderForegroundColor = transformedColor(from: inputForegroundColor, skewing: .darker, modifier: 1)
 		let inputBackgroundColor = transformedColor(from: panelBackgroundColor, skewing: .lighter, modifier: 2.5)
+		let inputHighlightColor = transformedColor(from: inputBackgroundColor, skewing: .lighter, modifier: 1)
 		
 		let hoverColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 0.35)
 		let borderColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 0.35)
@@ -169,7 +170,12 @@ extension VisualStudioCodeThemeModeler {
 				key(.input, .border): value(borderColor, alpha: alphaBorder),
 				key(.inputOption, .background): value(inputBackgroundColor),
 				key(.inputOption, .foreground): value(inputForegroundColor),
-				key(.inputOption, .border): value(borderColor, alpha: alphaBorder)
+				key(.inputOption, .border): value(borderColor, alpha: alphaBorder),
+				key(.inputOption, .activeBackground): value(inputHighlightColor),
+				key(.inputOption, .activeForeground): value(inputForegroundColor),
+				key(.dropdown, .background): value(inputBackgroundColor),
+				key(.dropdown, .foreground): value(inputForegroundColor),
+				key(.dropdown, .listBackground): value(inputBackgroundColor)
 			],
 			tokenColors: tokenColors(from: theme)
 		)

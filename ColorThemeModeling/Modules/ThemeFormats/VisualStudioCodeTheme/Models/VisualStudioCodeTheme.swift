@@ -114,6 +114,7 @@ public enum VisualStudioCodeThemeColorRoot: String {
 	case notificationCenterHeader
 	case diffEditor
 	case gitDecoration
+	case settings
 }
 
 extension VisualStudioCodeThemeColorRoot: CustomStringConvertible {
