@@ -41,7 +41,7 @@ extension IntermediateThemeModeler {
 		let backgroundColor = originColors.background
 		let foregroundColor = originColors.foreground
 
-		let commentBaseColor = transformedColor(from: originColors.foreground, applying: (0, -0.05, -0.4))
+		let commentBaseColor = transformedColor(from: originColors.foreground, applying: (0, -0.05, -0.35))
 		let commentColors = cascadingColorSequence(from: commentBaseColor, numberOfColors: 2, skewing: .darker)
 
 		let keywordColor = originColors.keywords
