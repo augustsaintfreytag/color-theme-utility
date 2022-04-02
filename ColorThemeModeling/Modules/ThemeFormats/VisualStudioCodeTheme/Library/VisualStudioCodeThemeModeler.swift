@@ -17,10 +17,15 @@ extension VisualStudioCodeThemeModeler {
 	
 	private static var defaultThemeName: String { "Color Theme Utility Output" }
 	
-	private static var markupAddedColor: Color { Color(red: 0.365, green: 0.941, blue: 0.616) }		// #5df09d
-	private static var markupModifiedColor: Color { Color(red: 0.808, green: 0.608, blue: 0.950) }
-	private static var markupDeletedColor: Color { Color(red: 1, green: 0.325, blue: 0.439) }
-	private static var markupConflictColor: Color { Color(red: 1, green: 0.608, blue: 0.412) }
+	private static var addedColor: Color { Color(red: 0.365, green: 0.941, blue: 0.616) }		// #5df09d
+	private static var modifiedColor: Color { Color(red: 0.808, green: 0.608, blue: 0.950) }	// #ce9bf2
+	private static var deletedColor: Color { Color(red: 1, green: 0.325, blue: 0.439) }			// #ff526f
+	private static var conflictColor: Color { Color(red: 1, green: 0.608, blue: 0.412) }		// #ff9b69
+	
+	private static var markupAddedColor: Color { transformedColor(from: addedColor, applying: (0, -0.25, 0.05)) }
+	private static var markupModifiedColor: Color { transformedColor(from: modifiedColor, applying: (0, -0.25, 0.05)) }
+	private static var markupDeletedColor: Color { transformedColor(from: deletedColor, applying: (0, -0.25, 0.05)) }
+	private static var markupConflictColor: Color { transformedColor(from: conflictColor, applying: (0, -0.25, 0.05)) }
 	
 	private static var markupAddedBackgroundColor: Color { transformedColor(from: markupAddedColor, applying: (0, 0, -0.2)) }
 	private static var markupModifiedBackgroundColor: Color { transformedColor(from: markupModifiedColor, applying: (0, 0, -0.2)) }
