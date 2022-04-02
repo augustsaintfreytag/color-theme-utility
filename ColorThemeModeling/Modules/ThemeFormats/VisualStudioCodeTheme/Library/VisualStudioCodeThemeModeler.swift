@@ -27,7 +27,8 @@ extension VisualStudioCodeThemeModeler {
 	private static var markupDeletedBackgroundColor: Color { transformedColor(from: markupDeletedColor, applying: (0, 0, 0.2)) }
 	private static var markupConflictBackgroundColor: Color { transformedColor(from: markupConflictColor, applying: (0, 0, 0.2)) }
 	
-	private static var errorColor: Color { Color(red: 1, green: 0.325, blue: 0.439) }
+	private static var errorColor: Color { Color(red: 0.988, green: 0.530, blue: 0.416) }
+	private static var warningColor: Color { Color(red: 0.988, green: 0.827, blue: 0.415) }
 	
 	private static var alphaBorder: ColorValue { 0.35 }
 	private static var alphaShadow: ColorValue { 0.5 }
@@ -82,7 +83,7 @@ extension VisualStudioCodeThemeModeler {
 		let inputHighlightColor = transformedColor(from: inputBackgroundColor, skewing: .lighter, modifier: 1)
 		
 		let hoverColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 0.35)
-		let borderColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 0.35)
+		let borderColor = transformedColor(from: backgroundColor, skewing: .lighter, modifier: 0.5)
 		let activeBorderColor = transformedColor(from: accentColorSecondary, skewing: .darker, modifier: 0.5)
 		let shadowColor = transformedColor(from: backgroundColor, skewing: .darker, modifier: 1)
 
@@ -175,7 +176,15 @@ extension VisualStudioCodeThemeModeler {
 				key(.inputOption, .activeForeground): value(inputForegroundColor),
 				key(.dropdown, .background): value(inputBackgroundColor),
 				key(.dropdown, .foreground): value(inputForegroundColor),
-				key(.dropdown, .listBackground): value(inputBackgroundColor)
+				key(.dropdown, .listBackground): value(inputBackgroundColor),
+				key(.dropdown, .border): value(borderColor, alpha: alphaBorder),
+				key(.inputValidation, .background): value(inputBackgroundColor),
+				key(.inputValidation, .errorBackground): value(inputBackgroundColor),
+				key(.inputValidation, .errorBorder): value(errorColor),
+				key(.inputValidation, .warningBackground): value(inputBackgroundColor),
+				key(.inputValidation, .warningBorder): value(warningColor),
+				key(.inputValidation, .infoBackground): value(inputBackgroundColor),
+				key(.inputValidation, .infoBorder): value(accentColorPrimary)
 			],
 			tokenColors: tokenColors(from: theme)
 		)
