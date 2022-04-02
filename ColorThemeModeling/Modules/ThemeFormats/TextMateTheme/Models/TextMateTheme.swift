@@ -108,6 +108,8 @@ public enum TextMateThemeSettingKey: String, Codable, CaseIterable {
 	case selection
 	case selectionBackground
 	case selectionForeground
+	case selectionHighlightBackground
+	case selectionHighlightBorder
 	case inactiveSelection
 	case selectionHighlight
 	case activeSelectionBackground
